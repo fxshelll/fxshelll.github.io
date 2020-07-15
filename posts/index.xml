@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Jul 2020 17:54:28 UT</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jul 2020 18:04:56 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rust Idioms</title>
@@ -63,7 +63,7 @@ Merge Sort def merge_sort(l): &amp;#34;&amp;#34;&amp;#34; merge sort implementat
       <content:encoded><![CDATA[Local config &amp;gt;&amp;gt; git config --global user.email &amp;quot;email@example.com&amp;quot; Reset last commit &amp;gt;&amp;gt; git reset HEAD~1 Status of all modified files &amp;gt;&amp;gt; git status -u Update last commit &amp;gt;&amp;gt; git commit --amend &amp;gt;&amp;gt; git push origin &amp;lt;branch&amp;gt; --force Apply (wrong) changes of one branch to another &amp;gt;&amp;gt; git stash &amp;gt;&amp;gt; git checkout the-right-branch &amp;gt;&amp;gt; git stash apply ]]></content:encoded>
     </item>
     <item>
-      <title>A Development Workflow</title>
+      <title>teste1</title>
       <link>/posts/a-development-workflow/</link>
       <pubDate>Mon, 20 Aug 2018 01:32:21 UT</pubDate>
       <guid>/posts/a-development-workflow/</guid>
