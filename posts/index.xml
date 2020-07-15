@@ -7,8 +7,17 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Jul 2020 18:04:56 UT</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jul 2020 18:13:25 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My Teste</title>
+      <link>/posts/my-teste/</link>
+      <pubDate>Wed, 15 Jul 2020 18:02:31 UT</pubDate>
+      <guid>/posts/my-teste/</guid>
+      <description>hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?</description>
+      <content:encoded><![CDATA[hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?
+]]></content:encoded>
+    </item>
     <item>
       <title>Rust Idioms</title>
       <link>/posts/rust/</link>
