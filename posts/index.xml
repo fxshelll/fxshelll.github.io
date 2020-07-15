@@ -7,105 +7,15 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Jul 2020 18:21:04 UT</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jul 2020 18:25:29 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My Teste</title>
+      <title>Bem vindo</title>
       <link>/posts/my-teste/</link>
       <pubDate>Wed, 15 Jul 2020 18:02:31 UT</pubDate>
       <guid>/posts/my-teste/</guid>
-      <description>hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?</description>
-      <content:encoded><![CDATA[hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?hello?hello? hello?hello?hello?hello?hello?hello?hello?hello?hello?
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Rust Idioms</title>
-      <link>/posts/rust/</link>
-      <pubDate>Sun, 03 Nov 2019 19:23:12 UT</pubDate>
-      <guid>/posts/rust/</guid>
-      <description>Resources Below are some great resource that were used for this page:
- Rust Programming Techniques: https://youtu.be/vqavdUGKeb4 Rust Language Cheat Sheet: https://cheats.rs/  Pattern Matching enum Foo{A(i32),B,C}letfoo=matchx{Foo::A(n)=&amp;gt;n,_=&amp;gt;0,};Option Type enum Option&amp;lt;T&amp;gt;{Some(T),None}Result Type enum Result&amp;lt;T,E&amp;gt;{Ok(T),Err(E)}Example:
-fn h(value: i32)-&amp;gt; Result&amp;lt;i32,String&amp;gt;{matchi{iifi&amp;gt;=0=&amp;gt;Ok(i&#43;10),_=&amp;gt;Err(format!(&amp;#34;Input to h less than 0, found {}&amp;#34;,i))}}fn main(){letinput: i32 =4;matchh(input){Ok(value)=&amp;gt;println!(&amp;#34;Result: {}&amp;#34;,value),Err(e)=&amp;gt;println!(&amp;#34;Error: {}&amp;#34;,e)}}if let ifletOk(i)=h(){// do something }We ignore any error.
-? Common idiom:
-leti=matchh(){Ok(i)=&amp;gt;i,err=&amp;gt;returnerr// throw the error };Equals to the following one liner:</description>
-      <content:encoded><![CDATA[Resources Below are some great resource that were used for this page:
- Rust Programming Techniques: https://youtu.be/vqavdUGKeb4 Rust Language Cheat Sheet: https://cheats.rs/  Pattern Matching enum Foo{A(i32),B,C}letfoo=matchx{Foo::A(n)=&amp;gt;n,_=&amp;gt;0,};Option Type enum Option&amp;lt;T&amp;gt;{Some(T),None}Result Type enum Result&amp;lt;T,E&amp;gt;{Ok(T),Err(E)}Example:
-fn h(value: i32)-&amp;gt; Result&amp;lt;i32,String&amp;gt;{matchi{iifi&amp;gt;=0=&amp;gt;Ok(i&#43;10),_=&amp;gt;Err(format!(&amp;#34;Input to h less than 0, found {}&amp;#34;,i))}}fn main(){letinput: i32 =4;matchh(input){Ok(value)=&amp;gt;println!(&amp;#34;Result: {}&amp;#34;,value),Err(e)=&amp;gt;println!(&amp;#34;Error: {}&amp;#34;,e)}}if let ifletOk(i)=h(){// do something }We ignore any error.
-? Common idiom:
-leti=matchh(){Ok(i)=&amp;gt;i,err=&amp;gt;returnerr// throw the error };Equals to the following one liner:
-leti=h()?;map (some method) fn add_four(x: i32)-&amp;gt; i32 {x&#43;4}fn maybe_add_four(y: Option&amp;lt;i32&amp;gt;)-&amp;gt; Option&amp;lt;i32&amp;gt;{matchy{Some(yy)=&amp;gt;Some(add_four(yy)),None=&amp;gt;None}}Use of map:
-fn add_four(x: i32)-&amp;gt; i32 {x&#43;4}fn maybe_add_four(y: Option&amp;lt;i32&amp;gt;)-&amp;gt; Option&amp;lt;i32&amp;gt;{y.map(add_four)}Clojure form:
-fn maybe_add_four(y: Option&amp;lt;i32&amp;gt;)-&amp;gt; Option&amp;lt;i32&amp;gt;{y.map(|x|x&#43;4)}and_then, filter &amp;ldquo;Idiomatization&amp;rdquo; (🤔&amp;hellip;) of the following:
-fn foo(input: Option&amp;lt;i32&amp;gt;)-&amp;gt; Option&amp;lt;i32&amp;gt;{ifinput.is_none(){returnNone;}letinput=input.unwrap();ifinput&amp;lt;0{returnNone;}Some(input)}Use of &amp;ldquo;?&amp;quot;:
-fn foo(input: Option&amp;lt;i32&amp;gt;)-&amp;gt; Option&amp;lt;i32&amp;gt;{letinput=input?;// return None if None ifinput&amp;lt;0{returnNone;}Some(input)}Use of and_then:
-fn foo(input: Option&amp;lt;i32&amp;gt;)-&amp;gt; Option&amp;lt;i32&amp;gt;{input.and_then(|i|{ifi&amp;lt;0{None}else{Some(i)}}}Use of filter:
-fn foo(input: Option&amp;lt;i32&amp;gt;)-&amp;gt; Option&amp;lt;i32&amp;gt;{input.filter(|i|i&amp;gt;=0);}ok_or &amp;ldquo;Idiomatization&amp;rdquo; (🤔&amp;hellip;) of the following:
-fn bar(input: Option&amp;lt;i32&amp;gt;)-&amp;gt; Result&amp;lt;i32,ErrNegative&amp;gt;{matchfoo(input){Some(n)=&amp;gt;Ok(n),None=&amp;gt;ErrNegative}}fn bar(input: Option&amp;lt;i32&amp;gt;)-&amp;gt; Result&amp;lt;i32,ErrNegative&amp;gt;{foo(input).ok_or(ErrNegative)}Iterators fn ping_all(foos: &amp;amp;[Foo]){forfinfoos{f.ping();}}Becomes
-fn ping_all(foos: &amp;amp;[Foo]){foos.iter().for_each(|f|f.ping());}map, filter, for_each methods letvec=vec![0,1,2,3];vec.iter().map(|x|x&#43;1).filter(|x|x&amp;gt;1).for_each(|x|println!(&amp;#34;{}&amp;#34;,x));chain, enumerate methods letvec=vec![0,1,2,3];for(i,v)invec.iter().chain(vec![4,5,6,7].iter()).enumerate(){// do something }chain adds an iterator to an iterator.
-collect method letvec=vec![0,1,2,3];letvec_2: Vec&amp;lt;_&amp;gt;=vec.iter().map(|x|x&#43;2).collect();letmap: HashMap&amp;lt;_,_&amp;gt;=vec.iter().map(|x|x*2).enumerate().collect();_ is used to let the compiler infer the type for us. Type declarations (Vec, HashMap) are explicitely needed though to help collect to figure out what needs to be returned.
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Algorithms</title>
-      <link>/posts/algorithms/</link>
-      <pubDate>Tue, 22 Oct 2019 20:28:38 UT</pubDate>
-      <guid>/posts/algorithms/</guid>
-      <description>Below are some homework / notes about algorithms.
-Merge Sort def merge_sort(l): &amp;#34;&amp;#34;&amp;#34; merge sort implementation &amp;#34;&amp;#34;&amp;#34; length = len(l) if length in [0, 1]: # base cases return l middle = length // 2 left, right = l[:middle], l[middle:] left_sorted = merge_sort(left) right_sorted = merge_sort(right) merged = [] i = j = 0 while i != len(left_sorted) and j != len(right_sorted): if left_sorted[i] &amp;lt; right_sorted[j]: merged.append(left_sorted[i]) i &#43;= 1 elif left_sorted[i] &amp;gt; right_sorted[j]: merged.</description>
-      <content:encoded><![CDATA[Below are some homework / notes about algorithms.
-Merge Sort def merge_sort(l): &amp;#34;&amp;#34;&amp;#34; merge sort implementation &amp;#34;&amp;#34;&amp;#34; length = len(l) if length in [0, 1]: # base cases return l middle = length // 2 left, right = l[:middle], l[middle:] left_sorted = merge_sort(left) right_sorted = merge_sort(right) merged = [] i = j = 0 while i != len(left_sorted) and j != len(right_sorted): if left_sorted[i] &amp;lt; right_sorted[j]: merged.append(left_sorted[i]) i &#43;= 1 elif left_sorted[i] &amp;gt; right_sorted[j]: merged.append(right_sorted[j]) j &#43;= 1 else: raise NotImplementedError if i != len(left_sorted): merged.extend(left_sorted[i:]) if j != len(right_sorted): merged.extend(right_sorted[j:]) return merged  There are $log_2(n) &#43; 1$ number of levels. At level $j$, we have $2^j$ sub-problems, of size $\frac{n}{2^j}$ Each sub-problem do $x$ operation. So we have $x \cdot n \cdot log_2(n) &#43; x \cdot n$ operations. Removing lower order term and leading constant factor: $O(n \cdot log(n))$  ]]></content:encoded>
-    </item>
-    <item>
-      <title>Python</title>
-      <link>/posts/python/</link>
-      <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
-      <guid>/posts/python/</guid>
-      <description>Data structures Lists i = l.index(value) # get index l = l[::-1] # reverse a list </description>
-      <content:encoded><![CDATA[Data structures Lists i = l.index(value) # get index l = l[::-1] # reverse a list ]]></content:encoded>
-    </item>
-    <item>
-      <title>Git Sheet Cheat</title>
-      <link>/posts/git/</link>
-      <pubDate>Thu, 28 Feb 2019 02:54:51 UT</pubDate>
-      <guid>/posts/git/</guid>
-      <description>Local config &amp;gt;&amp;gt; git config --global user.email &amp;quot;email@example.com&amp;quot; Reset last commit &amp;gt;&amp;gt; git reset HEAD~1 Status of all modified files &amp;gt;&amp;gt; git status -u Update last commit &amp;gt;&amp;gt; git commit --amend &amp;gt;&amp;gt; git push origin &amp;lt;branch&amp;gt; --force Apply (wrong) changes of one branch to another &amp;gt;&amp;gt; git stash &amp;gt;&amp;gt; git checkout the-right-branch &amp;gt;&amp;gt; git stash apply </description>
-      <content:encoded><![CDATA[Local config &amp;gt;&amp;gt; git config --global user.email &amp;quot;email@example.com&amp;quot; Reset last commit &amp;gt;&amp;gt; git reset HEAD~1 Status of all modified files &amp;gt;&amp;gt; git status -u Update last commit &amp;gt;&amp;gt; git commit --amend &amp;gt;&amp;gt; git push origin &amp;lt;branch&amp;gt; --force Apply (wrong) changes of one branch to another &amp;gt;&amp;gt; git stash &amp;gt;&amp;gt; git checkout the-right-branch &amp;gt;&amp;gt; git stash apply ]]></content:encoded>
-    </item>
-    <item>
-      <title>teste1</title>
-      <link>/posts/a-development-workflow/</link>
-      <pubDate>Mon, 20 Aug 2018 01:32:21 UT</pubDate>
-      <guid>/posts/a-development-workflow/</guid>
-      <description>From my first programming steps, I used a bunch of different IDEs to code, depending on the times and the programming language used: Borland C&#43;&#43;, Code::Blocks (for C), Visual Studio (C, C&#43;&#43;), Matlab IDE, IDLE (Python native IDE), Eclipse (With PyDev for Python), Spyder, Sublime Text, Vim, VS Code, etc.
-This is somehow chronological. I lately used VS Code because of three main reasons: This is a great software from Microsoft, I needed to work on Windows (unfortunately) and wanted something great for switching between languages.</description>
-      <content:encoded><![CDATA[From my first programming steps, I used a bunch of different IDEs to code, depending on the times and the programming language used: Borland C&#43;&#43;, Code::Blocks (for C), Visual Studio (C, C&#43;&#43;), Matlab IDE, IDLE (Python native IDE), Eclipse (With PyDev for Python), Spyder, Sublime Text, Vim, VS Code, etc.
-This is somehow chronological. I lately used VS Code because of three main reasons: This is a great software from Microsoft, I needed to work on Windows (unfortunately) and wanted something great for switching between languages.
-Since I recentely came back to MacOS / Linux, I felt the need to restore my &amp;ldquo;old school&amp;rdquo; development workflow, with vim and tmux. This is what this note is about.
-Terminals  iTerm2 on MacOS. Terminator on Linux  Vim A couple of years now I have been using Vim. I still feel as a newbie considering the wide options it offers, but also feel productive with it. I use it in the shell, but also with Sublime Text and VS Code thanks to the plugins.
-Vim in the shell with some configuration and plugins is a killer tool for developping in any language. Here is my vim configuration file (.vimrc). Here is what is worth mentionning:
- I use vundle as vim package manager. Installing a plugin is simple: :PluginInstall, after adding Plugin &amp;quot;&amp;lt;name&amp;gt;&amp;quot; in .vimrc. My leader key is \ Plugins:  Nerdtree (left buffer of the screenshot above) nerdtree-git-plugin: A plugin of NERDTree showing git status flags. VimDevIcons. This plugin is to have file icons showing up in the menu (like VSCode). It requires having a patched font (I am using Fira Code with ligatures enabled as standard font, and Hack Nerd Font as Non-ASCII font). Those needs be be configured in the terminal (iTerm2 in my case). They are installed with the following commands on Mac:  brew tap homebrew/cask-fonts brew cask install font-fira-code brew cask install font-hack-nerd-font  colorschemes (I usually use molokai). Vim airline with airline-themes for status/tabline. ale for async linting. YouCompleteMe for autocompletion. Vim Fugitive as Git wrapper. fzf as main fuzzy file finder.   A few key binding:  jj as second ESC. TAB with . (repeat) CTRL&#43;N to toggle nerdtree leader &#43; f to trigger fzf for fuzzy finding (:Files). leader &#43; q to trigger fzf with git filtering (:GFiles).    ]]></content:encoded>
-    </item>
-    <item>
-      <title>This Website</title>
-      <link>/posts/this-website/</link>
-      <pubDate>Sun, 19 Aug 2018 02:00:14 UT</pubDate>
-      <guid>/posts/this-website/</guid>
-      <description>This website uses hugo, a static website generator. There is no particular reasons for me choosing hugo. There are tons of other solutions available. I needed something simple enough to avoid the hassle of learning a new framework, being static and support of markdown. Google leaded me to hugo.
-Installation (MacOS)
-&amp;gt;&amp;gt; brew install hugo Creating a new site hugo new mynewsite Themes Hugo uses themes. I picked up after dark, a minimalist dark theme.</description>
-      <content:encoded><![CDATA[This website uses hugo, a static website generator. There is no particular reasons for me choosing hugo. There are tons of other solutions available. I needed something simple enough to avoid the hassle of learning a new framework, being static and support of markdown. Google leaded me to hugo.
-Installation (MacOS)
-&amp;gt;&amp;gt; brew install hugo Creating a new site hugo new mynewsite Themes Hugo uses themes. I picked up after dark, a minimalist dark theme. The installation is pretty easy (from ~/mynewsite/themes/):
-&amp;gt;&amp;gt; git clone https://git.habd.as/comfusion/after-dark.git Configuration The name of the theme needs to be added to config.toml (it uses toml by default, yet another configuration language&amp;hellip;)
-theme = &amp;#34;after-dark&amp;#34; New post hugo new posts/my-first-post.md A few hacks Here the interesting things begin. The default behavior was not working quiet as desired. First I wanted the first page to be a static page, vs. displaying the list of the posts. This behavior is handled in the theme layouts (layouts/index.html). It uses a templating language (which reminds Jinja).
-{{ define &amp;#34;title&amp;#34; -}} {{ .Site.Title }} {{- end }} {{ define &amp;#34;header&amp;#34; }} {{ partial &amp;#34;menu.html&amp;#34; . }} {{ end }} {{ define &amp;#34;main&amp;#34; }} &amp;lt;header&amp;gt; &amp;lt;h1&amp;gt;{{ .Title }}&amp;lt;/h1&amp;gt; &amp;lt;/header&amp;gt; {{ range (.Paginate (where .Data.Pages &amp;#34;Type&amp;#34; &amp;#34;post&amp;#34;)).Pages }} {{ partial &amp;#34;page-summary.html&amp;#34; . }} {{ end }} {{ end }} {{ define &amp;#34;footer&amp;#34; }} {{ partial &amp;#34;pagination.html&amp;#34; . }} {{ partial &amp;#34;powered-by.html&amp;#34; . }} {{ end }} Without knowing the details about how this is working, it is pretty obvious to figure out what it does:
- Display the title of the site Inject the content of the menu Another title Loop over the posts and render them as defined in page-summary.html Inject a couple of things in the footer  The loop is the interesting piece. We want to replace this behavior. It will be replaced by the following:
-{{ define &amp;#34;title&amp;#34; -}} {{ .Site.Title }} {{- end }} {{ define &amp;#34;header&amp;#34; }} {{ partial &amp;#34;menu.html&amp;#34; . }} {{ end }} {{ define &amp;#34;main&amp;#34; }} {{ range .Data.Pages }} {{if eq .Type &amp;#34;index&amp;#34; }} {{.Content}} {{end}} {{ end }} {{ end }} {{ define &amp;#34;footer&amp;#34; }} {{ partial &amp;#34;powered-by.html&amp;#34; . }} {{ end }} This loops over the pages, and if it finds a page of a type index, it will display it. The index page will be saved in the content (index.md), with the following header:
---- title: &amp;quot;&amp;quot; type: index --- We also remove the title, not really needed in the homepage.
-We could replace the theme layout, but it is better to keep it as it is. We can overwrite the theme layout, having index.html in the layouts/ folder of the site. A similar strategy is used for layouts/partials/page-summary.html for changing the display of the list of posts.
-Deploying with GitHub I am following the official hugo doc for this.
-There are two git repos: One for the source, and another one for the generated site. The generated site is in the public/ folder of the source repo (with public/ in .gitignore to avoid source controlling two times the generated site)
-Typing hugo just generates the website in public/. hugo serve is used for local display.
+      <description>Conteúdos no forninho&amp;hellip;</description>
+      <content:encoded><![CDATA[Conteúdos no forninho&amp;hellip;
 ]]></content:encoded>
     </item>
   </channel>
