@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Jul 2020 04:01:08 UT</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2020 04:09:18 UT</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
@@ -21,9 +21,8 @@
       <link>/index.html</link>
       <pubDate>Sat, 18 Aug 2018 22:23:01 UT</pubDate>
       <guid>/index.html</guid>
-      <description>#Oi, se você chegou aqui, encontrou meu esconderijo do mundo, um lugar onde concentro meus estudos para ser alguém melhor e ajudar outros, pode me chamar de FX aproveite os conteúdos.</description>
-      <content:encoded><![CDATA[#Oi, se você chegou aqui, encontrou meu esconderijo do mundo, um lugar onde concentro meus estudos para ser alguém melhor e ajudar outros, pode me chamar de FX aproveite os conteúdos.
-]]></content:encoded>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>notes</title>
@@ -35,7 +34,7 @@
 ]]></content:encoded>
     </item>
     <item>
-      <title>sobre</title>
+      <title></title>
       <link>/sobre/</link>
       <pubDate>Sat, 18 Aug 2018 22:01:29 UT</pubDate>
       <guid>/sobre/</guid>
