@@ -7,8 +7,24 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Jul 2020 03:42:26 UT</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jul 2020 02:52:27 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GoBuster</title>
+      <link>/posts/gobuster/</link>
+      <pubDate>Tue, 28 Jul 2020 02:44:29 UT</pubDate>
+      <guid>/posts/gobuster/</guid>
+      <description>GoBuster Primo do DIRB
+O Gobuster é uma ótima ferramenta utilizada para força bruta em URI’s (diretórios e arquivos)
+-fw – força o processamento de um domínio com resultados curinga. -np – oculta a saída do progresso. -m &amp;lt;modo&amp;gt; – qual modo usar, dir ou dns (padrão: dir). -q – desativa a saída de banner / sublinhado. -t &amp;lt;threads&amp;gt; – número de encadeamentos a serem executados (padrão: 10). -u &amp;lt;url / domain&amp;gt; – URL completo (incluindo esquema) ou nome de domínio base.</description>
+      <content:encoded><![CDATA[GoBuster Primo do DIRB
+O Gobuster é uma ótima ferramenta utilizada para força bruta em URI’s (diretórios e arquivos)
+-fw – força o processamento de um domínio com resultados curinga. -np – oculta a saída do progresso. -m &amp;lt;modo&amp;gt; – qual modo usar, dir ou dns (padrão: dir). -q – desativa a saída de banner / sublinhado. -t &amp;lt;threads&amp;gt; – número de encadeamentos a serem executados (padrão: 10). -u &amp;lt;url / domain&amp;gt; – URL completo (incluindo esquema) ou nome de domínio base. -v – saída detalhada (mostra todos os resultados). -w &amp;lt;wordlist&amp;gt; – caminho para a lista de palavras usada para força bruta (use – para stdin). Eu poderia usar o DIRB? Sim, por que ele vai fazer o scanning de páginas também. Ficaria assim:
+$ dirb http://192.168.219.128:65535 /usr/share/dirb/wordlists/big.txt
+Com o GoBuster faria o brute force &#43; o scanning de diretórios, utilizando a mesma wordlist do DIRB.
+$ gobuster dir -u http://192.168.219.128:65535 -w /usr/share/dirb/wordlists/big.txt
+-w &amp;lt;wordlist&amp;gt; -u &amp;lt;url&amp;gt; ]]></content:encoded>
+    </item>
     <item>
       <title>Wordlist com Palavras do Site</title>
       <link>/posts/wordlist/</link>
