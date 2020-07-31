@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 Jul 2020 04:19:14 UT</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2020 04:21:35 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Wfuzz</title>
@@ -15,11 +15,15 @@
       <pubDate>Fri, 31 Jul 2020 04:13:20 UT</pubDate>
       <guid>/posts/wfuzz/</guid>
       <description>É umaferramenta de fuzzing criado para facilitar a tarefa de avaliação de aplicações web e baseia-se num conceito muito simples: substitui qualquer referência à palavra-chave FUZZ pelo valor de um determinado payload. Um payload no Wfuzz é uma fonte de dados.
-`wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt &amp;ndash;hc 404 http://10.15.0.1/FUZZ
-c colorir saída w caminho da wordlist hc ignorar erros</description>
+wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt --hc 404 http://10.15.0.1/FUZZ
+c colorir saída
+w caminho da wordlist
+hc ignorar erros</description>
       <content:encoded><![CDATA[É umaferramenta de fuzzing criado para facilitar a tarefa de avaliação de aplicações web e baseia-se num conceito muito simples: substitui qualquer referência à palavra-chave FUZZ pelo valor de um determinado payload. Um payload no Wfuzz é uma fonte de dados.
-`wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt &amp;ndash;hc 404 http://10.15.0.1/FUZZ
-c colorir saída w caminho da wordlist hc ignorar erros
+wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt --hc 404 http://10.15.0.1/FUZZ
+c colorir saída
+w caminho da wordlist
+hc ignorar erros
 ]]></content:encoded>
     </item>
     <item>
