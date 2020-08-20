@@ -5,9 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steghide | FXSHELL</title>
-    <meta name="description" content="#para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt
-#para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg
-#para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg">
+    <meta name="description" content="#para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt #para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg #para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg ">
     <meta name="keywords" content="">
     
     
@@ -19,9 +17,7 @@
 
 
     <meta property="og:title" content="Steghide" />
-<meta property="og:description" content="#para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt
-#para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg
-#para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg" />
+<meta property="og:description" content="#para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt #para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg #para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/steghide/" />
 <meta property="article:published_time" content="2020-08-19T23:23:34-03:00" />
@@ -29,9 +25,7 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Steghide"/>
-<meta name="twitter:description" content="#para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt
-#para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg
-#para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg"/>
+<meta name="twitter:description" content="#para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt #para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg #para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg "/>
 
     
 
@@ -112,6 +106,42 @@ fetchInject(["/js/lazysizes.min.js"]);
 
     
     
+      <script>fetchInject(["/css/syntax.css"])</script>
+
+      
+      <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+        });
+        MathJax.Hub.Queue(function() {
+          
+          
+          
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i = 0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+        });
+
+        MathJax.Hub.Config({
+        
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+      <noscript>
+        <link href=/css/syntax.css rel="stylesheet">
+      </noscript>
+    
   </head>
   
   
@@ -136,13 +166,16 @@ fetchInject(["/js/lazysizes.min.js"]);
   <header>
     <h1>Steghide</h1>
   </header>
-  <p>#para embedar um arquivo de texto dentro de uma imagem
-$ steghide embed -cf picture.jpg -ef secret.txt</p>
-<p>#para extrair o arquivo de dentro da imagem
-$ steghide extract -sf picture.jpg</p>
-<p>#para exibir informações sobre o arquivo de imagem com o embed
-$ steghide info picture.jpg</p>
+  <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1">#para embedar um arquivo de texto dentro de uma imagem</span>
+$ steghide embed -cf picture.jpg -ef secret.txt
 
+<span class="c1">#para extrair o arquivo de dentro da imagem</span>
+$ steghide extract -sf picture.jpg
+
+<span class="c1">#para exibir informações sobre o arquivo de imagem com o embed</span>
+$ steghide info picture.jpg
+
+</code></pre></div>
 </main>
     <footer>
   

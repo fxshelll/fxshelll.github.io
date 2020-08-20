@@ -7,20 +7,15 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Aug 2020 02:25:12 UT</lastBuildDate>
+    <lastBuildDate>Thu, 20 Aug 2020 02:27:33 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Steghide</title>
       <link>/posts/steghide/</link>
       <pubDate>Thu, 20 Aug 2020 02:23:34 UT</pubDate>
       <guid>/posts/steghide/</guid>
-      <description>#para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt
-#para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg
-#para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg</description>
-      <content:encoded><![CDATA[#para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt
-#para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg
-#para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg
-]]></content:encoded>
+      <description>#para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt #para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg #para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg </description>
+      <content:encoded><![CDATA[#para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt #para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg #para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg ]]></content:encoded>
     </item>
     <item>
       <title>Wfuzz</title>
