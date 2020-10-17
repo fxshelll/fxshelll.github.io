@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Oct 2020 16:25:00 UT</lastBuildDate>
+    <lastBuildDate>Sat, 17 Oct 2020 16:30:15 UT</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
@@ -43,6 +43,13 @@ github linkedin</description>
       <content:encoded><![CDATA[Sou Sysadmin e estudante de Cybersegurança, atualmente estou trabalhando em um portal de notícias. Uso principalmente Python e Shellscript.
 github linkedin
 ]]></content:encoded>
+    </item>
+    <item>
+      <title></title>
+      <link>/htb/</link>
+      <guid>/htb/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
     </item>
   </channel>
 </rss>
