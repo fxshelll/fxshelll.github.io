@@ -4,8 +4,13 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-10-17T22:06:42-03:00</lastmod>
+    <lastmod>2020-10-17T22:38:50-03:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/htb/magic/</loc>
+    <lastmod>2020-10-17T22:38:50-03:00</lastmod>
   </url>
   
   <url>
@@ -15,11 +20,6 @@
   
   <url>
     <loc>/htb/</loc>
-    <lastmod>2020-10-17T13:29:18-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/htb/teste/</loc>
     <lastmod>2020-10-17T13:29:18-03:00</lastmod>
   </url>
   
