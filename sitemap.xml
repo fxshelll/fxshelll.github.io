@@ -4,8 +4,13 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-10-19T12:39:26-03:00</lastmod>
+    <lastmod>2020-10-19T14:29:02-03:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/htb/book/</loc>
+    <lastmod>2020-10-19T14:29:02-03:00</lastmod>
   </url>
   
   <url>
