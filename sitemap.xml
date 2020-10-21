@@ -40,8 +40,13 @@
   
   <url>
     <loc>/posts/</loc>
-    <lastmod>2020-08-19T23:23:34-03:00</lastmod>
+    <lastmod>2020-10-08T11:10:44-03:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/docker/</loc>
+    <lastmod>2020-10-08T11:10:44-03:00</lastmod>
   </url>
   
   <url>
