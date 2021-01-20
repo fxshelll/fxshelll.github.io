@@ -4,11 +4,10 @@
     <meta name="generator" content="Hugo 0.73.0" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Docker | FXSHELL</title>
-    <meta name="description" content="Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container.
+    <title> | FXSHELL</title>
+    <meta name="description" content="zz&mdash; title: &ldquo;Docker&rdquo; date: 2020-10-08T11:10:44-03:00 draft: false Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container.
 Duas formas de isolamento, lógica e física.
-Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memoria, disco.
-#O que é o Docker?">
+Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memoria, disco.">
     <meta name="keywords" content="">
     
     
@@ -19,22 +18,19 @@ Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memori
   <meta name="author" content="">
 
 
-    <meta property="og:title" content="Docker" />
-<meta property="og:description" content="Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container.
+    <meta property="og:title" content="" />
+<meta property="og:description" content="zz&mdash; title: &ldquo;Docker&rdquo; date: 2020-10-08T11:10:44-03:00 draft: false Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container.
 Duas formas de isolamento, lógica e física.
-Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memoria, disco.
-#O que é o Docker?" />
+Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memoria, disco." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/docker/" />
-<meta property="article:published_time" content="2020-10-08T11:10:44-03:00" />
-<meta property="article:modified_time" content="2020-10-08T11:10:44-03:00" />
+
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker"/>
-<meta name="twitter:description" content="Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container.
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="zz&mdash; title: &ldquo;Docker&rdquo; date: 2020-10-08T11:10:44-03:00 draft: false Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container.
 Duas formas de isolamento, lógica e física.
-Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memoria, disco.
-#O que é o Docker?"/>
+Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memoria, disco."/>
 
     
 
@@ -175,9 +171,13 @@ fetchInject(["/js/lazysizes.min.js"]);
 </header>
     <main>
   <header>
-    <h1>Docker</h1>
+    <h1></h1>
   </header>
-  <p>Quando falamos de container, estamos falando de
+  <h2 id="draft-false">zz&mdash;
+title: &ldquo;Docker&rdquo;
+date: 2020-10-08T11:10:44-03:00
+draft: false</h2>
+<p>Quando falamos de container, estamos falando de
 isolamento. Esse container está sendo executado
 dentro de um servidor, este fica completamente
 isolado da maquina. E dentro deste cercado eu
@@ -661,7 +661,7 @@ latest: Pulling from library/debian
 Digest: sha256:439a6bae1ef351ba9308fc9a5e69ff7754c14516f6be8ca26975fb564cb7fb76
 Status: Downloaded newer image <span class="k">for</span> debian:latest
  ---&gt; f6dcff9b59af
-Step 2/5 : LABEL <span class="nv">app</span><span class="o">=</span><span class="s2">&#34;Giropops&#34;</span>
+Step 2/5 : LABEL <span class="nv">app</span><span class="o">=</span><span class="s2">&#34;moranguinho&#34;</span>
  ---&gt; Running in c329bf2c69e1
 Removing intermediate container c329bf2c69e1
  ---&gt; d59dacfad6f9
@@ -715,7 +715,284 @@ toskeira            1.0                 d24fe1c0773b        About a minute ago  
 </code></pre></div><p>Posso também utilizar o comando update.</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container update --cpus 0.8  --memory 64M <span class="o">[</span>CONTAINER ID<span class="o">]</span>
 </code></pre></div><p>Limitando CPU para 80% e memoria para 64M</p>
+<p>#Entendendo volumes</p>
+<p>Volumes nada mais sao do que diretorios externos ao container, que são montados diretamente nele, dessa forma bypassam seu filesystem, ou seja, não seguem aquele padrão de camadas.</p>
+<p>A principal função do volume é persistir os dados. Diferentemente do filesystem do container, que é volátil e toda informação escrita nele é perdida quando o container morre, quando você escreve em um volume aquele dado continua lá. independentemente do estado do container.</p>
+<p>=&gt; É iniciado quando o container é criado</p>
+<p>=&gt; Caso ocorra de já haver dados no diretório em que você está montando como volume, ou seja, se o diretório já existe e já está populado na imagem base, aqueles dados serão copiados para o volume.</p>
+<p>=&gt; Um volume pode ser reusado e compartilhado entre os containers.</p>
+<p>=&gt; Alterações em um volume são feitas diretamente do volume.</p>
+<p>=&gt; Alterações em um volume não irão com a imagem quando você fizer uma cópia ou snapshot de um container.</p>
+<p>=&gt; Volumes continuam a existir mesmo se você deletar o container.</p>
+<p>#Exemplo</p>
+<p>Criamos uma pasta para montar nosso volume no local:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# mkdir /opt/moranguinho
+</code></pre></div><p>Volumes do tipo bind é quando eu já tenho um diretório que quero montar especifico.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho debian
+</code></pre></div><p>Beleza, já dentro do container crio um arquivo de teste dentro do volume.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@07b30662ffc0:/# <span class="nb">cd</span> moranguinho/
+root@07b30662ffc0:/moranguinho# ls
+root@07b30662ffc0:/moranguinho# ls
+root@07b30662ffc0:/moranguinho# touch teste
+root@07b30662ffc0:/moranguinho# <span class="nb">exit</span>
+<span class="nb">exit</span>
+root@FXSHELL ~# <span class="nb">cd</span> /opt/moranguinho/
+root@FXSHELL /o/moranguinho# ls
+teste
+root@FXSHELL /o/moranguinho# 
+</code></pre></div><p>Agora se eu executar um outro container, posso notar que o volume continua o mesmo e com o arquivo criado no passo anterior lá dentro.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /o/moranguinho# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho debian
+root@c72d32bd0846:/# ls
+bin   dev  moranguinho  lib    media  opt   root  sbin  sys  usr
+boot  etc  home      lib64  mnt    proc  run   srv   tmp  var
+root@c72d32bd0846:/# <span class="nb">cd</span> moranguinho/
+root@c72d32bd0846:/moranguinho# ls
+teste
+root@c72d32bd0846:/moranguinho# 
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@9911369c74af:/# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         217G  8.8G  197G   5% /
+tmpfs            64M     <span class="m">0</span>   64M   0% /dev
+tmpfs           491M     <span class="m">0</span>  491M   0% /sys/fs/cgroup
+shm              64M     <span class="m">0</span>   64M   0% /dev/shm
+/dev/sda1       217G  8.8G  197G   5% /moranguinho
+tmpfs           491M     <span class="m">0</span>  491M   0% /proc/asound
+tmpfs           491M     <span class="m">0</span>  491M   0% /proc/acpi
+tmpfs           491M     <span class="m">0</span>  491M   0% /proc/scsi
+tmpfs           491M     <span class="m">0</span>  491M   0% /sys/firmware
+root@9911369c74af:/# 
+</code></pre></div><p>Este é o volume do tipo <code>bind</code></p>
+<p>OBS: também posso definir o volume somente como leitura definindo o parametro <code>ro</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho,ro debian
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /o/moranguinho# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho,ro debian
+root@e779e386475a:/# <span class="nb">cd</span> moranguinho/
+root@e779e386475a:/moranguinho# ls
+teste  teste2
+root@e779e386475a:/moranguinho# touch teste3
+touch: cannot touch <span class="s1">&#39;teste3&#39;</span>: Read-only file system
+root@e779e386475a:/moranguinho# 
+</code></pre></div><p>Mostrando a mensagem como read-only.</p>
+<p>#Docker volume</p>
+<p>Posso checar todos os volumes criados com o comando:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker volume ls
+DRIVER              VOLUME NAME
+root@FXSHELL ~# docker volume create moranguinho
+moranguinho
+root@FXSHELL ~# ls
+snap/  tosko_dockerfile/
+root@FXSHELL ~# docker volume ls
+DRIVER              VOLUME NAME
+<span class="nb">local</span>               moranguinho
+root@FXSHELL ~# docker volume ls
+DRIVER              VOLUME NAME
+<span class="nb">local</span>               moranguinho
+root@FXSHELL ~# docker volume inspect moranguinho
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">&#34;CreatedAt&#34;</span>: <span class="s2">&#34;2021-01-19T20:55:40-05:00&#34;</span>,
+        <span class="s2">&#34;Driver&#34;</span>: <span class="s2">&#34;local&#34;</span>,
+        <span class="s2">&#34;Labels&#34;</span>: <span class="o">{}</span>,
+        <span class="s2">&#34;Mountpoint&#34;</span>: <span class="s2">&#34;/var/lib/docker/volumes/moranguinho/_data&#34;</span>,
+        <span class="s2">&#34;Name&#34;</span>: <span class="s2">&#34;moranguinho&#34;</span>,
+        <span class="s2">&#34;Options&#34;</span>: <span class="o">{}</span>,
+        <span class="s2">&#34;Scope&#34;</span>: <span class="s2">&#34;local&#34;</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+root@FXSHELL ~# 
+</code></pre></div><p>Tudo e qualquer volume no docker, vai estar dentro de &ldquo;/var/lib/docker/volumes&rdquo;</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# <span class="nb">cd</span> /var/lib/docker/volumes/
+root@FXSHELL /v/l/d/volumes# ls
+moranguinho/  metadata.db
+root@FXSHELL /v/l/d/volumes# 
+</code></pre></div><p>Posso colocar meus arquivos dentro da pasta _&quot;<em>data&rdquo; que fica dentro da pasta do volume</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/volumes# ls
+moranguinho/  metadata.db
+root@FXSHELL /v/l/d/volumes# <span class="nb">cd</span> moranguinho/_data/
+root@FXSHELL /v/l/d/v/g/_data# touch teste1 teste2 teste3
+root@FXSHELL /v/l/d/v/g/_data# ls
+teste1  teste2  teste3
+root@FXSHELL /v/l/d/v/g/_data# 
+</code></pre></div><p>Posso montar esse volume também em um container, passando o tipo que agora não será tipo bind, mas sim <em>volume</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>moranguinho,dst<span class="o">=</span>/moranguinho debian
+root@4df1fe08b1da:/# ls
+bin   dev  moranguinho  lib    media  opt   root  sbin  sys  usr
+boot  etc  home      lib64  mnt    proc  run   srv   tmp  var
+root@4df1fe08b1da:/# <span class="nb">cd</span> moranguinho/
+root@4df1fe08b1da:/moranguinho# ls
+teste1  teste2  teste3
+root@4df1fe08b1da:/moranguinho# touch teste4_final
+</code></pre></div><p>Depois mato o container e vejo na pasta do volume, e eis o arquivo teste4_final está lá dentro.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# <span class="nb">cd</span> /var/lib/docker/volumes/
+root@FXSHELL /v/l/d/volumes# ls
+moranguinho/  metadata.db
+root@FXSHELL /v/l/d/volumes# <span class="nb">cd</span> moranguinho/_data/
+root@FXSHELL /v/l/d/v/g/_data# ls
+teste1  teste2  teste3  teste4_final
+root@FXSHELL /v/l/d/v/g/_data# 
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data# docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+4983b4a108a3        debian              <span class="s2">&#34;bash&#34;</span>              <span class="m">11</span> seconds ago      Up <span class="m">10</span> seconds                           frosty_bartik
+root@FXSHELL /v/l/d/v/g/_data# 
+docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>moranguinho,dst<span class="o">=</span>/moranguinho debian
+root@13aacd8dfd58:/# ls
+bin   dev  moranguinho  lib    media  opt   root  sbin  sys  usr
+boot  etc  home      lib64  mnt    proc  run   srv   tmp  var
+root@13aacd8dfd58:/# <span class="nb">cd</span> moranguinho/
+root@13aacd8dfd58:/moranguinho# ls
+teste1  teste2  teste3  teste4_final
+root@13aacd8dfd58:/moranguinho# ⏎                                               root@FXSHELL /v/l/d/v/g/_data# ls
+teste1  teste2  teste3  teste4_final
+root@FXSHELL /v/l/d/v/g/_data# docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
+13aacd8dfd58        debian              <span class="s2">&#34;bash&#34;</span>              <span class="m">14</span> seconds ago       Up <span class="m">12</span> seconds                           flamboyant_moore
+4983b4a108a3        debian              <span class="s2">&#34;bash&#34;</span>              About a minute ago   Up About a minute                       frosty_bartik
+root@FXSHELL /v/l/d/v/g/_data# 
+docker container <span class="nb">exec</span> -ti 13aacd8dfd58 touch /moranguinho/13aacd8dfd58
+root@FXSHELL /v/l/d/v/g/_data# 
+docker container <span class="nb">exec</span> -ti 4983b4a108a3 touch /moranguinho/4983b4a108a3
+root@FXSHELL /v/l/d/v/g/_data# ls
+13aacd8dfd58  4983b4a108a3  teste1  teste2  teste3  teste4_final
+root@FXSHELL /v/l/d/v/g/_data# 
+</code></pre></div><p>Para remover o volume basta remover todos os containers que estiverem em uso com ele.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data <span class="o">[</span>1<span class="o">]</span><span class="c1"># docker container ls -a</span>
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+4df1fe08b1da        debian              <span class="s2">&#34;bash&#34;</span>                   <span class="m">9</span> minutes ago       Exited <span class="o">(</span>0<span class="o">)</span> <span class="m">7</span> minutes ago                        zealous_tereshkova
+e779e386475a        debian              <span class="s2">&#34;bash&#34;</span>                   <span class="m">21</span> minutes ago      Exited <span class="o">(</span>1<span class="o">)</span> <span class="m">20</span> minutes ago                       brave_meitner
 
+root@FXSHELL /v/l/d/v/g/_data# docker container rm -f 4df1fe08b1da
+4df1fe08b1da
+root@FXSHELL /v/l/d/v/g/_data# docker container rm -f e779e386475a
+e779e386475a
+
+root@FXSHELL /v/l/d/v/g/_data# docker volume rm moranguinho
+moranguinho
+root@FXSHELL /v/l/d/v/g/_data# ls
+
+</code></pre></div><p>E assim dentro da pasta /var/lib não temos mais nada do volume moranguinho.</p>
+<p>Posso ver as propriedades do volume criado com o comando:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data# 
+docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>bolacha,dst<span class="o">=</span>/bolacha debian
+
+
+root@FXSHELL /v/l/d/v/g/_data <span class="o">[</span>1<span class="o">]</span><span class="c1"># docker container inspect 9d5997be4321</span>
+
+        <span class="s2">&#34;Mounts&#34;</span>: <span class="o">[</span>
+            <span class="o">{</span>
+                <span class="s2">&#34;Type&#34;</span>: <span class="s2">&#34;volume&#34;</span>,
+                <span class="s2">&#34;Name&#34;</span>: <span class="s2">&#34;bolacha&#34;</span>,
+                <span class="s2">&#34;Source&#34;</span>: <span class="s2">&#34;/var/lib/docker/volumes/bolacha/_data&#34;</span>,
+                <span class="s2">&#34;Destination&#34;</span>: <span class="s2">&#34;/bolacha&#34;</span>,
+                <span class="s2">&#34;Driver&#34;</span>: <span class="s2">&#34;local&#34;</span>,
+                <span class="s2">&#34;Mode&#34;</span>: <span class="s2">&#34;z&#34;</span>,
+                <span class="s2">&#34;RW&#34;</span>: true,
+                <span class="s2">&#34;Propagation&#34;</span>: <span class="s2">&#34;&#34;</span>
+            <span class="o">}</span>
+
+</code></pre></div><p>Se dou um ls volume, o bolacha ainda estará lá.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data# docker volume ls
+DRIVER              VOLUME NAME
+<span class="nb">local</span>               bolacha
+</code></pre></div><p>Posso utilizar o comando docker volume prune, para remover todos os volumes que estejam não estejam sendo utilizados.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker volume prune
+WARNING! This will remove all <span class="nb">local</span> volumes not used by at least one container.
+Are you sure you want to <span class="k">continue</span>? <span class="o">[</span>y/N<span class="o">]</span> y
+Deleted Volumes:
+bolacha
+
+Total reclaimed space: 0B
+</code></pre></div><p>Posso fazer a mesma coisa para os containers que não estou utilizando mais.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container prune
+WARNING! This will remove all stopped containers.
+Are you sure you want to <span class="k">continue</span>? <span class="o">[</span>y/N<span class="o">]</span> y
+Deleted Containers:
+9911369c74af20bcbf144e1487c326d3d06dd23a0293d7b561e54049f5ddbc56
+c72d32bd0846e51a0cbd495909440ee14b64b474611b356704ee3170bf1931b7
+07b30662ffc0b0068862768cd6d7c92eafc372d71f5dffc17baca8079cfadf59
+ebb965d5043752debf60498d0eac5620ffaecc079af3b557c145539d3d721508
+493a598735c5cb1ec6f658df0a4ad5b157562cb462789d19521f1d1fcccbc5fc
+acda8e5ec1adaaf1f2632be1fa8c2d6aedf9744be643991fea48d0d310fc3150
+d7a861d6ea3811ed0273ac32ada6744a26ec85e14ff3b6c6ff5e3462004c3216
+bcee760fd5702bb215b99da66109a3a59158aa5a47aae437d7ff4b516f93c38c
+3d7c4a379d3e3d6a6710d581034d6199002942990f7d34ae5cb97617dd98ef32
+2c6bcccf8f1727817a5da2c9b59edb7afdbb0790e3b3ba16a6298448d3cbb5a6
+d21df8a6681620d956610f5e6808b21a0cd960d3c5a5c88da767b39efec4b674
+ea431a856eff6fd17ff13d87ae498bfe91fb61fe6566744a528f62c1731689b5
+8f88a55195f7defa35196f1d506a1d179af0099afbfcb34a9fd7fefef78240b6
+40ab9db51e4a8c6e5603bdb51c60f37925e89d60afab8bda1ddf06071cb06ecc
+
+Total reclaimed space: 870.3MB
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+root@FXSHELL ~# docker container ls -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+root@FXSHELL ~# 
+</code></pre></div><p>Assim limpando tudo.</p>
+<p>Agora um outro teste</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container create -v /opt/bolacha:/data --name dbdados centos
+49eeb1ffb2453b206028478bc24f13582f5c1cb2ed2dbb378702ea10a7c5fb0c
+</code></pre></div><p>Com isso, apenas criamos o container e especificamos um volume para ele, mas ainda não o iniciamos.</p>
+<p>Sabemos que no container o volume se encontra montado em &ldquo;/data&rdquo;.</p>
+<p>Agora vamos criar os containers que rodarão o Postgresql utilizando o volume &ldquo;/data&rdquo; do container &ldquo;dbdados&rdquo; para guardar os dados.</p>
+<p>Para isso precisamos entender dois parâmetros importantes:</p>
+<p>&ndash;volume-from : É utilizado quando queremos montar um volme disponibilizado por outro container.</p>
+<p>-e : É utilizado para informar váriaveis de um ambiente para o container. No exemplo, estamos passando as variáveis de ambiente do PostgreSQL.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -d -p 5432:5432 --name pgsql1 --volumes-from dbdados -e <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_PASS</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>docker kamui/postgresql
+
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -d -p 5433:5432 --name pgsql2 --volumes-from dbdados -e <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_PASS</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>docker kamui/postgresql
+</code></pre></div><p>Criei duas.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container ls -a
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                    NAMES
+79e408793331        kamui/postgresql    <span class="s2">&#34;/usr/local/bin/run&#34;</span>   <span class="m">8</span> seconds ago       Up <span class="m">7</span> seconds        0.0.0.0:5433-&gt;5432/tcp   pgsql2
+2c2161d46619        kamui/postgresql    <span class="s2">&#34;/usr/local/bin/run&#34;</span>   <span class="m">6</span> minutes ago       Up <span class="m">6</span> minutes        0.0.0.0:5432-&gt;5432/tcp   pgsql1
+49eeb1ffb245        centos              <span class="s2">&#34;/bin/bash&#34;</span>            <span class="m">10</span> minutes ago      Created                                      dbdados
+root@FXSHELL ~# 
+</code></pre></div><p>Fazendo da forma nova e atualizada:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker volume create dbdados
+dbdados
+
+root@FXSHELL ~# docker container run -d -p 5432:5432 --name pgsql1  --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>dbdados,dst<span class="o">=</span>/data -e <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_PASS</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>docker kamui/postgresql
+1fbdf3f70d206cebb44049c737e2d08359118df654bcf9481a5a46c99ab47ccc
+root@FXSHELL ~# docker container run -d -p 5433:5432 --name pgsql2  --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>dbdados,dst<span class="o">=</span>/data -e <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_PASS</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>docker kamui/postgresql
+368bc32d8ca3203dd8962ced0a6a4b999f56751462f121d3100c00169e43e4a8
+root@FXSHELL ~# docker container ls
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                    NAMES
+368bc32d8ca3        kamui/postgresql    <span class="s2">&#34;/usr/local/bin/run&#34;</span>   <span class="m">5</span> seconds ago       Up <span class="m">3</span> seconds        0.0.0.0:5433-&gt;5432/tcp   pgsql2
+1fbdf3f70d20        kamui/postgresql    <span class="s2">&#34;/usr/local/bin/run&#34;</span>   <span class="m">16</span> seconds ago      Up <span class="m">14</span> seconds       0.0.0.0:5432-&gt;5432/tcp   pgsql1
+root@FXSHELL ~# docker volume ls
+DRIVER              VOLUME NAME
+<span class="nb">local</span>               dbdados
+root@FXSHELL ~# 
+</code></pre></div><p>E assim os dados do postgreSQL estão la dentro:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# <span class="nb">cd</span> /var/lib/docker/volumes/dbdados/_data
+root@FXSHELL /v/l/d/v/d/_data# ls
+base/          pg_multixact/  pg_stat_tmp/  pg_xlog/         server.key@
+global/        pg_notify/     pg_subtrans/  postgresql.conf
+pg_clog/       pg_serial/     pg_tblspc/    postmaster.opts
+pg_hba.conf    pg_snapshots/  pg_twophase/  postmaster.pid
+pg_ident.conf  pg_stat/       PG_VERSION    server.crt@
+root@FXSHELL /v/l/d/v/d/_data# 
+</code></pre></div><p>Supondo que quero fazer um backup deste cara, e encarrego outro container de fazer isso, posso fazer algo assim:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# mkdir /opt/backup
+root@FXSHELL ~# 
+root@FXSHELL ~# 
+root@FXSHELL ~# 
+root@FXSHELL ~# 
+root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>dbdados,dst<span class="o">=</span>/data --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/backup,dst<span class="o">=</span>/backup debian tar -cvf /backup/bkp-banco.tar /data
+</code></pre></div><p>montando um volume do tipo bind dentro deste novo container e empacotando com o tar, o bkp.</p>
+<p>#EXEMPLO DE COMANDOS</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># docker container run -ti --mount type=bind,src=/volume,dst=/volume ubuntu</span>
+<span class="c1"># docker container run -ti --mount type=bind,src=/root/primeiro_container,dst=/volume ubuntu</span>
+<span class="c1"># docker container run -ti --mount type=bind,src=/root/primeiro_container,dst=/volume,ro ubuntu</span>
+<span class="c1"># docker volume create moranguinho</span>
+<span class="c1"># docker volume rm moranguinho</span>
+<span class="c1"># docker volume inspect moranguinho</span>
+<span class="c1"># docker volume prune</span>
+<span class="c1"># docker container run -d --mount type=volume,source=moranguinho,destination=/var/opa  nginx</span>
+<span class="c1"># docker container create -v /data --name dbdados centos</span>
+<span class="c1"># docker run -d -p 5432:5432 --name pgsql1 --volumes-from dbdados -e POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql</span>
+<span class="c1"># docker run -d -p 5433:5432 --name pgsql2 --volumes-from dbdados -e  POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql</span>
+<span class="c1"># docker run -ti --volumes-from dbdados -v $(pwd):/backup debian tar -cvf /backup/backup.tar /data</span>
+</code></pre></div>
 </main>
     <footer>
   
