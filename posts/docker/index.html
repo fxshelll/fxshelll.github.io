@@ -992,6 +992,22 @@ root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><sp
 <span class="c1"># docker run -d -p 5432:5432 --name pgsql1 --volumes-from dbdados -e POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql</span>
 <span class="c1"># docker run -d -p 5433:5432 --name pgsql2 --volumes-from dbdados -e  POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql</span>
 <span class="c1"># docker run -ti --volumes-from dbdados -v $(pwd):/backup debian tar -cvf /backup/backup.tar /data</span>
+</code></pre></div><p>#Criando um dockerfile</p>
+<p>$ vim dockerfiles/1/Dockerfile</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">FROM debian <span class="c1">#qual imagem vou me basear</span>
+
+RUN apt-get update <span class="o">&amp;&amp;</span> apt-get install -y apache2 <span class="o">&amp;&amp;</span> apt-get clean  <span class="c1">#executa oque vai fazer</span>
+ENV <span class="nv">APACHE_LOCK_DIR</span><span class="o">=</span><span class="s2">&#34;/var/lock&#34;</span>   <span class="c1">#Variavel de ambiente para não ter dois apache rodando</span>
+ENV <span class="nv">APACHE_PID_FILE</span><span class="o">=</span><span class="s2">&#34;/var/run/apache2.pid&#34;</span>  <span class="c1">#Variavel de ambiente de identificação do processo</span>
+ENV <span class="nv">APACHE_RUN_USER</span><span class="o">=</span><span class="s2">&#34;www.data&#34;</span>         <span class="c1">#Variavel de ambiente usuário responsável pelo apache</span>
+ENV <span class="nv">APACHE_RUN_GROUP</span><span class="o">=</span><span class="s2">&#34;www-data&#34;</span>         <span class="c1">#Variavel de ambiente grupo responsável pelo apache</span>
+ENV <span class="nv">APACHE_LOG_DIR</span><span class="o">=</span><span class="s2">&#34;/var/log/apache2&#34;</span> <span class="c1">#onde vai salvar os logs do apache</span>
+
+LABEL <span class="nv">description</span><span class="o">=</span><span class="s2">&#34;Webserver&#34;</span> <span class="c1">#faz uma descrição (qualquer chave=valor)</span>
+LABEL <span class="nv">version</span><span class="o">=</span><span class="s2">&#34;1.0.0&#34;</span>
+
+VOLUME /var/www/html <span class="c1">#docker vai criar automaticamente esse volume</span>
+EXPOSE <span class="m">80</span> <span class="c1">#com a flag -P irá pegar o expose qualquer porta = 80</span>
 </code></pre></div>
 </main>
     <footer>
