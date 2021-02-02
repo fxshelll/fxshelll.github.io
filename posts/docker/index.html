@@ -1008,7 +1008,81 @@ LABEL <span class="nv">version</span><span class="o">=</span><span class="s2">&#
 
 VOLUME /var/www/html <span class="c1">#docker vai criar automaticamente esse volume</span>
 EXPOSE <span class="m">80</span> <span class="c1">#com a flag -P irá pegar o expose qualquer porta = 80</span>
-</code></pre></div>
+</code></pre></div><p>Para criar o container eu faço um docker build.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker build .
+
+ou
+
+root@FXSHELL ~# docker image build -t meu_apache:1.0 .
+</code></pre></div><p>#Exemplos de Dockerfiles</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">FROM debian
+
+RUN apt-get update <span class="o">&amp;&amp;</span> apt-get install -y apache2 <span class="o">&amp;&amp;</span> apt-get clean
+ENV <span class="nv">APACHE_LOCK_DIR</span><span class="o">=</span><span class="s2">&#34;/var/lock&#34;</span>
+ENV <span class="nv">APACHE_PID_FILE</span><span class="o">=</span><span class="s2">&#34;/var/run/apache2.pid&#34;</span>
+ENV <span class="nv">APACHE_RUN_USER</span><span class="o">=</span><span class="s2">&#34;www-data&#34;</span>
+ENV <span class="nv">APACHE_RUN_GROUP</span><span class="o">=</span><span class="s2">&#34;www-data&#34;</span>
+ENV <span class="nv">APACHE_LOG_DIR</span><span class="o">=</span><span class="s2">&#34;/var/log/apache2&#34;</span>
+
+LABEL <span class="nv">description</span><span class="o">=</span><span class="s2">&#34;Webserver&#34;</span>
+
+VOLUME /var/www/html/
+EXPOSE <span class="m">80</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">FROM debian
+
+RUN apt-get update <span class="o">&amp;&amp;</span> apt-get install -y apache2 <span class="o">&amp;&amp;</span> apt-get clean
+ENV <span class="nv">APACHE_LOCK_DIR</span><span class="o">=</span><span class="s2">&#34;/var/lock&#34;</span>
+ENV <span class="nv">APACHE_PID_FILE</span><span class="o">=</span><span class="s2">&#34;/var/run/apache2/apache2.pid&#34;</span>
+ENV <span class="nv">APACHE_RUN_USER</span><span class="o">=</span><span class="s2">&#34;www-data&#34;</span>
+ENV <span class="nv">APACHE_RUN_DIR</span><span class="o">=</span><span class="s2">&#34;/var/run/apache2&#34;</span>
+ENV <span class="nv">APACHE_RUN_GROUP</span><span class="o">=</span><span class="s2">&#34;www-data&#34;</span>
+ENV <span class="nv">APACHE_LOG_DIR</span><span class="o">=</span><span class="s2">&#34;/var/log/apache2&#34;</span>
+
+LABEL <span class="nv">description</span><span class="o">=</span><span class="s2">&#34;Webserver&#34;</span>
+
+VOLUME /var/www/html/
+EXPOSE <span class="m">80</span>
+
+ENTRYPOINT <span class="o">[</span><span class="s2">&#34;/usr/sbin/apachectl&#34;</span><span class="o">]</span>
+CMD <span class="o">[</span><span class="s2">&#34;-D&#34;</span>, <span class="s2">&#34;FOREGROUND&#34;</span><span class="o">]</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">package main
+import <span class="s2">&#34;fmt&#34;</span>
+
+func main<span class="o">()</span> <span class="o">{</span>
+    fmt.Println<span class="o">(</span><span class="s2">&#34;GIROPOPS STRIGUS GIRUS - LINUXTIPS&#34;</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">FROM golang
+
+WORKDIR /app
+ADD . /app
+RUN go build -o goapp
+ENTRYPOINT ./goapp
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">FROM golang AS buildando
+
+ADD . /src
+WORKDIR /src
+RUN go build -o goapp
+
+
+FROM alpine:3.1
+
+WORKDIR /app
+COPY --from<span class="o">=</span>buildando /src/goapp /app
+ENTRYPOINT ./goapp
+</code></pre></div><p>ADD =&gt; Copia novos arquivos, diretórios, arquivos TAR ou arquivos remotos e os adicionam ao filesystem do container;</p>
+<p>CMD =&gt; Executa um comando, diferente do RUN que executa o comando no momento em que está &ldquo;buildando&rdquo; a imagem, o CMD executa no início da execução do container;</p>
+<p>LABEL =&gt; Adiciona metadados a imagem como versão, descrição e fabricante;</p>
+<p>COPY =&gt; Copia novos arquivos e diretórios e os adicionam ao filesystem do container;</p>
+<p>ENTRYPOINT =&gt; Permite você configurar um container para rodar um executável, e quando esse executável for finalizado, o container também será;</p>
+<p>ENV =&gt; Informa variáveis de ambiente ao container;</p>
+<p>EXPOSE =&gt; Informa qual porta o container estará ouvindo;</p>
+<p>FROM =&gt; Indica qual imagem será utilizada como base, ela precisa ser a primeira linha do Dockerfile;</p>
+<p>MAINTAINER =&gt; Autor da imagem;</p>
+<p>RUN =&gt; Executa qualquer comando em uma nova camada no topo da imagem e &ldquo;commita&rdquo; as alterações. Essas alterações você poderá utilizar nas próximas instruções de seu Dockerfile;</p>
+<p>USER =&gt; Determina qual o usuário será utilizado na imagem. Por default é o root;</p>
+<p>VOLUME =&gt; Permite a criação de um ponto de montagem no container;</p>
+<p>WORKDIR =&gt; Responsável por mudar do diretório / (raiz) para o especificado nele;</p>
+
 </main>
     <footer>
   
