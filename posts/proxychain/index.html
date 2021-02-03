@@ -173,8 +173,8 @@ fetchInject(["/js/lazysizes.min.js"]);
   </header>
   <p>O ProxyChains é um programa que trabalha em base UNIX, que conecta funções relacionadas à rede em programas vinculados dinamicamente por meio de uma DLL pré-carregada e redireciona as conexões por meio de proxies SOCKS4 e SOCKS5 ou HTTP.</p>
 <p>Ao invés do Proxychains realizar o roteamento para uma lista específica de proxys, podemos usar o Tor Router e redirecionar as requisições diretamente para a porta do Tor. Ou seja, iremos realizar varreduras diretamente pela Tor.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"> $ sudo apt-get install proxychains
- $ sudo apt-get install tor   
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ sudo apt-get install proxychains
+$ sudo apt-get install tor   
 </code></pre></div><p>Dentro do arquivo de config do proxychains:</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@kali:~#: nano /etc/proxychains.conf  
 </code></pre></div><p>Comentar a linha &ldquo;strict_chain&rdquo;</p>
@@ -182,13 +182,11 @@ fetchInject(["/js/lazysizes.min.js"]);
 <p><img src="/proxychain1.png" alt="POSTS"></p>
 <p>Explicação rápida sobre eles:</p>
 <p>Strict Chain</p>
-<p><em>Strict Chain</em> é a opção padrão em proxychains. Nesta opção, todas as conexões passam pelos proxies na ordem listada no arquivo de configuração. Strict Chain é muito útil quando você deseja sua localização e sabe que os proxies selecionados estão funcionando bem. Para usar Strict Chain, é necessário descomentar “strict_chain” no arquivo de configuração.
-Dynamic Chain</p>
-<p><em>Dynamic Chain</em> funciona da mesma maneira que uma Strict Chain, é usado todos os proxies que estão no arquivo de configuração, mas é ignorado ou exclui os proxies da cadeia que está morta ou não está funcionando no momento. Para usar uma Dynamic Chain, remova o comentário de “Dynamic_Chain” e comente “random_chain” e “strict_chain” no arquivo de configuração.
-Random Chain</p>
+<p><em>Strict Chain</em> é a opção padrão em proxychains. Nesta opção, todas as conexões passam pelos proxies na ordem listada no arquivo de configuração. Strict Chain é muito útil quando você deseja sua localização e sabe que os proxies selecionados estão funcionando bem. Para usar Strict Chain, é necessário descomentar “strict_chain” no arquivo de configuração.</p>
+<p><em>Dynamic Chain</em> funciona da mesma maneira que uma Strict Chain, é usado todos os proxies que estão no arquivo de configuração, mas é ignorado ou exclui os proxies da cadeia que está morta ou não está funcionando no momento. Para usar uma Dynamic Chain, remova o comentário de “Dynamic_Chain” e comente “random_chain” e “strict_chain” no arquivo de configuração.</p>
 <p><em>Random Chain</em> significa aleatoriedade, o que significa que todas as conexões passam por um proxy listado no seu arquivo de configuração, mas aleatoriamente, ninguém adivinha quais proxies são os próximos. Para usar Random Chain, é necessário descomentar “random_chain” e comentar “dynamic chain” e “strict_chain” no arquivo de configuração.</p>
 <p>Se você estiver usando o random_chain, descomente a linha “chain_len”, que permite o encadeamento dinâmico. Ele conecta um número de endereços IP na cadeia que são gerados aleatoriamente a partir da sua lista de proxies.</p>
-<p>Por padrão vem selecionado Strict Chain, nós iremos comentar strict_chain e descomentar dynamic_chain para que o proxychains trabalhe a partir do dynamic_chain como demonstrado na imagem abaixo.</p>
+<p>Por padrão vem selecionado Strict Chain, por isso comentamos strict_chain e descomentamos dynamic_chain para que o proxychains trabalhe de forma dinamica.</p>
 <p>E agora no final deste mesmo arquivo, vamos adicionar a linha:</p>
 <p>socks5   127.0.0.1     9050</p>
 <p><img src="/proxychain2.png" alt="POSTS"></p>
@@ -197,7 +195,7 @@ Random Chain</p>
 root@kali:~#: service tor status  
 </code></pre></div><p>#Testando a Conexão</p>
 <p>Abra o Firefox ou Iceweasel e acesse a URL <a href="http://www.meuip.com.br/">http://www.meuip.com.br/</a> para pegar o seu IP atual</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"> root@kali:~#: proxychains firefox  
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@kali:~#: proxychains firefox  
 </code></pre></div><p>Agora acesse o &lsquo;utrace&rsquo; e coloque o IP do seu Proxy para saber a localização do servidor que você está utilizando como Gateway em <a href="http://en.utrace.de/">http://en.utrace.de/</a></p>
 <p>Se estiver tudo certo, e ele te mostrar a origem do server, está pronto!</p>
 <p>Agora quando for realizar alguma varredura é só executar o comando com o proxychains na frente, utilizando o terminal digite proxychains + [ aplicação ]. O proxychains para tunelar o seu tráfego em qualquer aplicação.</p>
