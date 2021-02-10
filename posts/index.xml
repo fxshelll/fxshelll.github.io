@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Feb 2021 15:55:25 UT</lastBuildDate>
+    <lastBuildDate>Wed, 10 Feb 2021 15:15:17 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Proxychain</title>
@@ -398,7 +398,13 @@ O Nmap (“Network Mapper”) é uma ferramenta de código aberto para exploraç
       <content:encoded><![CDATA[NMAP ================
 O Nmap (“Network Mapper”) é uma ferramenta de código aberto para exploração de rede e auditoria de segurança. Ela foi desenhada para escanear rapidamente redes amplas, embora funcione m contra hos iduais. O Nmap utiliza IP em esta (raw) de m novadora para determina hos dis na rede, quais serviços ( apl ve hos cem sistemas operac ver est ue tipos de filtro de fir uso outras características. o N nor utilizado para audito seg adm e sistemas e red úti rot omo inventário d ger ser atu ados, e monitora disponibilidade de serviço.
 Para cada caso de enumeração e circunstâncias, existe flags especificas para cada tipo de alvo, geralmente dou um scan superficial no inicio, e depois utilizo algo mais profundo. As flags que mais utilizo são as seguintes:
-nmap -sV -sC -Pn -T4 -v -p- &amp;ndash;min-rate=10000 Também são muito utilizadas as flags abaixo desde o mais simples para um scan mais completo.
+nmap -sV -sC -Pn -T4 -v -p- &amp;ndash;min-rate=10000 Identifica hosts ativos com a porta 445 aberta
+nmap &amp;ndash;open -v -sS -p 445 -Pn 293.268.20.0/34 -oG smb.txt Cria arquivo com uma saída mais limpa, somente IPs
+cat smb.txt |grep &amp;ldquo;Up&amp;quot;|cut -d &amp;quot;&amp;rdquo; -f2 &amp;gt; targets Canivete suiço para enumerar os hosts (nome,dominio..)
+crackmapexec smb targets Capturar hashes NBT-NS / LLMNR
+Alterar o arquivo /etc/responder/Responder.conf
+; Specific IP Addresses to respond to (default = All) ; Example: RespondTo = 10.20.1.100-150, 10.20.3.10 RespondTo = &amp;lt;host_1&amp;gt;&amp;lt;host_2&amp;gt;&amp;lt;host_3&amp;gt;&amp;lt;host_4&amp;gt;&amp;lt;&amp;hellip;&amp;gt;
+responder -l -Prv Também são muito utilizadas as flags abaixo desde o mais simples para um scan mais completo.
 Varredura de porta TCP SYN (padrão)
 nmap -sS 192.168.1.1 Tentativas para determinar a versão do serviço em execução na porta
 nmap -sV 192.168.1.1 Scan com scripts NSE padrão. Considerado útil para descoberta e segurança
