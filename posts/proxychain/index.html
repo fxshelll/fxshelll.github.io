@@ -190,16 +190,16 @@ $ sudo apt-get install tor
 <p>E agora no final deste mesmo arquivo, vamos adicionar a linha:</p>
 <p>socks5   127.0.0.1     9050</p>
 <p><img src="/proxychain2.png" alt="POSTS"></p>
-<p>#Inicializando o serviço do tor</p>
+<h1 id="inicializando-o-serviço-do-tor">Inicializando o serviço do tor</h1>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@kali:~#: service tor start  
 root@kali:~#: service tor status  
-</code></pre></div><p>#Testando a Conexão</p>
+</code></pre></div><h1 id="testando-a-conexão">Testando a Conexão</h1>
 <p>Abra o Firefox ou Iceweasel e acesse a URL <a href="http://www.meuip.com.br/">http://www.meuip.com.br/</a> para pegar o seu IP atual</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@kali:~#: proxychains firefox  
 </code></pre></div><p>Agora acesse o &lsquo;utrace&rsquo; e coloque o IP do seu Proxy para saber a localização do servidor que você está utilizando como Gateway em <a href="http://en.utrace.de/">http://en.utrace.de/</a></p>
 <p>Se estiver tudo certo, e ele te mostrar a origem do server, está pronto!</p>
 <p>Agora quando for realizar alguma varredura é só executar o comando com o proxychains na frente, utilizando o terminal digite proxychains + [ aplicação ]. O proxychains para tunelar o seu tráfego em qualquer aplicação.</p>
-<p>#Realizando uma varredura via Proxychains</p>
+<h1 id="realizando-uma-varredura-via-proxychains">Realizando uma varredura via Proxychains</h1>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@kali:~#: proxychains nmap -sC -sS 177.126.175.230  
 </code></pre></div>
 </main>

@@ -1186,6 +1186,66 @@ docker image inspect debian</p>
 <p>docker image ls</p>
 <p>docker container run -d -p 5000:5000 &ndash;restart=always &ndash;name registry registry:2</p>
 <p>docker tag IMAGEMID localhost:5000/apache</p>
+<h1 id="docker-machine">Docker Machine</h1>
+<p>Para fazer a instalação do Docker Machine no Linux, faça:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># curl -L https://github.com/docker/machine/releases/download/v0.16.1</span>
+/docker-machine-<span class="sb">`</span>uname -s<span class="sb">`</span>-<span class="sb">`</span>uname -m<span class="sb">`</span> &gt;/tmp/docker-machine
+<span class="c1"># chmod +x /tmp/docker-machine</span> 
+<span class="c1"># sudo cp /tmp/docker-machine /usr/local/bin/docker-machine</span>
+
+
+Para seguir com a instalação no macOS:
+
+<span class="c1"># curl -L https://github.com/docker/machine/releases/download/v0.16.1</span>
+/docker-machine-<span class="sb">`</span>uname -s<span class="sb">`</span>-<span class="sb">`</span>uname -m<span class="sb">`</span> &gt;/usr/local/bin/docker-machine 
+<span class="c1"># chmod +x /usr/local/bin/docker-machine</span>
+
+Para seguir com a instalação no Windows caso esteja usando o Git bash:
+
+<span class="c1"># if [[ ! -d &#34;$HOME/bin&#34; ]]; then mkdir -p &#34;$HOME/bin&#34;; fi</span>
+<span class="c1"># curl -L https://github.com/docker/machine/releases/download/v0.16.1</span>
+/docker-machine-Windows-x86_64.exe &gt; <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/bin/docker-machine.exe&#34;</span>
+<span class="c1"># chmod +x &#34;$HOME/bin/docker-machine.exe&#34;</span>
+
+
+Para verificar se ele foi instalado e qual a sua versão, faça:
+
+<span class="c1"># docker-machine version</span>
+
+<span class="c1"># docker-machine create --driver virtualbox linuxtips</span>
+
+<span class="c1"># docker-machine ls</span>
+
+<span class="c1"># docker-machine env linuxtips</span>
+
+<span class="c1"># eval &#34;$(docker-machine env linuxtips)&#34;</span>
+
+<span class="c1"># docker container ls</span>
+
+<span class="c1"># docker container run busybox echo &#34;LINUXTIPS, VAIIII&#34;</span>
+
+<span class="c1"># docker-machine ip linuxtips</span>
+
+<span class="c1"># docker-machine ssh linuxtips</span>
+
+<span class="c1"># docker-machine inspect linuxtips</span>
+
+<span class="c1"># docker-machine stop linuxtips</span>
+
+<span class="c1"># docker-machine ls</span> 
+
+<span class="c1"># docker-machine start linuxtips</span>
+
+<span class="c1"># docker-machine rm linuxtips</span>
+
+<span class="c1"># eval $(docker-machine env -u)</span>
+</code></pre></div><h1 id="docker-swarm">Docker Swarm</h1>
+<p>Você consegue construir clusters de containers com caracateristicas importantes como balanceador de cargas e failover.</p>
+<p>Para criar um clustercom o docker  swarm, basta indicar quais os hosts que ele irá supervisionar e o restante é com ele.</p>
+<p>Cuida automaticamente do balanceamento de carga.</p>
+<p>O Docker Swarm é bastante simples e se resume a um manager e diversos workers. O manager é o responsavel por orquestrar os containers e distribui-los entre os hosts workers. Os workers são os que carregam o piano, e hospedam os containers.</p>
+<p>Worker = Container em execução</p>
+<p>Manager = Conhece os detalhes do cluster, sabe todos os containers e serviços.</p>
 
 </main>
     <footer>

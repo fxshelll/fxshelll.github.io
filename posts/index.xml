@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.73.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Feb 2021 15:16:52 UT</lastBuildDate>
+    <lastBuildDate>Thu, 25 Feb 2021 02:16:25 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Proxychain</title>
@@ -30,14 +30,11 @@ Se você estiver usando o random_chain, descomente a linha “chain_len”, que 
 Por padrão vem selecionado Strict Chain, por isso comentamos strict_chain e descomentamos dynamic_chain para que o proxychains trabalhe de forma dinamica.
 E agora no final deste mesmo arquivo, vamos adicionar a linha:
 socks5 127.0.0.1 9050
-#Inicializando o serviço do tor
-root@kali:~#: service tor start root@kali:~#: service tor status #Testando a Conexão
-Abra o Firefox ou Iceweasel e acesse a URL http://www.meuip.com.br/ para pegar o seu IP atual
+Inicializando o serviço do tor root@kali:~#: service tor start root@kali:~#: service tor status Testando a Conexão Abra o Firefox ou Iceweasel e acesse a URL http://www.meuip.com.br/ para pegar o seu IP atual
 root@kali:~#: proxychains firefox Agora acesse o &amp;lsquo;utrace&amp;rsquo; e coloque o IP do seu Proxy para saber a localização do servidor que você está utilizando como Gateway em http://en.utrace.de/
 Se estiver tudo certo, e ele te mostrar a origem do server, está pronto!
 Agora quando for realizar alguma varredura é só executar o comando com o proxychains na frente, utilizando o terminal digite proxychains &#43; [ aplicação ]. O proxychains para tunelar o seu tráfego em qualquer aplicação.
-#Realizando uma varredura via Proxychains
-root@kali:~#: proxychains nmap -sC -sS 177.126.175.230 ]]></content:encoded>
+Realizando uma varredura via Proxychains root@kali:~#: proxychains nmap -sC -sS 177.126.175.230 ]]></content:encoded>
     </item>
     <item>
       <title>Docker</title>
@@ -202,6 +199,13 @@ docker pull linuxtips/apache:1.0
 docker image ls
 docker container run -d -p 5000:5000 &amp;ndash;restart=always &amp;ndash;name registry registry:2
 docker tag IMAGEMID localhost:5000/apache
+Docker Machine Para fazer a instalação do Docker Machine no Linux, faça:
+# curl -L https://github.com/docker/machine/releases/download/v0.16.1 /docker-machine-`uname -s`-`uname -m` &amp;gt;/tmp/docker-machine # chmod &#43;x /tmp/docker-machine # sudo cp /tmp/docker-machine /usr/local/bin/docker-machine Para seguir com a instalação no macOS: # curl -L https://github.com/docker/machine/releases/download/v0.16.1 /docker-machine-`uname -s`-`uname -m` &amp;gt;/usr/local/bin/docker-machine # chmod &#43;x /usr/local/bin/docker-machine Para seguir com a instalação no Windows caso esteja usando o Git bash: # if [[ ! -d &amp;#34;$HOME/bin&amp;#34; ]]; then mkdir -p &amp;#34;$HOME/bin&amp;#34;; fi # curl -L https://github.com/docker/machine/releases/download/v0.16.1 /docker-machine-Windows-x86_64.exe &amp;gt; &amp;#34;$HOME/bin/docker-machine.exe&amp;#34; # chmod &#43;x &amp;#34;$HOME/bin/docker-machine.exe&amp;#34; Para verificar se ele foi instalado e qual a sua versão, faça: # docker-machine version # docker-machine create --driver virtualbox linuxtips # docker-machine ls # docker-machine env linuxtips # eval &amp;#34;$(docker-machine env linuxtips)&amp;#34; # docker container ls # docker container run busybox echo &amp;#34;LINUXTIPS, VAIIII&amp;#34; # docker-machine ip linuxtips # docker-machine ssh linuxtips # docker-machine inspect linuxtips # docker-machine stop linuxtips # docker-machine ls # docker-machine start linuxtips # docker-machine rm linuxtips # eval $(docker-machine env -u) Docker Swarm Você consegue construir clusters de containers com caracateristicas importantes como balanceador de cargas e failover.
+Para criar um clustercom o docker swarm, basta indicar quais os hosts que ele irá supervisionar e o restante é com ele.
+Cuida automaticamente do balanceamento de carga.
+O Docker Swarm é bastante simples e se resume a um manager e diversos workers. O manager é o responsavel por orquestrar os containers e distribui-los entre os hosts workers. Os workers são os que carregam o piano, e hospedam os containers.
+Worker = Container em execução
+Manager = Conhece os detalhes do cluster, sabe todos os containers e serviços.
 ]]></content:encoded>
     </item>
     <item>
