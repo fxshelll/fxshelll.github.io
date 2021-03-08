@@ -1246,6 +1246,82 @@ Para verificar se ele foi instalado e qual a sua versão, faça:
 <p>O Docker Swarm é bastante simples e se resume a um manager e diversos workers. O manager é o responsavel por orquestrar os containers e distribui-los entre os hosts workers. Os workers são os que carregam o piano, e hospedam os containers.</p>
 <p>Worker = Container em execução</p>
 <p>Manager = Conhece os detalhes do cluster, sabe todos os containers e serviços.</p>
+<p>Para testar, podemos subir três maquinas e instalar o docker em cada uma delas.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL-01 ~# 
+root@FXSHELL-02 ~# 
+root@FXSHELL-03 ~# 
+</code></pre></div><p>Feito isso, basta rodar na maquina 01, o comando:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker swarm init
+</code></pre></div><p>Será gerado um token, que iremos utilizar e rodar nas maquinas do node, que serão as maquinas 02 e 03.</p>
+<p>Depois podera visualizar na maquina manager, todos os nodes que estão adicionados com o comando:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node ls
+</code></pre></div><p>Para visualizar o token da maquina 02 para adiciona-la commo manager e não como worker, basta fazer:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker swarm join-token manager
+</code></pre></div><p>Com isso será exibido o token de manager, para ser executado no seu outro host.</p>
+<p>Mesma coisa caso fosse um worker</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker swarm join-token worker
+</code></pre></div><p>Para promover um node worker para manager basta fazer:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node promote maquina-02
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node demote maquina-02
+</code></pre></div><p>Agora se você quiser remover o node do cluster basta digitar o comando:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker swarm leave
+</code></pre></div><p>Também remova ele do nosso manager ativo, com o comando</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node rm maquina-02
+</code></pre></div><p>Para remover um node manager, é necessário forçar com a flag &ndash;force</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker swarm leave --force
+</code></pre></div><p>E depois remover do node manager</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node rm maquina-03
+</code></pre></div><h1 id="docker-services">Docker Services</h1>
+<p>O service é um VIP ou DNS que realizara o balanceamento de requisições entre os containers. Podemos estabelecer um numero x de containers respondendo por um service e esses containers estarão espalhados pelo nosso cluster, entre nossos nodes, garantindo alta disponibilidade e balanceamento de carga. Tudo isso nativamente.</p>
+<p>Os services é uma forma, já utlizada no kubernetes, de você conseguir gerenciar melhor seus containers. Também uma maneira muito simples e efetiva para escalar seu ambiente. Aumentando ou diminuindo a quantidade de containers que responderá para determinado service.</p>
+<p>Exemplo:</p>
+<p>Nome do service que desejo criar: webserver</p>
+<p>Quantidade de containers que desejo debaixo do service: 5</p>
+<p>Portas que iremos blindar, entre o service e o node: 8080:80</p>
+<p>Imagem dos containers que irei utilizar: NGINX</p>
+<p>O comando ficaria assim =&gt;</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service create --name webserver --replicas <span class="m">5</span> -p 8080:80 nginx
+</code></pre></div><p>Para testar faça um curl em qualquer ip dos nodes que subiu:8080</p>
+<p>Para listar os services faça</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service ls
+</code></pre></div><p>Se quisermos saber onde estão rodando nossos containers, em quais nodes eles estçao sendo executados, basta digitar o seguinte comando:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service ps webserver
+</code></pre></div><p>Assim conseguiremos saber onde está rodando cada container e ainda o seu status.</p>
+<p>Se precisamos saber maiores detalhes sobre o service, basta utlizar o subcomando &ldquo;inspect&rdquo;.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service inspect webserver
+</code></pre></div><p>Na saída do &ldquo;inspect&rdquo; conseguiremos pegar informações importantes sobre nosso service, como portas expostas, volumes, containers, limitações, entre outras coisas.</p>
+<p>Lembre-se meu cenário de nodes é:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL-01 ~# 
+root@FXSHELL-02 ~# 
+root@FXSHELL-03 ~# 
+</code></pre></div><p>Posso ter muitas replicas divididas e distribuidas e balanceadas nesses 3 nodes.</p>
+<p>Uma informação muito importante é o endereço do VIP do service, que estara listado no comando &ldquo;insepect&rdquo;.</p>
+<p>Esse é o endereço do IP do balanceador desse service, ou seja, sempre que acessarem via esse IP, ele distribuirá a conexão entre os containers.</p>
+<p>Agora se quisermos aumentar o número de containers debaixo desse service, é muito simples. Basta executar o comando a seguir:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service scale <span class="nv">webserver</span><span class="o">=</span><span class="m">5</span>
+</code></pre></div><p>Pronto, agora temos dez containers respondendo requisições debaido do nosso service webserver.</p>
+<p>Para visualizar basta executar:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service ls
+</code></pre></div><p>Ah não quero que um determinado node receba mais containers, posso dar um pause neste cara, com o comando abaixo:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node update --availability pause FXSHELL-02
+</code></pre></div><p>Para ativa-lo novamente:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node update --availability active FXSHELL-02
+</code></pre></div><p>Para retirar temporariamente um node para manutenção por exemplo, faça:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node update --availability drain FXSHELL-02
+</code></pre></div><p>Todos os containers que estavam no FXSHELL-02, vão ser realocados para os outros 2.</p>
+<p>Para visualizar basta executar:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service ps webserver
+</code></pre></div><p>Para saber em quais nodes eseles estão em execução, lembre-se do &lsquo;docker service ls webserver&rsquo;</p>
+<p>Para acessar os logs desse service, basta digitar:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service logs -f webserver
+</code></pre></div><p>Assim você terá acesso aos logs de todos os containers desse service.</p>
+<p>Para remover o service é simples</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service rm webserver
+</code></pre></div><p>Você pode checar com o comando</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service ls
+</code></pre></div><p>Criar um service com um volume conectado é bastante simples, basta fazer:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service create --name webserver --replicas <span class="m">5</span> -p 8080:80 --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>teste,dst<span class="o">=</span>/app, nginx
+</code></pre></div><p>Quando criamos um service com um volume conectado a ele, isso indica que esse volume estará disponivel em todos os nossos containers desse service, ou seja, o volume com o nome de &ldquo;teste&rdquo; estara montado em todos os containers no diretorio &ldquo;/app&rdquo;.</p>
 
 </main>
     <footer>
