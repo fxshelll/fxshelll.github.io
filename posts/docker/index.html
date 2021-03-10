@@ -5,10 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker | FXSHELL</title>
-    <meta name="description" content="Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container.
-Duas formas de isolamento, lógica e física.
-Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memoria, disco.
-#O que é o Docker?">
+    <meta name="description" content="Aprendizado baseado no curso do Linuxtips, do Jefferson. Apenas para conhecimento sem fins lucrativos postei aqui para o meu aprendizado pessoal.
+Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container.">
     <meta name="keywords" content="">
     
     
@@ -20,10 +18,8 @@ Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memori
 
 
     <meta property="og:title" content="Docker" />
-<meta property="og:description" content="Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container.
-Duas formas de isolamento, lógica e física.
-Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memoria, disco.
-#O que é o Docker?" />
+<meta property="og:description" content="Aprendizado baseado no curso do Linuxtips, do Jefferson. Apenas para conhecimento sem fins lucrativos postei aqui para o meu aprendizado pessoal.
+Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/docker/" />
 <meta property="article:published_time" content="2020-10-08T11:10:44-03:00" />
@@ -31,10 +27,8 @@ Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memori
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker"/>
-<meta name="twitter:description" content="Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container.
-Duas formas de isolamento, lógica e física.
-Lógica (namespaces): redes, usuários, processos Física (Cgroups): CPU, memoria, disco.
-#O que é o Docker?"/>
+<meta name="twitter:description" content="Aprendizado baseado no curso do Linuxtips, do Jefferson. Apenas para conhecimento sem fins lucrativos postei aqui para o meu aprendizado pessoal.
+Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container."/>
 
     
 
@@ -177,7 +171,8 @@ fetchInject(["/js/lazysizes.min.js"]);
   <header>
     <h1>Docker</h1>
   </header>
-  <p>Quando falamos de container, estamos falando de
+  <p>Aprendizado baseado no curso do Linuxtips, do Jefferson. Apenas para conhecimento sem fins lucrativos postei aqui para o meu aprendizado pessoal.</p>
+<p>Quando falamos de container, estamos falando de
 isolamento. Esse container está sendo executado
 dentro de um servidor, este fica completamente
 isolado da maquina. E dentro deste cercado eu
@@ -1322,6 +1317,8 @@ root@FXSHELL-03 ~#
 </code></pre></div><p>Criar um service com um volume conectado é bastante simples, basta fazer:</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service create --name webserver --replicas <span class="m">5</span> -p 8080:80 --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>teste,dst<span class="o">=</span>/app, nginx
 </code></pre></div><p>Quando criamos um service com um volume conectado a ele, isso indica que esse volume estará disponivel em todos os nossos containers desse service, ou seja, o volume com o nome de &ldquo;teste&rdquo; estara montado em todos os containers no diretorio &ldquo;/app&rdquo;.</p>
+<p>Exemplo de como ficou:</p>
+<p><img src="/volumes_exemplo_services.png" alt="HTB"></p>
 
 </main>
     <footer>
