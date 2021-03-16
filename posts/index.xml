@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.81.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Mar 2021 03:22:37 UT</lastBuildDate>
+    <lastBuildDate>Tue, 16 Mar 2021 03:32:44 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Proxychain</title>
@@ -251,7 +251,7 @@ docker service rm webserver Você pode checar com o comando
 docker service ls Criar um service com um volume conectado é bastante simples, basta fazer:
 docker service create --name webserver --replicas 5 -p 8080:80 --mount type=volume,src=teste,dst=/app, nginx Quando criamos um service com um volume conectado a ele, isso indica que esse volume estará disponivel em todos os nossos containers desse service, ou seja, o volume com o nome de &amp;ldquo;teste&amp;rdquo; estara montado em todos os containers no diretorio &amp;ldquo;/app&amp;rdquo;.
 Exemplo de como ficou:
-Docker Secrets!!!!!!!!!!!&amp;laquo;&amp;lt;!!@32234234342342342 ]]></content:encoded>
+Docker Secrets! ]]></content:encoded>
     </item>
     <item>
       <title>Steghide</title>
