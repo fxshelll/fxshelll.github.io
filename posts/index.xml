@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.81.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Mar 2021 02:36:38 UT</lastBuildDate>
+    <lastBuildDate>Thu, 18 Mar 2021 02:39:19 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redhat RH124</title>
@@ -146,6 +146,7 @@ No exemplo a seguir, uma mistura de caminhos absolutos e relativos é usada com 
 [user@host ~]$ pwd /home/user [user@host ~]$ cd Videos [user@host Videos]$ pwd /home/user/Videos [user@host Videos]$ cd /home/user/Documents [user@host Documents]$ pwd /home/user/Documents [user@host Documents]$ cd [user@host ~]$ pwd /home/user [user@host ~]$ Como você pode ver no exemplo anterior, o prompt de shell padrão também exibe o último componente do caminho absoluto para o diretório de trabalho atual.
 Por exemplo, para /home/user/Videos, somente Videos é exibido. O prompt exibe o caractere til &amp;lsquo;~&amp;rsquo; quando o diretório de trabalho atual é o diretório pessoa
 O comando touch normalmente atualiza o carimbo de data e hora de um arquivo para a data e a hora atuais, sem modificá-lo. Isso é útil para a criação de arquivos vazios, que podem ser usados para prática, pois o uso desse comando em um nome de arquivo que não existe faz com que o arquivo seja criado. No exemplo a seguir, o comando touch cria arquivos de prática nos subdiretórios Documents e Videos.
+__
 ]]></content:encoded>
     </item>
     <item>
