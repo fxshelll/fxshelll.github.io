@@ -169,7 +169,8 @@ fetchInject(["/js/lazysizes.min.js"]);
   <header>
     <h1>Redhat RH124</h1>
   </header>
-  <h2 id="red-hat-system-administration-i">Red Hat System Administration I</h2>
+  <p><img src="/redhat0.png" alt="HTB"></p>
+<h2 id="red-hat-system-administration-i">Red Hat System Administration I</h2>
 <p>O curso Red Hat System Administration I (RH124) foi desenvolvido para profissionais de TI sem experiência anterior em administração de sistemas Linux. O recurso tem como objetivo fornecer aos alunos &ldquo;habilidades de sobrevivência&rdquo; de administração do Linux, com foco em tarefas centrais de administração. O Red Hat System Administration I também oferece uma base para os alunos que planejam se tornar administradores de sistemas Linux em tempo integral, apresentando os principais conceitos de linha de comando e ferramentas de nível corporativo. Esses conceitos serão mais desenvolvidos no próximo curso, Red Hat System Administration II (RH134).</p>
 <h2 id="fedora">Fedora</h2>
 <p>Fedora é um projeto comunitário que produz e lança um sistema operacional completo, gratuito e baseado em Linux. A Red Hat patrocina a comunidade e trabalha com representantes da comunidade para integrar o mais recente software upstream a uma distribuição rápida e segura. O projeto Fedora contribui com tudo de volta para o mundo open source livre, e qualquer pessoa pode participar.</p>
@@ -603,9 +604,286 @@ Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
 /home/user
 <span class="o">[</span>user@host ~<span class="o">]</span>$
 </code></pre></div><p>Como você pode ver no exemplo anterior, o prompt de shell padrão também exibe o último componente do caminho absoluto para o diretório de trabalho atual.</p>
-<p>Por exemplo, para /home/user/Videos, somente Videos é exibido. O prompt exibe o caractere til &lsquo;~&rsquo; quando o diretório de trabalho atual é o diretório pessoa</p>
+<p>Por exemplo, para /home/user/Videos, somente Videos é exibido. O prompt exibe o caractere til &lsquo;~&rsquo; quando o diretório de trabalho atual é o diretório pessoa.</p>
 <p>O comando touch normalmente atualiza o carimbo de data e hora de um arquivo para a data e a hora atuais, sem modificá-lo. Isso é útil para a criação de arquivos vazios, que podem ser usados para prática, pois o uso desse comando em um nome de arquivo que não existe faz com que o arquivo seja criado. No exemplo a seguir, o comando touch cria arquivos de prática nos subdiretórios Documents e Videos.</p>
-<p>__</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host ~<span class="o">]</span>$ touch Videos/blockbuster1.ogg
+<span class="o">[</span>user@host ~<span class="o">]</span>$ touch Videos/blockbuster2.ogg
+<span class="o">[</span>user@host ~<span class="o">]</span>$ touch Documents/thesis_chapter1.odf
+<span class="o">[</span>user@host ~<span class="o">]</span>$ touch Documents/thesis_chapter2.odf
+<span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div><p>O comando ls tem várias opções para a exibição de atributos nos arquivos. As mais comuns e úteis são -l (formato de listagem longa), -a (todos os arquivos, incluindo os ocultos) e -R (recursão, para incluir o conteúdo de todos os subdiretórios).</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l
+total <span class="m">15</span>
+drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Feb  <span class="m">7</span> 14:02 Desktop
+drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Documents
+drwxr-xr-x.  <span class="m">3</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Downloads
+drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Music
+drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Pictures
+drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Public
+drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Templates
+drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Videos
+<span class="o">[</span>user@host ~<span class="o">]</span>$ ls -la
+total <span class="m">15</span>
+drwx------. <span class="m">16</span> user user   <span class="m">4096</span> Feb  <span class="m">8</span> 16:15 .
+drwxr-xr-x.  <span class="m">6</span> root root   <span class="m">4096</span> Feb  <span class="m">8</span> 16:13 ..
+-rw-------.  <span class="m">1</span> user user  <span class="m">22664</span> Feb  <span class="m">8</span> 00:37 .bash_history
+-rw-r--r--.  <span class="m">1</span> user user     <span class="m">18</span> Jul  <span class="m">9</span>  <span class="m">2013</span> .bash_logout
+-rw-r--r--.  <span class="m">1</span> user user    <span class="m">176</span> Jul  <span class="m">9</span>  <span class="m">2013</span> .bash_profile
+-rw-r--r--.  <span class="m">1</span> user user    <span class="m">124</span> Jul  <span class="m">9</span>  <span class="m">2013</span> .bashrc
+drwxr-xr-x.  <span class="m">4</span> user user   <span class="m">4096</span> Jan <span class="m">20</span> 14:02 .cache
+drwxr-xr-x.  <span class="m">8</span> user user   <span class="m">4096</span> Feb  <span class="m">5</span> 11:45 .config
+drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Feb  <span class="m">7</span> 14:02 Desktop
+drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Documents
+drwxr-xr-x.  <span class="m">3</span> user user   <span class="m">4096</span> Jan <span class="m">25</span> 20:48 Downloads
+drwxr-xr-x. <span class="m">11</span> user user   <span class="m">4096</span> Feb  <span class="m">6</span> 13:07 .gnome2
+drwx------.  <span class="m">2</span> user user   <span class="m">4096</span> Jan <span class="m">20</span> 14:02 .gnome2_private
+-rw-------.  <span class="m">1</span> user user  <span class="m">15190</span> Feb  <span class="m">8</span> 09:49 .ICEauthority
+drwxr-xr-x.  <span class="m">3</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 .local
+drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Music
+drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Pictures
+drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Public
+drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Templates
+drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> 15:00 Videos
+<span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div><p>Os dois diretórios especiais no topo da lista se referem ao diretório atual (.) e ao diretório pai (..). Esses diretórios especiais existem em todos os diretórios do sistema. Você descobrirá a utilidade deles quando começar a usar comandos de gerenciamento de arquivos.</p>
+<h2 id="importante-5">Importante</h2>
+<p>Nomes de arquivos começando com um ponto (.) indicam arquivos ocultos; não é possível visualizá-los na exibição normal usando ls e outros comando. Esse não é um recurso de segurança. Os arquivos ocultos impedem que os arquivos de configuração do usuário necessários sobrecarreguem diretórios pessoais. Muitos comandos processam arquivos ocultos apenas com opções de linha de comando especificas, evitando que a configuração de um usuário seja acidentalmente copiada para outros diretórios ou usuários.</p>
+<p>Proteger o conteúdo dos arquivos de visualizações inadequadas exige o uso de permissões de arquivo.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -R
+.:
+Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
+
+./Desktop:
+
+./Documents:
+thesis_chapter1.odf  thesis_chapter2.odf
+
+./Downloads:
+
+./Music:
+
+./Pictures:
+
+./Public:
+
+./Templates:
+
+./Videos:
+blockbuster1.ogg  blockbuster2.ogg
+<span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div><p>O comando cd tem várias opções. Algumas são tão úteis que é importante praticá-las o mais cedo possível e usá-las com frequência. O comando cd - passa para o diretório anterior, no qual o usuário estava antes do diretório atual. O exemplo a seguir ilustra esse comportamento, alternando entre dois diretórios, o que é útil ao processar uma série de tarefas semelhantes.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">cd</span> Videos
+<span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">pwd</span>
+/home/user/Videos
+<span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> /home/user/Documents
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">pwd</span>
+/home/user/Documents
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">cd</span> -
+<span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">pwd</span>
+/home/user/Videos
+<span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> -
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">pwd</span>
+/home/user/Documents
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">cd</span> -
+<span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">pwd</span>
+/home/user/Videos
+<span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span>
+<span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div><p>O comando cd .. usa o diretório oculto .. para subir um nível até o diretório pai sem precisar saber o nome exato desse diretório. O outro diretório oculto (.) especifica o diretório atual nos comandos em que a localização atual é o argumento de origem ou de destino, evitando a necessidade de digitar o nome de caminho absoluto do diretório.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">pwd</span>
+/home/user/Videos
+<span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> .
+<span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">pwd</span>
+/home/user/Videos
+<span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> ..
+<span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">pwd</span>
+/home/user
+<span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">cd</span> ..
+<span class="o">[</span>user@host home<span class="o">]</span>$ <span class="nb">pwd</span>
+/home
+<span class="o">[</span>user@host home<span class="o">]</span>$ <span class="nb">cd</span> ..
+<span class="o">[</span>user@host /<span class="o">]</span>$ <span class="nb">pwd</span>
+/
+<span class="o">[</span>user@host /<span class="o">]</span>$ <span class="nb">cd</span>
+<span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">pwd</span>
+/home/user
+<span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div><h2 id="gerenciamento-de-arquivos-usando-ferramentas-de-linha-de-comando">Gerenciamento de arquivos usando ferramentas de linha de comando</h2>
+<p>Para gerenciar arquivos, você precisa ser capaz de criar, remover, copiar e mover os arquivos. Você também precisa organizá-los logicamente em diretórios, os quais você também precisa ser capaz de criar, remover, copiar e mover.</p>
+<p>A tabela a seguir resume alguns dos comandos mais comuns de gerenciamento de arquivos. O restante desta seção discutirá maneiras de usar esses comandos em mais detalhes.</p>
+<p>Atividade =&gt; Sintaxe do comando
+Criar um novo diretório =&gt; 	mkdir directory
+Copiar um arquivo =&gt; cp file new-file
+Copiar um diretório e seu conteúdo  =&gt; cp -r directory new-directory
+Mover ou renomear um arquivo ou diretório =&gt; mv file new-file
+Remover um arquivo 	=&gt; rm file
+Remover um diretório contendo arquivos 	=&gt; rm -r directory
+Remover um diretório vazio =&gt; rmdir directory</p>
+<h2 id="criação-de-diretórios">Criação de diretórios</h2>
+<p>O comando mkdir cria um ou mais diretórios ou subdiretórios. Ele considera como argumentos uma lista de caminhos para os diretórios que você deseja criar.</p>
+<p>O comando mkdir falhará com um erro se o diretório já existir ou se você estiver tentando criar um subdiretório em um diretório que não existe. A opção -p (pai) cria diretórios pais ausentes para o destino solicitado. Tenha cautela ao usar o comando mkdir -p pois erros de digitação acidentais podem criar diretórios não pretendidos sem gerar mensagens de erro.</p>
+<p>No exemplo a seguir, digamos que você está tentando criar um diretório no Videosdiretório nomeadoWatched, mas acidentalmente deixou a letra &ldquo;s&rdquo; em Videos no comando mkdir.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host ~<span class="o">]</span>$ mkdir Video/Watched
+mkdir: cannot create directory <span class="sb">`</span>Video/Watched<span class="err">&#39;</span>: No such file or directory
+</code></pre></div><p>O comando mkdir falhou porque Videos foi digitado incorretamente e o diretório Video não existe. Se você tivesse usado o comando mkdir com a opção -p, o diretório Video seria criado, o que não era o pretendido, e o subdiretório Watched seria criado nesse diretório incorreto.</p>
+<p>Depois de escrever corretamente o diretório pai Videos, a criação do subdiretório Watched será bem-sucedida.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host ~<span class="o">]</span>$ mkdir Videos/Watched
+<span class="o">[</span>user@host ~<span class="o">]</span>$ ls -R Videos
+Videos/:
+blockbuster1.ogg  blockbuster2.ogg  Watched
+
+Videos/Watched:
+</code></pre></div><p>No exemplo a seguir, os arquivos e diretórios são organizados abaixo do diretório /home/user/Documents. Use o comando mkdir e uma lista de nomes de diretórios separada por espaços para criar vários diretórios.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">cd</span> Documents
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ mkdir ProjectX ProjectY
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ ls
+ProjectX  ProjectY
+</code></pre></div><p>Use o comando mkdir -p e caminhos relativos separados por espaços para cada um dos nomes de subdiretórios para criar vários diretórios pai com subdiretórios.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Documents<span class="o">]</span>$ mkdir -p Thesis/Chapter1 Thesis/Chapter2 Thesis/Chapter3
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">cd</span>
+<span class="o">[</span>user@host ~<span class="o">]</span>$ ls -R Videos Documents
+Documents:
+ProjectX  ProjectY  Thesis
+
+Documents/ProjectX:
+
+Documents/ProjectY:
+
+Documents/Thesis:
+Chapter1  Chapter2  Chapter3
+
+Documents/Thesis/Chapter1:
+
+Documents/Thesis/Chapter2:
+
+Documents/Thesis/Chapter3:
+
+Videos:
+blockbuster1.ogg  blockbuster2.ogg  Watched
+
+Videos/Watched:
+</code></pre></div><p>O último comando mkdir criou subdiretórios de três subdiretórios ChapterN com um comando. A opção -p criou o diretório pai Thesis ausente.</p>
+<h2 id="cópia-de-arquivos">Cópia de arquivos</h2>
+<p>O comando cp copia um arquivo, criando um novo arquivo no diretório atual ou em um diretório especificado. Ele também pode copiar vários arquivos para um diretório.</p>
+<h2 id="atenção">Atenção</h2>
+<p>Se o arquivo de destino já existir, o comando cp substitui o arquivo.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">cd</span> Videos
+<span class="o">[</span>user@host Videos<span class="o">]</span>$ cp blockbuster1.ogg blockbuster3.ogg
+<span class="o">[</span>user@host Videos<span class="o">]</span>$ ls -l
+total <span class="m">0</span>
+-rw-rw-r--. <span class="m">1</span> user user    <span class="m">0</span> Feb  <span class="m">8</span> 16:23 blockbuster1.ogg
+-rw-rw-r--. <span class="m">1</span> user user    <span class="m">0</span> Feb  <span class="m">8</span> 16:24 blockbuster2.ogg
+-rw-rw-r--. <span class="m">1</span> user user    <span class="m">0</span> Feb  <span class="m">8</span> 16:34 blockbuster3.ogg
+drwxrwxr-x. <span class="m">2</span> user user <span class="m">4096</span> Feb  <span class="m">8</span> 16:05 Watched
+<span class="o">[</span>user@host Videos<span class="o">]</span>
+</code></pre></div><p>Ao copiar vários arquivos com um comando, o último argumento deverá ser um diretório. Os arquivos copiados mantêm seus nomes originais no novo diretório. Se um arquivo com o mesmo nome existir no diretório de destino, o arquivo existente será substituído. Por padrão, o cp não copia diretórios, mas os ignora.</p>
+<p>No exemplo a seguir, dois diretórios são listados, Thesis e ProjectX. Apenas o último argumento, ProjectX, é válido como destino. O diretório Thesis é ignorado.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> ../Documents
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ cp thesis_chapter1.odf thesis_chapter2.odf Thesis ProjectX
+cp: omitting directory <span class="sb">`</span>Thesis<span class="err">&#39;</span>
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ ls Thesis ProjectX
+ProjectX:
+thesis_chapter1.odf  thesis_chapter2.odf
+
+Thesis:
+Chapter1  Chapter2  Chapter3
+</code></pre></div><p>No primeiro comando cp, a cópia do diretório Thesis falhou, mas os arquivos thesis_chapter1.odf e thesis_chapter2.odf foram copiados com êxito.</p>
+<p>Se você desejar copiar um arquivo para o diretório de trabalho atual, poderá usar o diretório .:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host ~<span class="o">]</span>$ cp /etc/hostname .
+<span class="o">[</span>user@host ~<span class="o">]</span>$ cat hostname
+host.example.com
+<span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div><p>Use o comando copy com a opção -r (recursiva) para copiar o diretório Thesis e seu conteúdo para o diretório ProjectX.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Documents<span class="o">]</span>$ cp -r Thesis ProjectX
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -R ProjectX
+ProjectX:
+Thesis  thesis_chapter1.odf  thesis_chapter2.odf
+
+ProjectX/Thesis:
+Chapter1  Chapter2  Chapter3
+
+ProjectX/Thesis/Chapter1:
+
+ProjectX/Thesis/Chapter2:
+thesis_chapter2.odf
+
+ProjectX/Thesis/Chapter3:
+</code></pre></div><h2 id="movimentação-de-arquivos">Movimentação de arquivos</h2>
+<p>O comando mv move arquivos de um local para outro. Se você pensar no caminho absoluto para um arquivo como seu nome completo, mover um arquivo será efetivamente o mesmo que renomear um arquivo. O conteúdo do arquivo permanecerá inalterado.</p>
+<p>Use o comando mv para renomear um arquivo.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> ../Documents
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l thesis*
+-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> 21:16 thesis_chapter1.odf
+-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> 21:16 thesis_chapter2.odf
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ mv thesis_chapter2.odf thesis_chapter2_reviewed.odf
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l thesis*
+-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> 21:16 thesis_chapter1.odf
+-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> 21:16 thesis_chapter2_reviewed.odf
+</code></pre></div><p>Use o comando mv para mover um arquivo para outro diretório.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls Thesis/Chapter1
+<span class="o">[</span>user@host Documents<span class="o">]</span>$
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ mv thesis_chapter1.odf Thesis/Chapter1
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ ls Thesis/Chapter1
+thesis_chapter1.odf
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l thesis*
+-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> 21:16 thesis_chapter2_reviewed.odf
+</code></pre></div><h2 id="remoção-de-arquivos-e-diretórios">Remoção de arquivos e diretórios</h2>
+<p>O comando rm remove arquivos. Por padrão, rm não removerá diretórios que contenham arquivos, a menos que você adicione as opções -r ou &ndash;recursive.</p>
+<h2 id="importante-6">Importante</h2>
+<p>Não existe um recurso de cancelamento de exclusão na linha de comando ou uma Lixeira da qual restaurar arquivos programados para exclusão.</p>
+<p>É uma boa ideia verificar seu diretório de trabalho atual antes de remover um arquivo ou diretório.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">pwd</span>
+/home/student/Documents
+</code></pre></div><p>Use o comando rm para remover um único arquivo do seu diretório de trabalho.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l thesis*
+-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> 21:16 thesis_chapter2_reviewed.odf
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ rm thesis_chapter2_reviewed.odf
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l thesis*
+ls: cannot access <span class="s1">&#39;thesis*&#39;</span>: No such file or directory
+</code></pre></div><p>Se você tentar usar o comando rm para remover um diretório sem usar a opção -r, o comando falhará.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Documents<span class="o">]</span>$ rm Thesis/Chapter1
+rm: cannot remove <span class="sb">`</span>Thesis/Chapter1<span class="err">&#39;</span>: Is a directory
+</code></pre></div><p>Use o comando rm -r para remover um subdiretório e seu conteúdo.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -R Thesis
+Thesis/:
+Chapter1  Chapter2  Chapter3
+
+Thesis/Chapter1:
+thesis_chapter1.odf
+
+Thesis/Chapter2:
+thesis_chapter2.odf
+
+Thesis/Chapter3:
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ rm -r Thesis/Chapter1
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l Thesis
+total <span class="m">8</span>
+drwxrwxr-x. <span class="m">2</span> user user <span class="m">4096</span> Feb <span class="m">11</span> 12:47 Chapter2
+drwxrwxr-x. <span class="m">2</span> user user <span class="m">4096</span> Feb <span class="m">11</span> 12:48 Chapter3
+</code></pre></div><p>O comando rm -r percorre cada subdiretório primeiro, removendo individualmente seus arquivos antes de remover cada diretório. Você pode usar o comando rm -ri para solicitar interativamente a confirmação antes da exclusão. Isso é essencialmente o oposto de usar a opção -f, que força a remoção sem solicitar a confirmação do usuário.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Documents<span class="o">]</span>$ rm -ri Thesis
+rm: descend into directory <span class="sb">`</span>Thesis<span class="s1">&#39;? y
+</span><span class="s1">rm: descend into directory `Thesis/Chapter2&#39;</span>? y
+rm: remove regular empty file <span class="sb">`</span>Thesis/Chapter2/thesis_chapter2.odf<span class="s1">&#39;? y
+</span><span class="s1">rm: remove directory `Thesis/Chapter2&#39;</span>? y
+rm: remove directory <span class="sb">`</span>Thesis/Chapter3<span class="s1">&#39;? y
+</span><span class="s1">rm: remove directory `Thesis&#39;</span>? y
+<span class="o">[</span>user@host Documents<span class="o">]</span>$
+</code></pre></div><h2 id="atenção-1">Atenção</h2>
+<p>Se você especificar as opções -i e -f, a opção -f tem prioridade e você não será solicitado para confirmação antes que rm exclua arquivos.</p>
+<p>No exemplo a seguir, o comando rmdir remove apenas o diretório que está vazio. Assim como no exemplo anterior, você deve usar o comando rm -r para remover um diretório que contenha conteúdo.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">pwd</span>
+/home/student/Documents
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ rmdir ProjectY
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ rmdir ProjectX
+rmdir: failed to remove <span class="sb">`</span>ProjectX<span class="err">&#39;</span>: Directory not empty
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ rm -r ProjectX
+<span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -lR
+.:
+total <span class="m">0</span>
+<span class="o">[</span>user@host Documents<span class="o">]</span>$
+</code></pre></div><p>O comando rm sem opções não pode remover um diretório vazio. Você deve usar os comandos rmdir, rm -d (que é equivalente a rmdir) ou rm -r.</p>
+<h2 id="criação-de-links-entre-arquivos">Criação de links entre arquivos</h2>
 
 </main>
     <footer>
