@@ -5,9 +5,13 @@
     <link>/notes/</link>
     <description>Recent content in notes on FXSHELL</description>
     <ttl>1440</ttl>
-    <generator>Hugo 0.73.0</generator>
+    <generator>Hugo 0.81.0</generator>
     <language>en-us</language>
+<<<<<<< HEAD
     <lastBuildDate>Tue, 30 Mar 2021 04:32:28 UT</lastBuildDate>
+=======
+    <lastBuildDate>Fri, 26 Mar 2021 04:10:41 UT</lastBuildDate>
+>>>>>>> e1421af0af662db126ffd1def4c049fc238e55e5
     <atom:link href="/notes/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
