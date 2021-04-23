@@ -647,7 +647,82 @@ SSH password:
 <p>=&gt; flag -m, modulo que será utilizado</p>
 <p>=&gt; flag -a, argumento do modulo</p>
 <p>para obter ajuda pode fazer também o &ndash;help = ajuda.</p>
+<p>Posso também dar um comando &lsquo;all&rsquo; se meus targets estiverem dentro do arquivo hosts.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /e/ansible# cat hosts
+192.168.1.151
+192.168.1.234
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /e/ansible# ansible all -m ping -u osboxes -k
+SSH password: 
+192.168.1.151 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
+        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
+    <span class="o">}</span>,
+    <span class="s2">&#34;changed&#34;</span>: false,
+    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
+<span class="o">}</span>
+192.168.1.234 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
+        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
+    <span class="o">}</span>,
+    <span class="s2">&#34;changed&#34;</span>: false,
+    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
+<span class="o">}</span>
+</code></pre></div><p>Imagine que eu preciso executar isso em muitos hosts, para facilitar isso existe uma forma de trabalhar com grupos, dentro do arquivo de hosts.</p>
+<p>Exemplo, no arquivo hosts:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>servidores_bd<span class="o">]</span>
+192.168.1.151
 
+<span class="o">[</span>servidores_web<span class="o">]</span>
+192.168.1.234
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">ansible -i hosts servidores_bd -m ping -u osboxes -k
+</code></pre></div><p>Também posso colocar um subgrupo, exemplo:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>servidores:children<span class="o">]</span>
+servidores_web
+servidores_bd
+</code></pre></div><p>Ele visualizara todos os subgrupos dele e executará os comandos.</p>
+<p>Também posso utilizar variáveis para ajudar na identificação dos hosts, como por exemplo.</p>
+<p>Posso setar a variavél</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">mysql <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168.1.234
+</code></pre></div><p>Posso aplicar regras também para grupos de servidores como por exemplo:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>servidores_bd:vars<span class="o">]</span>
+ansible_ssh+port<span class="o">=</span><span class="m">22</span>
+<span class="nv">ansible_ssh_user</span><span class="o">=</span>osboxes
+<span class="nv">ansible_ssh_pass</span><span class="o">=</span>osboxes.org 
+<span class="nv">ansible_become</span><span class="o">=</span>yes
+<span class="nv">ansible_become_method</span><span class="o">=</span>sudo
+<span class="nv">ansible_become_user</span><span class="o">=</span>osboxes
+<span class="nv">ansible_become_pass</span><span class="o">=</span>osboxes
+<span class="nv">ansible_connection</span><span class="o">=</span>ssh
+</code></pre></div><p>Com isso basta eu executar só o comando com o modulo &lsquo;ping&rsquo;.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /e/ansible# ansible -i hosts servidores_web -m ping
+192.168.1.234 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
+        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
+    <span class="o">}</span>,
+    <span class="s2">&#34;changed&#34;</span>: false,
+    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="oque-são-roles">Oque são Roles</h2>
+<p>As roles (funções) são um conjunto de intes independentes destinados a provisionar uma determinada aplicação/infraestrutura.</p>
+<p>Itens:</p>
+<p>=&gt; Variaveis</p>
+<p>=&gt; Modulos</p>
+<p>=&gt; Modelos</p>
+<p>=&gt; Tarefas</p>
+<p>=&gt; Ações</p>
+<p>Pode-se associar-se roles com projetos.</p>
+<p>As roles possuem uma estrutura padrão de diretórios para seus projetos:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml">playbook.yml<span class="w">
+</span><span class="w"></span>roles/<span class="w">
+</span><span class="w">	</span>common/<span class="w">
+</span><span class="w">		</span>tasks/<span class="w">
+</span><span class="w">		</span>handlers/<span class="w">
+</span><span class="w">		</span>files/<span class="w">
+</span><span class="w">		</span>templates/<span class="w">
+</span><span class="w">		</span>vars/<span class="w">
+</span><span class="w">		</span>defaults/<span class="w">
+</span><span class="w">		</span>meta/<span class="w">
+</span></code></pre></div>
 </main>
     <footer>
   
