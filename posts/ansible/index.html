@@ -722,7 +722,15 @@ ansible_ssh+port<span class="o">=</span><span class="m">22</span>
 </span><span class="w">		</span>vars/<span class="w">
 </span><span class="w">		</span>defaults/<span class="w">
 </span><span class="w">		</span>meta/<span class="w">
-</span></code></pre></div>
+</span></code></pre></div><p>Tasks =&gt; lista de tarefas para serem executadas em uma role.</p>
+<p>handlers =&gt; são manipuladores/eventos acionados por uma task.</p>
+<p>files =&gt; arquivos utilizados para deploy dentro de uma role.</p>
+<p>templates =&gt; modelos para deploy dentro de uma role (permite o uso de variáveis)</p>
+<p>vars =&gt; variáveis adicionais de uma role.</p>
+<p>defaults =&gt; variáveis padrão de uma role. Prioridade máxima.</p>
+<p>meta =&gt; traga dependências de uma role para outra role - primeiro diretório a ser analisado.</p>
+<p>nota: dentro dos diretorios taks, handlers, vars, defaults e meta, deverá existir um arquivo com o nome de main.yml para que o mesmo seja interpretado.</p>
+
 </main>
     <footer>
   
