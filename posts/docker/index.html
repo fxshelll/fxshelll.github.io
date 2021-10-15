@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta name="generator" content="Hugo 0.73.0" />
+    <meta name="generator" content="Hugo 0.88.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker | FXSHELL</title>
@@ -21,9 +21,10 @@ Quando falamos de container, estamos falando de isolamento. Esse container está
 <meta property="og:description" content="Aprendizado baseado no curso do Linuxtips, do Jefferson. Apenas para conhecimento sem fins lucrativos postei aqui para o meu aprendizado pessoal.
 Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/posts/docker/" />
+<meta property="og:url" content="/posts/docker/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-10-08T11:10:44-03:00" />
 <meta property="article:modified_time" content="2020-10-08T11:10:44-03:00" />
+
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker"/>
@@ -61,7 +62,7 @@ Quando falamos de container, estamos falando de isolamento. Esse container está
   
     
       
-        <style>html{font-size:12px}*{box-sizing:border-box;text-rendering:geometricPrecision}body{font-size:1rem;line-height:1.5rem;margin:0;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;word-wrap:break-word}h1,h2,h3,h4,h5,h6{line-height:1.3em}fieldset{border:none;padding:0;margin:0}pre{padding:2rem;margin:1.75rem 0;background-color:#fff;border:1px solid #ccc;overflow:auto}code[class*=language-],pre[class*=language-],pre code{font-weight:100;text-shadow:none;margin:1.75rem 0}a{cursor:pointer;color:#ff2e88;text-decoration:none;border-bottom:1px solid #ff2e88}a:hover{background-color:#ff2e88;color:#fff}.grid{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.grid.\-top{-ms-flex-align:start;align-items:flex-start}.grid.\-middle{-ms-flex-align:center;align-items:center}.grid.\-bottom{-ms-flex-align:end;align-items:flex-end}.grid.\-stretch{-ms-flex-align:stretch;align-items:stretch}.grid.\-baseline{-ms-flex-align:baseline;align-items:baseline}.grid.\-left{-ms-flex-pack:start;justify-content:flex-start}.grid.\-center{-ms-flex-pack:center;justify-content:center}.grid.\-right{-ms-flex-pack:end;justify-content:flex-end}.grid.\-between{-ms-flex-pack:justify;justify-content:space-between}.grid.\-around{-ms-flex-pack:distribute;justify-content:space-around}.cell{-ms-flex:1;flex:1;box-sizing:border-box}@media screen and (min-width:768px){.cell.\-1of12{-ms-flex:0 0 8.33333%;flex:0 0 8.33333%}.cell.\-2of12{-ms-flex:0 0 16.66667%;flex:0 0 16.66667%}.cell.\-3of12{-ms-flex:0 0 25%;flex:0 0 25%}.cell.\-4of12{-ms-flex:0 0 33.33333%;flex:0 0 33.33333%}.cell.\-5of12{-ms-flex:0 0 41.66667%;flex:0 0 41.66667%}.cell.\-6of12{-ms-flex:0 0 50%;flex:0 0 50%}.cell.\-7of12{-ms-flex:0 0 58.33333%;flex:0 0 58.33333%}.cell.\-8of12{-ms-flex:0 0 66.66667%;flex:0 0 66.66667%}.cell.\-9of12{-ms-flex:0 0 75%;flex:0 0 75%}.cell.\-10of12{-ms-flex:0 0 83.33333%;flex:0 0 83.33333%}.cell.\-11of12{-ms-flex:0 0 91.66667%;flex:0 0 91.66667%}}@media screen and (max-width:768px){.grid{-ms-flex-direction:column;flex-direction:column}.cell{-ms-flex:0 0 auto;flex:0 0 auto}}.hack,.hack blockquote,.hack code,.hack em,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack strong{font-size:1rem;font-style:normal;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif}.hack blockquote,.hack code,.hack em,.hack strong{line-height:20px}.hack blockquote,.hack code,.hack footer,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack header,.hack li,.hack ol,.hack p,.hack section,.hack ul{float:none;margin:0;padding:0}.hack blockquote,.hack h1,.hack ol,.hack p,.hack ul{margin-top:20px;margin-bottom:20px}.hack h1{position:relative;display:inline-block;display:table-cell;padding:20px 0 30px;margin:0;overflow:hidden}.hack h1:after{content:"====================================================================================================";position:absolute;bottom:10px;left:0}.hack h1+*{margin-top:0}.hack h2,.hack h3,.hack h4,.hack h5,.hack h6{position:relative;margin-bottom:1.75rem}.hack h2:before,.hack h3:before,.hack h4:before,.hack h5:before,.hack h6:before{display:inline}.hack h2:before{content:"## "}.hack h3:before{content:"### "}.hack h4:before{content:"#### "}.hack h5:before{content:"##### "}.hack h6:before{content:"###### "}.hack li{position:relative;display:block;padding-left:20px}.hack li:after{position:absolute;top:0;left:0}.hack ul>li:after{content:"-"}.hack ol{counter-reset:a}.hack ol>li:after{content:counter(a) ".";counter-increment:a}.hack ol li:nth-child(n+10):after{left:-7px}.hack blockquote{position:relative;padding-left:17px;padding-left:2ch;overflow:hidden}.hack blockquote:after{content:">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>";white-space:pre;position:absolute;top:0;left:0;line-height:20px}.hack em:after,.hack em:before{content:"*";display:inline}.hack pre code:after,.hack pre code:before{content:""}.hack code{font-weight:700}.hack code:after,.hack code:before{content:"`";display:inline}.hack hr{position:relative;height:20px;overflow:hidden;border:0;margin:20px 0}.hack hr:after{content:"----------------------------------------------------------------------------------------------------";position:absolute;top:0;left:0;line-height:20px;width:100%;word-wrap:break-word}@-moz-document url-prefix(){.hack h1{display:block}}.hack-ones ol>li:after{content:"1."}p{margin:0 0 1.75rem}.container{max-width:70rem}.container,.container-fluid{margin:0 auto;padding:0 1rem}.inner{padding:1rem}.inner2x{padding:2rem}.pull-left{float:left}.pull-right{float:right}.progress-bar{height:8px;opacity:.8;background-color:#ccc;margin-top:12px}.progress-bar.progress-bar-show-percent{margin-top:38px}.progress-bar-filled{background-color:gray;height:100%;transition:width .3s ease;position:relative;width:0}.progress-bar-filled:before{content:"";border:6px solid transparent;border-top-color:gray;position:absolute;top:-12px;right:-6px}.progress-bar-filled:after{color:gray;content:attr(data-filled);display:block;font-size:12px;white-space:nowrap;position:absolute;border:6px solid transparent;top:-38px;right:0;-ms-transform:translateX(50%);transform:translateX(50%)}table{width:100%;border-collapse:collapse;margin:1.75rem 0;color:#778087}table td,table th{vertical-align:top;border:1px solid #ccc;line-height:15px;padding:10px}table thead th{font-size:10px}table tbody td:first-child{font-weight:700;color:#333}.form{width:30rem}.form-group{margin-bottom:1.75rem;overflow:auto}.form-group label{border-bottom:2px solid #ccc;color:#333;width:10rem;display:inline-block;height:38px;line-height:38px;padding:0;float:left;position:relative}.form-group.form-success label{color:#4caf50!important;border-color:#4caf50!important}.form-group.form-warning label{color:#ff9800!important;border-color:#ff9800!important}.form-group.form-error label{color:#f44336!important;border-color:#f44336!important}.form-control{outline:none;border:none;border-bottom:2px solid #ccc;padding:.5rem 0;width:20rem;height:38px;background-color:transparent}.form-control:focus{border-color:#555}.form-group.form-textarea label:after{position:absolute;content:"";width:2px;background-color:#fff;right:-2px;top:0;bottom:0}textarea.form-control{height:auto;resize:none;padding:1rem 0;border-bottom:2px solid #ccc;border-left:2px solid #ccc;padding:.5rem}select.form-control{border-radius:0;background-color:transparent;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}.help-block{color:#999;margin-top:.5rem}.form-actions{margin-bottom:1.75rem}.btn{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;outline:none;padding:.65rem 2rem;font-size:1rem;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:relative;z-index:1}.btn:active{box-shadow:inset 0 1px 3px rgba(0,0,0,.12)}.btn.btn-ghost{border-color:#757575;color:#757575;background-color:transparent}.btn.btn-ghost:focus,.btn.btn-ghost:hover{border-color:#424242;color:#424242;z-index:2}.btn.btn-ghost:hover{background-color:transparent}.btn-block{width:100%;display:-ms-flexbox;display:flex}.btn-default{color:#fff;background-color:#e0e0e0;border:1px solid #e0e0e0;color:#333}.btn-default:focus:not(.btn-ghost),.btn-default:hover{background-color:#dcdcdc;border-color:#dcdcdc}.btn-success{color:#fff;background-color:#4caf50;border:1px solid #4caf50}.btn-success:focus:not(.btn-ghost),.btn-success:hover{background-color:#43a047;border-color:#43a047}.btn-success.btn-ghost{border-color:#4caf50;color:#4caf50}.btn-success.btn-ghost:focus,.btn-success.btn-ghost:hover{border-color:#388e3c;color:#388e3c;z-index:2}.btn-error{color:#fff;background-color:#f44336;border:1px solid #f44336}.btn-error:focus:not(.btn-ghost),.btn-error:hover{background-color:#e53935;border-color:#e53935}.btn-error.btn-ghost{border-color:#f44336;color:#f44336}.btn-error.btn-ghost:focus,.btn-error.btn-ghost:hover{border-color:#d32f2f;color:#d32f2f;z-index:2}.btn-warning{color:#fff;background-color:#ff9800;border:1px solid #ff9800}.btn-warning:focus:not(.btn-ghost),.btn-warning:hover{background-color:#fb8c00;border-color:#fb8c00}.btn-warning.btn-ghost{border-color:#ff9800;color:#ff9800}.btn-warning.btn-ghost:focus,.btn-warning.btn-ghost:hover{border-color:#f57c00;color:#f57c00;z-index:2}.btn-info{color:#fff;background-color:#00bcd4;border:1px solid #00bcd4}.btn-info:focus:not(.btn-ghost),.btn-info:hover{background-color:#00acc1;border-color:#00acc1}.btn-info.btn-ghost{border-color:#00bcd4;color:#00bcd4}.btn-info.btn-ghost:focus,.btn-info.btn-ghost:hover{border-color:#0097a7;color:#0097a7;z-index:2}.btn-primary{color:#fff;background-color:#2196f3;border:1px solid #2196f3}.btn-primary:focus:not(.btn-ghost),.btn-primary:hover{background-color:#1e88e5;border-color:#1e88e5}.btn-primary.btn-ghost{border-color:#2196f3;color:#2196f3}.btn-primary.btn-ghost:focus,.btn-primary.btn-ghost:hover{border-color:#1976d2;color:#1976d2;z-index:2}.btn-group{overflow:auto}.btn-group .btn{float:left}.btn-group .btn-ghost:not(:first-child){margin-left:-1px}.card{border:1px solid #ccc}.card .card-header{color:#333;text-align:center;background-color:#ddd;padding:.5rem 0}.alert{color:#ccc;padding:1rem;border:1px solid #ccc;margin-bottom:1.75rem}.alert-success{color:#4caf50;border-color:#4caf50}.alert-error{color:#f44336;border-color:#f44336}.alert-info{color:#00bcd4;border-color:#00bcd4}.alert-warning{color:#ff9800;border-color:#ff9800}.media:not(:last-child){margin-bottom:1.25rem}.media-left{padding-right:1rem}.media-left,.media-right{display:table-cell;vertical-align:top}.media-right{padding-left:1rem}.media-body{display:table-cell;vertical-align:top}.media-heading{font-size:1.16667rem;font-weight:700}.media-content{margin-top:.3rem}.avatarholder,.placeholder{background-color:#f0f0f0;text-align:center;color:#b9b9b9;font-size:1rem;border:1px solid #f0f0f0}.avatarholder{width:48px;height:48px;line-height:46px;font-size:2rem;background-size:cover;background-position:50%;background-repeat:no-repeat}.avatarholder.rounded{border-radius:33px}.loading{display:inline-block;content:"&nbsp;";height:20px;width:20px;margin:0 .5rem;animation:a .6s infinite linear;border:2px solid #e91e63;border-right-color:transparent;border-radius:50%}.btn .loading{margin-bottom:0;width:14px;height:14px}.btn div.loading{float:left}.alert .loading{margin-bottom:-5px}@keyframes a{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}.menu{width:100%}.menu .menu-item{display:block;color:#616161;border-color:#616161}.menu .menu-item.active,.menu .menu-item:hover{color:#000;border-color:#000;background-color:transparent}@media screen and (max-width:768px){.form-group label{display:block;border-bottom:none;width:100%}.form-group.form-textarea label:after{display:none}.form-control{width:100%}textarea.form-control{border-left:none;padding:.5rem 0}pre::-webkit-scrollbar{height:3px}}@media screen and (max-width:480px){.form{width:100%}}.dark{color:#ccc}.dark,.dark pre{background-color:#000}.dark pre{padding:0;border:none}.dark pre code{color:#00bcd4}.dark h1 a,.dark h2 a,.dark h3 a,.dark h4 a,.dark h5 a{color:#ccc}.dark code,.dark strong{color:#fff}.dark code{font-weight:100}.dark table{color:#ccc}.dark table td,.dark table th{border-color:#444}.dark table tbody td:first-child{color:#fff}.dark .form-group label{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-group.form-textarea label:after{background-color:#000}.dark .form-control{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-control:focus{border-color:#ccc;color:#ccc}.dark textarea.form-control{color:#ccc}.dark .card{border-color:rgba(95,95,95,.78)}.dark .card .card-header{background-color:transparent;color:#ccc;border-bottom:1px solid rgba(95,95,95,.78)}.dark .btn.btn-ghost.btn-default{border-color:#ababab;color:#ababab}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#9c9c9c;color:#9c9c9c;z-index:1}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#e0e0e0;color:#e0e0e0}.dark .btn.btn-ghost.btn-primary:focus,.dark .btn.btn-ghost.btn-primary:hover{border-color:#64b5f6;color:#64b5f6}.dark .btn.btn-ghost.btn-success:focus,.dark .btn.btn-ghost.btn-success:hover{border-color:#81c784;color:#81c784}.dark .btn.btn-ghost.btn-info:focus,.dark .btn.btn-ghost.btn-info:hover{border-color:#4dd0e1;color:#4dd0e1}.dark .btn.btn-ghost.btn-error:focus,.dark .btn.btn-ghost.btn-error:hover{border-color:#e57373;color:#e57373}.dark .btn.btn-ghost.btn-warning:focus,.dark .btn.btn-ghost.btn-warning:hover{border-color:#ffb74d;color:#ffb74d}.dark .avatarholder,.dark .placeholder{background-color:transparent;border-color:#333}.dark .menu .menu-item{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .menu .menu-item.active,.dark .menu .menu-item:hover{color:#fff;border-color:#ccc}:root{--screen-size-small: 30em}@keyframes intro{0%{opacity:0}; 100%{opacity:1}}.blur-up{-webkit-filter:blur(5px);filter:blur(5px);transition:filter 400ms,-webkit-filter 400ms}.blur-up.lazyloaded{-webkit-filter:blur(0);filter:blur(0)}.hack .readmore{margin-bottom:2.2em}.responsive-iframe{position:relative;padding-bottom:56.25%;padding-top:25px;height:0}.responsive-iframe iframe{position:absolute;top:0;left:0;width:100%;height:100%}iframe{border:0}main,footer{animation:intro .3s both;animation-delay:.15s}footer time[datetime$=M]:before{content:"\2013\0020"}@media only screen and (max-width:30em){footer time[datetime$=M]{display:none}}blockquote cite{display:block}blockquote cite::before{content:"\2014"}:target{color:#fff}.hack li ul{margin:0}.main{padding:20px 10px}input.form-control{border-radius:0;background-color:transparent;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}input.form-control,textarea.form-control{font-size:initial}.hack .help-block{font-size:1rem}html{font-size:13px}.hack pre{font-size:17px}.hack .form input,.hack .form textarea,.hack .form button,.hack .form label{font-size:1rem}article [itemprop=description]{margin-bottom:20px;margin-top:20px}article header img{width:100%;border-radius:3px}table td,table th{line-height:inherit}img{max-width:100%}@media screen and (min-width:768px){html{font-size:1em}.container{max-width:50rem}}[v-cloak]{display:none}a[rel*="external"]::after {
+        <style>html{font-size:12px}*{box-sizing:border-box;text-rendering:geometricPrecision}body{font-size:1rem;line-height:1.5rem;margin:0;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;word-wrap:break-word}h1,h2,h3,h4,h5,h6{line-height:1.3em}fieldset{border:none;padding:0;margin:0}pre{padding:2rem;margin:1.75rem 0;background-color:#fff;border:1px solid #ccc;overflow:auto}code[class*=language-],pre[class*=language-],pre code{font-weight:100;text-shadow:none;margin:1.75rem 0}a{cursor:pointer;color:#ff2e88;text-decoration:none;border-bottom:1px solid #ff2e88}a:hover{background-color:#ff2e88;color:#fff}.grid{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.grid.\-top{-ms-flex-align:start;align-items:flex-start}.grid.\-middle{-ms-flex-align:center;align-items:center}.grid.\-bottom{-ms-flex-align:end;align-items:flex-end}.grid.\-stretch{-ms-flex-align:stretch;align-items:stretch}.grid.\-baseline{-ms-flex-align:baseline;align-items:baseline}.grid.\-left{-ms-flex-pack:start;justify-content:flex-start}.grid.\-center{-ms-flex-pack:center;justify-content:center}.grid.\-right{-ms-flex-pack:end;justify-content:flex-end}.grid.\-between{-ms-flex-pack:justify;justify-content:space-between}.grid.\-around{-ms-flex-pack:distribute;justify-content:space-around}.cell{-ms-flex:1;flex:1;box-sizing:border-box}@media screen and (min-width:768px){.cell.\-1of12{-ms-flex:0 0 8.33333%;flex:0 0 8.33333%}.cell.\-2of12{-ms-flex:0 0 16.66667%;flex:0 0 16.66667%}.cell.\-3of12{-ms-flex:0 0 25%;flex:0 0 25%}.cell.\-4of12{-ms-flex:0 0 33.33333%;flex:0 0 33.33333%}.cell.\-5of12{-ms-flex:0 0 41.66667%;flex:0 0 41.66667%}.cell.\-6of12{-ms-flex:0 0 50%;flex:0 0 50%}.cell.\-7of12{-ms-flex:0 0 58.33333%;flex:0 0 58.33333%}.cell.\-8of12{-ms-flex:0 0 66.66667%;flex:0 0 66.66667%}.cell.\-9of12{-ms-flex:0 0 75%;flex:0 0 75%}.cell.\-10of12{-ms-flex:0 0 83.33333%;flex:0 0 83.33333%}.cell.\-11of12{-ms-flex:0 0 91.66667%;flex:0 0 91.66667%}}@media screen and (max-width:768px){.grid{-ms-flex-direction:column;flex-direction:column}.cell{-ms-flex:0 0 auto;flex:0 0 auto}}.hack,.hack blockquote,.hack code,.hack em,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack strong{font-size:1rem;font-style:normal;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif}.hack blockquote,.hack code,.hack em,.hack strong{line-height:20px}.hack blockquote,.hack code,.hack footer,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack header,.hack li,.hack ol,.hack p,.hack section,.hack ul{float:none;margin:0;padding:0}.hack blockquote,.hack h1,.hack ol,.hack p,.hack ul{margin-top:20px;margin-bottom:20px}.hack h1{position:relative;display:inline-block;display:table-cell;padding:20px 0 30px;margin:0;overflow:hidden}.hack h1:after{content:"====================================================================================================";position:absolute;bottom:10px;left:0}.hack h1+*{margin-top:0}.hack h2,.hack h3,.hack h4,.hack h5,.hack h6{position:relative;margin-bottom:1.75rem}.hack h2:before,.hack h3:before,.hack h4:before,.hack h5:before,.hack h6:before{display:inline}.hack h2:before{content:"## "}.hack h3:before{content:"### "}.hack h4:before{content:"#### "}.hack h5:before{content:"##### "}.hack h6:before{content:"###### "}.hack li{position:relative;display:block;padding-left:20px}.hack li:after{position:absolute;top:0;left:0}.hack ul>li:after{content:"-"}.hack ol{counter-reset:a}.hack ol>li:after{content:counter(a) ".";counter-increment:a}.hack ol li:nth-child(n+10):after{left:-7px}.hack blockquote{position:relative;padding-left:17px;padding-left:2ch;overflow:hidden}.hack blockquote:after{content:">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>";white-space:pre;position:absolute;top:0;left:0;line-height:20px}.hack em:after,.hack em:before{content:"*";display:inline}.hack pre code:after,.hack pre code:before{content:""}.hack code{font-weight:700}.hack code:after,.hack code:before{content:"`";display:inline}.hack hr{position:relative;height:20px;overflow:hidden;border:0;margin:20px 0}.hack hr:after{content:"----------------------------------------------------------------------------------------------------";position:absolute;top:0;left:0;line-height:20px;width:100%;word-wrap:break-word}@-moz-document url-prefix(){.hack h1{display:block}}.hack-ones ol>li:after{content:"1."}p{margin:0 0 1.75rem}.container{max-width:70rem}.container,.container-fluid{margin:0 auto;padding:0 1rem}.inner{padding:1rem}.inner2x{padding:2rem}.pull-left{float:left}.pull-right{float:right}.progress-bar{height:8px;opacity:.8;background-color:#ccc;margin-top:12px}.progress-bar.progress-bar-show-percent{margin-top:38px}.progress-bar-filled{background-color:gray;height:100%;transition:width .3s ease;position:relative;width:0}.progress-bar-filled:before{content:"";border:6px solid transparent;border-top-color:gray;position:absolute;top:-12px;right:-6px}.progress-bar-filled:after{color:gray;content:attr(data-filled);display:block;font-size:12px;white-space:nowrap;position:absolute;border:6px solid transparent;top:-38px;right:0;-ms-transform:translateX(50%);transform:translateX(50%)}table{width:100%;border-collapse:collapse;margin:1.75rem 0;color:#778087}table td,table th{vertical-align:top;border:1px solid #ccc;line-height:15px;padding:10px}table thead th{font-size:10px}table tbody td:first-child{font-weight:700;color:#333}.form{width:30rem}.form-group{margin-bottom:1.75rem;overflow:auto}.form-group label{border-bottom:2px solid #ccc;color:#333;width:10rem;display:inline-block;height:38px;line-height:38px;padding:0;float:left;position:relative}.form-group.form-success label{color:#4caf50!important;border-color:#4caf50!important}.form-group.form-warning label{color:#ff9800!important;border-color:#ff9800!important}.form-group.form-error label{color:#f44336!important;border-color:#f44336!important}.form-control{outline:none;border:none;border-bottom:2px solid #ccc;padding:.5rem 0;width:20rem;height:38px;background-color:transparent}.form-control:focus{border-color:#555}.form-group.form-textarea label:after{position:absolute;content:"";width:2px;background-color:#fff;right:-2px;top:0;bottom:0}textarea.form-control{height:auto;resize:none;padding:1rem 0;border-bottom:2px solid #ccc;border-left:2px solid #ccc;padding:.5rem}select.form-control{border-radius:0;background-color:transparent;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}.help-block{color:#999;margin-top:.5rem}.form-actions{margin-bottom:1.75rem}.btn{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;outline:none;padding:.65rem 2rem;font-size:1rem;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:relative;z-index:1}.btn:active{box-shadow:inset 0 1px 3px rgba(0,0,0,.12)}.btn.btn-ghost{border-color:#757575;color:#757575;background-color:transparent}.btn.btn-ghost:focus,.btn.btn-ghost:hover{border-color:#424242;color:#424242;z-index:2}.btn.btn-ghost:hover{background-color:transparent}.btn-block{width:100%;display:-ms-flexbox;display:flex}.btn-default{color:#fff;background-color:#e0e0e0;border:1px solid #e0e0e0;color:#333}.btn-default:focus:not(.btn-ghost),.btn-default:hover{background-color:#dcdcdc;border-color:#dcdcdc}.btn-success{color:#fff;background-color:#4caf50;border:1px solid #4caf50}.btn-success:focus:not(.btn-ghost),.btn-success:hover{background-color:#43a047;border-color:#43a047}.btn-success.btn-ghost{border-color:#4caf50;color:#4caf50}.btn-success.btn-ghost:focus,.btn-success.btn-ghost:hover{border-color:#388e3c;color:#388e3c;z-index:2}.btn-error{color:#fff;background-color:#f44336;border:1px solid #f44336}.btn-error:focus:not(.btn-ghost),.btn-error:hover{background-color:#e53935;border-color:#e53935}.btn-error.btn-ghost{border-color:#f44336;color:#f44336}.btn-error.btn-ghost:focus,.btn-error.btn-ghost:hover{border-color:#d32f2f;color:#d32f2f;z-index:2}.btn-warning{color:#fff;background-color:#ff9800;border:1px solid #ff9800}.btn-warning:focus:not(.btn-ghost),.btn-warning:hover{background-color:#fb8c00;border-color:#fb8c00}.btn-warning.btn-ghost{border-color:#ff9800;color:#ff9800}.btn-warning.btn-ghost:focus,.btn-warning.btn-ghost:hover{border-color:#f57c00;color:#f57c00;z-index:2}.btn-info{color:#fff;background-color:#00bcd4;border:1px solid #00bcd4}.btn-info:focus:not(.btn-ghost),.btn-info:hover{background-color:#00acc1;border-color:#00acc1}.btn-info.btn-ghost{border-color:#00bcd4;color:#00bcd4}.btn-info.btn-ghost:focus,.btn-info.btn-ghost:hover{border-color:#0097a7;color:#0097a7;z-index:2}.btn-primary{color:#fff;background-color:#2196f3;border:1px solid #2196f3}.btn-primary:focus:not(.btn-ghost),.btn-primary:hover{background-color:#1e88e5;border-color:#1e88e5}.btn-primary.btn-ghost{border-color:#2196f3;color:#2196f3}.btn-primary.btn-ghost:focus,.btn-primary.btn-ghost:hover{border-color:#1976d2;color:#1976d2;z-index:2}.btn-group{overflow:auto}.btn-group .btn{float:left}.btn-group .btn-ghost:not(:first-child){margin-left:-1px}.card{border:1px solid #ccc}.card .card-header{color:#333;text-align:center;background-color:#ddd;padding:.5rem 0}.alert{color:#ccc;padding:1rem;border:1px solid #ccc;margin-bottom:1.75rem}.alert-success{color:#4caf50;border-color:#4caf50}.alert-error{color:#f44336;border-color:#f44336}.alert-info{color:#00bcd4;border-color:#00bcd4}.alert-warning{color:#ff9800;border-color:#ff9800}.media:not(:last-child){margin-bottom:1.25rem}.media-left{padding-right:1rem}.media-left,.media-right{display:table-cell;vertical-align:top}.media-right{padding-left:1rem}.media-body{display:table-cell;vertical-align:top}.media-heading{font-size:1.16667rem;font-weight:700}.media-content{margin-top:.3rem}.avatarholder,.placeholder{background-color:#f0f0f0;text-align:center;color:#b9b9b9;font-size:1rem;border:1px solid #f0f0f0}.avatarholder{width:48px;height:48px;line-height:46px;font-size:2rem;background-size:cover;background-position:50%;background-repeat:no-repeat}.avatarholder.rounded{border-radius:33px}.loading{display:inline-block;content:"&nbsp;";height:20px;width:20px;margin:0 .5rem;animation:a .6s infinite linear;border:2px solid #e91e63;border-right-color:transparent;border-radius:50%}.btn .loading{margin-bottom:0;width:14px;height:14px}.btn div.loading{float:left}.alert .loading{margin-bottom:-5px}@keyframes a{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}.menu{width:100%}.menu .menu-item{display:block;color:#616161;border-color:#616161}.menu .menu-item.active,.menu .menu-item:hover{color:#000;border-color:#000;background-color:transparent}@media screen and (max-width:768px){.form-group label{display:block;border-bottom:none;width:100%}.form-group.form-textarea label:after{display:none}.form-control{width:100%}textarea.form-control{border-left:none;padding:.5rem 0}pre::-webkit-scrollbar{height:3px}}@media screen and (max-width:480px){.form{width:100%}}.dark{color:#ccc}.dark,.dark pre{background-color:#000}.dark pre{padding:0;border:none}.dark pre code{color:#00bcd4}.dark h1 a,.dark h2 a,.dark h3 a,.dark h4 a,.dark h5 a{color:#ccc}.dark code,.dark strong{color:#fff}.dark code{font-weight:100}.dark table{color:#ccc}.dark table td,.dark table th{border-color:#444}.dark table tbody td:first-child{color:#fff}.dark .form-group label{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-group.form-textarea label:after{background-color:#000}.dark .form-control{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-control:focus{border-color:#ccc;color:#ccc}.dark textarea.form-control{color:#ccc}.dark .card{border-color:rgba(95,95,95,.78)}.dark .card .card-header{background-color:transparent;color:#ccc;border-bottom:1px solid rgba(95,95,95,.78)}.dark .btn.btn-ghost.btn-default{border-color:#ababab;color:#ababab}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#9c9c9c;color:#9c9c9c;z-index:1}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#e0e0e0;color:#e0e0e0}.dark .btn.btn-ghost.btn-primary:focus,.dark .btn.btn-ghost.btn-primary:hover{border-color:#64b5f6;color:#64b5f6}.dark .btn.btn-ghost.btn-success:focus,.dark .btn.btn-ghost.btn-success:hover{border-color:#81c784;color:#81c784}.dark .btn.btn-ghost.btn-info:focus,.dark .btn.btn-ghost.btn-info:hover{border-color:#4dd0e1;color:#4dd0e1}.dark .btn.btn-ghost.btn-error:focus,.dark .btn.btn-ghost.btn-error:hover{border-color:#e57373;color:#e57373}.dark .btn.btn-ghost.btn-warning:focus,.dark .btn.btn-ghost.btn-warning:hover{border-color:#ffb74d;color:#ffb74d}.dark .avatarholder,.dark .placeholder{background-color:transparent;border-color:#333}.dark .menu .menu-item{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .menu .menu-item.active,.dark .menu .menu-item:hover{color:#fff;border-color:#ccc}:root{--screen-size-small:30em}@keyframes intro{0%{opacity:0}; 100%{opacity:1}}.blur-up{-webkit-filter:blur(5px);filter:blur(5px);transition:filter 400ms,-webkit-filter 400ms}.blur-up.lazyloaded{-webkit-filter:blur(0);filter:blur(0)}.hack .readmore{margin-bottom:2.2em}.responsive-iframe{position:relative;padding-bottom:56.25%;padding-top:25px;height:0}.responsive-iframe iframe{position:absolute;top:0;left:0;width:100%;height:100%}iframe{border:0}main,footer{animation:intro .3s both;animation-delay:.15s}footer time[datetime$=M]:before{content:"\2013\0020"}@media only screen and (max-width:30em){footer time[datetime$=M]{display:none}}blockquote cite{display:block}blockquote cite::before{content:"\2014"}:target{color:#fff}.hack li ul{margin:0}.main{padding:20px 10px}input.form-control{border-radius:0;background-color:transparent;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}input.form-control,textarea.form-control{font-size:initial}.hack .help-block{font-size:1rem}html{font-size:13px}.hack pre{font-size:17px}.hack .form input,.hack .form textarea,.hack .form button,.hack .form label{font-size:1rem}article [itemprop=description]{margin-bottom:20px;margin-top:20px}article header img{width:100%;border-radius:3px}table td,table th{line-height:inherit}img{max-width:100%}@media screen and (min-width:768px){html{font-size:1em}.container{max-width:50rem}}[v-cloak]{display:none}a[rel*="external"]::after {
   content: " " url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20class='i-external'%20viewBox='0%200%2032%2032'%20width='14'%20height='14'%20fill='none'%20stroke='%23ff9800'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='9.38%'%3E%3Cpath%20d='M14%209%20L3%209%203%2029%2023%2029%2023%2018%20M18%204%20L28%204%2028%2014%20M28%204%20L14%2018'/%3E%3C/svg%3E");
 }
 nav a.active {
@@ -194,7 +195,7 @@ Física (Cgroups): CPU, memoria, disco.</p>
 <h1 id="docker-container-ls">docker container ls</h1>
 <p>a versão paga do Docker é a versão Docker EE (enterprise)</p>
 <p>Mas vamos utilizar a versão CE, versão gratuita.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">osboxes@osboxes:~$ docker version
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">osboxes@osboxes:~$ docker version
 Client: Docker Engine - Community
  Version:           19.03.13
  API version:       1.40
@@ -209,7 +210,7 @@ Got permission denied <span class="k">while</span> trying to connect to the Dock
 <p>A primeira coisa a se fazer é o famoso hello-word</p>
 <p>Algo como:</p>
 <p>#$ docker container run hello-world</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container run hello-world
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container run hello-world
 
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
@@ -234,13 +235,13 @@ For more examples and ideas, visit:
 
 </code></pre></div><p>Para visualizar todos os containers que estão em execução, parados ou mortos, eu utilizo o comando:</p>
 <p>#$ docker container ls -a</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container ls -a
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container ls -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
 fc4253022db8        hello-world         <span class="s2">&#34;/hello&#34;</span>            <span class="m">36</span> seconds ago      Exited <span class="o">(</span>0<span class="o">)</span> <span class="m">34</span> seconds ago                       reverent_neumann
 106fbfd9aba4        hello-world         <span class="s2">&#34;/hello&#34;</span>            <span class="m">8</span> minutes ago       Exited <span class="o">(</span>0<span class="o">)</span> <span class="m">8</span> minutes ago                        hungry_kapitsa
 
 </code></pre></div><p>Outra coisa interessante é usar o comando <code>-ti</code> para cair dentro do container que acabou de subir, ou seja eu quero um terminal com interatividade, no caso seria algo como:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container run -ti ubuntu
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container run -ti ubuntu
 Unable to find image <span class="s1">&#39;ubuntu:latest&#39;</span> locally
 latest: Pulling from library/ubuntu
 d72e567cc804: Pull <span class="nb">complete</span> 
@@ -250,31 +251,31 @@ Digest: sha256:bc2f7250f69267c9c6b66d7b6a81a54d3878bb85f1ebb5f951c896d13e6ba537
 Status: Downloaded newer image <span class="k">for</span> ubuntu:latest
 root@2fd8c26be92e:/# 
 </code></pre></div><p>Perceba que já está dentro do ubuntu que subiu, vamos ver os processos dele agora:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@2fd8c26be92e:/# ps -ef
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@2fd8c26be92e:/# ps -ef
 UID          PID    PPID  C STIME TTY          TIME CMD
 root           <span class="m">1</span>       <span class="m">0</span>  <span class="m">0</span> 17:15 pts/0    00:00:00 /bin/bash
 root           <span class="m">8</span>       <span class="m">1</span>  <span class="m">0</span> 17:17 pts/0    00:00:00 ps -ef
 </code></pre></div><p>Se eu der um CTRL+D eu saiu do container criado e ele morre.</p>
 <p>Todo container tem um entrypoint, neste caso é o próprio bash, então quando saimos dele, ele é finalizado também.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container run -ti centos
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container run -ti centos
 Unable to find image <span class="s1">&#39;centos:latest&#39;</span> locally
 latest: Pulling from library/centos
 3c72a8ed6814: Pull <span class="nb">complete</span> 
 Digest: sha256:76d24f3ba3317fa945743bb3746fbaf3a0b752f10b10376960de01da70685fbd
 Status: Downloaded newer image <span class="k">for</span> centos:latest
-<span class="o">[</span>root@ca53ed399c0d /<span class="o">]</span># 
+<span class="o">[</span>root@ca53ed399c0d /<span class="o">]</span><span class="c1"># </span>
 </code></pre></div><p>Agora subi um CentOS, e já estou dentro dele.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@ca53ed399c0d /<span class="o">]</span><span class="c1"># cat /etc/redhat-release</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@ca53ed399c0d /<span class="o">]</span><span class="c1"># cat /etc/redhat-release </span>
 CentOS Linux release 8.2.2004 <span class="o">(</span>Core<span class="o">)</span> 
 </code></pre></div><p>Se eu quero sair do container mas sem matar o container, eu digito <code>ctrl+p+q</code> quando eu volto para o meu host, posso visualizar que ela ainda está rodando.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container ls 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container ls 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ca53ed399c0d        centos              <span class="s2">&#34;/bin/bash&#34;</span>         <span class="m">2</span> minutes ago       Up <span class="m">2</span> minutes                            pensive_turing
 root@osboxes:~# 
 </code></pre></div><p>Como faço para voltar, agora utilizo o comando <code>docker container attach + [CONTAINER ID]</code></p>
 <p>#$docker container attach ca53ed399c0d</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container attach ca53ed399c0d
-<span class="o">[</span>root@ca53ed399c0d /<span class="o">]</span><span class="c1"># cat /etc/redhat-release</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container attach ca53ed399c0d
+<span class="o">[</span>root@ca53ed399c0d /<span class="o">]</span><span class="c1"># cat /etc/redhat-release </span>
 CentOS Linux release 8.2.2004 <span class="o">(</span>Core<span class="o">)</span> 
 </code></pre></div><p>Agora se eu subir um container do nginx por exemplo, nunca use a flag <code>-ti</code> vai parecer que está travado, acontece que você pediu para ele criar o container do nginx com interatividade, mas acontece que ele vai tentar abrir uma console, só que o entrypoint do <code>nginx</code> não é o bash, é o próprio processo.</p>
 <p>Todo processo tem que estar em execução em primeiro plano, em foreign ground.</p>
@@ -284,7 +285,7 @@ CentOS Linux release 8.2.2004 <span class="o">(</span>Core<span class="o">)</spa
 <h1 id="-docker-container-run-nginx">$ docker container run nginx</h1>
 <p>Primeiro eu rodo o <code>run</code> sem a flag <code>-d</code> para ele baixar o container pra mim localmente. Ai então rodo com a flag para ele deixar o processo do nginx como daemon.</p>
 <h1 id="-docker-container-run--d-nginx">$ docker container run -d nginx</h1>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container ls
 CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS               NAMES
 fecca31902c0        nginx               <span class="s2">&#34;/docker-entrypoint.…&#34;</span>   About a minute ago   Up About a minute   80/tcp              affectionate_dijkstra
 ca53ed399c0d        centos              <span class="s2">&#34;/bin/bash&#34;</span>              <span class="m">34</span> hours ago         Up <span class="m">34</span> hours                             pensive_turing
@@ -292,16 +293,16 @@ ca53ed399c0d        centos              <span class="s2">&#34;/bin/bash&#34;</sp
 </code></pre></div><p>Agora tenho o CentOS e o Nginx rodando.</p>
 <p>Para que eu possa acessar esse container do nginx, visto que o entrypoint dele é o próprio processo, eu executo o comando <code>exec</code></p>
 <p>O comando <code>exec</code> me permite rodar comandos no container e me trás os resultados em tela, neste caso posso executar comandos como &ldquo;ls, cat&rdquo; normalmente.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container <span class="nb">exec</span> -ti fecca31902c0 ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container <span class="nb">exec</span> -ti fecca31902c0 ls
 bin   dev		   docker-entrypoint.sh  home  lib64  mnt  proc  run   srv  tmp  var
 boot  docker-entrypoint.d  etc			 lib   media  opt  root  sbin  sys  usr
 
 </code></pre></div><p>Para ficar melhor, posso executar o bash diretamente.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container <span class="nb">exec</span> -ti fecca31902c0 bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container <span class="nb">exec</span> -ti fecca31902c0 bash
 root@fecca31902c0:/# cat /etc/issue
 Debian GNU/Linux <span class="m">10</span> <span class="se">\n</span> <span class="se">\l</span>
 </code></pre></div><p>Posso ver até mesmo que o nginx está configurado com a página de boas vindas certinho.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@fecca31902c0:/usr/share/nginx# curl localhost
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@fecca31902c0:/usr/share/nginx# curl localhost
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -328,14 +329,14 @@ Commercial support is available at
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre></div><p>Se eu der um CTRL+D para sair do container, ele não vai matar o container por que o processo principal não era o bash, mas sim o daemon que rodei lá atrás.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@fecca31902c0:/usr/share/nginx# <span class="nb">exit</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@fecca31902c0:/usr/share/nginx# <span class="nb">exit</span>
 root@osboxes:~# docker container ls
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
 fecca31902c0        nginx               <span class="s2">&#34;/docker-entrypoint.…&#34;</span>   <span class="m">21</span> minutes ago      Up <span class="m">21</span> minutes       80/tcp              affectionate_dijkstra
 ca53ed399c0d        centos              <span class="s2">&#34;/bin/bash&#34;</span>              <span class="m">34</span> hours ago        Up <span class="m">34</span> hours                             pensive_turing
 </code></pre></div><p>Rodar como daemon é não rodar este cara em primeiro plano, eu coloco -d nos casos que não quero ter interatividade, só quero que a aplicação rode.</p>
 <p>E o comando <code>stop</code> eu paro os containers criados.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container stop fecca31902c0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container stop fecca31902c0
 fecca31902c0
 root@osboxes:~# docker container ls
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
@@ -347,7 +348,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 root@osboxes:~# 
 
 </code></pre></div><p>Assim como também posso startar novamente</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container start fecca31902c0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container start fecca31902c0
 fecca31902c0
 root@osboxes:~# docker container start ca53ed399c0d
 ca53ed399c0d
@@ -357,10 +358,10 @@ fecca31902c0        nginx               <span class="s2">&#34;/docker-entrypoint
 ca53ed399c0d        centos              <span class="s2">&#34;/bin/bash&#34;</span>              <span class="m">34</span> hours ago        Up <span class="m">3</span> seconds                            pensive_turing
 
 </code></pre></div><p>E também tenho o restart do container, caso precise.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container restart fecca31902c0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container restart fecca31902c0
 fecca31902c0
 </code></pre></div><p>O comando <code>insepect</code> vai trazer os detalhes daquele container.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container inspect fecca31902c0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container inspect fecca31902c0
 <span class="o">[</span>
     <span class="o">{</span>
         <span class="s2">&#34;Id&#34;</span>: <span class="s2">&#34;fecca31902c05350d920db4c3ed35793d64b155e06894ce15c026a8632c74e2e&#34;</span>,
@@ -578,7 +579,7 @@ fecca31902c0
 <span class="o">]</span>
 root@osboxes:~# 
 </code></pre></div><p>Posso também pausar um container com o comando <code>pause</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container pause fecca31902c0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container pause fecca31902c0
 fecca31902c0
 root@osboxes:~# docker container ls
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                  PORTS               NAMES
@@ -592,7 +593,7 @@ fecca31902c0        nginx               <span class="s2">&#34;/docker-entrypoint
 ca53ed399c0d        centos              <span class="s2">&#34;/bin/bash&#34;</span>              <span class="m">35</span> hours ago        Up <span class="m">6</span> minutes                            pensive_turing
 
 </code></pre></div><p>Para que eu possa ver os logs deste container, utilizo o comando <code>logs</code> seguido da flag <code>-f</code> e ID para ficar monitorando.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container logs -f fecca31902c0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container logs -f fecca31902c0
 /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 /docker-entrypoint.sh: Looking <span class="k">for</span> shell scripts in /docker-entrypoint.d/
 /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -603,7 +604,7 @@ ca53ed399c0d        centos              <span class="s2">&#34;/bin/bash&#34;</sp
 127.0.0.1 - - <span class="o">[</span>10/Oct/2020:03:26:52 +0000<span class="o">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="m">200</span> <span class="m">612</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;curl/7.64.0&#34;</span> <span class="s2">&#34;-&#34;</span>
 /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 </code></pre></div><p>Para remover um container, basta utilizar o comando rm, porém se o mesmo estiver em execução, ele não vai deixar. Para isso basta fazer um <code>rm -f</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container ls
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
 425c61ede184        nginx               <span class="s2">&#34;/docker-entrypoint.…&#34;</span>   <span class="m">2</span> minutes ago       Up <span class="m">2</span> minutes        80/tcp              romantic_hofstadter
 ca53ed399c0d        centos              <span class="s2">&#34;/bin/bash&#34;</span>              <span class="m">35</span> hours ago        Up <span class="m">15</span> minutes                           pensive_turing
@@ -619,7 +620,7 @@ ca53ed399c0d        centos              <span class="s2">&#34;/bin/bash&#34;</sp
 
 </code></pre></div><h1 id="configurando-cpu-e-memória-para-os-meus-containers">Configurando CPU e memória para os meus containers</h1>
 <p>Para checar como está o uso de recursos do container, eu utilizo o comando <code>stats</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container stats 7f824cb8005e
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container stats 7f824cb8005e
 </code></pre></div><p>Para testar os recursos pode-se utilizar o programa Stress.</p>
 <p><code>root@7f824cb8005e:/# apt-get install stress</code></p>
 <p>Para ver detalhes do seu uso, utilize</p>
@@ -627,18 +628,18 @@ ca53ed399c0d        centos              <span class="s2">&#34;/bin/bash&#34;</sp
 <p>Fiz o seguinte comando</p>
 <p><code>stress --cpu 1 --vm-bytes 128 --vm 1</code></p>
 <p>Posso utilizar para ver os dados também o famoso <code>top</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container top 7f824cb8005e
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container top 7f824cb8005e
 </code></pre></div><p>Claro, se o mesmo estiver instalado no container</p>
 <p>Para criar um container do nginx por exemplo com limitação de memória e cpu, eu posso definir isso na criação. Exemplo:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container run -d -m 128M --cpus 0.5 nginx
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container run -d -m 128M --cpus 0.5 nginx
 </code></pre></div><p>Neste caso estou definindo 128MB de ram para o container e que ele se limite a usar só 50% de CPU.</p>
 <p>Posso testar utilizando o stress.</p>
 <p>Agora quero mudar quero que utilize 80% de CPU, então eu posso fazer um update.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container update --cpus 0.8  --memory 64M 7f824cb8005e
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container update --cpus 0.8  --memory 64M 7f824cb8005e
 </code></pre></div><p>Agora ele vai utilizar 80% de CPU e 64MB de memória, para o ID que no caso é do nginx.</p>
 <h1 id="criando-um-dockerfile">Criando um Dockerfile</h1>
 <p>Depois de criar uma pasta para alocar o Dockerfile, eu crio um arquivo no vim</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">FROM debian
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">FROM debian
 
 LABEL <span class="nv">app</span><span class="o">=</span><span class="s2">&#34;BIKER&#34;</span>
 ENV <span class="nv">FXSHELL</span><span class="o">=</span><span class="s2">&#34;Devops&#34;</span>
@@ -648,7 +649,7 @@ RUN apt-get update <span class="o">&amp;&amp;</span> apt-get install -y stress <
 CMD stress --cpu <span class="m">1</span> --vm-bytes 64M --vm <span class="m">1</span>
 </code></pre></div><p>Depois de criado, vou buildar</p>
 <h1 id="-docker-image-build--t-toskeira10">$ docker image build -t toskeira:1.0</h1>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~/tosko_dockerfile# docker image build -t toskeira:1.0 .
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~/tosko_dockerfile# docker image build -t toskeira:1.0 .
 Sending build context to Docker daemon  2.048kB
 Step 1/5 : FROM debian
 latest: Pulling from library/debian
@@ -700,15 +701,15 @@ Successfully built d24fe1c0773b
 Successfully tagged toskeira:1.0
 root@osboxes:~/tosko_dockerfile# 
 </code></pre></div><p>Certo, agora se eu der um comando, <code>docker image ls</code> ele vai exibir a nossa imagem recem criada.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~/tosko_dockerfile# docker image ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~/tosko_dockerfile# docker image ls
 REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
 toskeira            1.0                 d24fe1c0773b        About a minute ago   133MB
 </code></pre></div><p>Para executar</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker container run -d toskeira:1.0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker container run -d toskeira:1.0
 </code></pre></div><p>Limitando memoria</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker container run -d --memory 64M  toskeira:1.0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker container run -d --memory 64M  toskeira:1.0
 </code></pre></div><p>Posso também utilizar o comando update.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container update --cpus 0.8  --memory 64M <span class="o">[</span>CONTAINER ID<span class="o">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@osboxes:~# docker container update --cpus 0.8  --memory 64M <span class="o">[</span>CONTAINER ID<span class="o">]</span>
 </code></pre></div><p>Limitando CPU para 80% e memoria para 64M</p>
 <p>#Entendendo volumes</p>
 <p>Volumes nada mais sao do que diretorios externos ao container, que são montados diretamente nele, dessa forma bypassam seu filesystem, ou seja, não seguem aquele padrão de camadas.</p>
@@ -721,11 +722,11 @@ toskeira            1.0                 d24fe1c0773b        About a minute ago  
 <p>=&gt; Volumes continuam a existir mesmo se você deletar o container.</p>
 <p>#Exemplo</p>
 <p>Criamos uma pasta para montar nosso volume no local:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# mkdir /opt/moranguinho
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# mkdir /opt/moranguinho
 </code></pre></div><p>Volumes do tipo bind é quando eu já tenho um diretório que quero montar especifico.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho debian
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho debian
 </code></pre></div><p>Beleza, já dentro do container crio um arquivo de teste dentro do volume.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@07b30662ffc0:/# <span class="nb">cd</span> moranguinho/
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@07b30662ffc0:/# <span class="nb">cd</span> moranguinho/
 root@07b30662ffc0:/moranguinho# ls
 root@07b30662ffc0:/moranguinho# ls
 root@07b30662ffc0:/moranguinho# touch teste
@@ -736,7 +737,7 @@ root@FXSHELL /o/moranguinho# ls
 teste
 root@FXSHELL /o/moranguinho# 
 </code></pre></div><p>Agora se eu executar um outro container, posso notar que o volume continua o mesmo e com o arquivo criado no passo anterior lá dentro.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /o/moranguinho# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho debian
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /o/moranguinho# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho debian
 root@c72d32bd0846:/# ls
 bin   dev  moranguinho  lib    media  opt   root  sbin  sys  usr
 boot  etc  home      lib64  mnt    proc  run   srv   tmp  var
@@ -744,7 +745,7 @@ root@c72d32bd0846:/# <span class="nb">cd</span> moranguinho/
 root@c72d32bd0846:/moranguinho# ls
 teste
 root@c72d32bd0846:/moranguinho# 
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@9911369c74af:/# df -h
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@9911369c74af:/# df -h
 Filesystem      Size  Used Avail Use% Mounted on
 overlay         217G  8.8G  197G   5% /
 tmpfs            64M     <span class="m">0</span>   64M   0% /dev
@@ -758,8 +759,8 @@ tmpfs           491M     <span class="m">0</span>  491M   0% /sys/firmware
 root@9911369c74af:/# 
 </code></pre></div><p>Este é o volume do tipo <code>bind</code></p>
 <p>OBS: também posso definir o volume somente como leitura definindo o parametro <code>ro</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho,ro debian
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /o/moranguinho# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho,ro debian
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho,ro debian
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /o/moranguinho# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/moranguinho,dst<span class="o">=</span>/moranguinho,ro debian
 root@e779e386475a:/# <span class="nb">cd</span> moranguinho/
 root@e779e386475a:/moranguinho# ls
 teste  teste2
@@ -769,7 +770,7 @@ root@e779e386475a:/moranguinho#
 </code></pre></div><p>Mostrando a mensagem como read-only.</p>
 <p>#Docker volume</p>
 <p>Posso checar todos os volumes criados com o comando:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker volume ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker volume ls
 DRIVER              VOLUME NAME
 root@FXSHELL ~# docker volume create moranguinho
 moranguinho
@@ -795,12 +796,12 @@ root@FXSHELL ~# docker volume inspect moranguinho
 <span class="o">]</span>
 root@FXSHELL ~# 
 </code></pre></div><p>Tudo e qualquer volume no docker, vai estar dentro de &ldquo;/var/lib/docker/volumes&rdquo;</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# <span class="nb">cd</span> /var/lib/docker/volumes/
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# <span class="nb">cd</span> /var/lib/docker/volumes/
 root@FXSHELL /v/l/d/volumes# ls
 moranguinho/  metadata.db
 root@FXSHELL /v/l/d/volumes# 
-</code></pre></div><p>Posso colocar meus arquivos dentro da pasta _&quot;<em>data&rdquo; que fica dentro da pasta do volume</em></p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/volumes# ls
+</code></pre></div><p>Posso colocar meus arquivos dentro da pasta _&quot;<em>data&quot; que fica dentro da pasta do volume</em></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/volumes# ls
 moranguinho/  metadata.db
 root@FXSHELL /v/l/d/volumes# <span class="nb">cd</span> moranguinho/_data/
 root@FXSHELL /v/l/d/v/g/_data# touch teste1 teste2 teste3
@@ -808,7 +809,7 @@ root@FXSHELL /v/l/d/v/g/_data# ls
 teste1  teste2  teste3
 root@FXSHELL /v/l/d/v/g/_data# 
 </code></pre></div><p>Posso montar esse volume também em um container, passando o tipo que agora não será tipo bind, mas sim <em>volume</em></p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>moranguinho,dst<span class="o">=</span>/moranguinho debian
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>moranguinho,dst<span class="o">=</span>/moranguinho debian
 root@4df1fe08b1da:/# ls
 bin   dev  moranguinho  lib    media  opt   root  sbin  sys  usr
 boot  etc  home      lib64  mnt    proc  run   srv   tmp  var
@@ -817,14 +818,14 @@ root@4df1fe08b1da:/moranguinho# ls
 teste1  teste2  teste3
 root@4df1fe08b1da:/moranguinho# touch teste4_final
 </code></pre></div><p>Depois mato o container e vejo na pasta do volume, e eis o arquivo teste4_final está lá dentro.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# <span class="nb">cd</span> /var/lib/docker/volumes/
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# <span class="nb">cd</span> /var/lib/docker/volumes/
 root@FXSHELL /v/l/d/volumes# ls
 moranguinho/  metadata.db
 root@FXSHELL /v/l/d/volumes# <span class="nb">cd</span> moranguinho/_data/
 root@FXSHELL /v/l/d/v/g/_data# ls
 teste1  teste2  teste3  teste4_final
 root@FXSHELL /v/l/d/v/g/_data# 
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data# docker container ls
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data# docker container ls
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 4983b4a108a3        debian              <span class="s2">&#34;bash&#34;</span>              <span class="m">11</span> seconds ago      Up <span class="m">10</span> seconds                           frosty_bartik
 root@FXSHELL /v/l/d/v/g/_data# 
@@ -849,7 +850,7 @@ root@FXSHELL /v/l/d/v/g/_data# ls
 13aacd8dfd58  4983b4a108a3  teste1  teste2  teste3  teste4_final
 root@FXSHELL /v/l/d/v/g/_data# 
 </code></pre></div><p>Para remover o volume basta remover todos os containers que estiverem em uso com ele.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data <span class="o">[</span>1<span class="o">]</span><span class="c1"># docker container ls -a</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data <span class="o">[</span>1<span class="o">]</span><span class="c1"># docker container ls -a</span>
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
 4df1fe08b1da        debian              <span class="s2">&#34;bash&#34;</span>                   <span class="m">9</span> minutes ago       Exited <span class="o">(</span>0<span class="o">)</span> <span class="m">7</span> minutes ago                        zealous_tereshkova
 e779e386475a        debian              <span class="s2">&#34;bash&#34;</span>                   <span class="m">21</span> minutes ago      Exited <span class="o">(</span>1<span class="o">)</span> <span class="m">20</span> minutes ago                       brave_meitner
@@ -865,7 +866,7 @@ root@FXSHELL /v/l/d/v/g/_data# ls
 
 </code></pre></div><p>E assim dentro da pasta /var/lib não temos mais nada do volume moranguinho.</p>
 <p>Posso ver as propriedades do volume criado com o comando:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data# 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data# 
 docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>bolacha,dst<span class="o">=</span>/bolacha debian
 
 
@@ -884,11 +885,11 @@ root@FXSHELL /v/l/d/v/g/_data <span class="o">[</span>1<span class="o">]</span><
             <span class="o">}</span>
 
 </code></pre></div><p>Se dou um ls volume, o bolacha ainda estará lá.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data# docker volume ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /v/l/d/v/g/_data# docker volume ls
 DRIVER              VOLUME NAME
 <span class="nb">local</span>               bolacha
 </code></pre></div><p>Posso utilizar o comando docker volume prune, para remover todos os volumes que estejam não estejam sendo utilizados.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker volume prune
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker volume prune
 WARNING! This will remove all <span class="nb">local</span> volumes not used by at least one container.
 Are you sure you want to <span class="k">continue</span>? <span class="o">[</span>y/N<span class="o">]</span> y
 Deleted Volumes:
@@ -896,7 +897,7 @@ bolacha
 
 Total reclaimed space: 0B
 </code></pre></div><p>Posso fazer a mesma coisa para os containers que não estou utilizando mais.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container prune
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container prune
 WARNING! This will remove all stopped containers.
 Are you sure you want to <span class="k">continue</span>? <span class="o">[</span>y/N<span class="o">]</span> y
 Deleted Containers:
@@ -916,14 +917,14 @@ ea431a856eff6fd17ff13d87ae498bfe91fb61fe6566744a528f62c1731689b5
 40ab9db51e4a8c6e5603bdb51c60f37925e89d60afab8bda1ddf06071cb06ecc
 
 Total reclaimed space: 870.3MB
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container ls
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container ls
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 root@FXSHELL ~# docker container ls -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 root@FXSHELL ~# 
 </code></pre></div><p>Assim limpando tudo.</p>
 <p>Agora um outro teste</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container create -v /opt/bolacha:/data --name dbdados centos
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container create -v /opt/bolacha:/data --name dbdados centos
 49eeb1ffb2453b206028478bc24f13582f5c1cb2ed2dbb378702ea10a7c5fb0c
 </code></pre></div><p>Com isso, apenas criamos o container e especificamos um volume para ele, mas ainda não o iniciamos.</p>
 <p>Sabemos que no container o volume se encontra montado em &ldquo;/data&rdquo;.</p>
@@ -931,18 +932,18 @@ root@FXSHELL ~#
 <p>Para isso precisamos entender dois parâmetros importantes:</p>
 <p>&ndash;volume-from : É utilizado quando queremos montar um volme disponibilizado por outro container.</p>
 <p>-e : É utilizado para informar váriaveis de um ambiente para o container. No exemplo, estamos passando as variáveis de ambiente do PostgreSQL.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -d -p 5432:5432 --name pgsql1 --volumes-from dbdados -e <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_PASS</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>docker kamui/postgresql
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -d -p 5432:5432 --name pgsql1 --volumes-from dbdados -e <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_PASS</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>docker kamui/postgresql
 
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -d -p 5433:5432 --name pgsql2 --volumes-from dbdados -e <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_PASS</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>docker kamui/postgresql
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -d -p 5433:5432 --name pgsql2 --volumes-from dbdados -e <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_PASS</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>docker kamui/postgresql
 </code></pre></div><p>Criei duas.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container ls -a
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container ls -a
 CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                    NAMES
 79e408793331        kamui/postgresql    <span class="s2">&#34;/usr/local/bin/run&#34;</span>   <span class="m">8</span> seconds ago       Up <span class="m">7</span> seconds        0.0.0.0:5433-&gt;5432/tcp   pgsql2
 2c2161d46619        kamui/postgresql    <span class="s2">&#34;/usr/local/bin/run&#34;</span>   <span class="m">6</span> minutes ago       Up <span class="m">6</span> minutes        0.0.0.0:5432-&gt;5432/tcp   pgsql1
 49eeb1ffb245        centos              <span class="s2">&#34;/bin/bash&#34;</span>            <span class="m">10</span> minutes ago      Created                                      dbdados
 root@FXSHELL ~# 
 </code></pre></div><p>Fazendo da forma nova e atualizada:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker volume create dbdados
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker volume create dbdados
 dbdados
 
 root@FXSHELL ~# docker container run -d -p 5432:5432 --name pgsql1  --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>dbdados,dst<span class="o">=</span>/data -e <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_PASS</span><span class="o">=</span>docker -e <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>docker kamui/postgresql
@@ -958,7 +959,7 @@ DRIVER              VOLUME NAME
 <span class="nb">local</span>               dbdados
 root@FXSHELL ~# 
 </code></pre></div><p>E assim os dados do postgreSQL estão la dentro:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# <span class="nb">cd</span> /var/lib/docker/volumes/dbdados/_data
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# <span class="nb">cd</span> /var/lib/docker/volumes/dbdados/_data
 root@FXSHELL /v/l/d/v/d/_data# ls
 base/          pg_multixact/  pg_stat_tmp/  pg_xlog/         server.key@
 global/        pg_notify/     pg_subtrans/  postgresql.conf
@@ -967,7 +968,7 @@ pg_hba.conf    pg_snapshots/  pg_twophase/  postmaster.pid
 pg_ident.conf  pg_stat/       PG_VERSION    server.crt@
 root@FXSHELL /v/l/d/v/d/_data# 
 </code></pre></div><p>Supondo que quero fazer um backup deste cara, e encarrego outro container de fazer isso, posso fazer algo assim:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# mkdir /opt/backup
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# mkdir /opt/backup
 root@FXSHELL ~# 
 root@FXSHELL ~# 
 root@FXSHELL ~# 
@@ -975,7 +976,7 @@ root@FXSHELL ~#
 root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>dbdados,dst<span class="o">=</span>/data --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/opt/backup,dst<span class="o">=</span>/backup debian tar -cvf /backup/bkp-banco.tar /data
 </code></pre></div><p>montando um volume do tipo bind dentro deste novo container e empacotando com o tar, o bkp.</p>
 <p>#EXEMPLO DE COMANDOS</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># docker container run -ti --mount type=bind,src=/volume,dst=/volume ubuntu</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># docker container run -ti --mount type=bind,src=/volume,dst=/volume ubuntu</span>
 <span class="c1"># docker container run -ti --mount type=bind,src=/root/primeiro_container,dst=/volume ubuntu</span>
 <span class="c1"># docker container run -ti --mount type=bind,src=/root/primeiro_container,dst=/volume,ro ubuntu</span>
 <span class="c1"># docker volume create moranguinho</span>
@@ -989,7 +990,7 @@ root@FXSHELL ~# docker container run -ti --mount <span class="nv">type</span><sp
 <span class="c1"># docker run -ti --volumes-from dbdados -v $(pwd):/backup debian tar -cvf /backup/backup.tar /data</span>
 </code></pre></div><p>#Criando um dockerfile</p>
 <p>$ vim dockerfiles/1/Dockerfile</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">FROM debian <span class="c1">#qual imagem vou me basear</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">FROM debian <span class="c1">#qual imagem vou me basear</span>
 
 RUN apt-get update <span class="o">&amp;&amp;</span> apt-get install -y apache2 <span class="o">&amp;&amp;</span> apt-get clean  <span class="c1">#executa oque vai fazer</span>
 ENV <span class="nv">APACHE_LOCK_DIR</span><span class="o">=</span><span class="s2">&#34;/var/lock&#34;</span>   <span class="c1">#Variavel de ambiente para não ter dois apache rodando</span>
@@ -1004,13 +1005,13 @@ LABEL <span class="nv">version</span><span class="o">=</span><span class="s2">&#
 VOLUME /var/www/html <span class="c1">#docker vai criar automaticamente esse volume</span>
 EXPOSE <span class="m">80</span> <span class="c1">#com a flag -P irá pegar o expose qualquer porta = 80</span>
 </code></pre></div><p>Para criar o container eu faço um docker build.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker build .
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker build .
 
 ou
 
 root@FXSHELL ~# docker image build -t meu_apache:1.0 .
 </code></pre></div><p>#Exemplos de Dockerfiles</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">FROM debian
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">FROM debian
 
 RUN apt-get update <span class="o">&amp;&amp;</span> apt-get install -y apache2 <span class="o">&amp;&amp;</span> apt-get clean
 ENV <span class="nv">APACHE_LOCK_DIR</span><span class="o">=</span><span class="s2">&#34;/var/lock&#34;</span>
@@ -1023,7 +1024,7 @@ LABEL <span class="nv">description</span><span class="o">=</span><span class="s2
 
 VOLUME /var/www/html/
 EXPOSE <span class="m">80</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">FROM debian
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">FROM debian
 
 RUN apt-get update <span class="o">&amp;&amp;</span> apt-get install -y apache2 <span class="o">&amp;&amp;</span> apt-get clean
 ENV <span class="nv">APACHE_LOCK_DIR</span><span class="o">=</span><span class="s2">&#34;/var/lock&#34;</span>
@@ -1040,19 +1041,19 @@ EXPOSE <span class="m">80</span>
 
 ENTRYPOINT <span class="o">[</span><span class="s2">&#34;/usr/sbin/apachectl&#34;</span><span class="o">]</span>
 CMD <span class="o">[</span><span class="s2">&#34;-D&#34;</span>, <span class="s2">&#34;FOREGROUND&#34;</span><span class="o">]</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">package main
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">package main
 import <span class="s2">&#34;fmt&#34;</span>
 
 func main<span class="o">()</span> <span class="o">{</span>
     fmt.Println<span class="o">(</span><span class="s2">&#34;GIROPOPS STRIGUS GIRUS - LINUXTIPS&#34;</span><span class="o">)</span>
 <span class="o">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">FROM golang
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">FROM golang
 
 WORKDIR /app
 ADD . /app
 RUN go build -o goapp
 ENTRYPOINT ./goapp
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">FROM golang AS buildando
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">FROM golang AS buildando
 
 ADD . /src
 WORKDIR /src
@@ -1096,7 +1097,7 @@ ENTRYPOINT ./goapp
 </ul>
 <p>**</p>
 <p>#SUBINDO UMA IMAGEM PARA SUA CONTA DO DOCKERHUB</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~/d/2# docker image ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~/d/2# docker image ls
 REPOSITORY      TAG       IMAGE ID       CREATED         SIZE
 fpmatta/toddy   1.0       e1c0c1113bca   <span class="m">6</span> minutes ago   267MB
 ubuntu          latest    f63181f19b2f   <span class="m">12</span> days ago     72.9MB
@@ -1117,9 +1118,9 @@ dbf2c0f42a39: Preparing
 9f32931c9d28: Preparing 
 </code></pre></div><p>#Não confio na internet; posso criar o meu registry local</p>
 <p>Subindo o registry local:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -d -p 5000:5000 --restart<span class="o">=</span>always --name registry registry:2
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container run -d -p 5000:5000 --restart<span class="o">=</span>always --name registry registry:2
 </code></pre></div><p>Consigo ver o container do registry rodando bem como sua imagem.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container ls
 CONTAINER ID   IMAGE        COMMAND                  CREATED          STATUS          PORTS                    NAMES
 49fbebd0365b   registry:2   <span class="s2">&#34;/entrypoint.sh /etc…&#34;</span>   <span class="m">34</span> seconds ago   Up <span class="m">32</span> seconds   0.0.0.0:5000-&gt;5000/tcp   registry
 root@FXSHELL ~# docker image ls
@@ -1128,7 +1129,7 @@ fpmatta/toddy   1.0       e1c0c1113bca   <span class="m">31</span> minutes ago  
 registry        <span class="m">2</span>         678dfa38fcfa   <span class="m">6</span> weeks ago      26.2MB
 root@FXSHELL ~# 
 </code></pre></div><p>Preciso retagear o nome da minha imagem, passando o meu registry local que no caso é o &lsquo;localhost:5000&rsquo;</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker image ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker image ls
 REPOSITORY      TAG       IMAGE ID       CREATED          SIZE
 fpmatta/toddy   1.0       e1c0c1113bca   <span class="m">31</span> minutes ago   267MB
 registry        <span class="m">2</span>         678dfa38fcfa   <span class="m">6</span> weeks ago      26.2MB
@@ -1145,8 +1146,8 @@ b43d9cffa997: Pushing <span class="o">[=========================================
 dbf2c0f42a39: Pushed 
 9f32931c9d28: Pushed 
 </code></pre></div><p>Para checar sua imagem dentro do registry fica no caminho abaixo:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">/var/lib/registry/docker/registry/v2/repositories/fpmatta/toddy 
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">/var/lib/registry/docker/registry/v2/repositories/fpmatta/toddy 
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL ~# docker container ls
 CONTAINER ID   IMAGE                              COMMAND                  CREATED          STATUS          PORTS                    NAMES
 a3c92b51fe5b   localhost:5000/fpmatta/toddy:1.0   <span class="s2">&#34;/bin/bash&#34;</span>              <span class="m">13</span> minutes ago   Up <span class="m">13</span> minutes                            exciting_heyrovsky
 49fbebd0365b   registry:2                         <span class="s2">&#34;/entrypoint.sh /etc…&#34;</span>   <span class="m">30</span> minutes ago   Up <span class="m">30</span> minutes   0.0.0.0:5000-&gt;5000/tcp   registry
@@ -1170,7 +1171,7 @@ toddy
 /var/lib/registry/docker/registry/v2/repositories/fpmatta <span class="c1"># cd toddy/</span>
 /var/lib/registry/docker/registry/v2/repositories/fpmatta/toddy <span class="c1"># ls</span>
 _layers     _manifests  _uploads
-/var/lib/registry/docker/registry/v2/repositories/fpmatta/toddy # 
+/var/lib/registry/docker/registry/v2/repositories/fpmatta/toddy <span class="c1"># </span>
 </code></pre></div><p>#DockerHub e Registry - Exemplo comandos
 docker image inspect debian</p>
 <p>docker history linuxtips/apache:1.0</p>
@@ -1183,9 +1184,9 @@ docker image inspect debian</p>
 <p>docker tag IMAGEMID localhost:5000/apache</p>
 <h1 id="docker-machine">Docker Machine</h1>
 <p>Para fazer a instalação do Docker Machine no Linux, faça:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># curl -L https://github.com/docker/machine/releases/download/v0.16.1</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># curl -L https://github.com/docker/machine/releases/download/v0.16.1</span>
 /docker-machine-<span class="sb">`</span>uname -s<span class="sb">`</span>-<span class="sb">`</span>uname -m<span class="sb">`</span> &gt;/tmp/docker-machine
-<span class="c1"># chmod +x /tmp/docker-machine</span> 
+<span class="c1"># chmod +x /tmp/docker-machine </span>
 <span class="c1"># sudo cp /tmp/docker-machine /usr/local/bin/docker-machine</span>
 
 
@@ -1227,7 +1228,7 @@ Para verificar se ele foi instalado e qual a sua versão, faça:
 
 <span class="c1"># docker-machine stop linuxtips</span>
 
-<span class="c1"># docker-machine ls</span> 
+<span class="c1"># docker-machine ls </span>
 
 <span class="c1"># docker-machine start linuxtips</span>
 
@@ -1242,30 +1243,30 @@ Para verificar se ele foi instalado e qual a sua versão, faça:
 <p>Worker = Container em execução</p>
 <p>Manager = Conhece os detalhes do cluster, sabe todos os containers e serviços.</p>
 <p>Para testar, podemos subir três maquinas e instalar o docker em cada uma delas.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL-01 ~# 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL-01 ~# 
 root@FXSHELL-02 ~# 
 root@FXSHELL-03 ~# 
 </code></pre></div><p>Feito isso, basta rodar na maquina 01, o comando:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker swarm init
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker swarm init
 </code></pre></div><p>Será gerado um token, que iremos utilizar e rodar nas maquinas do node, que serão as maquinas 02 e 03.</p>
 <p>Depois podera visualizar na maquina manager, todos os nodes que estão adicionados com o comando:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker node ls
 </code></pre></div><p>Para visualizar o token da maquina 02 para adiciona-la commo manager e não como worker, basta fazer:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker swarm join-token manager
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker swarm join-token manager
 </code></pre></div><p>Com isso será exibido o token de manager, para ser executado no seu outro host.</p>
 <p>Mesma coisa caso fosse um worker</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker swarm join-token worker
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker swarm join-token worker
 </code></pre></div><p>Para promover um node worker para manager basta fazer:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node promote maquina-02
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node demote maquina-02
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker node promote maquina-02
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker node demote maquina-02
 </code></pre></div><p>Agora se você quiser remover o node do cluster basta digitar o comando:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker swarm leave
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker swarm leave
 </code></pre></div><p>Também remova ele do nosso manager ativo, com o comando</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node rm maquina-02
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker node rm maquina-02
 </code></pre></div><p>Para remover um node manager, é necessário forçar com a flag &ndash;force</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker swarm leave --force
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker swarm leave --force
 </code></pre></div><p>E depois remover do node manager</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node rm maquina-03
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker node rm maquina-03
 </code></pre></div><h1 id="docker-services">Docker Services</h1>
 <p>O service é um VIP ou DNS que realizara o balanceamento de requisições entre os containers. Podemos estabelecer um numero x de containers respondendo por um service e esses containers estarão espalhados pelo nosso cluster, entre nossos nodes, garantindo alta disponibilidade e balanceamento de carga. Tudo isso nativamente.</p>
 <p>Os services é uma forma, já utlizada no kubernetes, de você conseguir gerenciar melhor seus containers. Também uma maneira muito simples e efetiva para escalar seu ambiente. Aumentando ou diminuindo a quantidade de containers que responderá para determinado service.</p>
@@ -1275,47 +1276,47 @@ root@FXSHELL-03 ~#
 <p>Portas que iremos blindar, entre o service e o node: 8080:80</p>
 <p>Imagem dos containers que irei utilizar: NGINX</p>
 <p>O comando ficaria assim =&gt;</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service create --name webserver --replicas <span class="m">5</span> -p 8080:80 nginx
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker service create --name webserver --replicas <span class="m">5</span> -p 8080:80 nginx
 </code></pre></div><p>Para testar faça um curl em qualquer ip dos nodes que subiu:8080</p>
 <p>Para listar os services faça</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker service ls
 </code></pre></div><p>Se quisermos saber onde estão rodando nossos containers, em quais nodes eles estçao sendo executados, basta digitar o seguinte comando:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service ps webserver
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker service ps webserver
 </code></pre></div><p>Assim conseguiremos saber onde está rodando cada container e ainda o seu status.</p>
 <p>Se precisamos saber maiores detalhes sobre o service, basta utlizar o subcomando &ldquo;inspect&rdquo;.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service inspect webserver
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker service inspect webserver
 </code></pre></div><p>Na saída do &ldquo;inspect&rdquo; conseguiremos pegar informações importantes sobre nosso service, como portas expostas, volumes, containers, limitações, entre outras coisas.</p>
 <p>Lembre-se meu cenário de nodes é:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL-01 ~# 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL-01 ~# 
 root@FXSHELL-02 ~# 
 root@FXSHELL-03 ~# 
 </code></pre></div><p>Posso ter muitas replicas divididas e distribuidas e balanceadas nesses 3 nodes.</p>
 <p>Uma informação muito importante é o endereço do VIP do service, que estara listado no comando &ldquo;insepect&rdquo;.</p>
 <p>Esse é o endereço do IP do balanceador desse service, ou seja, sempre que acessarem via esse IP, ele distribuirá a conexão entre os containers.</p>
 <p>Agora se quisermos aumentar o número de containers debaixo desse service, é muito simples. Basta executar o comando a seguir:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service scale <span class="nv">webserver</span><span class="o">=</span><span class="m">5</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker service scale <span class="nv">webserver</span><span class="o">=</span><span class="m">5</span>
 </code></pre></div><p>Pronto, agora temos dez containers respondendo requisições debaido do nosso service webserver.</p>
 <p>Para visualizar basta executar:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker service ls
 </code></pre></div><p>Ah não quero que um determinado node receba mais containers, posso dar um pause neste cara, com o comando abaixo:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node update --availability pause FXSHELL-02
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker node update --availability pause FXSHELL-02
 </code></pre></div><p>Para ativa-lo novamente:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node update --availability active FXSHELL-02
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker node update --availability active FXSHELL-02
 </code></pre></div><p>Para retirar temporariamente um node para manutenção por exemplo, faça:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker node update --availability drain FXSHELL-02
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker node update --availability drain FXSHELL-02
 </code></pre></div><p>Todos os containers que estavam no FXSHELL-02, vão ser realocados para os outros 2.</p>
 <p>Para visualizar basta executar:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service ps webserver
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker service ps webserver
 </code></pre></div><p>Para saber em quais nodes eseles estão em execução, lembre-se do &lsquo;docker service ls webserver&rsquo;</p>
 <p>Para acessar os logs desse service, basta digitar:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service logs -f webserver
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker service logs -f webserver
 </code></pre></div><p>Assim você terá acesso aos logs de todos os containers desse service.</p>
 <p>Para remover o service é simples</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service rm webserver
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker service rm webserver
 </code></pre></div><p>Você pode checar com o comando</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service ls
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker service ls
 </code></pre></div><p>Criar um service com um volume conectado é bastante simples, basta fazer:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker service create --name webserver --replicas <span class="m">5</span> -p 8080:80 --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>teste,dst<span class="o">=</span>/app, nginx
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">docker service create --name webserver --replicas <span class="m">5</span> -p 8080:80 --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>teste,dst<span class="o">=</span>/app, nginx
 </code></pre></div><p>Quando criamos um service com um volume conectado a ele, isso indica que esse volume estará disponivel em todos os nossos containers desse service, ou seja, o volume com o nome de &ldquo;teste&rdquo; estara montado em todos os containers no diretorio &ldquo;/app&rdquo;.</p>
 <p>Exemplo de como ficou:</p>
 <p><img src="/volumes_exemplo_services.png" alt="HTB"></p>
