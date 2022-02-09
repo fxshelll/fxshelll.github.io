@@ -5,9 +5,9 @@
     <link>/posts/</link>
     <description>Recent content on FXSHELL</description>
     <ttl>1440</ttl>
-    <generator>Hugo 0.88.1</generator>
+    <generator>Hugo 0.92.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Oct 2021 04:03:00 UT</lastBuildDate>
+    <lastBuildDate>Wed, 09 Feb 2022 03:23:18 UT</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible</title>
@@ -1055,8 +1055,7 @@ Ao procurar por eventos específicos, você pode limitar os resultados a um dete
 Execute o comando journalctl a seguir para listar todas as entradas de diário dos registros de hoje.
 [root@host ~]# journalctl &amp;ndash;since today &amp;ndash; Logs begin at Wed 2019-02-20 16:01:17 &#43;07, end at Thu 2019-02-21 18:31:14 &#43;07. &amp;ndash; &amp;hellip;output omitted&amp;hellip; Feb 21 18:22:44 host.lab.example.com systemd-logind[708]: New session 21 of user root. Feb 21 18:22:44 host.lab.example.com systemd[1]: Started Session 21 of user root. Feb 21 18:22:44 host.lab.example.com sshd[24499]: pam_unix(sshd:session): session opened for user root by (uid=0) Feb 21 18:31:13 host.lab.example.com systemd[1]: Starting dnf makecache&amp;hellip; Feb 21 18:31:14 host.lab.example.com dnf[24533]: Red Hat Enterprise Linux 8.0 AppStream (dvd) 637 kB/s | 2.8 kB 00:00 Feb 21 18:31:14 host.lab.example.com dnf[24533]: Red Hat Enterprise Linux 8.0 BaseOS (dvd) 795 kB/s | 2.7 kB 00:00 Feb 21 18:31:14 host.lab.example.com dnf[24533]: Metadata cache created. Feb 21 18:31:14 host.lab.example.com systemd[1]: Started dnf makecache. lines 533-569/569 (END) q
 Execute o comando journalctl a seguir para listar todas as entradas de diário de 2019-02-10 20:30:00 a 2019-02-13 12:00:00.
-[root@host ~]# journalctl &amp;ndash;since &amp;ldquo;2019-02-10 20:30:00&amp;rdquo;
-&amp;ndash;until &amp;ldquo;2019-02-13 12:00:00&amp;rdquo; &amp;hellip;output omitted&amp;hellip;
+[root@host ~]# journalctl &amp;ndash;since &amp;ldquo;2019-02-10 20:30:00&amp;rdquo; &amp;ndash;until &amp;ldquo;2019-02-13 12:00:00&amp;rdquo; &amp;hellip;output omitted&amp;hellip;
 Você também pode especificar todas as entradas desde um tempo relativo até o presente. Por exemplo, para especificar todas as entradas na última hora, você pode usar o seguinte comando:
 [root@host ~]# journalctl &amp;ndash;since &amp;ldquo;-1 hour&amp;rdquo; &amp;hellip;output omitted&amp;hellip;
 Nota
@@ -1261,12 +1260,9 @@ O comando nmcli con add é usado para adicionar novas conexões de rede. Os exem
 O comando a seguir adiciona uma nova conexão denominada eno2 à interface eno2, que obtém informações da rede IPv4 usando o DHCP e faz a conexão automática durante a inicialização. Ele também obtém as configurações de rede IPv6 escutando os anúncios do roteador no link local. O nome do arquivo de configuração é baseado no valor da opção con-name, eno2, e é salvo no arquivo /etc/sysconfig/network-scripts/ifcfg-eno2.
 [root@host ~]# nmcli con add con-name eno2 type ethernet ifname eno2
 O próximo exemplo cria uma conexão eno2 para o dispositivo eno2 com um endereço IPv4 estático, usando o endereço IPv4 e o prefixo de rede 192.168.0.5/24 com o gateway padrão 192.168.0.254, mas ainda se conecta automaticamente na inicialização e salva sua configuração no mesmo arquivo. Devido a limitações de tamanho da tela, encerre a primeira linha com um escape \ de shell e complete o comando na próxima linha.
-[root@host ~]# nmcli con add con-name eno2 type ethernet ifname eno2
-ipv4.address 192.168.0.5/24 ipv4.gateway 192.168.0.254
+[root@host ~]# nmcli con add con-name eno2 type ethernet ifname eno2 ipv4.address 192.168.0.5/24 ipv4.gateway 192.168.0.254
 O exemplo final cria uma conexão eno2 para o dispositivo eno2 com endereços IPv6 e IPv4 estáticos, usando o endereço IPv6 e o prefixo de rede 2001:db8:0:1::c000:207/64 com o gateway IPv6 padrão 2001:db8:0:1::1, e o endereço IPv4 e o prefixo de rede 192.0.2.7/24 com o gateway IPv4 padrão 192.0.2.1, mas ainda faz a conexão automática e salva sua configuração em /etc/sysconfig/network-scripts/ifcfg-eno2. Devido a limitações de tamanho da tela, encerre a primeira linha com um escape \ de shell e complete o comando na próxima linha.
-[root@host ~]# nmcli con add con-name eno2 type ethernet ifname eno2
-ipv6.address 2001:db8:0:1::c000:207/64 ipv6.gateway 2001:db8:0:1::1
-ipv4.address 192.0.2.7/24 ipv4.gateway 192.0.2.1
+[root@host ~]# nmcli con add con-name eno2 type ethernet ifname eno2 ipv6.address 2001:db8:0:1::c000:207/64 ipv6.gateway 2001:db8:0:1::1 ipv4.address 192.0.2.7/24 ipv4.gateway 192.0.2.1
 Controle de conexões de rede
 O comando nmcli con up name ativa o nome da conexão na interface de rede à qual está vinculada. Observe que o comando assume o nome de uma conexão, não o nome da interface de rede. Lembre-se de que o comando nmcli con show exibe os nomes de todas as conexões disponíveis.
 [root@host ~]# nmcli con up static-ens3
@@ -1280,11 +1276,9 @@ Para listar as configurações atuais de uma conexão, execute o comando nmcli c
 [root@host ~]# nmcli con show static-ens3 connection.id: static-ens3 connection.uuid: 87b53c56-1f5d-4a29-a869-8a7bdaf56dfa connection.interface-name: &amp;ndash; connection.type: 802-3-ethernet connection.autoconnect: yes connection.timestamp: 1401803453 connection.read-only: no connection.permissions: connection.zone: &amp;ndash; connection.master: &amp;ndash; connection.slave-type: &amp;ndash; connection.secondaries: connection.gateway-ping-timeout: 0 802-3-ethernet.port: &amp;ndash; 802-3-ethernet.speed: 0 802-3-ethernet.duplex: &amp;ndash; 802-3-ethernet.auto-negotiate: yes 802-3-ethernet.mac-address: CA:9D:E9:2A:CE:F0 802-3-ethernet.cloned-mac-address: &amp;ndash; 802-3-ethernet.mac-address-blacklist: 802-3-ethernet.mtu: auto 802-3-ethernet.s390-subchannels: 802-3-ethernet.s390-nettype: &amp;ndash; 802-3-ethernet.s390-options: ipv4.method: manual ipv4.dns: 192.168.0.254 ipv4.dns-search: example.com ipv4.addresses: { ip = 192.168.0.2/24, gw = 192.168.0.254 } ipv4.routes: ipv4.ignore-auto-routes: no ipv4.ignore-auto-dns: no ipv4.dhcp-client-id: &amp;ndash; ipv4.dhcp-send-hostname: yes ipv4.dhcp-hostname: &amp;ndash; ipv4.never-default: no ipv4.may-fail: yes ipv6.method: manual ipv6.dns: 2001:4860:4860::8888 ipv6.dns-search: example.com ipv6.addresses: { ip = 2001:db8:0:1::7/64, gw = 2001:db8:0:1::1 } ipv6.routes: ipv6.ignore-auto-routes: no ipv6.ignore-auto-dns: no ipv6.never-default: no ipv6.may-fail: yes ipv6.ip6-privacy: -1 (unknown) ipv6.dhcp-hostname: &amp;ndash; &amp;hellip;output omitted&amp;hellip;
 O comando nmcli con mod name é usado para alterar as configurações de uma conexão. Essas alterações também são salvas no arquivo /etc/sysconfig/network-scripts/ifcfg-name da conexão. As configurações disponíveis estão documentadas na página de manual nm-settings(5).
 Para definir o endereço IPv4 para 192.0.2.2/24 e o gateway padrão para 192.0.2.254 da conexão static-ens3:
-[root@host ~]# nmcli con mod static-ens3 ipv4.address 192.0.2.2/24
-ipv4.gateway 192.0.2.254
+[root@host ~]# nmcli con mod static-ens3 ipv4.address 192.0.2.2/24 ipv4.gateway 192.0.2.254
 Para definir o endereço IPv6 para 2001:db8:0:1::a00:1/64 e o gateway padrão para 2001:db8:0:1::1 da conexão static-ens3:
-[root@host ~]# nmcli con mod static-ens3 ipv6.address 2001:db8:0:1::a00:1/64
-ipv6.gateway 2001:db8:0:1::1
+[root@host ~]# nmcli con mod static-ens3 ipv6.address 2001:db8:0:1::a00:1/64 ipv6.gateway 2001:db8:0:1::1
 Importante
 Se uma conexão que receber suas informações de IPv4 de um servidor DHCPv4 for alterada para obtê-las somente de arquivos de configuração estáticos, a configuração ipv4.method também deverá ser alterada de auto para manual.
 Da mesma forma, se uma conexão que receber suas informações de IPv6 por SLAAC ou um servidor DHCPv6 for alterada para obtê-las somente de arquivos de configuração estáticos, a configuração ipv6.method também deverá ser alterada de auto ou dhcp para manual.
@@ -1512,17 +1506,14 @@ As fontes que não sejam a Red Hat fornecem softwares por meio de repositórios 
 Para ativar o suporte a um novo repositório de terceiros, crie um arquivo no diretório /etc/yum.repos.d/. Os arquivos de configuração do repositório devem terminar com a extensão .repo. A definição do repositório contém o URL do repositório, um nome, se o GPG deve ou não ser usado para verificar as assinaturas do pacote e, se for o caso, o URL apontando para a chave GPG confiável.
 Criação de repositórios YUM
 Crie repositórios YUM com o comando yum config-manager. O comando a seguir cria um arquivo denominado /etc/yum.repos.d/dl.fedoraproject.org_pub_epel_8_Everything_x86_64_.repo com a saída apresentada.
-[user@host ~]$ yum config-manager
-&amp;ndash;add-repo=&amp;ldquo;https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/&amp;quot; Adding repo from: https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
+[user@host ~]$ yum config-manager &amp;ndash;add-repo=&amp;ldquo;https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/&amp;quot; Adding repo from: https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
 [dl.fedoraproject.org_pub_epel_8_Everything_x86_64_] name=created by yum config-manager from https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/ baseurl=https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/ enabled=1
 Modifique o arquivo para fornecer valores personalizados e o local de uma chave GPG. As chaves são armazenadas em vários locais no site do repositório remoto, como http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8. Os administradores devem fazer o download da chave para um arquivo local em vez de permitir que o yum obtenha a chave de uma fonte externa. Por exemplo:
 [EPEL] name=EPEL 8 baseurl=https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/ enabled=1 gpgcheck=1 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
 Pacotes de configuração RPM para repositórios locais
 Alguns repositórios fornecem um arquivo de configuração e a chave pública GPG como parte de um pacote RPM, que pode ser baixado e instalado usando o comando yum localinstall. Por exemplo, o projeto voluntário denominado Pacotes adicional para Enterprise Linux (EPEL, Extra Packages for Enterprise Linux) fornece software que não tem suporte da Red Hat, mas é compatível com o Red Hat Enterprise Linux.
 O seguinte comando instala o pacote de repositório do EPEL para Red Hat Enterprise Linux 8:
-[user@host ~]$ rpm &amp;ndash;import
-http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8 [user@host ~]$ yum install
-https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+[user@host ~]$ rpm &amp;ndash;import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8 [user@host ~]$ yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 Os arquivos de configuração geralmente listam várias referências de repositório em um só arquivo. Cada referência de repositório começa com um nome de uma única palavra entre colchetes.
 [user@host ~]$ cat /etc/yum.repos.d/epel.repo [epel] name=Extra Packages for Enterprise Linux $releasever - $basearch #baseurl=https://download.fedoraproject.org/pub/epel/$releasever/Everything/$basearch metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&amp;amp;arch=$basearch&amp;amp;infra=$infra&amp;amp;content=$contentdir enabled=1 gpgcheck=1 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
 [epel-debuginfo] name=Extra Packages for Enterprise Linux $releasever - $basearch - Debug #baseurl=https://download.fedoraproject.org/pub/epel/$releasever/Everything/$basearch/debug metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-$releasever&amp;amp;arch=$basearch&amp;amp;infra=$infra&amp;amp;content=$contentdir enabled=0 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8 gpgcheck=1
@@ -1587,8 +1578,7 @@ Troca de fluxos de módulos
 Normalmente, a troca de fluxos de módulos exige a atualização ou o downgrade do conteúdo para uma versão diferente.
 Para garantir uma troca limpa, você deve remover os módulos fornecidos pelo fluxo do módulo primeiro. Dessa forma, serão removidos todos os pacotes instalados pelos perfis do módulo e os módulos e pacotes nos quais esses pacotes tenham dependências.
 Para listar os pacotes instalados com o módulo, no exemplo abaixo o módulo postgresql:9.6 está instalado:
-[user@host ~]$ sudo yum module info postgresql | grep module&#43;el8 |
-sed &amp;rsquo;s/.*: //g;s/\n/ /g&#39; | xargs yum list installed Installed Packages postgresql.x86_64 9.6.10-1.module&#43;el8&#43;2470&#43;d1bafa0e @rhel-8.0-for-x86_64-appstream-rpms postgresql-server.x86_64 9.6.10-1.module&#43;el8&#43;2470&#43;d1bafa0e @rhel-8.0-for-x86_64-appstream-rpms
+[user@host ~]$ sudo yum module info postgresql | grep module&#43;el8 | sed &amp;rsquo;s/.*: //g;s/\n/ /g&#39; | xargs yum list installed Installed Packages postgresql.x86_64 9.6.10-1.module&#43;el8&#43;2470&#43;d1bafa0e @rhel-8.0-for-x86_64-appstream-rpms postgresql-server.x86_64 9.6.10-1.module&#43;el8&#43;2470&#43;d1bafa0e @rhel-8.0-for-x86_64-appstream-rpms
 Remova os pacotes listados no comando anterior. Marque os perfis do módulo a serem desinstalados.
 [user@host ~]$ sudo yum module remove postgresql &amp;hellip;output omitted&amp;hellip; Is this ok [y/N]: y &amp;hellip;output omitted&amp;hellip; Removed: postgresql-server-9.6.10-1.module&#43;el8&#43;2470&#43;d1bafa0e.x86_64 libpq-10.5-1.el8.x86_64 postgresql-9.6.10-1.module&#43;el8&#43;2470&#43;d1bafa0e.x86_64 Complete
 Depois de remover os perfis do módulo, reinicie o fluxo do módulo. Use o comando yum module reset para redefinir o fluxo do módulo.

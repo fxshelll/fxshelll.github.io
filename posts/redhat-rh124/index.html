@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta name="generator" content="Hugo 0.88.1" />
+    <meta name="generator" content="Hugo 0.92.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redhat RH124 | FXSHELL</title>
@@ -178,7 +178,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 <h2 id="red-hat-enterprise-linux">Red Hat Enterprise Linux</h2>
 <p>O Red Hat Enterprise Linux (RHEL) é a distribuição do Linux da Red Hat pronta para empresas e com suporte comercial. É a plataforma líder para computação open source, não apenas uma coleção de projetos open source maduros. O RHEL é extensivamente testado, tem um grande ecossistema de suporte de parceiros, certificações de hardware e software, serviços de consultoria, treinamento e suporte de vários anos e garantias de manutenção.</p>
 <p>A Red Hat baseia suas principais versões do RHEL no Fedora. No entanto, em função disso, a Red Hat pode escolher quais pacotes incluir, fazer outras melhorias (contribuiu com os projetos de upstream e Fedora) e tomar decisões de configuração que atendam às necessidades dos clientes. A Red Hat ajuda os fornecedores e clientes a se envolverem com a comunidade de open source e a trabalhar com o desenvolvimento upstream para desenvolver soluções e corrigir problemas.</p>
-<p>O Red Hat Enterprise Linux usa um modelo de distribuição baseado em subscrição. Como este é um software open source, esta não é uma taxa de licença. Em vez disso, ela paga o suporte, a manutenção, as atualizações, patches de segurança, acesso à base de conhecimento no Red Hat Customer Portal (<a href="http://access.redhat.com/),">http://access.redhat.com/),</a> certificações e assim por diante. O cliente está pagando por suporte e expertise de longo prazo, comprometimento e assistência quando necessário.</p>
+<p>O Red Hat Enterprise Linux usa um modelo de distribuição baseado em subscrição. Como este é um software open source, esta não é uma taxa de licença. Em vez disso, ela paga o suporte, a manutenção, as atualizações, patches de segurança, acesso à base de conhecimento no Red Hat Customer Portal (<a href="http://access.redhat.com/)">http://access.redhat.com/)</a>, certificações e assim por diante. O cliente está pagando por suporte e expertise de longo prazo, comprometimento e assistência quando necessário.</p>
 <p>Quando grandes atualizações são disponibilizadas, os clientes podem implementá-las quando for mais conveniente para eles e sem pagar mais. Isso simplifica o gerenciamento das atualizações de sistema nos aspectos econômico e prático.</p>
 <h2 id="centos">CentOS</h2>
 <p>O CentOS é uma distribuição Linux orientada pela comunidade e derivada em grande parte da base de código open source da Red Hat Enterprise Linux e outras fontes. É gratuito, fácil de instalar e conta com equipe e suporte de uma comunidade ativa de voluntários que opera independentemente da Red Hat.</p>
@@ -2888,7 +2888,7 @@ Feb 21 18:31:14 host.lab.example.com dnf[24533]: Metadata cache created.
 Feb 21 18:31:14 host.lab.example.com systemd[1]: Started dnf makecache.
 lines 533-569/569 (END) q</p>
 <p>Execute o comando journalctl a seguir para listar todas as entradas de diário de 2019-02-10 20:30:00 a 2019-02-13 12:00:00.</p>
-<p>[root@host ~]# journalctl &ndash;since &ldquo;2019-02-10 20:30:00&rdquo;<br>
+<p>[root@host ~]# journalctl &ndash;since &ldquo;2019-02-10 20:30:00&rdquo; <br>
 &ndash;until &ldquo;2019-02-13 12:00:00&rdquo;
 &hellip;output omitted&hellip;</p>
 <p>Você também pode especificar todas as entradas desde um tempo relativo até o presente. Por exemplo, para especificar todas as entradas na última hora, você pode usar o seguinte comando:</p>
@@ -3387,11 +3387,11 @@ eno1         87b53c56-1f5d-4a29-a869-8a7bdaf56dfa  802-3-ethernet  eno1</p>
 <p>O comando a seguir adiciona uma nova conexão denominada eno2 à interface eno2, que obtém informações da rede IPv4 usando o DHCP e faz a conexão automática durante a inicialização. Ele também obtém as configurações de rede IPv6 escutando os anúncios do roteador no link local. O nome do arquivo de configuração é baseado no valor da opção con-name, eno2, e é salvo no arquivo /etc/sysconfig/network-scripts/ifcfg-eno2.</p>
 <p>[root@host ~]# nmcli con add con-name eno2 type ethernet ifname eno2</p>
 <p>O próximo exemplo cria uma conexão eno2 para o dispositivo eno2 com um endereço IPv4 estático, usando o endereço IPv4 e o prefixo de rede 192.168.0.5/24 com o gateway padrão 192.168.0.254, mas ainda se conecta automaticamente na inicialização e salva sua configuração no mesmo arquivo. Devido a limitações de tamanho da tela, encerre a primeira linha com um escape \ de shell e complete o comando na próxima linha.</p>
-<p>[root@host ~]# nmcli con add con-name eno2 type ethernet ifname eno2<br>
+<p>[root@host ~]# nmcli con add con-name eno2 type ethernet ifname eno2 <br>
 ipv4.address 192.168.0.5/24 ipv4.gateway 192.168.0.254</p>
 <p>O exemplo final cria uma conexão eno2 para o dispositivo eno2 com endereços IPv6 e IPv4 estáticos, usando o endereço IPv6 e o prefixo de rede 2001:db8:0:1::c000:207/64 com o gateway IPv6 padrão 2001:db8:0:1::1, e o endereço IPv4 e o prefixo de rede 192.0.2.7/24 com o gateway IPv4 padrão 192.0.2.1, mas ainda faz a conexão automática e salva sua configuração em /etc/sysconfig/network-scripts/ifcfg-eno2. Devido a limitações de tamanho da tela, encerre a primeira linha com um escape \ de shell e complete o comando na próxima linha.</p>
-<p>[root@host ~]# nmcli con add con-name eno2 type ethernet ifname eno2<br>
-ipv6.address 2001:db8:0:1::c000:207/64 ipv6.gateway 2001:db8:0:1::1<br>
+<p>[root@host ~]# nmcli con add con-name eno2 type ethernet ifname eno2 <br>
+ipv6.address 2001:db8:0:1::c000:207/64 ipv6.gateway 2001:db8:0:1::1 <br>
 ipv4.address 192.0.2.7/24 ipv4.gateway 192.0.2.1</p>
 <p>Controle de conexões de rede</p>
 <p>O comando nmcli con up name ativa o nome da conexão na interface de rede à qual está vinculada. Observe que o comando assume o nome de uma conexão, não o nome da interface de rede. Lembre-se de que o comando nmcli con show exibe os nomes de todas as conexões disponíveis.</p>
@@ -3455,10 +3455,10 @@ ipv6.dhcp-hostname:                     &ndash;
 &hellip;output omitted&hellip;</p>
 <p>O comando nmcli con mod name é usado para alterar as configurações de uma conexão. Essas alterações também são salvas no arquivo /etc/sysconfig/network-scripts/ifcfg-name da conexão. As configurações disponíveis estão documentadas na página de manual nm-settings(5).</p>
 <p>Para definir o endereço IPv4 para 192.0.2.2/24 e o gateway padrão para 192.0.2.254 da conexão static-ens3:</p>
-<p>[root@host ~]# nmcli con mod static-ens3 ipv4.address 192.0.2.2/24<br>
+<p>[root@host ~]# nmcli con mod static-ens3 ipv4.address 192.0.2.2/24 <br>
 ipv4.gateway 192.0.2.254</p>
 <p>Para definir o endereço IPv6 para 2001:db8:0:1::a00:1/64 e o gateway padrão para 2001:db8:0:1::1 da conexão static-ens3:</p>
-<p>[root@host ~]# nmcli con mod static-ens3 ipv6.address 2001:db8:0:1::a00:1/64<br>
+<p>[root@host ~]# nmcli con mod static-ens3 ipv6.address 2001:db8:0:1::a00:1/64 <br>
 ipv6.gateway 2001:db8:0:1::1</p>
 <p>Importante</p>
 <p>Se uma conexão que receber suas informações de IPv4 de um servidor DHCPv4 for alterada para obtê-las somente de arquivos de configuração estáticos, a configuração ipv4.method também deverá ser alterada de auto para manual.</p>
@@ -4289,7 +4289,7 @@ enabled = 1
 <p>Para ativar o suporte a um novo repositório de terceiros, crie um arquivo no diretório /etc/yum.repos.d/. Os arquivos de configuração do repositório devem terminar com a extensão .repo. A definição do repositório contém o URL do repositório, um nome, se o GPG deve ou não ser usado para verificar as assinaturas do pacote e, se for o caso, o URL apontando para a chave GPG confiável.</p>
 <p>Criação de repositórios YUM</p>
 <p>Crie repositórios YUM com o comando yum config-manager. O comando a seguir cria um arquivo denominado /etc/yum.repos.d/dl.fedoraproject.org_pub_epel_8_Everything_x86_64_.repo com a saída apresentada.</p>
-<p>[user@host ~]$ yum config-manager<br>
+<p>[user@host ~]$ yum config-manager <br>
 &ndash;add-repo=&ldquo;<a href="https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/%22">https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/&quot;</a>
 Adding repo from: <a href="https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/">https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/</a></p>
 <p>[dl.fedoraproject.org_pub_epel_8_Everything_x86_64_]
@@ -4306,9 +4306,9 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8</p>
 <p>Pacotes de configuração RPM para repositórios locais</p>
 <p>Alguns repositórios fornecem um arquivo de configuração e a chave pública GPG como parte de um pacote RPM, que pode ser baixado e instalado usando o comando yum localinstall. Por exemplo, o projeto voluntário denominado Pacotes adicional para Enterprise Linux (EPEL, Extra Packages for Enterprise Linux) fornece software que não tem suporte da Red Hat, mas é compatível com o Red Hat Enterprise Linux.</p>
 <p>O seguinte comando instala o pacote de repositório do EPEL para Red Hat Enterprise Linux 8:</p>
-<p>[user@host ~]$ rpm &ndash;import<br>
+<p>[user@host ~]$ rpm &ndash;import <br>
 <a href="http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8">http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8</a>
-[user@host ~]$ yum install<br>
+[user@host ~]$ yum install <br>
 <a href="https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm">https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm</a></p>
 <p>Os arquivos de configuração geralmente listam várias referências de repositório em um só arquivo. Cada referência de repositório começa com um nome de uma única palavra entre colchetes.</p>
 <p>[user@host ~]$ cat /etc/yum.repos.d/epel.repo
@@ -4479,7 +4479,7 @@ Complete!</p>
 <p>Normalmente, a troca de fluxos de módulos exige a atualização ou o downgrade do conteúdo para uma versão diferente.</p>
 <p>Para garantir uma troca limpa, você deve remover os módulos fornecidos pelo fluxo do módulo primeiro. Dessa forma, serão removidos todos os pacotes instalados pelos perfis do módulo e os módulos e pacotes nos quais esses pacotes tenham dependências.</p>
 <p>Para listar os pacotes instalados com o módulo, no exemplo abaixo o módulo postgresql:9.6 está instalado:</p>
-<p>[user@host ~]$ sudo yum module info postgresql | grep module+el8 |<br>
+<p>[user@host ~]$ sudo yum module info postgresql | grep module+el8 | <br>
 sed &rsquo;s/.*: //g;s/\n/ /g' | xargs yum list installed
 Installed Packages
 postgresql.x86_64          9.6.10-1.module+el8+2470+d1bafa0e   @rhel-8.0-for-x86_64-appstream-rpms
