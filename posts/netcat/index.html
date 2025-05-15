@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.123.7">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netcat | FXSHELL</title>
@@ -26,8 +26,7 @@ O Netcat é um utilitário que lê e grava dados nas conexões de rede, usando o
 <meta property="article:modified_time" content="2020-07-22T23:02:18-03:00" />
 
 
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Netcat"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Netcat"/>
 <meta name="twitter:description" content="Netcat ================
 O Netcat é um utilitário que lê e grava dados nas conexões de rede, usando o protocolo TCP ou UDP. Ele foi projetado para ser uma ferramenta confiável de &ldquo;back-end&rdquo; que pode ser usada diretamente ou direcionada por outros programas e scripts. Ao mesmo tempo, é uma ferramenta de depuração e exploração de rede rica em recursos, pois pode criar quase qualquer tipo de conexão que você precisa e possui vários recursos internos interessantes."/>
 
@@ -176,14 +175,14 @@ fetchInject(["/js/lazysizes.min.js"]);
   <h2 id="netcat">Netcat</h2>
 <p>================</p>
 <p>O Netcat é um utilitário que lê e grava dados nas conexões de rede, usando o protocolo TCP ou UDP. Ele foi projetado para ser uma ferramenta confiável de &ldquo;back-end&rdquo; que pode ser usada diretamente ou direcionada por outros programas e scripts. Ao mesmo tempo, é uma ferramenta de depuração e exploração de rede rica em recursos, pois pode criar quase qualquer tipo de conexão que você precisa e possui vários recursos internos interessantes. Os usos comuns incluem:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">+ Proxies TCP simples
-
-+ Clientes e servidores HTTP baseados em shell-script
-
-+ Teste de daemon de rede
-
-+ A Socks ou HTTP ProxyCommand para ssh
-</code></pre></div><p>Sintaxe:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">+ Proxies TCP simples
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+ Clientes e servidores HTTP baseados em shell-script
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+ Teste de daemon de rede
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+ A Socks ou HTTP ProxyCommand para ssh
+</span></span></code></pre></div><p>Sintaxe:</p>
 <p><code>$ nc -nlvp 1234</code></p>
 <p><code>-n</code> Não faça pesquisas de serviço ou DNS em endereços, nomes de host ou portas especificados.</p>
 <p><code>-l</code> Usado para especificar que o nc deve escutar uma conexão de entrada em vez de iniciar uma conexão com um host remoto. É um erro usar esta opção em conjunto com as opções -p, -s ou -z. Além disso, qualquer tempo limite especificado com a opção -w é ignorado.</p>

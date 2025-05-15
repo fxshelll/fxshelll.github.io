@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.123.7">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nikto | FXSHELL</title>
     <meta name="description" content="NIKTO ================
 Examine o servidor da Web em busca de vulnerabilidades conhecidas, incluindo:
- Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados  Não é necessário fazer a instalação do mesmo pois ele é um script perl.
+Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados Não é necessário fazer a instalação do mesmo pois ele é um script perl.
 Ele vem nativo no kali, para atualizar recomendo baixar direto do git deles.
 https://github.com/sullo/nikto
 git clone https://github.com/sullo/nikto # Main script is in program/ cd nikto/program # Run using the shebang interpreter .">
@@ -24,7 +24,7 @@ git clone https://github.com/sullo/nikto # Main script is in program/ cd nikto/p
     <meta property="og:title" content="Nikto" />
 <meta property="og:description" content="NIKTO ================
 Examine o servidor da Web em busca de vulnerabilidades conhecidas, incluindo:
- Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados  Não é necessário fazer a instalação do mesmo pois ele é um script perl.
+Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados Não é necessário fazer a instalação do mesmo pois ele é um script perl.
 Ele vem nativo no kali, para atualizar recomendo baixar direto do git deles.
 https://github.com/sullo/nikto
 git clone https://github.com/sullo/nikto # Main script is in program/ cd nikto/program # Run using the shebang interpreter ." />
@@ -34,11 +34,10 @@ git clone https://github.com/sullo/nikto # Main script is in program/ cd nikto/p
 <meta property="article:modified_time" content="2020-07-22T22:47:23-03:00" />
 
 
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Nikto"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Nikto"/>
 <meta name="twitter:description" content="NIKTO ================
 Examine o servidor da Web em busca de vulnerabilidades conhecidas, incluindo:
- Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados  Não é necessário fazer a instalação do mesmo pois ele é um script perl.
+Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados Não é necessário fazer a instalação do mesmo pois ele é um script perl.
 Ele vem nativo no kali, para atualizar recomendo baixar direto do git deles.
 https://github.com/sullo/nikto
 git clone https://github.com/sullo/nikto # Main script is in program/ cd nikto/program # Run using the shebang interpreter ."/>
@@ -197,20 +196,20 @@ fetchInject(["/js/lazysizes.min.js"]);
 <p>Não é necessário fazer a instalação do mesmo pois ele é um script perl.</p>
 <p>Ele vem nativo no kali, para atualizar recomendo baixar direto do git deles.</p>
 <p><code>https://github.com/sullo/nikto</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html">git clone https://github.com/sullo/nikto
-
-# Main script is in program/
-cd nikto/program
-
-# Run using the shebang interpreter
-./nikto.pl -h http://www.example.com
-
-# Run using perl (if you forget to chmod)
-perl nikto.pl -h http://www.example.com
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">-h + alvo <span class="o">(</span>por padrão setada porta 80<span class="o">)</span>
--o posso gerar relatório em html ou txt, csv. 
--p posso setar as portas que quero separados por virgula. 
-</code></pre></div><h1 id="exemplo">exemplo:</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">git clone https://github.com/sullo/nikto
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Main script is in program/
+</span></span><span class="line"><span class="cl">cd nikto/program
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Run using the shebang interpreter
+</span></span><span class="line"><span class="cl">./nikto.pl -h http://www.example.com
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Run using perl (if you forget to chmod)
+</span></span><span class="line"><span class="cl">perl nikto.pl -h http://www.example.com
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">-h + alvo <span class="o">(</span>por padrão setada porta 80<span class="o">)</span>
+</span></span><span class="line"><span class="cl">-o posso gerar relatório em html ou txt, csv. 
+</span></span><span class="line"><span class="cl">-p posso setar as portas que quero separados por virgula. 
+</span></span></code></pre></div><h1 id="exemplo">exemplo:</h1>
 <p>nikto -h 192.168.0.126 -p 8081, 443 -o scan.html</p>
 <p>Toda vez que precisar rodar o nikto em diferentes diretorios do seu alvo, é necessário colocar o &lsquo;http&rsquo; na frente.</p>
 <p><code>ex: nikto -h http://192.168.0.126/files -p 8081, 443 -o scan.html</code></p>

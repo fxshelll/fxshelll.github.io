@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.123.7">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proxychain | FXSHELL</title>
@@ -26,8 +26,7 @@ Ao invés do Proxychains realizar o roteamento para uma lista específica de pro
 <meta property="article:modified_time" content="2021-02-03T11:49:14-03:00" />
 
 
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Proxychain"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Proxychain"/>
 <meta name="twitter:description" content="O ProxyChains é um programa que trabalha em base UNIX, que conecta funções relacionadas à rede em programas vinculados dinamicamente por meio de uma DLL pré-carregada e redireciona as conexões por meio de proxies SOCKS4 e SOCKS5 ou HTTP.
 Ao invés do Proxychains realizar o roteamento para uma lista específica de proxys, podemos usar o Tor Router e redirecionar as requisições diretamente para a porta do Tor. Ou seja, iremos realizar varreduras diretamente pela Tor."/>
 
@@ -175,11 +174,11 @@ fetchInject(["/js/lazysizes.min.js"]);
   </header>
   <p>O ProxyChains é um programa que trabalha em base UNIX, que conecta funções relacionadas à rede em programas vinculados dinamicamente por meio de uma DLL pré-carregada e redireciona as conexões por meio de proxies SOCKS4 e SOCKS5 ou HTTP.</p>
 <p>Ao invés do Proxychains realizar o roteamento para uma lista específica de proxys, podemos usar o Tor Router e redirecionar as requisições diretamente para a porta do Tor. Ou seja, iremos realizar varreduras diretamente pela Tor.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ sudo apt-get install proxychains
-$ sudo apt-get install tor   
-</code></pre></div><p>Dentro do arquivo de config do proxychains:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@kali:~#: nano /etc/proxychains.conf  
-</code></pre></div><p>Comentar a linha &ldquo;strict_chain&rdquo;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo apt-get install proxychains
+</span></span><span class="line"><span class="cl">$ sudo apt-get install tor   
+</span></span></code></pre></div><p>Dentro do arquivo de config do proxychains:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">root@kali:~#: nano /etc/proxychains.conf  
+</span></span></code></pre></div><p>Comentar a linha &ldquo;strict_chain&rdquo;</p>
 <p>Descomentar a linha &ldquo;dynamic_chain&rdquo;</p>
 <p><img src="/proxychain1.png" alt="POSTS"></p>
 <p>Explicação rápida sobre eles:</p>
@@ -193,17 +192,17 @@ $ sudo apt-get install tor
 <p>socks5   127.0.0.1     9050</p>
 <p><img src="/proxychain2.png" alt="POSTS"></p>
 <h1 id="inicializando-o-serviço-do-tor">Inicializando o serviço do tor</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@kali:~#: service tor start  
-root@kali:~#: service tor status  
-</code></pre></div><h1 id="testando-a-conexão">Testando a Conexão</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">root@kali:~#: service tor start  
+</span></span><span class="line"><span class="cl">root@kali:~#: service tor status  
+</span></span></code></pre></div><h1 id="testando-a-conexão">Testando a Conexão</h1>
 <p>Abra o Firefox ou Iceweasel e acesse a URL <a href="http://www.meuip.com.br/">http://www.meuip.com.br/</a> para pegar o seu IP atual</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@kali:~#: proxychains firefox  
-</code></pre></div><p>Agora acesse o &lsquo;utrace&rsquo; e coloque o IP do seu Proxy para saber a localização do servidor que você está utilizando como Gateway em <a href="http://en.utrace.de/">http://en.utrace.de/</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">root@kali:~#: proxychains firefox  
+</span></span></code></pre></div><p>Agora acesse o &lsquo;utrace&rsquo; e coloque o IP do seu Proxy para saber a localização do servidor que você está utilizando como Gateway em <a href="http://en.utrace.de/">http://en.utrace.de/</a></p>
 <p>Se estiver tudo certo, e ele te mostrar a origem do server, está pronto!</p>
 <p>Agora quando for realizar alguma varredura é só executar o comando com o proxychains na frente, utilizando o terminal digite proxychains + [ aplicação ]. O proxychains para tunelar o seu tráfego em qualquer aplicação.</p>
 <h1 id="realizando-uma-varredura-via-proxychains">Realizando uma varredura via Proxychains</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@kali:~#: proxychains nmap -sC -sS 177.126.175.230  
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">root@kali:~#: proxychains nmap -sC -sS 177.126.175.230  
+</span></span></code></pre></div>
 </main>
     <footer>
   

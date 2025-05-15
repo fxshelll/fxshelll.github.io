@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.123.7">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ansible | FXSHELL</title>
@@ -30,8 +30,7 @@
 <meta property="article:modified_time" content="2021-03-29T21:56:17-03:00" />
 
 
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Ansible"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Ansible"/>
 <meta name="twitter:description" content="O ansible é uma forma de comunicação superluminica. Ou seja passar uma informação ao mesmo tempo para objetos.
 É uma ferramenta opensource que te possibilita realizar comunicação e interação com diversos destinos ao mesmo tempo, tudo de forma automatizada.
 - Gerenciamento de mudança - Provisionamento - Automação - Orquestração Gerenciamento de Mudança =&gt; Idempotente Executa somente uma vez as alterações, se não houve alteração ele não executa.
@@ -182,11 +181,11 @@ fetchInject(["/js/lazysizes.min.js"]);
   <p><img src="/Ansible.jpg" alt="HTB"></p>
 <p>O ansible é uma forma de comunicação superluminica. Ou seja passar uma informação ao mesmo tempo para objetos.</p>
 <p>É uma ferramenta opensource que te possibilita realizar comunicação e interação com diversos destinos ao mesmo tempo, tudo de forma automatizada.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">- Gerenciamento de mudança
-- Provisionamento
-- Automação 
-- Orquestração
-</code></pre></div><h2 id="gerenciamento-de-mudança">Gerenciamento de Mudança</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">- Gerenciamento de mudança
+</span></span><span class="line"><span class="cl">- Provisionamento
+</span></span><span class="line"><span class="cl">- Automação 
+</span></span><span class="line"><span class="cl">- Orquestração
+</span></span></code></pre></div><h2 id="gerenciamento-de-mudança">Gerenciamento de Mudança</h2>
 <p>=&gt; Idempotente
 Executa somente uma vez as alterações, se não houve alteração ele não executa.</p>
 <p>=&gt; Pode também criar rotinas automatizadas por versão, exemplo (php7 em uma maquina client, rodo o ansible que está configurado com o php 7.5, ele vai reverter tudo para o 7.5)</p>
@@ -228,24 +227,24 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 <p>A única dependência que o Ansible tem para instalação é o Python. O Ansible pode ser instalado diretamente usando o gerenciador de pacotes do sistema operacional com base no sistema operacional que você está executando e via pip, que é o gerenciador de pacotes do Python.</p>
 <h2 id="rhel--centos--fedora">RHEL / CentOS / Fedora:</h2>
 <p>Certifique-se de habilitar o repo EPEL antes de executar o comando abaixo para RHEL e CentOS.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo yum install ansible
-</code></pre></div><p>Ubuntu:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ 	
-$ sudo apt-add-repository ppa:ansible/ansible 
-$ sudo apt-get update 
-$ sudo apt-get install ansible
-</code></pre></div><p>Instalação Ansible usando pip</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo yum install ansible
+</span></span></code></pre></div><p>Ubuntu:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ 	
+</span></span><span class="line"><span class="cl">$ sudo apt-add-repository ppa:ansible/ansible 
+</span></span><span class="line"><span class="cl">$ sudo apt-get update 
+</span></span><span class="line"><span class="cl">$ sudo apt-get install ansible
+</span></span></code></pre></div><p>Instalação Ansible usando pip</p>
 <p>(caso não tenha o pip instalado faça:)</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ sudo apt-get install python3-pip
-</code></pre></div><p>E depois instale o ansible:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ sudo pip3 install ansible
-</code></pre></div><p>Se precisar fazer upgrade</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ sudo pip3 install ansible --upgrade
-</code></pre></div><p><img src="/ansible_install.png" alt="HTB"></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">- instale o ssh 
-- gere sua chave ssh, ssh-keygen -t rsa
-- instale o sshpass
-</code></pre></div><h2 id="configurando-o-ansible">Configurando o Ansible</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo apt-get install python3-pip
+</span></span></code></pre></div><p>E depois instale o ansible:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo pip3 install ansible
+</span></span></code></pre></div><p>Se precisar fazer upgrade</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo pip3 install ansible --upgrade
+</span></span></code></pre></div><p><img src="/ansible_install.png" alt="HTB"></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">- instale o ssh 
+</span></span><span class="line"><span class="cl">- gere sua chave ssh, ssh-keygen -t rsa
+</span></span><span class="line"><span class="cl">- instale o sshpass
+</span></span></code></pre></div><h2 id="configurando-o-ansible">Configurando o Ansible</h2>
 <p>O principal arquivo de configuração do ansible, é o <code>ansible.cfg</code></p>
 <p>Sua localização padrão é /etc/ansible/ansible.cfg</p>
 <p>Alterações e configurações são interpretadas respeitando a seguinte ordem.:</p>
@@ -255,396 +254,394 @@ $ sudo apt-get install ansible
 -&gt; /etc/ansible/ansible.cfg</p>
 <p>A primeira coisa a se fazer é fazer uma cópia do &lsquo;ansible.cfg&rsquo;, que fica dentro do /etc/ansible/</p>
 <p>Preservei o original e joguei um arquivo mais resumido com as opções mais utilizadas do ansible.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>defaults<span class="o">]</span>
-
-<span class="c1">#--- General settings</span>
-<span class="nv">forks</span>                   <span class="o">=</span> <span class="m">5</span>
-<span class="nv">log_path</span>                <span class="o">=</span> /var/log/ansible.log
-<span class="nv">module_name</span>             <span class="o">=</span> <span class="nb">command</span>
-<span class="nv">executable</span>              <span class="o">=</span> /bin/bash
-<span class="nv">ansible_managed</span>         <span class="o">=</span> Ansible managed
-
-<span class="c1">#--- Files/Directory settings</span>
-<span class="nv">inventory</span>               <span class="o">=</span> /etc/ansible/hosts
-<span class="nv">library</span>                 <span class="o">=</span> /usr/share/my_modules
-<span class="nv">remote_tmp</span>              <span class="o">=</span> ~/.ansible/tmp
-<span class="nv">local_tmp</span>               <span class="o">=</span> ~/.ansible/tmp
-<span class="nv">roles_path</span>              <span class="o">=</span> /etc/ansible/roles
-
-<span class="c1">#--- Users settings</span>
-<span class="nv">remote_user</span>             <span class="o">=</span> root
-<span class="nv">sudo_user</span>               <span class="o">=</span> root
-<span class="nv">ask_pass</span>                <span class="o">=</span> no
-ask-sudo_pass           <span class="o">=</span> no
-
-<span class="c1">#--- SSH settings</span>
-<span class="nv">remote_port</span>             <span class="o">=</span> <span class="m">22</span>
-<span class="nv">timeout</span>                 <span class="o">=</span> <span class="m">10</span>
-<span class="nv">host_key_checking</span>       <span class="o">=</span> False
-<span class="nv">ssh_executable</span>          <span class="o">=</span> /usr/bin/ssh
-<span class="nv">private_key_file</span>        <span class="o">=</span> ~/.ssh/id_rsa
-
-<span class="o">[</span>privilege_scalation<span class="o">]</span>
-
-<span class="nv">become</span>                  <span class="o">=</span> True
-<span class="nv">become_method</span>           <span class="o">=</span> sudo
-<span class="nv">become_user</span>             <span class="o">=</span> root
-<span class="nv">become_ask_pass</span>         <span class="o">=</span> False
-
-<span class="o">[</span>ssh_connection<span class="o">]</span>
-
-<span class="nv">scp_if_ssh</span>              <span class="o">=</span> smart
-<span class="nv">transfer_method</span>         <span class="o">=</span> smart
-<span class="nv">retries</span>                 <span class="o">=</span> <span class="m">3</span>
-</code></pre></div><p> </p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>defaults<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#--- General settings</span>
+</span></span><span class="line"><span class="cl"><span class="nv">forks</span>                   <span class="o">=</span> <span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="nv">log_path</span>                <span class="o">=</span> /var/log/ansible.log
+</span></span><span class="line"><span class="cl"><span class="nv">module_name</span>             <span class="o">=</span> <span class="nb">command</span>
+</span></span><span class="line"><span class="cl"><span class="nv">executable</span>              <span class="o">=</span> /bin/bash
+</span></span><span class="line"><span class="cl"><span class="nv">ansible_managed</span>         <span class="o">=</span> Ansible managed
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#--- Files/Directory settings</span>
+</span></span><span class="line"><span class="cl"><span class="nv">inventory</span>               <span class="o">=</span> /etc/ansible/hosts
+</span></span><span class="line"><span class="cl"><span class="nv">library</span>                 <span class="o">=</span> /usr/share/my_modules
+</span></span><span class="line"><span class="cl"><span class="nv">remote_tmp</span>              <span class="o">=</span> ~/.ansible/tmp
+</span></span><span class="line"><span class="cl"><span class="nv">local_tmp</span>               <span class="o">=</span> ~/.ansible/tmp
+</span></span><span class="line"><span class="cl"><span class="nv">roles_path</span>              <span class="o">=</span> /etc/ansible/roles
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#--- Users settings</span>
+</span></span><span class="line"><span class="cl"><span class="nv">remote_user</span>             <span class="o">=</span> root
+</span></span><span class="line"><span class="cl"><span class="nv">sudo_user</span>               <span class="o">=</span> root
+</span></span><span class="line"><span class="cl"><span class="nv">ask_pass</span>                <span class="o">=</span> no
+</span></span><span class="line"><span class="cl">ask-sudo_pass           <span class="o">=</span> no
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#--- SSH settings</span>
+</span></span><span class="line"><span class="cl"><span class="nv">remote_port</span>             <span class="o">=</span> <span class="m">22</span>
+</span></span><span class="line"><span class="cl"><span class="nv">timeout</span>                 <span class="o">=</span> <span class="m">10</span>
+</span></span><span class="line"><span class="cl"><span class="nv">host_key_checking</span>       <span class="o">=</span> False
+</span></span><span class="line"><span class="cl"><span class="nv">ssh_executable</span>          <span class="o">=</span> /usr/bin/ssh
+</span></span><span class="line"><span class="cl"><span class="nv">private_key_file</span>        <span class="o">=</span> ~/.ssh/id_rsa
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>privilege_scalation<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">become</span>                  <span class="o">=</span> True
+</span></span><span class="line"><span class="cl"><span class="nv">become_method</span>           <span class="o">=</span> sudo
+</span></span><span class="line"><span class="cl"><span class="nv">become_user</span>             <span class="o">=</span> root
+</span></span><span class="line"><span class="cl"><span class="nv">become_ask_pass</span>         <span class="o">=</span> False
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>ssh_connection<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">scp_if_ssh</span>              <span class="o">=</span> smart
+</span></span><span class="line"><span class="cl"><span class="nv">transfer_method</span>         <span class="o">=</span> smart
+</span></span><span class="line"><span class="cl"><span class="nv">retries</span>                 <span class="o">=</span> <span class="m">3</span>
+</span></span></code></pre></div><p> </p>
 <h2 id="testando-na-maquina-alvo">Testando na maquina alvo</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -m ping
-<span class="o">[</span>WARNING<span class="o">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
-
-SSH password: 
-<span class="o">[</span>DEPRECATION WARNING<span class="o">]</span>: Distribution debian 10.0 on host 192.168.1.151 should 
-use /usr/bin/python3, but is using /usr/bin/python <span class="k">for</span> backward compatibility 
-with prior Ansible releases. A future Ansible release will default to using the
- discovered platform python <span class="k">for</span> this host. See https://docs.ansible.com/ansible
-/2.10/reference_appendices/interpreter_discovery.html <span class="k">for</span> more information. 
-This feature will be removed in version 2.12. Deprecation warnings can be 
-disabled by setting <span class="nv">deprecation_warnings</span><span class="o">=</span>False in ansible.cfg.
-192.168.1.151 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
-    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
-        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
-    <span class="o">}</span>,
-    <span class="s2">&#34;changed&#34;</span>: false,
-    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
-<span class="o">}</span>
-osboxes@FXSHELL:/etc/ansible$ 
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>DEPRECATION WARNING<span class="o">]</span>: Distribution debian 10.0 on host 192.168.1.234 should 
-use /usr/bin/python3, but is using /usr/bin/python <span class="k">for</span> backward compatibility 
-with prior Ansible releases. A future Ansible release will default to using the
- discovered platform python <span class="k">for</span> this host. See https://docs.ansible.com/ansible
-/2.10/reference_appendices/interpreter_discovery.html <span class="k">for</span> more information. 
-This feature will be removed in version 2.12. Deprecation warnings can be 
-disabled by setting <span class="nv">deprecation_warnings</span><span class="o">=</span>False in ansible.cfg.
-192.168.1.234 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
-    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
-        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
-    <span class="o">}</span>,
-    <span class="s2">&#34;changed&#34;</span>: false,
-    <span class="s2">&#34;invocation&#34;</span>: <span class="o">{</span>
-        <span class="s2">&#34;module_args&#34;</span>: <span class="o">{</span>
-            <span class="s2">&#34;data&#34;</span>: <span class="s2">&#34;pong&#34;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>,
-    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
-<span class="o">}</span>
-META: ran handlers
-META: ran handlers
-osboxes@FXSHELL:/etc/ansible$ 
-</code></pre></div><p>Podemos também explicitar para ele ignorar a mensagem do python.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -m ping
+</span></span><span class="line"><span class="cl"><span class="o">[</span>WARNING<span class="o">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SSH password: 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>DEPRECATION WARNING<span class="o">]</span>: Distribution debian 10.0 on host 192.168.1.151 should 
+</span></span><span class="line"><span class="cl">use /usr/bin/python3, but is using /usr/bin/python <span class="k">for</span> backward compatibility 
+</span></span><span class="line"><span class="cl">with prior Ansible releases. A future Ansible release will default to using the
+</span></span><span class="line"><span class="cl"> discovered platform python <span class="k">for</span> this host. See https://docs.ansible.com/ansible
+</span></span><span class="line"><span class="cl">/2.10/reference_appendices/interpreter_discovery.html <span class="k">for</span> more information. 
+</span></span><span class="line"><span class="cl">This feature will be removed in version 2.12. Deprecation warnings can be 
+</span></span><span class="line"><span class="cl">disabled by setting <span class="nv">deprecation_warnings</span><span class="o">=</span>False in ansible.cfg.
+</span></span><span class="line"><span class="cl">192.168.1.151 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;changed&#34;</span>: false,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">osboxes@FXSHELL:/etc/ansible$ 
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>DEPRECATION WARNING<span class="o">]</span>: Distribution debian 10.0 on host 192.168.1.234 should 
+</span></span><span class="line"><span class="cl">use /usr/bin/python3, but is using /usr/bin/python <span class="k">for</span> backward compatibility 
+</span></span><span class="line"><span class="cl">with prior Ansible releases. A future Ansible release will default to using the
+</span></span><span class="line"><span class="cl"> discovered platform python <span class="k">for</span> this host. See https://docs.ansible.com/ansible
+</span></span><span class="line"><span class="cl">/2.10/reference_appendices/interpreter_discovery.html <span class="k">for</span> more information. 
+</span></span><span class="line"><span class="cl">This feature will be removed in version 2.12. Deprecation warnings can be 
+</span></span><span class="line"><span class="cl">disabled by setting <span class="nv">deprecation_warnings</span><span class="o">=</span>False in ansible.cfg.
+</span></span><span class="line"><span class="cl">192.168.1.234 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;changed&#34;</span>: false,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;invocation&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;module_args&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;data&#34;</span>: <span class="s2">&#34;pong&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">META: ran handlers
+</span></span><span class="line"><span class="cl">META: ran handlers
+</span></span><span class="line"><span class="cl">osboxes@FXSHELL:/etc/ansible$ 
+</span></span></code></pre></div><p>Podemos também explicitar para ele ignorar a mensagem do python.</p>
 <p>basta adicionar no ansible.cfg a linha</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nv">interpreter_python</span>    <span class="o">=</span> auto_legacy_silent
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.234 -u osboxes -k -m ping
-<span class="o">[</span>WARNING<span class="o">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
-
-SSH password: 
-192.168.1.234 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
-    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
-        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
-    <span class="o">}</span>,
-    <span class="s2">&#34;changed&#34;</span>: false,
-    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
-<span class="o">}</span>
-osboxes@FXSHELL:/etc/ansible$ 
-</code></pre></div><p>Existe um modulo bem interessante chamado ansible facts, varrendo todos os targets montando uma especie de inventário deles.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">interpreter_python</span>    <span class="o">=</span> auto_legacy_silent
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.234 -u osboxes -k -m ping
+</span></span><span class="line"><span class="cl"><span class="o">[</span>WARNING<span class="o">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SSH password: 
+</span></span><span class="line"><span class="cl">192.168.1.234 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;changed&#34;</span>: false,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">osboxes@FXSHELL:/etc/ansible$ 
+</span></span></code></pre></div><p>Existe um modulo bem interessante chamado ansible facts, varrendo todos os targets montando uma especie de inventário deles.</p>
 <p>Para buscar essas informações basta executar o modulo &lsquo;setup&rsquo;</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.234 -u osboxes -k -m setup
-</code></pre></div><p>Também existe um modulo chamado systemd com o argumento &lsquo;-a&rsquo; com &ldquo;name=ssh state=restarted&rdquo;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.234 -u osboxes -k -m setup
+</span></span></code></pre></div><p>Também existe um modulo chamado systemd com o argumento &lsquo;-a&rsquo; com &ldquo;name=ssh state=restarted&rdquo;</p>
 <p>Ficando dessa forma:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -b -m systemd -a <span class="s2">&#34;name=ssh state=restarted&#34;</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -b -m systemd -a <span class="s2">&#34;name=ssh state=restarted&#34;</span>
-<span class="o">[</span>WARNING<span class="o">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
-
-SSH password: 
-192.168.1.151 <span class="p">|</span> <span class="nv">CHANGED</span> <span class="o">=</span>&gt; <span class="o">{</span>
-    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
-        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
-    <span class="o">}</span>,
-    <span class="s2">&#34;changed&#34;</span>: true,
-    <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;ssh&#34;</span>,
-    <span class="s2">&#34;state&#34;</span>: <span class="s2">&#34;started&#34;</span>,
-    <span class="s2">&#34;status&#34;</span>: <span class="o">{</span>
-        <span class="s2">&#34;ActiveEnterTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
-        <span class="s2">&#34;ActiveEnterTimestampMonotonic&#34;</span>: <span class="s2">&#34;246017520&#34;</span>,
-        <span class="s2">&#34;ActiveExitTimestampMonotonic&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;ActiveState&#34;</span>: <span class="s2">&#34;active&#34;</span>,
-        <span class="s2">&#34;After&#34;</span>: <span class="s2">&#34;system.slice -.mount network.target auditd.service systemd-journald.socket basic.target sysinit.target&#34;</span>,
-        <span class="s2">&#34;AllowIsolate&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;AmbientCapabilities&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;AssertResult&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;AssertTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
-        <span class="s2">&#34;AssertTimestampMonotonic&#34;</span>: <span class="s2">&#34;245980232&#34;</span>,
-        <span class="s2">&#34;Before&#34;</span>: <span class="s2">&#34;multi-user.target shutdown.target&#34;</span>,
-        <span class="s2">&#34;BlockIOAccounting&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;BlockIOWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
-        <span class="s2">&#34;CPUAccounting&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;CPUQuotaPerSecUSec&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;CPUSchedulingPolicy&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;CPUSchedulingPriority&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;CPUSchedulingResetOnFork&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;CPUShares&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
-        <span class="s2">&#34;CPUUsageNSec&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
-        <span class="s2">&#34;CPUWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
-        <span class="s2">&#34;CacheDirectoryMode&#34;</span>: <span class="s2">&#34;0755&#34;</span>,
-        <span class="s2">&#34;CanIsolate&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;CanReload&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;CanStart&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;CanStop&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;CapabilityBoundingSet&#34;</span>: <span class="s2">&#34;cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend&#34;</span>,
-        <span class="s2">&#34;CollectMode&#34;</span>: <span class="s2">&#34;inactive&#34;</span>,
-        <span class="s2">&#34;ConditionResult&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;ConditionTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
-        <span class="s2">&#34;ConditionTimestampMonotonic&#34;</span>: <span class="s2">&#34;245980220&#34;</span>,
-        <span class="s2">&#34;ConfigurationDirectoryMode&#34;</span>: <span class="s2">&#34;0755&#34;</span>,
-        <span class="s2">&#34;Conflicts&#34;</span>: <span class="s2">&#34;shutdown.target&#34;</span>,
-        <span class="s2">&#34;ControlGroup&#34;</span>: <span class="s2">&#34;/system.slice/ssh.service&#34;</span>,
-        <span class="s2">&#34;ControlPID&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;DefaultDependencies&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;Delegate&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;Description&#34;</span>: <span class="s2">&#34;OpenBSD Secure Shell server&#34;</span>,
-        <span class="s2">&#34;DevicePolicy&#34;</span>: <span class="s2">&#34;auto&#34;</span>,
-        <span class="s2">&#34;Documentation&#34;</span>: <span class="s2">&#34;man:sshd(8) man:sshd_config(5)&#34;</span>,
-        <span class="s2">&#34;DynamicUser&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;EnvironmentFiles&#34;</span>: <span class="s2">&#34;/etc/default/ssh (ignore_errors=yes)&#34;</span>,
-        <span class="s2">&#34;ExecMainCode&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;ExecMainExitTimestampMonotonic&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;ExecMainPID&#34;</span>: <span class="s2">&#34;2270&#34;</span>,
-        <span class="s2">&#34;ExecMainStartTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
-        <span class="s2">&#34;ExecMainStartTimestampMonotonic&#34;</span>: <span class="s2">&#34;246010909&#34;</span>,
-        <span class="s2">&#34;ExecMainStatus&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;ExecReload&#34;</span>: <span class="s2">&#34;{ path=/bin/kill ; argv[]=/bin/kill -HUP </span><span class="nv">$MAINPID</span><span class="s2"> ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }&#34;</span>,
-        <span class="s2">&#34;ExecStart&#34;</span>: <span class="s2">&#34;{ path=/usr/sbin/sshd ; argv[]=/usr/sbin/sshd -D </span><span class="nv">$SSHD_OPTS</span><span class="s2"> ; ignore_errors=no ; start_time=[Wed 2021-04-07 22:52:06 EDT] ; stop_time=[n/a] ; pid=2270 ; code=(null) ; status=0/0 }&#34;</span>,
-        <span class="s2">&#34;ExecStartPre&#34;</span>: <span class="s2">&#34;{ path=/usr/sbin/sshd ; argv[]=/usr/sbin/sshd -t ; ignore_errors=no ; start_time=[Wed 2021-04-07 22:52:06 EDT] ; stop_time=[Wed 2021-04-07 22:52:06 EDT] ; pid=2269 ; code=exited ; status=0 }&#34;</span>,
-        <span class="s2">&#34;FailureAction&#34;</span>: <span class="s2">&#34;none&#34;</span>,
-        <span class="s2">&#34;FailureActionExitStatus&#34;</span>: <span class="s2">&#34;-1&#34;</span>,
-        <span class="s2">&#34;FileDescriptorStoreMax&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;FinalKillSignal&#34;</span>: <span class="s2">&#34;9&#34;</span>,
-        <span class="s2">&#34;FragmentPath&#34;</span>: <span class="s2">&#34;/lib/systemd/system/ssh.service&#34;</span>,
-        <span class="s2">&#34;GID&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
-        <span class="s2">&#34;GuessMainPID&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;IOAccounting&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;IOSchedulingClass&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;IOSchedulingPriority&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;IOWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
-        <span class="s2">&#34;IPAccounting&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;IPEgressBytes&#34;</span>: <span class="s2">&#34;18446744073709551615&#34;</span>,
-        <span class="s2">&#34;IPEgressPackets&#34;</span>: <span class="s2">&#34;18446744073709551615&#34;</span>,
-        <span class="s2">&#34;IPIngressBytes&#34;</span>: <span class="s2">&#34;18446744073709551615&#34;</span>,
-        <span class="s2">&#34;IPIngressPackets&#34;</span>: <span class="s2">&#34;18446744073709551615&#34;</span>,
-        <span class="s2">&#34;Id&#34;</span>: <span class="s2">&#34;ssh.service&#34;</span>,
-        <span class="s2">&#34;IgnoreOnIsolate&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;IgnoreSIGPIPE&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;InactiveEnterTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:48:07 EDT&#34;</span>,
-        <span class="s2">&#34;InactiveEnterTimestampMonotonic&#34;</span>: <span class="s2">&#34;5387216&#34;</span>,
-        <span class="s2">&#34;InactiveExitTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
-        <span class="s2">&#34;InactiveExitTimestampMonotonic&#34;</span>: <span class="s2">&#34;245983310&#34;</span>,
-        <span class="s2">&#34;InvocationID&#34;</span>: <span class="s2">&#34;6561c69561a14f76842d4a1ce3592f4a&#34;</span>,
-        <span class="s2">&#34;JobRunningTimeoutUSec&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;JobTimeoutAction&#34;</span>: <span class="s2">&#34;none&#34;</span>,
-        <span class="s2">&#34;JobTimeoutUSec&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;KeyringMode&#34;</span>: <span class="s2">&#34;private&#34;</span>,
-        <span class="s2">&#34;KillMode&#34;</span>: <span class="s2">&#34;process&#34;</span>,
-        <span class="s2">&#34;KillSignal&#34;</span>: <span class="s2">&#34;15&#34;</span>,
-        <span class="s2">&#34;LimitAS&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitASSoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitCORE&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitCORESoft&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;LimitCPU&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitCPUSoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitDATA&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitDATASoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitFSIZE&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitFSIZESoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitLOCKS&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitLOCKSSoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitMEMLOCK&#34;</span>: <span class="s2">&#34;65536&#34;</span>,
-        <span class="s2">&#34;LimitMEMLOCKSoft&#34;</span>: <span class="s2">&#34;65536&#34;</span>,
-        <span class="s2">&#34;LimitMSGQUEUE&#34;</span>: <span class="s2">&#34;819200&#34;</span>,
-        <span class="s2">&#34;LimitMSGQUEUESoft&#34;</span>: <span class="s2">&#34;819200&#34;</span>,
-        <span class="s2">&#34;LimitNICE&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;LimitNICESoft&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;LimitNOFILE&#34;</span>: <span class="s2">&#34;524288&#34;</span>,
-        <span class="s2">&#34;LimitNOFILESoft&#34;</span>: <span class="s2">&#34;1024&#34;</span>,
-        <span class="s2">&#34;LimitNPROC&#34;</span>: <span class="s2">&#34;3795&#34;</span>,
-        <span class="s2">&#34;LimitNPROCSoft&#34;</span>: <span class="s2">&#34;3795&#34;</span>,
-        <span class="s2">&#34;LimitRSS&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitRSSSoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitRTPRIO&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;LimitRTPRIOSoft&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;LimitRTTIME&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitRTTIMESoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitSIGPENDING&#34;</span>: <span class="s2">&#34;3795&#34;</span>,
-        <span class="s2">&#34;LimitSIGPENDINGSoft&#34;</span>: <span class="s2">&#34;3795&#34;</span>,
-        <span class="s2">&#34;LimitSTACK&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;LimitSTACKSoft&#34;</span>: <span class="s2">&#34;8388608&#34;</span>,
-        <span class="s2">&#34;LoadState&#34;</span>: <span class="s2">&#34;loaded&#34;</span>,
-        <span class="s2">&#34;LockPersonality&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;LogLevelMax&#34;</span>: <span class="s2">&#34;-1&#34;</span>,
-        <span class="s2">&#34;LogRateLimitBurst&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;LogRateLimitIntervalUSec&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;LogsDirectoryMode&#34;</span>: <span class="s2">&#34;0755&#34;</span>,
-        <span class="s2">&#34;MainPID&#34;</span>: <span class="s2">&#34;2270&#34;</span>,
-        <span class="s2">&#34;MemoryAccounting&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;MemoryCurrent&#34;</span>: <span class="s2">&#34;5312512&#34;</span>,
-        <span class="s2">&#34;MemoryDenyWriteExecute&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;MemoryHigh&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;MemoryLimit&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;MemoryLow&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;MemoryMax&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;MemoryMin&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;MemorySwapMax&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;MountAPIVFS&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;MountFlags&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;NFileDescriptorStore&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;NRestarts&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;Names&#34;</span>: <span class="s2">&#34;ssh.service&#34;</span>,
-        <span class="s2">&#34;NeedDaemonReload&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;Nice&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;NoNewPrivileges&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;NonBlocking&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;NotifyAccess&#34;</span>: <span class="s2">&#34;main&#34;</span>,
-        <span class="s2">&#34;OOMScoreAdjust&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;OnFailureJobMode&#34;</span>: <span class="s2">&#34;replace&#34;</span>,
-        <span class="s2">&#34;Perpetual&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;PrivateDevices&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;PrivateMounts&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;PrivateNetwork&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;PrivateTmp&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;PrivateUsers&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;ProtectControlGroups&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;ProtectHome&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;ProtectKernelModules&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;ProtectKernelTunables&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;ProtectSystem&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;RefuseManualStart&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;RefuseManualStop&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;RemainAfterExit&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;RemoveIPC&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;Requires&#34;</span>: <span class="s2">&#34;sysinit.target -.mount system.slice&#34;</span>,
-        <span class="s2">&#34;RequiresMountsFor&#34;</span>: <span class="s2">&#34;/run/sshd&#34;</span>,
-        <span class="s2">&#34;Restart&#34;</span>: <span class="s2">&#34;on-failure&#34;</span>,
-        <span class="s2">&#34;RestartUSec&#34;</span>: <span class="s2">&#34;100ms&#34;</span>,
-        <span class="s2">&#34;RestrictNamespaces&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;RestrictRealtime&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;Result&#34;</span>: <span class="s2">&#34;success&#34;</span>,
-        <span class="s2">&#34;RootDirectoryStartOnly&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;RuntimeDirectory&#34;</span>: <span class="s2">&#34;sshd&#34;</span>,
-        <span class="s2">&#34;RuntimeDirectoryMode&#34;</span>: <span class="s2">&#34;0755&#34;</span>,
-        <span class="s2">&#34;RuntimeDirectoryPreserve&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;RuntimeMaxUSec&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
-        <span class="s2">&#34;SameProcessGroup&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;SecureBits&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;SendSIGHUP&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;SendSIGKILL&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;Slice&#34;</span>: <span class="s2">&#34;system.slice&#34;</span>,
-        <span class="s2">&#34;StandardError&#34;</span>: <span class="s2">&#34;inherit&#34;</span>,
-        <span class="s2">&#34;StandardInput&#34;</span>: <span class="s2">&#34;null&#34;</span>,
-        <span class="s2">&#34;StandardInputData&#34;</span>: <span class="s2">&#34;&#34;</span>,
-        <span class="s2">&#34;StandardOutput&#34;</span>: <span class="s2">&#34;journal&#34;</span>,
-        <span class="s2">&#34;StartLimitAction&#34;</span>: <span class="s2">&#34;none&#34;</span>,
-        <span class="s2">&#34;StartLimitBurst&#34;</span>: <span class="s2">&#34;5&#34;</span>,
-        <span class="s2">&#34;StartLimitIntervalUSec&#34;</span>: <span class="s2">&#34;10s&#34;</span>,
-        <span class="s2">&#34;StartupBlockIOWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
-        <span class="s2">&#34;StartupCPUShares&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
-        <span class="s2">&#34;StartupCPUWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
-        <span class="s2">&#34;StartupIOWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
-        <span class="s2">&#34;StateChangeTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
-        <span class="s2">&#34;StateChangeTimestampMonotonic&#34;</span>: <span class="s2">&#34;246017520&#34;</span>,
-        <span class="s2">&#34;StateDirectoryMode&#34;</span>: <span class="s2">&#34;0755&#34;</span>,
-        <span class="s2">&#34;StatusErrno&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;StopWhenUnneeded&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;SubState&#34;</span>: <span class="s2">&#34;running&#34;</span>,
-        <span class="s2">&#34;SuccessAction&#34;</span>: <span class="s2">&#34;none&#34;</span>,
-        <span class="s2">&#34;SuccessActionExitStatus&#34;</span>: <span class="s2">&#34;-1&#34;</span>,
-        <span class="s2">&#34;SyslogFacility&#34;</span>: <span class="s2">&#34;3&#34;</span>,
-        <span class="s2">&#34;SyslogLevel&#34;</span>: <span class="s2">&#34;6&#34;</span>,
-        <span class="s2">&#34;SyslogLevelPrefix&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;SyslogPriority&#34;</span>: <span class="s2">&#34;30&#34;</span>,
-        <span class="s2">&#34;SystemCallErrorNumber&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;TTYReset&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;TTYVHangup&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;TTYVTDisallocate&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;TasksAccounting&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
-        <span class="s2">&#34;TasksCurrent&#34;</span>: <span class="s2">&#34;1&#34;</span>,
-        <span class="s2">&#34;TasksMax&#34;</span>: <span class="s2">&#34;1138&#34;</span>,
-        <span class="s2">&#34;TimeoutStartUSec&#34;</span>: <span class="s2">&#34;1min 30s&#34;</span>,
-        <span class="s2">&#34;TimeoutStopUSec&#34;</span>: <span class="s2">&#34;1min 30s&#34;</span>,
-        <span class="s2">&#34;TimerSlackNSec&#34;</span>: <span class="s2">&#34;50000&#34;</span>,
-        <span class="s2">&#34;Transient&#34;</span>: <span class="s2">&#34;no&#34;</span>,
-        <span class="s2">&#34;Type&#34;</span>: <span class="s2">&#34;notify&#34;</span>,
-        <span class="s2">&#34;UID&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
-        <span class="s2">&#34;UMask&#34;</span>: <span class="s2">&#34;0022&#34;</span>,
-        <span class="s2">&#34;UnitFilePreset&#34;</span>: <span class="s2">&#34;enabled&#34;</span>,
-        <span class="s2">&#34;UnitFileState&#34;</span>: <span class="s2">&#34;enabled&#34;</span>,
-        <span class="s2">&#34;UtmpMode&#34;</span>: <span class="s2">&#34;init&#34;</span>,
-        <span class="s2">&#34;WantedBy&#34;</span>: <span class="s2">&#34;multi-user.target&#34;</span>,
-        <span class="s2">&#34;WatchdogSignal&#34;</span>: <span class="s2">&#34;6&#34;</span>,
-        <span class="s2">&#34;WatchdogTimestampMonotonic&#34;</span>: <span class="s2">&#34;0&#34;</span>,
-        <span class="s2">&#34;WatchdogUSec&#34;</span>: <span class="s2">&#34;0&#34;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><p>Um modulo muito legal também é o modulo &lsquo;shell&rsquo; que posso executar qualquer comando dentro do meu alvo.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -b -m shell -a <span class="s2">&#34;systemctl status ssh&#34;</span>
-<span class="o">[</span>WARNING<span class="o">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
-
-SSH password: 
-192.168.1.151 <span class="p">|</span> CHANGED <span class="p">|</span> <span class="nv">rc</span><span class="o">=</span><span class="m">0</span> &gt;&gt;
-● ssh.service - OpenBSD Secure Shell server
-   Loaded: loaded <span class="o">(</span>/lib/systemd/system/ssh.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
-   Active: active <span class="o">(</span>running<span class="o">)</span> since Wed 2021-04-07 23:22:56 EDT<span class="p">;</span> 6min ago
-     Docs: man:sshd<span class="o">(</span>8<span class="o">)</span>
-           man:sshd_config<span class="o">(</span>5<span class="o">)</span>
-  Process: <span class="m">2437</span> <span class="nv">ExecStartPre</span><span class="o">=</span>/usr/sbin/sshd -t <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
- Main PID: <span class="m">2438</span> <span class="o">(</span>sshd<span class="o">)</span>
-    Tasks: <span class="m">1</span> <span class="o">(</span>limit: 1138<span class="o">)</span>
-   Memory: 2.4M
-   CGroup: /system.slice/ssh.service
-           └─2438 /usr/sbin/sshd -D
-
-Apr <span class="m">07</span> 23:22:56 node2 systemd<span class="o">[</span>1<span class="o">]</span>: Starting OpenBSD Secure Shell server...
-Apr <span class="m">07</span> 23:22:56 node2 sshd<span class="o">[</span>2438<span class="o">]</span>: Server listening on 0.0.0.0 port 22.
-Apr <span class="m">07</span> 23:22:56 node2 sshd<span class="o">[</span>2438<span class="o">]</span>: Server listening on :: port 22.
-Apr <span class="m">07</span> 23:22:56 node2 systemd<span class="o">[</span>1<span class="o">]</span>: Started OpenBSD Secure Shell server.
-Apr <span class="m">07</span> 23:26:56 node2 sshd<span class="o">[</span>2446<span class="o">]</span>: Accepted password <span class="k">for</span> osboxes from 192.168.1.168 port <span class="m">52234</span> ssh2
-Apr <span class="m">07</span> 23:26:56 node2 sshd<span class="o">[</span>2446<span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session opened <span class="k">for</span> user osboxes by <span class="o">(</span><span class="nv">uid</span><span class="o">=</span>0<span class="o">)</span>
-Apr <span class="m">07</span> 23:29:11 node2 sshd<span class="o">[</span>2478<span class="o">]</span>: Accepted password <span class="k">for</span> osboxes from 192.168.1.168 port <span class="m">52236</span> ssh2
-Apr <span class="m">07</span> 23:29:11 node2 sshd<span class="o">[</span>2478<span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session opened <span class="k">for</span> user osboxes by <span class="o">(</span><span class="nv">uid</span><span class="o">=</span>0<span class="o">)</span>
-</code></pre></div><p>Se eu não tivesse um usuário comum com poderes de elevação de privilégio eu posso usar a flag &lsquo;-K&rsquo; maiusculo para solicitar a senha de super usuário para elevação. (isso caso meu usuário comum não tivesse permissões)</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -K -m shell -a <span class="s2">&#34;systemctl status ssh&#34;</span>
-<span class="o">[</span>WARNING<span class="o">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
-
-SSH password: 
-BECOME password<span class="o">[</span>defaults to SSH password<span class="o">]</span>: 
-192.168.1.151 <span class="p">|</span> CHANGED <span class="p">|</span> <span class="nv">rc</span><span class="o">=</span><span class="m">0</span> &gt;&gt;
-● ssh.service - OpenBSD Secure Shell server
-   Loaded: loaded <span class="o">(</span>/lib/systemd/system/ssh.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
-   Active: active <span class="o">(</span>running<span class="o">)</span> since Wed 2021-04-07 23:22:56 EDT<span class="p">;</span> 8min ago
-     Docs: man:sshd<span class="o">(</span>8<span class="o">)</span>
-           man:sshd_config<span class="o">(</span>5<span class="o">)</span>
-  Process: <span class="m">2437</span> <span class="nv">ExecStartPre</span><span class="o">=</span>/usr/sbin/sshd -t <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
- Main PID: <span class="m">2438</span> <span class="o">(</span>sshd<span class="o">)</span>
-    Tasks: <span class="m">1</span> <span class="o">(</span>limit: 1138<span class="o">)</span>
-   Memory: 2.4M
-   CGroup: /system.slice/ssh.service
-           └─2438 /usr/sbin/sshd -D
-
-</code></pre></div><p>Uma outra opção seria também não especificar nenhum modulo, ele vai pegar o modulo command por padrão.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -b -m systemd -a <span class="s2">&#34;name=ssh state=restarted&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -b -m systemd -a <span class="s2">&#34;name=ssh state=restarted&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>WARNING<span class="o">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SSH password: 
+</span></span><span class="line"><span class="cl">192.168.1.151 <span class="p">|</span> <span class="nv">CHANGED</span> <span class="o">=</span>&gt; <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;changed&#34;</span>: true,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;ssh&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;state&#34;</span>: <span class="s2">&#34;started&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;status&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ActiveEnterTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ActiveEnterTimestampMonotonic&#34;</span>: <span class="s2">&#34;246017520&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ActiveExitTimestampMonotonic&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ActiveState&#34;</span>: <span class="s2">&#34;active&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;After&#34;</span>: <span class="s2">&#34;system.slice -.mount network.target auditd.service systemd-journald.socket basic.target sysinit.target&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;AllowIsolate&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;AmbientCapabilities&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;AssertResult&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;AssertTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;AssertTimestampMonotonic&#34;</span>: <span class="s2">&#34;245980232&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Before&#34;</span>: <span class="s2">&#34;multi-user.target shutdown.target&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;BlockIOAccounting&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;BlockIOWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CPUAccounting&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CPUQuotaPerSecUSec&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CPUSchedulingPolicy&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CPUSchedulingPriority&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CPUSchedulingResetOnFork&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CPUShares&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CPUUsageNSec&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CPUWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CacheDirectoryMode&#34;</span>: <span class="s2">&#34;0755&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CanIsolate&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CanReload&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CanStart&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CanStop&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CapabilityBoundingSet&#34;</span>: <span class="s2">&#34;cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CollectMode&#34;</span>: <span class="s2">&#34;inactive&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ConditionResult&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ConditionTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ConditionTimestampMonotonic&#34;</span>: <span class="s2">&#34;245980220&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ConfigurationDirectoryMode&#34;</span>: <span class="s2">&#34;0755&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Conflicts&#34;</span>: <span class="s2">&#34;shutdown.target&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ControlGroup&#34;</span>: <span class="s2">&#34;/system.slice/ssh.service&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ControlPID&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;DefaultDependencies&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Delegate&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Description&#34;</span>: <span class="s2">&#34;OpenBSD Secure Shell server&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;DevicePolicy&#34;</span>: <span class="s2">&#34;auto&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Documentation&#34;</span>: <span class="s2">&#34;man:sshd(8) man:sshd_config(5)&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;DynamicUser&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;EnvironmentFiles&#34;</span>: <span class="s2">&#34;/etc/default/ssh (ignore_errors=yes)&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ExecMainCode&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ExecMainExitTimestampMonotonic&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ExecMainPID&#34;</span>: <span class="s2">&#34;2270&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ExecMainStartTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ExecMainStartTimestampMonotonic&#34;</span>: <span class="s2">&#34;246010909&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ExecMainStatus&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ExecReload&#34;</span>: <span class="s2">&#34;{ path=/bin/kill ; argv[]=/bin/kill -HUP </span><span class="nv">$MAINPID</span><span class="s2"> ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ExecStart&#34;</span>: <span class="s2">&#34;{ path=/usr/sbin/sshd ; argv[]=/usr/sbin/sshd -D </span><span class="nv">$SSHD_OPTS</span><span class="s2"> ; ignore_errors=no ; start_time=[Wed 2021-04-07 22:52:06 EDT] ; stop_time=[n/a] ; pid=2270 ; code=(null) ; status=0/0 }&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ExecStartPre&#34;</span>: <span class="s2">&#34;{ path=/usr/sbin/sshd ; argv[]=/usr/sbin/sshd -t ; ignore_errors=no ; start_time=[Wed 2021-04-07 22:52:06 EDT] ; stop_time=[Wed 2021-04-07 22:52:06 EDT] ; pid=2269 ; code=exited ; status=0 }&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;FailureAction&#34;</span>: <span class="s2">&#34;none&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;FailureActionExitStatus&#34;</span>: <span class="s2">&#34;-1&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;FileDescriptorStoreMax&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;FinalKillSignal&#34;</span>: <span class="s2">&#34;9&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;FragmentPath&#34;</span>: <span class="s2">&#34;/lib/systemd/system/ssh.service&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;GID&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;GuessMainPID&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;IOAccounting&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;IOSchedulingClass&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;IOSchedulingPriority&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;IOWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;IPAccounting&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;IPEgressBytes&#34;</span>: <span class="s2">&#34;18446744073709551615&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;IPEgressPackets&#34;</span>: <span class="s2">&#34;18446744073709551615&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;IPIngressBytes&#34;</span>: <span class="s2">&#34;18446744073709551615&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;IPIngressPackets&#34;</span>: <span class="s2">&#34;18446744073709551615&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Id&#34;</span>: <span class="s2">&#34;ssh.service&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;IgnoreOnIsolate&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;IgnoreSIGPIPE&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;InactiveEnterTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:48:07 EDT&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;InactiveEnterTimestampMonotonic&#34;</span>: <span class="s2">&#34;5387216&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;InactiveExitTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;InactiveExitTimestampMonotonic&#34;</span>: <span class="s2">&#34;245983310&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;InvocationID&#34;</span>: <span class="s2">&#34;6561c69561a14f76842d4a1ce3592f4a&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;JobRunningTimeoutUSec&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;JobTimeoutAction&#34;</span>: <span class="s2">&#34;none&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;JobTimeoutUSec&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;KeyringMode&#34;</span>: <span class="s2">&#34;private&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;KillMode&#34;</span>: <span class="s2">&#34;process&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;KillSignal&#34;</span>: <span class="s2">&#34;15&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitAS&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitASSoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitCORE&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitCORESoft&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitCPU&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitCPUSoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitDATA&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitDATASoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitFSIZE&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitFSIZESoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitLOCKS&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitLOCKSSoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitMEMLOCK&#34;</span>: <span class="s2">&#34;65536&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitMEMLOCKSoft&#34;</span>: <span class="s2">&#34;65536&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitMSGQUEUE&#34;</span>: <span class="s2">&#34;819200&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitMSGQUEUESoft&#34;</span>: <span class="s2">&#34;819200&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitNICE&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitNICESoft&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitNOFILE&#34;</span>: <span class="s2">&#34;524288&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitNOFILESoft&#34;</span>: <span class="s2">&#34;1024&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitNPROC&#34;</span>: <span class="s2">&#34;3795&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitNPROCSoft&#34;</span>: <span class="s2">&#34;3795&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitRSS&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitRSSSoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitRTPRIO&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitRTPRIOSoft&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitRTTIME&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitRTTIMESoft&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitSIGPENDING&#34;</span>: <span class="s2">&#34;3795&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitSIGPENDINGSoft&#34;</span>: <span class="s2">&#34;3795&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitSTACK&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LimitSTACKSoft&#34;</span>: <span class="s2">&#34;8388608&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LoadState&#34;</span>: <span class="s2">&#34;loaded&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LockPersonality&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LogLevelMax&#34;</span>: <span class="s2">&#34;-1&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LogRateLimitBurst&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LogRateLimitIntervalUSec&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LogsDirectoryMode&#34;</span>: <span class="s2">&#34;0755&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MainPID&#34;</span>: <span class="s2">&#34;2270&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MemoryAccounting&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MemoryCurrent&#34;</span>: <span class="s2">&#34;5312512&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MemoryDenyWriteExecute&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MemoryHigh&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MemoryLimit&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MemoryLow&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MemoryMax&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MemoryMin&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MemorySwapMax&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MountAPIVFS&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MountFlags&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;NFileDescriptorStore&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;NRestarts&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Names&#34;</span>: <span class="s2">&#34;ssh.service&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;NeedDaemonReload&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Nice&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;NoNewPrivileges&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;NonBlocking&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;NotifyAccess&#34;</span>: <span class="s2">&#34;main&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;OOMScoreAdjust&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;OnFailureJobMode&#34;</span>: <span class="s2">&#34;replace&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Perpetual&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;PrivateDevices&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;PrivateMounts&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;PrivateNetwork&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;PrivateTmp&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;PrivateUsers&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ProtectControlGroups&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ProtectHome&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ProtectKernelModules&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ProtectKernelTunables&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ProtectSystem&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RefuseManualStart&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RefuseManualStop&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RemainAfterExit&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RemoveIPC&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Requires&#34;</span>: <span class="s2">&#34;sysinit.target -.mount system.slice&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RequiresMountsFor&#34;</span>: <span class="s2">&#34;/run/sshd&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Restart&#34;</span>: <span class="s2">&#34;on-failure&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RestartUSec&#34;</span>: <span class="s2">&#34;100ms&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RestrictNamespaces&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RestrictRealtime&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Result&#34;</span>: <span class="s2">&#34;success&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RootDirectoryStartOnly&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RuntimeDirectory&#34;</span>: <span class="s2">&#34;sshd&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RuntimeDirectoryMode&#34;</span>: <span class="s2">&#34;0755&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RuntimeDirectoryPreserve&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RuntimeMaxUSec&#34;</span>: <span class="s2">&#34;infinity&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SameProcessGroup&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SecureBits&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SendSIGHUP&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SendSIGKILL&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Slice&#34;</span>: <span class="s2">&#34;system.slice&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StandardError&#34;</span>: <span class="s2">&#34;inherit&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StandardInput&#34;</span>: <span class="s2">&#34;null&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StandardInputData&#34;</span>: <span class="s2">&#34;&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StandardOutput&#34;</span>: <span class="s2">&#34;journal&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StartLimitAction&#34;</span>: <span class="s2">&#34;none&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StartLimitBurst&#34;</span>: <span class="s2">&#34;5&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StartLimitIntervalUSec&#34;</span>: <span class="s2">&#34;10s&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StartupBlockIOWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StartupCPUShares&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StartupCPUWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StartupIOWeight&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StateChangeTimestamp&#34;</span>: <span class="s2">&#34;Wed 2021-04-07 22:52:06 EDT&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StateChangeTimestampMonotonic&#34;</span>: <span class="s2">&#34;246017520&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StateDirectoryMode&#34;</span>: <span class="s2">&#34;0755&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StatusErrno&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;StopWhenUnneeded&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SubState&#34;</span>: <span class="s2">&#34;running&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SuccessAction&#34;</span>: <span class="s2">&#34;none&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SuccessActionExitStatus&#34;</span>: <span class="s2">&#34;-1&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SyslogFacility&#34;</span>: <span class="s2">&#34;3&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SyslogLevel&#34;</span>: <span class="s2">&#34;6&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SyslogLevelPrefix&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SyslogPriority&#34;</span>: <span class="s2">&#34;30&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;SystemCallErrorNumber&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TTYReset&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TTYVHangup&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TTYVTDisallocate&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TasksAccounting&#34;</span>: <span class="s2">&#34;yes&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TasksCurrent&#34;</span>: <span class="s2">&#34;1&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TasksMax&#34;</span>: <span class="s2">&#34;1138&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TimeoutStartUSec&#34;</span>: <span class="s2">&#34;1min 30s&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TimeoutStopUSec&#34;</span>: <span class="s2">&#34;1min 30s&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TimerSlackNSec&#34;</span>: <span class="s2">&#34;50000&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Transient&#34;</span>: <span class="s2">&#34;no&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Type&#34;</span>: <span class="s2">&#34;notify&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;UID&#34;</span>: <span class="s2">&#34;[not set]&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;UMask&#34;</span>: <span class="s2">&#34;0022&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;UnitFilePreset&#34;</span>: <span class="s2">&#34;enabled&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;UnitFileState&#34;</span>: <span class="s2">&#34;enabled&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;UtmpMode&#34;</span>: <span class="s2">&#34;init&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;WantedBy&#34;</span>: <span class="s2">&#34;multi-user.target&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;WatchdogSignal&#34;</span>: <span class="s2">&#34;6&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;WatchdogTimestampMonotonic&#34;</span>: <span class="s2">&#34;0&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;WatchdogUSec&#34;</span>: <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Um modulo muito legal também é o modulo &lsquo;shell&rsquo; que posso executar qualquer comando dentro do meu alvo.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -b -m shell -a <span class="s2">&#34;systemctl status ssh&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>WARNING<span class="o">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SSH password: 
+</span></span><span class="line"><span class="cl">192.168.1.151 <span class="p">|</span> CHANGED <span class="p">|</span> <span class="nv">rc</span><span class="o">=</span><span class="m">0</span> &gt;&gt;
+</span></span><span class="line"><span class="cl">● ssh.service - OpenBSD Secure Shell server
+</span></span><span class="line"><span class="cl">   Loaded: loaded <span class="o">(</span>/lib/systemd/system/ssh.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+</span></span><span class="line"><span class="cl">   Active: active <span class="o">(</span>running<span class="o">)</span> since Wed 2021-04-07 23:22:56 EDT<span class="p">;</span> 6min ago
+</span></span><span class="line"><span class="cl">     Docs: man:sshd<span class="o">(</span>8<span class="o">)</span>
+</span></span><span class="line"><span class="cl">           man:sshd_config<span class="o">(</span>5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  Process: <span class="m">2437</span> <span class="nv">ExecStartPre</span><span class="o">=</span>/usr/sbin/sshd -t <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
+</span></span><span class="line"><span class="cl"> Main PID: <span class="m">2438</span> <span class="o">(</span>sshd<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Tasks: <span class="m">1</span> <span class="o">(</span>limit: 1138<span class="o">)</span>
+</span></span><span class="line"><span class="cl">   Memory: 2.4M
+</span></span><span class="line"><span class="cl">   CGroup: /system.slice/ssh.service
+</span></span><span class="line"><span class="cl">           └─2438 /usr/sbin/sshd -D
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Apr <span class="m">07</span> 23:22:56 node2 systemd<span class="o">[</span>1<span class="o">]</span>: Starting OpenBSD Secure Shell server...
+</span></span><span class="line"><span class="cl">Apr <span class="m">07</span> 23:22:56 node2 sshd<span class="o">[</span>2438<span class="o">]</span>: Server listening on 0.0.0.0 port 22.
+</span></span><span class="line"><span class="cl">Apr <span class="m">07</span> 23:22:56 node2 sshd<span class="o">[</span>2438<span class="o">]</span>: Server listening on :: port 22.
+</span></span><span class="line"><span class="cl">Apr <span class="m">07</span> 23:22:56 node2 systemd<span class="o">[</span>1<span class="o">]</span>: Started OpenBSD Secure Shell server.
+</span></span><span class="line"><span class="cl">Apr <span class="m">07</span> 23:26:56 node2 sshd<span class="o">[</span>2446<span class="o">]</span>: Accepted password <span class="k">for</span> osboxes from 192.168.1.168 port <span class="m">52234</span> ssh2
+</span></span><span class="line"><span class="cl">Apr <span class="m">07</span> 23:26:56 node2 sshd<span class="o">[</span>2446<span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session opened <span class="k">for</span> user osboxes by <span class="o">(</span><span class="nv">uid</span><span class="o">=</span>0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Apr <span class="m">07</span> 23:29:11 node2 sshd<span class="o">[</span>2478<span class="o">]</span>: Accepted password <span class="k">for</span> osboxes from 192.168.1.168 port <span class="m">52236</span> ssh2
+</span></span><span class="line"><span class="cl">Apr <span class="m">07</span> 23:29:11 node2 sshd<span class="o">[</span>2478<span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session opened <span class="k">for</span> user osboxes by <span class="o">(</span><span class="nv">uid</span><span class="o">=</span>0<span class="o">)</span>
+</span></span></code></pre></div><p>Se eu não tivesse um usuário comum com poderes de elevação de privilégio eu posso usar a flag &lsquo;-K&rsquo; maiusculo para solicitar a senha de super usuário para elevação. (isso caso meu usuário comum não tivesse permissões)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -K -m shell -a <span class="s2">&#34;systemctl status ssh&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>WARNING<span class="o">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SSH password: 
+</span></span><span class="line"><span class="cl">BECOME password<span class="o">[</span>defaults to SSH password<span class="o">]</span>: 
+</span></span><span class="line"><span class="cl">192.168.1.151 <span class="p">|</span> CHANGED <span class="p">|</span> <span class="nv">rc</span><span class="o">=</span><span class="m">0</span> &gt;&gt;
+</span></span><span class="line"><span class="cl">● ssh.service - OpenBSD Secure Shell server
+</span></span><span class="line"><span class="cl">   Loaded: loaded <span class="o">(</span>/lib/systemd/system/ssh.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+</span></span><span class="line"><span class="cl">   Active: active <span class="o">(</span>running<span class="o">)</span> since Wed 2021-04-07 23:22:56 EDT<span class="p">;</span> 8min ago
+</span></span><span class="line"><span class="cl">     Docs: man:sshd<span class="o">(</span>8<span class="o">)</span>
+</span></span><span class="line"><span class="cl">           man:sshd_config<span class="o">(</span>5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  Process: <span class="m">2437</span> <span class="nv">ExecStartPre</span><span class="o">=</span>/usr/sbin/sshd -t <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
+</span></span><span class="line"><span class="cl"> Main PID: <span class="m">2438</span> <span class="o">(</span>sshd<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Tasks: <span class="m">1</span> <span class="o">(</span>limit: 1138<span class="o">)</span>
+</span></span><span class="line"><span class="cl">   Memory: 2.4M
+</span></span><span class="line"><span class="cl">   CGroup: /system.slice/ssh.service
+</span></span><span class="line"><span class="cl">           └─2438 /usr/sbin/sshd -D
+</span></span></code></pre></div><p>Uma outra opção seria também não especificar nenhum modulo, ele vai pegar o modulo command por padrão.</p>
 <p>exemplo:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -a <span class="s2">&#34;pwd&#34;</span>
-
-SSH password: 
-192.168.1.151 <span class="p">|</span> CHANGED <span class="p">|</span> <span class="nv">rc</span><span class="o">=</span><span class="m">0</span> &gt;&gt;
-/home/osboxes
-
-</code></pre></div><p>=&gt; flag -u, determino usuário</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -a <span class="s2">&#34;pwd&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SSH password: 
+</span></span><span class="line"><span class="cl">192.168.1.151 <span class="p">|</span> CHANGED <span class="p">|</span> <span class="nv">rc</span><span class="o">=</span><span class="m">0</span> &gt;&gt;
+</span></span><span class="line"><span class="cl">/home/osboxes
+</span></span></code></pre></div><p>=&gt; flag -u, determino usuário</p>
 <p>=&gt; flag -k, senha</p>
 <p>=&gt; flag -i, inventário que será utilizado</p>
 <p>=&gt; flag -K, solicita a elevação de privilégio</p>
@@ -653,63 +650,63 @@ SSH password:
 <p>=&gt; flag -a, argumento do modulo</p>
 <p>para obter ajuda pode fazer também o &ndash;help = ajuda.</p>
 <p>Posso também dar um comando &lsquo;all&rsquo; se meus targets estiverem dentro do arquivo hosts.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /e/ansible# cat hosts
-192.168.1.151
-192.168.1.234
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /e/ansible# ansible all -m ping -u osboxes -k
-SSH password: 
-192.168.1.151 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
-    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
-        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
-    <span class="o">}</span>,
-    <span class="s2">&#34;changed&#34;</span>: false,
-    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
-<span class="o">}</span>
-192.168.1.234 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
-    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
-        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
-    <span class="o">}</span>,
-    <span class="s2">&#34;changed&#34;</span>: false,
-    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
-<span class="o">}</span>
-</code></pre></div><p>Imagine que eu preciso executar isso em muitos hosts, para facilitar isso existe uma forma de trabalhar com grupos, dentro do arquivo de hosts.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">root@FXSHELL /e/ansible# cat hosts
+</span></span><span class="line"><span class="cl">192.168.1.151
+</span></span><span class="line"><span class="cl">192.168.1.234
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">root@FXSHELL /e/ansible# ansible all -m ping -u osboxes -k
+</span></span><span class="line"><span class="cl">SSH password: 
+</span></span><span class="line"><span class="cl">192.168.1.151 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;changed&#34;</span>: false,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">192.168.1.234 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;changed&#34;</span>: false,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Imagine que eu preciso executar isso em muitos hosts, para facilitar isso existe uma forma de trabalhar com grupos, dentro do arquivo de hosts.</p>
 <p>Exemplo, no arquivo hosts:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>servidores_bd<span class="o">]</span>
-192.168.1.151
-
-<span class="o">[</span>servidores_web<span class="o">]</span>
-192.168.1.234
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">ansible -i hosts servidores_bd -m ping -u osboxes -k
-</code></pre></div><p>Também posso colocar um subgrupo, exemplo:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>servidores:children<span class="o">]</span>
-servidores_web
-servidores_bd
-</code></pre></div><p>Ele visualizara todos os subgrupos dele e executará os comandos.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>servidores_bd<span class="o">]</span>
+</span></span><span class="line"><span class="cl">192.168.1.151
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>servidores_web<span class="o">]</span>
+</span></span><span class="line"><span class="cl">192.168.1.234
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ansible -i hosts servidores_bd -m ping -u osboxes -k
+</span></span></code></pre></div><p>Também posso colocar um subgrupo, exemplo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>servidores:children<span class="o">]</span>
+</span></span><span class="line"><span class="cl">servidores_web
+</span></span><span class="line"><span class="cl">servidores_bd
+</span></span></code></pre></div><p>Ele visualizara todos os subgrupos dele e executará os comandos.</p>
 <p>Também posso utilizar variáveis para ajudar na identificação dos hosts, como por exemplo.</p>
 <p>Posso setar a variavél</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">mysql <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168.1.234
-</code></pre></div><p>Posso aplicar regras também para grupos de servidores como por exemplo:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>servidores_bd:vars<span class="o">]</span>
-ansible_ssh+port<span class="o">=</span><span class="m">22</span>
-<span class="nv">ansible_ssh_user</span><span class="o">=</span>osboxes
-<span class="nv">ansible_ssh_pass</span><span class="o">=</span>osboxes.org 
-<span class="nv">ansible_become</span><span class="o">=</span>yes
-<span class="nv">ansible_become_method</span><span class="o">=</span>sudo
-<span class="nv">ansible_become_user</span><span class="o">=</span>osboxes
-<span class="nv">ansible_become_pass</span><span class="o">=</span>osboxes
-<span class="nv">ansible_connection</span><span class="o">=</span>ssh
-</code></pre></div><p>Por padrão o ansible trabalha com o python 2.7, mas é possivel alterar o intepretador coma a váriavel:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nv">ansible_python_interpreter</span><span class="o">=(</span>localização <span class="k">do</span> python<span class="o">)</span>
-</code></pre></div><p>Com isso basta eu executar as regras só o comando com o modulo &lsquo;ping&rsquo;.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">root@FXSHELL /e/ansible# ansible -i hosts servidores_web -m ping
-192.168.1.234 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
-    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
-        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
-    <span class="o">}</span>,
-    <span class="s2">&#34;changed&#34;</span>: false,
-    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="oque-são-roles">Oque são Roles</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mysql <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168.1.234
+</span></span></code></pre></div><p>Posso aplicar regras também para grupos de servidores como por exemplo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>servidores_bd:vars<span class="o">]</span>
+</span></span><span class="line"><span class="cl">ansible_ssh+port<span class="o">=</span><span class="m">22</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ansible_ssh_user</span><span class="o">=</span>osboxes
+</span></span><span class="line"><span class="cl"><span class="nv">ansible_ssh_pass</span><span class="o">=</span>osboxes.org 
+</span></span><span class="line"><span class="cl"><span class="nv">ansible_become</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl"><span class="nv">ansible_become_method</span><span class="o">=</span>sudo
+</span></span><span class="line"><span class="cl"><span class="nv">ansible_become_user</span><span class="o">=</span>osboxes
+</span></span><span class="line"><span class="cl"><span class="nv">ansible_become_pass</span><span class="o">=</span>osboxes
+</span></span><span class="line"><span class="cl"><span class="nv">ansible_connection</span><span class="o">=</span>ssh
+</span></span></code></pre></div><p>Por padrão o ansible trabalha com o python 2.7, mas é possivel alterar o intepretador coma a váriavel:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">ansible_python_interpreter</span><span class="o">=(</span>localização <span class="k">do</span> python<span class="o">)</span>
+</span></span></code></pre></div><p>Com isso basta eu executar as regras só o comando com o modulo &lsquo;ping&rsquo;.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">root@FXSHELL /e/ansible# ansible -i hosts servidores_web -m ping
+</span></span><span class="line"><span class="cl">192.168.1.234 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;changed&#34;</span>: false,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ping&#34;</span>: <span class="s2">&#34;pong&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="oque-são-roles">Oque são Roles</h2>
 <p>As roles (funções) são um conjunto de intes independentes destinados a provisionar uma determinada aplicação/infraestrutura.</p>
 <p>Itens:</p>
 <p>=&gt; Variaveis</p>
@@ -719,17 +716,17 @@ ansible_ssh+port<span class="o">=</span><span class="m">22</span>
 <p>=&gt; Ações</p>
 <p>Pode-se associar-se roles com projetos.</p>
 <p>As roles possuem uma estrutura padrão de diretórios para seus projetos:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">playbook.yml
-└── roles
-    └── common
-        ├── defaults
-        ├── files
-        ├── handlers
-        ├── meta
-        ├── tasks
-        ├── templates
-        └── vars
-</code></pre></div><p>Tasks =&gt; lista de tarefas para serem executadas em uma role.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">playbook.yml
+</span></span><span class="line"><span class="cl">└── roles
+</span></span><span class="line"><span class="cl">    └── common
+</span></span><span class="line"><span class="cl">        ├── defaults
+</span></span><span class="line"><span class="cl">        ├── files
+</span></span><span class="line"><span class="cl">        ├── handlers
+</span></span><span class="line"><span class="cl">        ├── meta
+</span></span><span class="line"><span class="cl">        ├── tasks
+</span></span><span class="line"><span class="cl">        ├── templates
+</span></span><span class="line"><span class="cl">        └── vars
+</span></span></code></pre></div><p>Tasks =&gt; lista de tarefas para serem executadas em uma role.</p>
 <p>handlers =&gt; são manipuladores/eventos acionados por uma task.</p>
 <p>files =&gt; arquivos utilizados para deploy dentro de uma role.</p>
 <p>templates =&gt; modelos para deploy dentro de uma role (permite o uso de variáveis)</p>
@@ -738,31 +735,31 @@ ansible_ssh+port<span class="o">=</span><span class="m">22</span>
 <p>meta =&gt; traga dependências de uma role para outra role - primeiro diretório a ser analisado.</p>
 <p>Nota: dentro dos diretorios tasks, handlers, vars, defaults e meta, deverá existir um arquivo com o nome de main.yml para que o mesmo seja interpretado.</p>
 <p>Dentro do playbook eu preciso ter:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">webserver</span><span class="w">
-</span><span class="w"></span><span class="nt">roles</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="l">common</span><span class="w">
-</span><span class="w">    </span>-<span class="l">nginx</span><span class="w">
-</span><span class="w">    </span>-<span class="l">php</span><span class="w">
-</span><span class="w">    </span>-<span class="l">mysql</span><span class="w">
-</span></code></pre></div><p>Nota: O que determina a execução de uma role são as tasks, cadastradas no arquivo &lsquo;tasks/main.yml&rsquo;.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">webserver</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">roles</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>-<span class="l">common</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>-<span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>-<span class="l">php</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>-<span class="l">mysql</span><span class="w">
+</span></span></span></code></pre></div><p>Nota: O que determina a execução de uma role são as tasks, cadastradas no arquivo &rsquo;tasks/main.yml&rsquo;.</p>
 <h2 id="variáveis">Variáveis</h2>
 <p>São utilizadas pelo ansible para lhe ajudar a trabalhar com diferentes tipos de sistemas, arquiteturas e/ou lhe auxiliar no processo de repetição durante a execução de uma role.</p>
 <p>O ansible interpreta as variáveis de diferentes arquivos. Para isso o mesmo mantém a seguinte ordem de prioridades (do menor para o maior):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">1. role/defaults/main.yml
-2. inventory file
-3. host_vars/*
-4. group_vars/*
-5. roles/vars/main.yml
-</code></pre></div><p>As variáveis são comumente utilizadas pelos SysAdmin para facilitar no provisionamento de seus sistemas/infraestrutura. Entretando, o ansible permite através do modulo setup obter o que chamamos de Systems Facts.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">1. role/defaults/main.yml
+</span></span><span class="line"><span class="cl">2. inventory file
+</span></span><span class="line"><span class="cl">3. host_vars/*
+</span></span><span class="line"><span class="cl">4. group_vars/*
+</span></span><span class="line"><span class="cl">5. roles/vars/main.yml
+</span></span></code></pre></div><p>As variáveis são comumente utilizadas pelos SysAdmin para facilitar no provisionamento de seus sistemas/infraestrutura. Entretando, o ansible permite através do modulo setup obter o que chamamos de Systems Facts.</p>
 <p>Os Systems Facts são descobertos pelo ansible através do modulo setup, trazendo informações de todo o sistema. Experimente executar o comando:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">ansible hostname -m setup
-</code></pre></div><p>Para separar um pouco mais as regras coloquei minhas variaveis dentro de group_vars, com ordem de prioridade 4.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">├── group_vars
-│   └── servidores
-├── hosts
-├── host_vars
-└── roles
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ansible hostname -m setup
+</span></span></code></pre></div><p>Para separar um pouco mais as regras coloquei minhas variaveis dentro de group_vars, com ordem de prioridade 4.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">├── group_vars
+</span></span><span class="line"><span class="cl">│   └── servidores
+</span></span><span class="line"><span class="cl">├── hosts
+</span></span><span class="line"><span class="cl">├── host_vars
+</span></span><span class="line"><span class="cl">└── roles
+</span></span></code></pre></div>
 </main>
     <footer>
   

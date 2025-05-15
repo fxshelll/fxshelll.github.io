@@ -4,8 +4,10 @@
     <meta name="generator" content="Hugo 0.123.7">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabby | FXSHELL</title>
-    <meta name="description" content="PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0) 80/tcp open http Apache httpd 2.4.41 ((Ubuntu)) |_http-favicon: Unknown favicon MD5: 338ABBB5EA8D80B9869555ECA253D49D | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS |_http-server-header: Apache/2.4.41 (Ubuntu) |_http-title: Mega Hosting 8080/tcp open http Apache Tomcat | http-methods: |_ Supported Methods: OPTIONS GET HEAD POST |_http-open-proxy: Proxy might be redirecting requests |_http-title: Apache Tomcat Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel NSE: Script Post-scanning.">
+    <title>Sea | FXSHELL</title>
+    <meta name="description" content="Já comecei pegando o ip da VM e adicionando no meu hosts.
+Depois já comecei a rodar o nmap nmap -sC -Pn -T4 -v -p- 10.10.11.28
+PORT STATE SERVICE 22/tcp open ssh | ssh-hostkey: | 3072 e3:54:e0:72:20:3c:01:42:93:d1:66:9d:90:0c:ab:e8 (RSA) | 256 f3:24:4b:08:aa:51:9d:56:15:3d:67:56:74:7c:20:38 (ECDSA) |_ 256 30:b1:05:c6:41:50:ff:22:a3:7f:41:06:0e:67:fd:50 (ED25519) 80/tcp open http |_http-title: Sea - Home | http-cookie-flags: | /: | PHPSESSID: |_ httponly flag not set | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS Apresenta um sitezinho maneiro demais, sou ciclista então já curti a porta 80 está hospedando um site para ciclismo noturno e intitulado banner velik71.">
     <meta name="keywords" content="">
     
     
@@ -16,16 +18,20 @@
   <meta name="author" content="">
 
 
-    <meta property="og:title" content="Tabby" />
-<meta property="og:description" content="PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0) 80/tcp open http Apache httpd 2.4.41 ((Ubuntu)) |_http-favicon: Unknown favicon MD5: 338ABBB5EA8D80B9869555ECA253D49D | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS |_http-server-header: Apache/2.4.41 (Ubuntu) |_http-title: Mega Hosting 8080/tcp open http Apache Tomcat | http-methods: |_ Supported Methods: OPTIONS GET HEAD POST |_http-open-proxy: Proxy might be redirecting requests |_http-title: Apache Tomcat Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel NSE: Script Post-scanning." />
+    <meta property="og:title" content="Sea" />
+<meta property="og:description" content="Já comecei pegando o ip da VM e adicionando no meu hosts.
+Depois já comecei a rodar o nmap nmap -sC -Pn -T4 -v -p- 10.10.11.28
+PORT STATE SERVICE 22/tcp open ssh | ssh-hostkey: | 3072 e3:54:e0:72:20:3c:01:42:93:d1:66:9d:90:0c:ab:e8 (RSA) | 256 f3:24:4b:08:aa:51:9d:56:15:3d:67:56:74:7c:20:38 (ECDSA) |_ 256 30:b1:05:c6:41:50:ff:22:a3:7f:41:06:0e:67:fd:50 (ED25519) 80/tcp open http |_http-title: Sea - Home | http-cookie-flags: | /: | PHPSESSID: |_ httponly flag not set | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS Apresenta um sitezinho maneiro demais, sou ciclista então já curti a porta 80 está hospedando um site para ciclismo noturno e intitulado banner velik71." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/htb/tabby/" /><meta property="article:section" content="htb" />
+<meta property="og:url" content="/htb/sea/" /><meta property="article:section" content="htb" />
 <meta property="article:published_time" content="2020-10-19T16:49:28-03:00" />
 <meta property="article:modified_time" content="2020-10-19T16:49:28-03:00" />
 
 
-    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Tabby"/>
-<meta name="twitter:description" content="PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0) 80/tcp open http Apache httpd 2.4.41 ((Ubuntu)) |_http-favicon: Unknown favicon MD5: 338ABBB5EA8D80B9869555ECA253D49D | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS |_http-server-header: Apache/2.4.41 (Ubuntu) |_http-title: Mega Hosting 8080/tcp open http Apache Tomcat | http-methods: |_ Supported Methods: OPTIONS GET HEAD POST |_http-open-proxy: Proxy might be redirecting requests |_http-title: Apache Tomcat Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel NSE: Script Post-scanning."/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Sea"/>
+<meta name="twitter:description" content="Já comecei pegando o ip da VM e adicionando no meu hosts.
+Depois já comecei a rodar o nmap nmap -sC -Pn -T4 -v -p- 10.10.11.28
+PORT STATE SERVICE 22/tcp open ssh | ssh-hostkey: | 3072 e3:54:e0:72:20:3c:01:42:93:d1:66:9d:90:0c:ab:e8 (RSA) | 256 f3:24:4b:08:aa:51:9d:56:15:3d:67:56:74:7c:20:38 (ECDSA) |_ 256 30:b1:05:c6:41:50:ff:22:a3:7f:41:06:0e:67:fd:50 (ED25519) 80/tcp open http |_http-title: Sea - Home | http-cookie-flags: | /: | PHPSESSID: |_ httponly flag not set | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS Apresenta um sitezinho maneiro demais, sou ciclista então já curti a porta 80 está hospedando um site para ciclismo noturno e intitulado banner velik71."/>
 
     
 
@@ -43,7 +49,7 @@
 
     
     
-    <link rel="canonical" href="/htb/tabby/">
+    <link rel="canonical" href="/htb/sea/">
     
     
     <link rel="icon" sizes="any" href="data:image/svg+xml,%3Csvg%20viewBox='0%200%2046%2045'%20xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3EAfter%20Dark%3C/title%3E%3Cpath%20d='M.708%2045L23%20.416%2045.292%2045H.708zM35%2038L23%2019%2011%2038h24z'%20fill='%23000'/%3E%3C/svg%3E">
@@ -167,37 +173,157 @@ fetchInject(["/js/lazysizes.min.js"]);
 </header>
     <main>
   <header>
-    <h1>Tabby</h1>
+    <h1>Sea</h1>
   </header>
-  <p><img src="/tabby-01.png" alt="HTB"></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PORT     STATE SERVICE VERSION
-</span></span><span class="line"><span class="cl">22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu <span class="m">4</span> <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
-</span></span><span class="line"><span class="cl">80/tcp   open  http    Apache httpd 2.4.41 <span class="o">((</span>Ubuntu<span class="o">))</span>
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-favicon: Unknown favicon MD5: 338ABBB5EA8D80B9869555ECA253D49D
+  <p><img src="/seahtb.png" alt="HTB"></p>
+<p>Já comecei pegando o ip da VM e adicionando no meu hosts.</p>
+<p><img src="/sea02.png" alt="HTB"></p>
+<p>Depois já comecei a rodar o nmap
+nmap -sC -Pn -T4 -v -p- 10.10.11.28</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PORT   STATE SERVICE
+</span></span><span class="line"><span class="cl">22/tcp open  ssh
+</span></span><span class="line"><span class="cl"><span class="p">|</span> ssh-hostkey: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="m">3072</span> e3:54:e0:72:20:3c:01:42:93:d1:66:9d:90:0c:ab:e8 <span class="o">(</span>RSA<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="m">256</span> f3:24:4b:08:aa:51:9d:56:15:3d:67:56:74:7c:20:38 <span class="o">(</span>ECDSA<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  <span class="m">256</span> 30:b1:05:c6:41:50:ff:22:a3:7f:41:06:0e:67:fd:50 <span class="o">(</span>ED25519<span class="o">)</span>
+</span></span><span class="line"><span class="cl">80/tcp open  http
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Sea - Home
+</span></span><span class="line"><span class="cl"><span class="p">|</span> http-cookie-flags: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   /: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>     PHPSESSID: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_      httponly flag not <span class="nb">set</span>
 </span></span><span class="line"><span class="cl"><span class="p">|</span> http-methods: 
 </span></span><span class="line"><span class="cl"><span class="p">|</span>_  Supported Methods: GET HEAD POST OPTIONS
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Apache/2.4.41 <span class="o">(</span>Ubuntu<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Mega Hosting
-</span></span><span class="line"><span class="cl">8080/tcp open  http    Apache Tomcat
-</span></span><span class="line"><span class="cl"><span class="p">|</span> http-methods: 
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_  Supported Methods: OPTIONS GET HEAD POST
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-open-proxy: Proxy might be redirecting requests
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Apache Tomcat
-</span></span><span class="line"><span class="cl">Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+</span></span></code></pre></div><p>Apresenta um sitezinho maneiro demais, sou ciclista então já curti a porta 80 está hospedando um site para ciclismo noturno e intitulado banner velik71. Cliquei em &ldquo;how-to-participate&rdquo; e depois em &ldquo;contact&rdquo;</p>
+<p><img src="/sea01.png" alt="HTB"></p>
+<p>O <a href="http://sea.htb/contact.php">http://sea.htb/contact.php</a> , é um formulário POST com um servidor PHP</p>
+<p><img src="/sea03.png" alt="HTB"></p>
+<p>Bom, vou partir para enumeração de diretórios, depois vouto ali. Usei o gobuster pra isso:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  ~ gobuster dir -u http://10.10.11.28 -w /usr/share/dirb/wordlists/big.txt
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl">Gobuster v3.6
+</span></span><span class="line"><span class="cl">by OJ Reeves <span class="o">(</span>@TheColonial<span class="o">)</span> <span class="p">&amp;</span> Christian Mehlmauer <span class="o">(</span>@firefart<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Url:                     http://10.10.11.28
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Method:                  GET
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Threads:                 <span class="m">10</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Wordlist:                /usr/share/dirb/wordlists/big.txt
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Negative Status codes:   <span class="m">404</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> User Agent:              gobuster/3.6
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Timeout:                 <span class="nv">10s</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl">Starting gobuster in directory enumeration <span class="nv">mode</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl">/.htaccess            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/.htpasswd            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/0                    <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 3670<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/404                  <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 3361<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/Documents and Settings <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/Program Files        <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Progress: <span class="m">2174</span> / <span class="m">20470</span> <span class="o">(</span>10.62%<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Progress: <span class="m">2199</span> / <span class="m">20470</span> <span class="o">(</span>10.74%<span class="o">)</span>
+</span></span><span class="line"><span class="cl">/contact us           <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/data                 <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 232<span class="o">]</span> <span class="o">[</span>--&gt; http://10.10.11.28/data/<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/donate cash          <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/external files       <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/home page            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/home                 <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 3670<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/messages             <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 236<span class="o">]</span> <span class="o">[</span>--&gt; http://10.10.11.28/messages/<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/modern mom           <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/my project           <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/neuf giga photo      <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/planned giving       <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/plugins              <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 235<span class="o">]</span> <span class="o">[</span>--&gt; http://10.10.11.28/plugins/<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/press releases       <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/privacy policy       <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/reports list         <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/server-status        <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/site map             <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/style library        <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/themes               <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 234<span class="o">]</span> <span class="o">[</span>--&gt; http://10.10.11.28/themes/<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/web references       <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Progress: <span class="m">20469</span> / <span class="m">20470</span> <span class="o">(</span>100.00%<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Finished</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span></code></pre></div><p>Vamos desconsiderar os 400 e focar nos 301 que podem ser erros de direcionamentos e diretorios configurados incorretamente. Fiz uma nova busca agora partindo da URL &ldquo;/themes&rdquo; debaixo pra cima, e encontrei outra pasta com 301 &ldquo;/bike&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl">Starting gobuster in directory enumeration <span class="nv">mode</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl">/.htpasswd            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/.htaccess            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/404                  <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 3341<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/Documents and Settings <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/Program Files        <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 199<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/bike                 <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 235<span class="o">]</span> <span class="o">[</span>--&gt; http://sea.htb/themes/bike/<span class="o">]</span>    <span class="c1">### bem aqui!! </span>
+</span></span></code></pre></div><p>Fiz uma enumeração mais detalhaada dentro de &ldquo;/themes/bike/&rdquo; e encontrei isso aqui:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  ffuf -c -w /usr/share/wordlists/seclists/Discovery/Web-Content/quickhits.txt -u <span class="s2">&#34;http://sea.htb/themes/bike/FUZZ&#34;</span> -t <span class="m">200</span> -fc <span class="m">403</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">NSE: Script Post-scanning.
-</span></span><span class="line"><span class="cl">Initiating NSE at 17:20
-</span></span><span class="line"><span class="cl">Completed NSE at 17:20, 0.00s elapsed
-</span></span><span class="line"><span class="cl">Initiating NSE at 17:20
-</span></span><span class="line"><span class="cl">Completed NSE at 17:20, 0.00s elapsed
-</span></span><span class="line"><span class="cl">Initiating NSE at 17:20
-</span></span><span class="line"><span class="cl">Completed NSE at 17:20, 0.00s elapsed
-</span></span><span class="line"><span class="cl">Read data files from: /usr/bin/../share/nmap
-</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 20.88 seconds
-</span></span><span class="line"><span class="cl">           Raw packets sent: <span class="m">82699</span> <span class="o">(</span>3.639MB<span class="o">)</span> <span class="p">|</span> Rcvd: <span class="m">66386</span> <span class="o">(</span>2.655MB<span class="o">)</span>
-</span></span></code></pre></div><p><img src="/tabby-02.png" alt="HTB"></p>
-<p>blz vou tentar acessar a porta  8080</p>
+</span></span><span class="line"><span class="cl">        /<span class="s1">&#39;___\  /&#39;</span>___<span class="se">\ </span>          /<span class="err">&#39;</span>___<span class="se">\ </span>      
+</span></span><span class="line"><span class="cl">       /<span class="se">\ \_</span>_/ /<span class="se">\ \_</span>_/  __  __  /<span class="se">\ \_</span>_/       
+</span></span><span class="line"><span class="cl">       <span class="se">\ \ </span>,__<span class="se">\\</span> <span class="se">\ </span>,__<span class="se">\/\ \/\ \ \ \ </span>,__<span class="se">\ </span>     
+</span></span><span class="line"><span class="cl">        <span class="se">\ \ \_</span>/ <span class="se">\ \ \_</span>/<span class="se">\ \ \_\ \ \ \ \_</span>/      
+</span></span><span class="line"><span class="cl">         <span class="se">\ \_\ </span>  <span class="se">\ \_\ </span> <span class="se">\ \_</span>___/  <span class="se">\ \_\ </span>      
+</span></span><span class="line"><span class="cl">          <span class="se">\/</span>_/    <span class="se">\/</span>_/   <span class="se">\/</span>___/    <span class="se">\/</span>_/       
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       v2.1.0-dev
+</span></span><span class="line"><span class="cl">________________________________________________
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> :: Method           : GET
+</span></span><span class="line"><span class="cl"> :: URL              : http://sea.htb/themes/bike/
+</span></span><span class="line"><span class="cl"> :: Wordlist         : FUZZ: /usr/share/wordlists/seclists/Discovery/Web-Content/quickhits.txt
+</span></span><span class="line"><span class="cl"> :: Follow redirects : <span class="nb">false</span>
+</span></span><span class="line"><span class="cl"> :: Calibration      : <span class="nb">false</span>
+</span></span><span class="line"><span class="cl"> :: Timeout          : <span class="m">10</span>
+</span></span><span class="line"><span class="cl"> :: Threads          : <span class="m">200</span>
+</span></span><span class="line"><span class="cl"> :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+</span></span><span class="line"><span class="cl"> :: Filter           : Response status: <span class="m">403</span>
+</span></span><span class="line"><span class="cl">________________________________________________
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">README.md               <span class="o">[</span>Status: 200, Size: 318, Words: 40, Lines: 16, Duration: 189ms<span class="o">]</span>
+</span></span><span class="line"><span class="cl">sym/root/home/          <span class="o">[</span>Status: 200, Size: 3650, Words: 582, Lines: 87, Duration: 1405ms<span class="o">]</span>
+</span></span><span class="line"><span class="cl">version                 <span class="o">[</span>Status: 200, Size: 6, Words: 1, Lines: 2, Duration: 143ms<span class="o">]</span>
+</span></span></code></pre></div><p>Fiz um curl em &ldquo;version&rdquo; e &ldquo;README.md&rdquo; e recebi isso aqui</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  ~ curl http://sea.htb/themes/bike/version         
+</span></span><span class="line"><span class="cl">3.2.0
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  ~ curl http://sea.htb/themes/bike/README.md                                    
+</span></span><span class="line"><span class="cl"><span class="c1"># WonderCMS bike theme</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Description</span>
+</span></span><span class="line"><span class="cl">Includes animations.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Author: turboblack</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Preview</span>
+</span></span><span class="line"><span class="cl">!<span class="o">[</span>Theme preview<span class="o">](</span>/preview.jpg<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## How to use</span>
+</span></span><span class="line"><span class="cl">1. Login to your WonderCMS website.
+</span></span><span class="line"><span class="cl">2. Click <span class="s2">&#34;Settings&#34;</span> and click <span class="s2">&#34;Themes&#34;</span>.
+</span></span><span class="line"><span class="cl">3. Find theme in the list and click <span class="s2">&#34;install&#34;</span>.
+</span></span><span class="line"><span class="cl">4. In the <span class="s2">&#34;General&#34;</span> tab, <span class="k">select</span> theme to activate it.
+</span></span></code></pre></div><p>Buscando esse WonderCMS e versão no google podemosnos deparar com a CVE-2023-41425, <a href="https://github.com/prodigiousMind/CVE-2023-41425">https://github.com/prodigiousMind/CVE-2023-41425</a>, pelo que entendi a vulnerabilidade CVE-2023-41425 no Wonder CMS versões 3.2.0 a 3.4.2 é uma falha de Cross Site Scripting (XSS) que permite a execução de código arbitrário. A falha ocorre no componente installModule, onde um invasor remoto pode injetar um script malicioso ao carregar um módulo criado. Esse script é então executado no navegador das vítimas, permitindo ao atacante realizar ações como roubo de cookies, redirecionamento de páginas ou outras ações maliciosas.</p>
+<p>Fiz o clone da CVE e vou executar o arquivo .py do exploit</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  sea git clone https://github.com/prodigiousMind/CVE-2023-41425.git
+</span></span><span class="line"><span class="cl">Cloning into <span class="s1">&#39;CVE-2023-41425&#39;</span>...
+</span></span><span class="line"><span class="cl">remote: Enumerating objects: 6, <span class="k">done</span>.
+</span></span><span class="line"><span class="cl">remote: Counting objects: 100% <span class="o">(</span>6/6<span class="o">)</span>, <span class="k">done</span>.
+</span></span><span class="line"><span class="cl">remote: Compressing objects: 100% <span class="o">(</span>5/5<span class="o">)</span>, <span class="k">done</span>.
+</span></span><span class="line"><span class="cl">remote: Total <span class="m">6</span> <span class="o">(</span>delta 0<span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta 0<span class="o">)</span>, pack-reused <span class="m">0</span> <span class="o">(</span>from 0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Receiving objects: 100% <span class="o">(</span>6/6<span class="o">)</span>, <span class="k">done</span>.
+</span></span><span class="line"><span class="cl">➜  sea ls
+</span></span><span class="line"><span class="cl">CVE-2023-41425
+</span></span><span class="line"><span class="cl">➜  sea <span class="nb">cd</span> CVE-2023-41425 
+</span></span><span class="line"><span class="cl">➜  CVE-2023-41425 git:<span class="o">(</span>main<span class="o">)</span> ls
+</span></span><span class="line"><span class="cl">exploit.py  README.md
+</span></span><span class="line"><span class="cl">➜  CVE-2023-41425 git:<span class="o">(</span>main<span class="o">)</span> 
+</span></span></code></pre></div><p>Eu abri o arquivo &ldquo;exploit.py&rdquo; para analisar e percebi que precisamos criar um arquivo xss.js. Esse JavaScript é injetado por meio de um vetor de ataque XSS. Para disponibilizar o arquivo xss.js ao alvo, o script configura um servidor HTTP simples (usando python3 -m http.server) na máquina do atacante (porta padrão 8000).</p>
+<p>O script original obtém dados do GitHub, mas como o servidor HTB não tem acesso à internet, baixamos o repositório manualmente e o transferimos para a máquina alvo. Após instalar o módulo, o script ativa o shell reverso enviando o IP e a porta do ouvinte usando um comando específico.</p>
+<p>Bom, pra entender melhor vou colocar o print daquele form de contato que achamos no gobuster, eai jogamos o XSS no campo &ldquo;website&rdquo;.</p>
+<p><img src="/sea04.png" alt="HTB"></p>
+<p>Injetando o script e ouvindo na porta local</p>
+<p>E agora abrimos o formulário em</p>
+<p><img src="/sea05.png" alt="HTB"></p>
 <p><img src="/tabby-03.png" alt="HTB"></p>
 <p><a href="http://megahosting.htb:8080/">http://megahosting.htb:8080/</a></p>
 <p>Coloquei meu ip no meu hosts &gt; para o nome do site</p>
