@@ -7,8 +7,56 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.123.7</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 May 2025 06:41:35 UT</lastBuildDate>
+    <lastBuildDate>Fri, 16 May 2025 00:05:28 UT</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Currículo</title>
+      <link>/sobre/</link>
+      <pubDate>Thu, 15 May 2025 00:00:00 UT</pubDate>
+      <guid>/sobre/</guid>
+      <description>Felipe da Matta Cloud Architect | DevOps SRE
+São Paulo, Brasil
+LinkedIn • GitHub • E-mail
+🧠 Resumo Sou formado em Defesa Cibernética e atualmente atuo como DevOps/SRE,
+com foco em ambientes resilientes, escaláveis e seguros. Gosto de criar laboratórios, testar ferramentas e documentar tudo como forma de compartilhar conhecimento.
+Busco sempre entregar soluções seguras, inteligentes e sem enrolação.
+🚀 Especialidades Cloud &amp;amp; Infraestrutura:
+AWS, Azure, administração de ambientes Windows e Linux, provisionamento e gerenciamento completo de infraestrutura em nuvem.</description>
+      <content:encoded><![CDATA[Felipe da Matta Cloud Architect | DevOps SRE
+São Paulo, Brasil
+LinkedIn • GitHub • E-mail
+🧠 Resumo Sou formado em Defesa Cibernética e atualmente atuo como DevOps/SRE,
+com foco em ambientes resilientes, escaláveis e seguros. Gosto de criar laboratórios, testar ferramentas e documentar tudo como forma de compartilhar conhecimento.
+Busco sempre entregar soluções seguras, inteligentes e sem enrolação.
+🚀 Especialidades Cloud &amp;amp; Infraestrutura:
+AWS, Azure, administração de ambientes Windows e Linux, provisionamento e gerenciamento completo de infraestrutura em nuvem.
+Infrastructure as Code (IaC):
+Terraform (criação e configuração de recursos), Ansible (configuração massiva e reusável), Chef.
+Contêineres &amp;amp; Orquestração:
+Kubernetes (EKS e AKS), Helm Charts, deploy e manutenção de clusters de produção.
+CI/CD &amp;amp; Automação:
+GitHub Actions, Jenkins, ArgoCD, FluxCD — pipelines GitOps e entrega contínua.
+Servidores Web &amp;amp; HTTPS:
+NGINX, IIS, Apache — administração, otimização e gerenciamento de certificados com Let&amp;rsquo;s Encrypt.
+Scripting &amp;amp; Programação:
+Bash, PowerShell, Python, Go — automações de infraestrutura, monitoramento e deploy.
+Observabilidade &amp;amp; Alertas:
+Elasticsearch, Grafana, Prometheus, Zabbix, CloudWatch, Opsgenie — monitoramento completo e resposta a incidentes.
+Redes &amp;amp; Segurança:
+API Gateway, Ingress Controller, V ault — controle de acesso, certificados e autenticação segura.
+Performance &amp;amp; Distribuição de Conteúdo:
+Akamai, CloudFront — otimização de performance, cache e distribuição global.
+Bancos de Dados:
+MySQL, MongoDB — manutenção, integração e sustentação de serviços com banco relacional e não-relacional.
+💼 Experiência Grupo NC — DevOps Sênior Fev 2025 – Atual
+Gestão de infraestrutura em nuvem com AWS Administração de clusters Kubernetes (AKS) Automatizações com Terraform, Shellscript, PowerShell GitOps com ArgoCD e CI/CD com GitHub Actions Observabilidade com DataDog Linx — DevOps Sênior / Pleno Abr 2021 – Jan 2025
+Gestão de infraestrutura em nuvem com AZURE Administração de clusters Kubernetes (EKS) Gerenciamento de certificados com Let&amp;rsquo;s Encrypt Ansible para automações em larga escala Pipelines de deploy com Jenkins e GitHub Gerenciamento de maquinas virtuais com Ansible e AWX Construção de ambiente toda com IaC utilizando Terraform Migração de todos os serviços em Nuvem AWS &amp;ndash;&amp;gt; AZURE Administração de Webservers Linux e Windows Portal R7 — Admin. de Sistemas / Suporte TI 2017 – 2021
+Sustentação de ambientes em AWS Suporte CMS, WordPress e blogs de programas da Record Monitoramento com Zabbix, deploys QA e Prod Atendimento a jornalistas/redatores com OTRS Experiências anteriores Fundação Vanzolini, tecReg, Dotstore
+Atuação em suporte técnico, manutenção de hardware/software,
+videoconferência, documentação e operações distribuídas.
+🎓 Formação FIAP — Graduação em Defesa Cibernética (2018 – 2020) EE Oswaldo Catalano — Ensino Médio (2007 – 2010) 📎 PDF e Contato LinkedIn GitHub E-mail Última atualização: {{ now.Format &amp;ldquo;02/01/2006&amp;rdquo; }}
+]]></content:encoded>
+    </item>
     <item>
       <title></title>
       <link>/posts/</link>
@@ -32,15 +80,6 @@
       <guid>/notes/</guid>
       <description>notes!</description>
       <content:encoded><![CDATA[notes!
-]]></content:encoded>
-    </item>
-    <item>
-      <title></title>
-      <link>/sobre/</link>
-      <pubDate>Sat, 18 Aug 2018 22:01:29 UT</pubDate>
-      <guid>/sobre/</guid>
-      <description>Sou DevOps/SRE formado em Defesa Cibernética, com mais de 10 anos de experiência em infraestrutura, automação e ambientes em nuvem. Hoje atuo como DevOps Sênior no Grupo NC, onde trabalho com AWS e Azure, automatizando ambientes com Terraform, gerenciando clusters Kubernetes (EKS e AKS), e mantendo pipelines CI/CD com GitHub Actions e GitOps via ArgoCD. Tenho familiaridade com ferramentas como Vault, SonarQube, Prometheus, Grafana, Elasticsearch e toda stack de observabilidade e segurança.</description>
-      <content:encoded><![CDATA[Sou DevOps/SRE formado em Defesa Cibernética, com mais de 10 anos de experiência em infraestrutura, automação e ambientes em nuvem. Hoje atuo como DevOps Sênior no Grupo NC, onde trabalho com AWS e Azure, automatizando ambientes com Terraform, gerenciando clusters Kubernetes (EKS e AKS), e mantendo pipelines CI/CD com GitHub Actions e GitOps via ArgoCD. Tenho familiaridade com ferramentas como Vault, SonarQube, Prometheus, Grafana, Elasticsearch e toda stack de observabilidade e segurança. Gosto de criar laboratórios pra testar ferramentas, quebrar as coisas e entender como tudo funciona de verdade. Documentar meus testes e aprendizados no Git virou parte da rotina, porque acredito que conhecimento bom é conhecimento compartilhado. Busco sempre entregar soluções que sejam seguras, escaláveis e inteligentes sem enrolação e com foco no que resolve. github linkedin
 ]]></content:encoded>
     </item>
   </channel>
