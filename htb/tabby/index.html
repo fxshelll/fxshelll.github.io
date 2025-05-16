@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="pt-br">
   <head>
+      <meta charset="utf-8">
+    
+      
+      <meta property="og:title" content="FXShell - Writeups & Segurança" />
+      <meta property="og:description" content="Site com writeups de hacking, segurança e DevOps" />
+      <meta property="og:image" content="https://fxshelll.github.io/fx.png" />
+      <meta property="og:url" content="https://fxshelll.github.io/" />
+      <meta property="og:type" content="website" />
+    
+      
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="FXShell - Writeups & Segurança" />
+      <meta name="twitter:description" content="Site com writeups de hacking, segurança e DevOps" />
+      <meta name="twitter:image" content="https://fxshelll.github.io/fx.png" />
+    
     <meta name="generator" content="Hugo 0.123.7">
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabby | FXSHELL</title>
+    <title>Tabby | FXShell - Writeups &amp; Segurança</title>
     <meta name="description" content="PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0) 80/tcp open http Apache httpd 2.4.41 ((Ubuntu)) |_http-favicon: Unknown favicon MD5: 338ABBB5EA8D80B9869555ECA253D49D | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS |_http-server-header: Apache/2.4.41 (Ubuntu) |_http-title: Mega Hosting 8080/tcp open http Apache Tomcat | http-methods: |_ Supported Methods: OPTIONS GET HEAD POST |_http-open-proxy: Proxy might be redirecting requests |_http-title: Apache Tomcat Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel NSE: Script Post-scanning.">
     <meta name="keywords" content="">
     
@@ -13,19 +27,8 @@
     
     
 
-  <meta name="author" content="">
+  <meta name="author" content="Felipe da Matta">
 
-
-    <meta property="og:title" content="Tabby" />
-<meta property="og:description" content="PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0) 80/tcp open http Apache httpd 2.4.41 ((Ubuntu)) |_http-favicon: Unknown favicon MD5: 338ABBB5EA8D80B9869555ECA253D49D | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS |_http-server-header: Apache/2.4.41 (Ubuntu) |_http-title: Mega Hosting 8080/tcp open http Apache Tomcat | http-methods: |_ Supported Methods: OPTIONS GET HEAD POST |_http-open-proxy: Proxy might be redirecting requests |_http-title: Apache Tomcat Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel NSE: Script Post-scanning." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/htb/tabby/" /><meta property="article:section" content="htb" />
-<meta property="article:published_time" content="2020-10-19T16:49:28-03:00" />
-<meta property="article:modified_time" content="2020-10-19T16:49:28-03:00" />
-
-
-    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Tabby"/>
-<meta name="twitter:description" content="PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0) 80/tcp open http Apache httpd 2.4.41 ((Ubuntu)) |_http-favicon: Unknown favicon MD5: 338ABBB5EA8D80B9869555ECA253D49D | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS |_http-server-header: Apache/2.4.41 (Ubuntu) |_http-title: Mega Hosting 8080/tcp open http Apache Tomcat | http-methods: |_ Supported Methods: OPTIONS GET HEAD POST |_http-open-proxy: Proxy might be redirecting requests |_http-title: Apache Tomcat Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel NSE: Script Post-scanning."/>
 
     
 
@@ -43,7 +46,7 @@
 
     
     
-    <link rel="canonical" href="/htb/tabby/">
+    <link rel="canonical" href="https://fxshelll.github.io/htb/tabby/">
     
     
     <link rel="icon" sizes="any" href="data:image/svg+xml,%3Csvg%20viewBox='0%200%2046%2045'%20xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3EAfter%20Dark%3C/title%3E%3Cpath%20d='M.708%2045L23%20.416%2045.292%2045H.708zM35%2038L23%2019%2011%2038h24z'%20fill='%23000'/%3E%3C/svg%3E">
@@ -159,7 +162,7 @@ fetchInject(["/js/lazysizes.min.js"]);
     
       <a itemprop="url" class="" href="/htb/"><span itemprop="name">HTB</span></a>
     
-      <a itemprop="url" class="" href="/sobre"><span itemprop="name">sobre</span></a>
+      <a itemprop="url" class="" href="/sobre/"><span itemprop="name">currículo</span></a>
     
   </nav>
 

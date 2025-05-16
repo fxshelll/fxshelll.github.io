@@ -1,19 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
-    <title>FXSHELL</title>
-    <link>/htb/</link>
-    <description>Recent content on FXSHELL</description>
+    <title>FXShell - Writeups &amp; Segurança</title>
+    <link>https://fxshelll.github.io/htb/</link>
+    <description>Recent content on FXShell - Writeups &amp; Segurança</description>
     <ttl>1440</ttl>
     <generator>Hugo 0.123.7</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 16 May 2025 00:17:02 UT</lastBuildDate>
-    <atom:link href="/htb/index.xml" rel="self" type="application/rss+xml" />
+    <language>pt-br</language>
+    <lastBuildDate>Fri, 16 May 2025 01:05:07 UT</lastBuildDate>
+    <atom:link href="https://fxshelll.github.io/htb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sea</title>
-      <link>/htb/sea/</link>
+      <link>https://fxshelll.github.io/htb/sea/</link>
       <pubDate>Mon, 19 Oct 2020 19:49:28 UT</pubDate>
-      <guid>/htb/sea/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/htb/sea/</guid>
       <description>Já comecei pegando o ip da VM e adicionando no meu hosts.
 Depois já comecei a rodar o nmap nmap -sC -Pn -T4 -v -p- 10.10.11.28
 PORT STATE SERVICE 22/tcp open ssh | ssh-hostkey: | 3072 e3:54:e0:72:20:3c:01:42:93:d1:66:9d:90:0c:ab:e8 (RSA) | 256 f3:24:4b:08:aa:51:9d:56:15:3d:67:56:74:7c:20:38 (ECDSA) |_ 256 30:b1:05:c6:41:50:ff:22:a3:7f:41:06:0e:67:fd:50 (ED25519) 80/tcp open http |_http-title: Sea - Home | http-cookie-flags: | /: | PHPSESSID: |_ httponly flag not set | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS Apresenta um sitezinho maneiro demais, sou ciclista então já curti a porta 80 está hospedando um site para ciclismo noturno e intitulado banner velik71.</description>
@@ -95,9 +96,10 @@ ash@tabby:~$ lxc start privesc lxc start privesc ash@tabby:~$ lxc exec privesc /
     </item>
     <item>
       <title>Tabby</title>
-      <link>/htb/tabby/</link>
+      <link>https://fxshelll.github.io/htb/tabby/</link>
       <pubDate>Mon, 19 Oct 2020 19:49:28 UT</pubDate>
-      <guid>/htb/tabby/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/htb/tabby/</guid>
       <description>PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0) 80/tcp open http Apache httpd 2.4.41 ((Ubuntu)) |_http-favicon: Unknown favicon MD5: 338ABBB5EA8D80B9869555ECA253D49D | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS |_http-server-header: Apache/2.4.41 (Ubuntu) |_http-title: Mega Hosting 8080/tcp open http Apache Tomcat | http-methods: |_ Supported Methods: OPTIONS GET HEAD POST |_http-open-proxy: Proxy might be redirecting requests |_http-title: Apache Tomcat Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel NSE: Script Post-scanning.</description>
       <content:encoded><![CDATA[
 PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0) 80/tcp open http Apache httpd 2.4.41 ((Ubuntu)) |_http-favicon: Unknown favicon MD5: 338ABBB5EA8D80B9869555ECA253D49D | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS |_http-server-header: Apache/2.4.41 (Ubuntu) |_http-title: Mega Hosting 8080/tcp open http Apache Tomcat | http-methods: |_ Supported Methods: OPTIONS GET HEAD POST |_http-open-proxy: Proxy might be redirecting requests |_http-title: Apache Tomcat Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel NSE: Script Post-scanning. Initiating NSE at 17:20 Completed NSE at 17:20, 0.00s elapsed Initiating NSE at 17:20 Completed NSE at 17:20, 0.00s elapsed Initiating NSE at 17:20 Completed NSE at 17:20, 0.00s elapsed Read data files from: /usr/bin/../share/nmap Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . Nmap done: 1 IP address (1 host up) scanned in 20.88 seconds Raw packets sent: 82699 (3.639MB) | Rcvd: 66386 (2.655MB) blz vou tentar acessar a porta 8080
@@ -163,9 +165,10 @@ ash@tabby:~$ lxc start privesc lxc start privesc ash@tabby:~$ lxc exec privesc /
     </item>
     <item>
       <title>Book</title>
-      <link>/htb/book/</link>
+      <link>https://fxshelll.github.io/htb/book/</link>
       <pubDate>Mon, 19 Oct 2020 17:29:02 UT</pubDate>
-      <guid>/htb/book/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/htb/book/</guid>
       <description>Nmap scan report for 10.10.10.176 Host is up (0.43s latency). Not shown: 998 closed ports PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 2048 f7:fc:57:99:f6:82:e0:03:d6:03:bc:09:43:01:55:b7 (RSA) | 256 a3:e5:d1:74:c4:8a:e8:c8:52:c7:17:83:4a:54:31:bd (ECDSA) |_ 256 e3:62:68:72:e2:c0:ae:46:67:3d:cb:46:bf:69:b9:6a (ED25519) 80/tcp open http Apache httpd 2.4.29 ((Ubuntu)) | http-cookie-flags: | /: | PHPSESSID: |_ httponly flag not set |_http-server-header: Apache/2.4.29 (Ubuntu) |_http-title: LIBRARY - Read | Learn | Have Fun Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel Abri o IP via web e fiz o meu cadastro</description>
       <content:encoded><![CDATA[
 Nmap scan report for 10.10.10.176 Host is up (0.43s latency). Not shown: 998 closed ports PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 2048 f7:fc:57:99:f6:82:e0:03:d6:03:bc:09:43:01:55:b7 (RSA) | 256 a3:e5:d1:74:c4:8a:e8:c8:52:c7:17:83:4a:54:31:bd (ECDSA) |_ 256 e3:62:68:72:e2:c0:ae:46:67:3d:cb:46:bf:69:b9:6a (ED25519) 80/tcp open http Apache httpd 2.4.29 ((Ubuntu)) | http-cookie-flags: | /: | PHPSESSID: |_ httponly flag not set |_http-server-header: Apache/2.4.29 (Ubuntu) |_http-title: LIBRARY - Read | Learn | Have Fun Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel Abri o IP via web e fiz o meu cadastro
@@ -191,9 +194,10 @@ cat /root/root.txt ]]></content:encoded>
     </item>
     <item>
       <title>Traceback</title>
-      <link>/htb/traceback/</link>
+      <link>https://fxshelll.github.io/htb/traceback/</link>
       <pubDate>Mon, 19 Oct 2020 15:39:26 UT</pubDate>
-      <guid>/htb/traceback/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/htb/traceback/</guid>
       <description>PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 2048 96:25:51:8e:6c:83:07:48:ce:11:4b:1f:e5:6d:8a:28 (RSA) | 256 54:bd:46:71:14:bd:b2:42:a1:b6:b0:2d:94:14:3b:0d (ECDSA) |_ 256 4d:c3:f8:52:b8:85:ec:9c:3e:4d:57:2c:4a:82:fd:86 (ED25519) 80/tcp open http Apache httpd 2.4.29 ((Ubuntu)) | http-methods: |_ Supported Methods: POST OPTIONS HEAD GET |_http-server-header: Apache/2.4.29 (Ubuntu) |_http-title: Help us Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel [21:08:54] Starting: [21:09:02] 403 - 300B - /.htaccess-dev [21:09:02] 403 - 302B - /.</description>
       <content:encoded><![CDATA[
 PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 2048 96:25:51:8e:6c:83:07:48:ce:11:4b:1f:e5:6d:8a:28 (RSA) | 256 54:bd:46:71:14:bd:b2:42:a1:b6:b0:2d:94:14:3b:0d (ECDSA) |_ 256 4d:c3:f8:52:b8:85:ec:9c:3e:4d:57:2c:4a:82:fd:86 (ED25519) 80/tcp open http Apache httpd 2.4.29 ((Ubuntu)) | http-methods: |_ Supported Methods: POST OPTIONS HEAD GET |_http-server-header: Apache/2.4.29 (Ubuntu) |_http-title: Help us Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel [21:08:54] Starting: [21:09:02] 403 - 300B - /.htaccess-dev [21:09:02] 403 - 302B - /.htaccess-local [21:09:02] 403 - 302B - /.htaccess-marco [21:09:02] 403 - 301B - /.htaccess.bak1 [21:09:02] 403 - 300B - /.htaccess.old [21:09:02] 403 - 301B - /.htaccess.orig [21:09:02] 403 - 303B - /.htaccess.sample [21:09:02] 403 - 301B - /.htaccess.save [21:09:02] 403 - 300B - /.htaccess.txt [21:09:02] 403 - 299B - /.htaccessBAK [21:09:02] 403 - 299B - /.htaccessOLD [21:09:02] 403 - 300B - /.htaccessOLD2 [21:09:02] 403 - 300B - /.htpasswd-old [21:09:02] 403 - 298B - /.httr-oauth [21:09:05] 403 - 291B - /.php [21:09:52] 200 - 564B - /id_rsa.pub [21:09:54] 200 - 1KB - /index.html [21:10:12] 403 - 300B - /server-status [21:10:12] 403 - 301B - /server-status/ Task Completed ----------------- DIRB v2.22 By The Dark Raver ----------------- START_TIME: Wed Jul 1 21:38:59 2020 URL_BASE: http://10.10.10.181/ WORDLIST_FILES: shells ----------------- GENERATED WORDS: 19 ---- Scanning URL: http://10.10.10.181/ ---- &#43; http://10.10.10.181/smevk.php (CODE:200|SIZE:1261) ----------------- END_TIME: Wed Jul 1 21:39:01 2020 DOWNLOADED: 19 - FOUND: 1 https://github.com/TheBinitGhimire/Web-Shells/blob/master/smevk.php
@@ -210,9 +214,10 @@ webadmin@traceback:~$ sudo -u sysadmin /home/sysadmin/luvit Welcome to the Luvit
     </item>
     <item>
       <title>Magic</title>
-      <link>/htb/magic/</link>
+      <link>https://fxshelll.github.io/htb/magic/</link>
       <pubDate>Sun, 18 Oct 2020 01:38:50 UT</pubDate>
-      <guid>/htb/magic/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/htb/magic/</guid>
       <description>nmap -sV -sC -Pn -T4 -v -p- 10.10.10.185
 PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 2048 06:d4:89:bf:51:f7:fc:0c:f9:08:5e:97:63:64:8d:ca (RSA) | 256 11:a6:92:98:ce:35:40:c7:29:09:4f:6c:2d:74:aa:66 (ECDSA) |_ 256 71:05:99:1f:a8:1b:14:d6:03:85:53:f8:78:8e:cb:88 (ED25519) 80/tcp open http Apache httpd 2.4.29 ((Ubuntu)) | http-methods: |_ Supported Methods: GET HEAD POST OPTIONS |_http-server-header: Apache/2.4.29 (Ubuntu) |_http-title: Magic Portfolio Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel python3 dirsearch.py -u http://10.10.10.185/ -e *</description>
       <content:encoded><![CDATA[
@@ -278,9 +283,10 @@ Ncat: Connection from 10.10.10.185:45410. root@ubuntu:/tmp/root# whoami whoami r
     </item>
     <item>
       <title>Blunder</title>
-      <link>/htb/blunder/</link>
+      <link>https://fxshelll.github.io/htb/blunder/</link>
       <pubDate>Sun, 18 Oct 2020 01:06:42 UT</pubDate>
-      <guid>/htb/blunder/</guid>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/htb/blunder/</guid>
       <description>nmap -sV -sC -Pn -T4 -v -p- --min-rate=10000 10.10.10.191 python3 dirsearch.py -u http://10.10.10.191 -e * wfuzz -c -w /usr/share/wordlists/wfuzz/general/big.txt --hc 404,403 -u &amp;quot;http://10.10.10.191/FUZZ.txt&amp;quot; -t 100
 ******************************************************** * Wfuzz 2.4.5 - The Web Fuzzer * ******************************************************** Target: http://10.10.10.191/FUZZ.txt Total requests: 3024 =================================================================== ID Response Lines Word Chars Payload =================================================================== 000002755: 200 4 L 23 W 118 Ch &amp;#34;todo&amp;#34; Total time: 76.03240 Processed Requests: 3024 Filtered Requests: 3023 Requests/sec.: 39.77251 gerando wordlist com palavras do site</description>
       <content:encoded><![CDATA[nmap -sV -sC -Pn -T4 -v -p- --min-rate=10000 10.10.10.191 python3 dirsearch.py -u http://10.10.10.191 -e * wfuzz -c -w /usr/share/wordlists/wfuzz/general/big.txt --hc 404,403 -u &amp;quot;http://10.10.10.191/FUZZ.txt&amp;quot; -t 100
