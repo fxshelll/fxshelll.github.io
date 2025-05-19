@@ -23,7 +23,7 @@
 Cloud Architect | DevOps SRE
 São Paulo, Brasil
 LinkedIn • GitHub • E-mail 🧠 Resumo Sou formado em Defesa Cibernética e atualmente atuo como DevOps/SRE, com foco em ambientes resilientes, escaláveis e seguros. Gosto de criar laboratórios, testar ferramentas e documentar tudo como forma de compartilhar conhecimento. Busco sempre entregar soluções seguras, inteligentes e sem enrolação.
-🚀 Especialidades Cloud & Infraestrutura: AWS, Azure — administração de ambientes Windows e Linux, provisionamento e gerenciamento completo de infraestrutura em nuvem.">
+## 🚀 Especialidades Cloud & Infraestrutura: AWS, Azure — administração de ambientes Windows e Linux, provisionamento e gerenciamento completo de infraestrutura em nuvem.">
     <meta name="keywords" content="">
     
     
@@ -167,8 +167,8 @@ fetchInject(["/js/lazysizes.min.js"]);
   <hr>
   <h3>🧠 Resumo</h3>
   <p>Sou formado em Defesa Cibernética e atualmente atuo como DevOps/SRE, com foco em ambientes resilientes, escaláveis e seguros. Gosto de criar laboratórios, testar ferramentas e documentar tudo como forma de compartilhar conhecimento. Busco sempre entregar soluções seguras, inteligentes e sem enrolação.</p>
-<h2 id="heading"></h2>
-  <h3>🚀 Especialidades</h3>
+<hr>
+  <h3>## 🚀 Especialidades</h3>
   <ul>
     <li><strong>Cloud & Infraestrutura:</strong> AWS, Azure — administração de ambientes Windows e Linux, provisionamento e gerenciamento completo de infraestrutura em nuvem.</li>
     <li><strong>Infrastructure as Code (IaC):</strong> Terraform, Ansible, Chef.</li>
@@ -182,8 +182,8 @@ fetchInject(["/js/lazysizes.min.js"]);
     <li><strong>Bancos de Dados:</strong> MySQL, MongoDB.</li>
     <li><strong>Documentação e Organização de Times:</strong> Confluence, Jira, Sharepoint.</li>
   </ul>
-<h2 id="heading-1"></h2>
-  <h3>💼 Experiência</h3>
+<hr>
+  <h3>## 💼 Experiência</h3>
 <p><strong>Grupo NC — DevOps Sênior</strong><br>
 <em>Fev 2025 – Atual</em></p>
   <ul>
@@ -195,7 +195,7 @@ fetchInject(["/js/lazysizes.min.js"]);
     <li>HashiCorp Vault para segredos e autenticação</li>
     <li>Confluence e Jira para documentação</li>
   </ul>
-<h2 id="heading-2"></h2>
+<hr>
 <p><strong>Linx — DevOps Sênior / Pleno</strong><br>
 <em>Abr 2021 – Jan 2025</em></p>
   <ul>
@@ -205,7 +205,7 @@ fetchInject(["/js/lazysizes.min.js"]);
     <li>Integrações com Azure DevOps</li>
     <li>Webservers Linux e Windows</li>
   </ul>
-<h2 id="heading-3"></h2>
+<hr>
 <p><strong>Portal R7 — Admin. de Sistemas / Suporte TI</strong><br>
 <em>2017 – 2021</em></p>
   <ul>
@@ -213,16 +213,16 @@ fetchInject(["/js/lazysizes.min.js"]);
     <li>Monitoramento com Zabbix</li>
     <li>Atendimento técnico com OTRS</li>
   </ul>
-<h2 id="heading-4"></h2>
-  <h3>🎓 Formação e Certificações</h3>
+<hr>
+  <h3>## 🎓 Formação e Certificações</h3>
   <ul>
     <li>FIAP — Defesa Cibernética (2018–2020)</li>
     <li>RH124 – Red Hat Academy (2021)</li>
     <li>LinuxTips – Docker (2021)</li>
     <li>FIAP – Perícia Forense, Ethical Hacking (2020)</li>
   </ul>
-<h2 id="heading-5"></h2>
-  <h3>🏆 Destaques</h3>
+<hr>
+  <h3>## 🏆 Destaques</h3>
   <ul>
     <li>🏅 Finalista do Innovation Challenge Itaú-FIAP 2020</li>
     <li>🤝 Participação ativa em squads DevSecOps</li>
@@ -236,33 +236,43 @@ fetchInject(["/js/lazysizes.min.js"]);
 <li><a href="mailto:felipepmatta@gmail.com">E-mail</a></li>
 </ul>
 <hr>
-<p style="text-align: right; margin-top: 20px;">
-  <button onclick="gerarPDF()" style="
-    padding: 10px 20px;
-    background-color: #00c853;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  ">
-    📄 Baixar currículo em PDF
-  </button>
-</p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
   function gerarPDF() {
-    const element = document.getElementById('curriculo');
+    const original = document.getElementById('curriculo');
+
+    // Clona e estiliza o conteúdo
+    const clone = original.cloneNode(true);
+    clone.style.backgroundColor = '#000000';
+    clone.style.color = '#ffffff';
+    clone.style.padding = '20px';
+    clone.style.fontFamily = 'monospace';
+    clone.style.width = '210mm';  // A4 width
+    clone.style.minHeight = '297mm'; // A4 height
+    clone.style.boxSizing = 'border-box';
+
+    // Cria um container invisível temporário
+    const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.top = '-9999px';
+    container.appendChild(clone);
+    document.body.appendChild(container);
+
     const opt = {
-      margin:       0.3,
+      margin:       0,
       filename:     'curriculo-felipe-da-matta.pdf',
       image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+      html2canvas:  {
+        scale: 2,
+        backgroundColor: '#000000',
+        scrollY: 0
+      },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
-    html2pdf().set(opt).from(element).save();
+
+    html2pdf().set(opt).from(clone).save().then(() => {
+      document.body.removeChild(container);
+    });
   }
 </script>
 <p>Última atualização: 19-05-2025</p>
