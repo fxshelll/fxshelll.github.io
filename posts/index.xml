@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.123.7</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 07 Jul 2025 02:39:05 UT</lastBuildDate>
+    <lastBuildDate>Mon, 07 Jul 2025 02:41:13 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible</title>
@@ -2248,6 +2248,90 @@ docker service ls Criar um service com um volume conectado é bastante simples, 
 docker service create --name webserver --replicas 5 -p 8080:80 --mount type=volume,src=teste,dst=/app, nginx Quando criamos um service com um volume conectado a ele, isso indica que esse volume estará disponivel em todos os nossos containers desse service, ou seja, o volume com o nome de &amp;ldquo;teste&amp;rdquo; estara montado em todos os containers no diretorio &amp;ldquo;/app&amp;rdquo;.
 Exemplo de como ficou:
 Docker Secrets! ]]></content:encoded>
+    </item>
+    <item>
+      <title>DSniff</title>
+      <link>https://fxshelll.github.io/posts/dsniff/</link>
+      <pubDate>Wed, 30 Sep 2020 23:59:51 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/dsniff/</guid>
+      <description>DSniff
+O DSniff é um conjunto de ferramentas para auditoria de redes, que também poderá ser útil para aplicações forenses. Algumas das principais ferramentas dessa suíte são:
+DSniff: sniffer de senhas que suporta os protocolos FTP, Telnet, SMTP, HTTP e POP, dentre muitos outros.
+Filesnarf: ferramenta para extração de arquivos trafegados pelo protocolo NFS.
+Mailsnarf: ferramenta para extração de e-mails trafegados pelos protocolos SMTP e POP.
+DNSspoof: ferramenta para envio de respostas falsas a requisições DNS, auxiliando em ataques MITM.</description>
+      <content:encoded><![CDATA[DSniff
+O DSniff é um conjunto de ferramentas para auditoria de redes, que também poderá ser útil para aplicações forenses. Algumas das principais ferramentas dessa suíte são:
+DSniff: sniffer de senhas que suporta os protocolos FTP, Telnet, SMTP, HTTP e POP, dentre muitos outros.
+Filesnarf: ferramenta para extração de arquivos trafegados pelo protocolo NFS.
+Mailsnarf: ferramenta para extração de e-mails trafegados pelos protocolos SMTP e POP.
+DNSspoof: ferramenta para envio de respostas falsas a requisições DNS, auxiliando em ataques MITM.
+SSHmitm: ferramenta para execução de ataques MITM em conexões SSH (versão 1, exclusivamente), permitindo a captura de senhas e sequestro da sessão.
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Tcpdump</title>
+      <link>https://fxshelll.github.io/posts/tcpdump/</link>
+      <pubDate>Wed, 30 Sep 2020 23:58:47 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/tcpdump/</guid>
+      <description>TCPDump
+O TCPDump funciona em linha de comando, para captura e análise de pacotes. Já vem instalado por padrão em diversas distribuições Linux, foi também portado para o Windows com o nome de Windump. O TCPDump provê uma interface de usuário para a interação com a LibPcap, biblioteca amplamente utilizada por sniffers open source, que atua diretamente no driver da placa de rede para possibilitar a captura de pacotes.
+# tcpdump</description>
+      <content:encoded><![CDATA[TCPDump
+O TCPDump funciona em linha de comando, para captura e análise de pacotes. Já vem instalado por padrão em diversas distribuições Linux, foi também portado para o Windows com o nome de Windump. O TCPDump provê uma interface de usuário para a interação com a LibPcap, biblioteca amplamente utilizada por sniffers open source, que atua diretamente no driver da placa de rede para possibilitar a captura de pacotes.
+# tcpdump
+Rodando o comando diretamente como root, ele vai começar a filtrar todos os pacotes. Incluindo todas as interfaces.
+Para fazer uma busca especifica por uma interface, wireless por exemplo, basta setar na frente do tcpdump o nome da mesma.
+# tcpdump -v -i wlp3s01
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Ferramentas De Quebra De Senhas</title>
+      <link>https://fxshelll.github.io/posts/ferramentas-de-quebra-de-senhas/</link>
+      <pubDate>Wed, 30 Sep 2020 23:58:15 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/ferramentas-de-quebra-de-senhas/</guid>
+      <description>Ferramentas de Quebra de Senhas
+Hydra O Hydra é uma ferramenta famosa que realiza ataque de dicionário a serviços. Seu uso é, basicamente, assim:
+hydra -l &amp;lt;login&amp;gt; -p &amp;lt;senha&amp;gt; &amp;lt;IP&amp;gt; &amp;lt;serviço&amp;gt; -t &amp;lt;tasks&amp;gt; Abaixo, um exemplo de uma tentativa única (-t 1) com o usuário root (-l root) e a senha 12345 (-p 12345) no endereço 10.0.2.2 no serviço ssh:
+hydra -l root -p 12345 10.0.2.2 ssh -t 1 Podemos passar um dicionário de logins e senhas com o parâmetro -L e -P:</description>
+      <content:encoded><![CDATA[Ferramentas de Quebra de Senhas
+Hydra O Hydra é uma ferramenta famosa que realiza ataque de dicionário a serviços. Seu uso é, basicamente, assim:
+hydra -l &amp;lt;login&amp;gt; -p &amp;lt;senha&amp;gt; &amp;lt;IP&amp;gt; &amp;lt;serviço&amp;gt; -t &amp;lt;tasks&amp;gt; Abaixo, um exemplo de uma tentativa única (-t 1) com o usuário root (-l root) e a senha 12345 (-p 12345) no endereço 10.0.2.2 no serviço ssh:
+hydra -l root -p 12345 10.0.2.2 ssh -t 1 Podemos passar um dicionário de logins e senhas com o parâmetro -L e -P:
+hydra -L &amp;lt;arquivo_login&amp;gt; -P &amp;lt;arquivo_senha&amp;gt; &amp;lt;IP&amp;gt; &amp;lt;serviço&amp;gt; hydra -L login.txt -P senha.txt 10.0.2.2 ssh -t 4 O Hydra também possui uma interface gráfica que pode ser chamada com o comando:
+Medusa Assim como o Hydra, o Medusa realiza ataque de dicionário a serviços. Seu uso é basicamente:
+Para listar os módulos
+medusa -q | more
+Comando:
+medusa -h -u -p -M medusa -h 10.10.100.25 -u admin -p 1234 -M ftp
+Lista de IP, usuários e senhas
+medusa -H -U -P -M medusa -H hosts.txt -U users.txt -P pass.txt -M smbnt
+John the Ripper O John the Ripper (o nome da ferramenta faz alusão a um famoso psicopata do século 19, Jack, o Estripador) é uma das ferramentas mais usadas em pentest, sendo ele um utilitário que faz quebra de senhas de três modos:
+WordList → Ele tenta por uma Wordlist, testando as combinaçõesde senha/usuário. Single Crack → Ele tenta quebrar a senha usando as informaçõesde login. Incremental → Sendo o modo mais robusto no John the Ripper,ele tentará cada caractere possível até achar a senha correta. Epor esse motivo, é indicado o uso de parâmetros com o intuito dereduzir o tempo de quebra. No caso do modo incremental, é necessário ter o arquivo contendo o hash da senha do usuário (SAM no Windows ou /etc/shadow no Linux).
+Seu uso é basicamente:
+john &amp;ndash;wordlist=dicionario.txt
+john &amp;ndash;single
+john &amp;ndash;incremental
+john &amp;ndash;wordlist=dicionario.txt &amp;ndash;format=NT
+As senhas quebradas são armazenadas no arquivo:
+&amp;lt;home_do_usuário)&amp;gt;/.john/john.pot
+E assim como o Hydra, o JtR também tem uma Interface Gráfica, que pode ser chamada pelo comando:
+johnny
+OphCrack O OphCrack é uma ferramenta nativa do Kali Linux e específica para uso com Rainbow Tables. Com uma interface gráfica bem intuitiva, o OphCrack é ideal para realizar ataques de Brute Force em sistemas Windows.
+Hashcat Também nativo do Kali, o Hashcat é uma ferramenta específica para realizar ataques do tipo Password Cracking. Uma das features mais interessantes dela é a possibilidade de se utilizar o processador da placa de vídeo para dar mais performance ao ataque.
+Seu uso é basicamente:
+hashcat -m -a -o &amp;lt;arquivo de saída&amp;gt; &amp;lt;dicionário&amp;gt;
+Exemplo:
+hashcat -m 1800 -a 0 -o cracked.txt /etc/shadow /usr/share
+/usr/share/wordlists/rockyou.txt
+Caso os drivers da placa de vídeo não estejam instalados, é necessário utilizar a opção &amp;ndash;force, desta forma:
+hashcat -m 1800 -a 0 -o cracked.txt /etc/shadow /usr/share /usr/share/wordlists/rockyou.txt &amp;ndash;force
+Metasploit Framework O Metasploit (MSF) é um framework criado por H.D.Moore, que serve para elaboração e execução de um repositório de exploits.
+Apesar de não ser esse o objetivo da ferramenta, o MSF possui módulos de ataque Força Bruta para diversas aplicações, como, por exemplo, o SSH, que pode ser executado por meio da sequência de comandos abaixo:
+service postgresql start msfconsole use &amp;lt;auxiliar&amp;gt; auxiliary/scanner/ssh/ssh_login auxiliary/scanner/ftp/ftp_login auxiliary/scanner/smb/smb_login auxiliary/scanner/telnet/telnet_login show options set &amp;lt;parametros&amp;gt; run ]]></content:encoded>
     </item>
     <item>
       <title>Steghide</title>

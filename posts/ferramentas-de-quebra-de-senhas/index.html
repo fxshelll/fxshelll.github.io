@@ -18,14 +18,15 @@
     
     <meta name="generator" content="Hugo 0.123.7">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> | FXShell - DevOps &amp; Sec</title>
-    <meta name="description" content="Site pessoal com writeups de hacking, segurança e DevOps">
+    <title>Ferramentas De Quebra De Senhas | FXShell - DevOps &amp; Sec</title>
+    <meta name="description" content="Ferramentas de Quebra de Senhas
+Hydra O Hydra é uma ferramenta famosa que realiza ataque de dicionário a serviços. Seu uso é, basicamente, assim:
+hydra -l &lt;login&gt; -p &lt;senha&gt; &lt;IP&gt; &lt;serviço&gt; -t &lt;tasks&gt; Abaixo, um exemplo de uma tentativa única (-t 1) com o usuário root (-l root) e a senha 12345 (-p 12345) no endereço 10.0.2.2 no serviço ssh:
+hydra -l root -p 12345 10.0.2.2 ssh -t 1 Podemos passar um dicionário de logins e senhas com o parâmetro -L e -P:">
     <meta name="keywords" content="">
     
     
     
-    
-      <meta name="robots" content="noindex">
     
     
 
@@ -48,9 +49,7 @@
 
     
     
-      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="FXShell - DevOps &amp; Sec">
-    
-    <link rel="canonical" href="https://fxshelll.github.io/posts/">
+    <link rel="canonical" href="https://fxshelll.github.io/posts/ferramentas-de-quebra-de-senhas/">
     
     
     
@@ -126,6 +125,42 @@ fetchInject(["/js/lazysizes.min.js"]);
 
     
     
+      <script>fetchInject(["/css/syntax.css"])</script>
+
+      
+      <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+        });
+        MathJax.Hub.Queue(function() {
+          
+          
+          
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i = 0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+        });
+
+        MathJax.Hub.Config({
+        
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+      <noscript>
+        <link href=/css/syntax.css rel="stylesheet">
+      </noscript>
+    
   </head>
   
   
@@ -150,141 +185,82 @@ fetchInject(["/js/lazysizes.min.js"]);
 </header>
     <main>
   <header>
-    <h1></h1>
+    <h1>Ferramentas De Quebra De Senhas</h1>
   </header>
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/wordlist/">Wordlist com Palavras do Site</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+  <p>Ferramentas de Quebra de Senhas</p>
+<h2 id="hydra">Hydra</h2>
+<p>O Hydra é uma ferramenta famosa que realiza ataque de dicionário a serviços. Seu uso é, basicamente, assim:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hydra -l &lt;login&gt; -p &lt;senha&gt; &lt;IP&gt; &lt;serviço&gt; -t &lt;tasks&gt;
+</span></span></code></pre></div><p>Abaixo, um exemplo de uma tentativa única (-t 1) com o usuário root (-l root) e a senha 12345 (-p 12345) no endereço 10.0.2.2 no serviço ssh:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hydra -l root -p <span class="m">12345</span> 10.0.2.2 ssh -t <span class="m">1</span> 
+</span></span></code></pre></div><p>Podemos passar um dicionário de logins e senhas com o parâmetro -L e -P:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hydra -L &lt;arquivo_login&gt; -P &lt;arquivo_senha&gt; &lt;IP&gt; &lt;serviço&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hydra -L login.txt -P senha.txt 10.0.2.2 ssh -t <span class="m">4</span>
+</span></span></code></pre></div><p>O Hydra também possui uma interface gráfica que pode ser chamada com o comando:</p>
+<pre tabindex="0"><code class="language-xhydra" data-lang="xhydra"></code></pre><h2 id="medusa">Medusa</h2>
+<p>Assim como o Hydra, o Medusa realiza ataque de dicionário a serviços. Seu uso é basicamente:</p>
+<p>Para listar os módulos</p>
+<p>medusa -q | more</p>
+<p>Comando:</p>
+<p>medusa -h <ip> -u <usuario> -p <senha> -M <modulo></p>
+<p>medusa -h 10.10.100.25 -u admin -p 1234 -M ftp</p>
+<p>Lista de IP, usuários e senhas</p>
+<p>medusa -H <ips> -U <usuarios> -P <senhas> -M <modulo></p>
+<p>medusa -H hosts.txt -U users.txt -P pass.txt -M smbnt</p>
+<h2 id="john-the-ripper">John the Ripper</h2>
+<p>O John the Ripper (o nome da ferramenta faz alusão a um famoso psicopata do século 19, Jack, o Estripador) é uma das ferramentas mais usadas em pentest, sendo ele um utilitário que faz quebra de senhas de três modos:</p>
+<pre><code>WordList → Ele tenta por uma Wordlist, testando as combinaçõesde senha/usuário.
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/dirsearch/">Dirsearch</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+Single Crack → Ele tenta quebrar a senha usando as informaçõesde login.
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/sh_msfvenom/">sh_MSFvenom</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+Incremental → Sendo o modo mais robusto no John the Ripper,ele tentará cada caractere possível até achar a senha correta. Epor esse motivo, é indicado o uso de parâmetros com o intuito dereduzir o tempo de quebra.
+</code></pre>
+<p>No caso do modo incremental, é necessário ter o arquivo contendo o hash da senha do usuário (SAM no Windows ou /etc/shadow no Linux).</p>
+<p>Seu uso é basicamente:</p>
+<p>john <arquivo> &ndash;wordlist=dicionario.txt</p>
+<p>john <arquivo> &ndash;single</p>
+<p>john <arquivo> &ndash;incremental</p>
+<p>john <arquivo> &ndash;wordlist=dicionario.txt &ndash;format=NT</p>
+<p>As senhas quebradas são armazenadas no arquivo:</p>
+<p>&lt;home_do_usuário)&gt;/.john/john.pot</p>
+<p>E assim como o Hydra, o JtR também tem uma Interface Gráfica, que pode ser chamada pelo comando:</p>
+<p>johnny</p>
+<h2 id="ophcrack">OphCrack</h2>
+<p>O OphCrack é uma ferramenta nativa do Kali Linux e específica para uso com Rainbow Tables. Com uma interface gráfica bem intuitiva, o OphCrack é ideal para realizar ataques de Brute Force em sistemas Windows.</p>
+<h2 id="hashcat">Hashcat</h2>
+<p>Também nativo do Kali, o Hashcat é uma ferramenta específica para realizar ataques do tipo Password Cracking. Uma das features mais interessantes dela é a possibilidade de se utilizar o processador da placa de vídeo para dar mais performance ao ataque.</p>
+<p>Seu uso é basicamente:</p>
+<p>hashcat -m <tipo do hash> -a <tipo do ataque> -o &lt;arquivo de saída&gt; <arquivo de hash> &lt;dicionário&gt;</p>
+<p>Exemplo:</p>
+<p>hashcat -m 1800 -a 0 -o cracked.txt /etc/shadow /usr/share</p>
+<p>/usr/share/wordlists/rockyou.txt</p>
+<p>Caso os drivers da placa de vídeo não estejam instalados, é necessário utilizar a opção &ndash;force, desta forma:</p>
+<p>hashcat -m 1800 -a 0 -o cracked.txt /etc/shadow /usr/share /usr/share/wordlists/rockyou.txt &ndash;force</p>
+<h2 id="metasploit-framework">Metasploit Framework</h2>
+<p>O Metasploit (MSF) é um framework criado por H.D.Moore, que serve para elaboração e execução de um repositório de exploits.</p>
+<p>Apesar de não ser esse o objetivo da ferramenta, o MSF possui módulos de ataque Força Bruta para diversas aplicações, como, por exemplo, o SSH, que pode ser executado por meio da sequência de comandos abaixo:</p>
+<pre tabindex="0"><code>service postgresql start
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/the_silver_searcher/">The_silver_searcher</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+msfconsole
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/netcat/">Netcat</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+use &lt;auxiliar&gt;
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/dicasdereverseshell/">Reverse Shell</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+auxiliary/scanner/ssh/ssh_login
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/nikto/">Nikto</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+auxiliary/scanner/ftp/ftp_login
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/searchexploit/">Searchexploit</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+auxiliary/scanner/smb/smb_login
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/toolsforpentest/">NMAP</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+auxiliary/scanner/telnet/telnet_login
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/bpytop/">bpytop</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+show options
 
-  
+set &lt;parametros&gt;
+
+run
+</code></pre>
 </main>
     <footer>
-  <nav><p>
-  
-    <a href="/posts/">&laquo; Previous</a> |
-  
-  
-    <span>Page 2 of 2</span>
-  
-  
-</p></nav>
-
   
 
 </footer>

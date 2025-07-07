@@ -67,6 +67,21 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://fxshelll.github.io/posts/dsniff/</loc>
+    <lastmod>2020-09-30T20:59:51-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/posts/tcpdump/</loc>
+    <lastmod>2020-09-30T20:58:47-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/posts/ferramentas-de-quebra-de-senhas/</loc>
+    <lastmod>2020-09-30T20:58:15-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://fxshelll.github.io/posts/steghide/</loc>
     <lastmod>2020-08-19T23:23:34-03:00</lastmod>
     <changefreq>monthly</changefreq>
