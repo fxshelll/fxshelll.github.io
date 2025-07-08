@@ -18,14 +18,12 @@
     
     <meta name="generator" content="Hugo 0.123.7">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> | FXShell - DevOps &amp; Sec</title>
-    <meta name="description" content="Site pessoal com writeups de hacking, segurança e DevOps">
+    <title>Imersão DevOps - Google Cloud | FXShell - DevOps &amp; Sec</title>
+    <meta name="description" content="Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino. Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino. Pré-requisitos Python 3.10 ou superior instalado Git Docker Passos para subir o projeto Crie um ambiente virtual: $ python3 -m venv ./venv Ative: $ source venv/bin/activate Instale as dependências: $ pip install -r requirements.">
     <meta name="keywords" content="">
     
     
     
-    
-      <meta name="robots" content="noindex">
     
     
 
@@ -48,9 +46,7 @@
 
     
     
-      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="FXShell - DevOps &amp; Sec">
-    
-    <link rel="canonical" href="https://fxshelll.github.io/posts/">
+    <link rel="canonical" href="https://fxshelll.github.io/posts/imersaodevops/">
     
     
     
@@ -126,6 +122,42 @@ fetchInject(["/js/lazysizes.min.js"]);
 
     
     
+      <script>fetchInject(["/css/syntax.css"])</script>
+
+      
+      <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+        });
+        MathJax.Hub.Queue(function() {
+          
+          
+          
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i = 0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+        });
+
+        MathJax.Hub.Config({
+        
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+      <noscript>
+        <link href=/css/syntax.css rel="stylesheet">
+      </noscript>
+    
   </head>
   
   
@@ -150,141 +182,75 @@ fetchInject(["/js/lazysizes.min.js"]);
 </header>
     <main>
   <header>
-    <h1></h1>
+    <h1>Imersão DevOps - Google Cloud</h1>
   </header>
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/ansible/">Ansible</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+  <h2 id="este-projeto-é-uma-api-desenvolvida-com-fastapi-para-gerenciar-alunos-cursos-e-matrículas-em-uma-instituição-de-ensino">Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino.</h2>
+<pre tabindex="0"><code>Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino.
+</code></pre><h2 id="pré-requisitos">Pré-requisitos</h2>
+<pre tabindex="0"><code>
+    Python 3.10 ou superior instalado
+    Git
+    Docker
+</code></pre><h2 id="passos-para-subir-o-projeto">Passos para subir o projeto</h2>
+<pre tabindex="0"><code>Crie um ambiente virtual: $ python3 -m venv ./venv
+Ative: $ source venv/bin/activate
+</code></pre><h2 id="instale-as-dependências">Instale as dependências:</h2>
+<pre tabindex="0"><code>$ pip install -r requirements.txt
+</code></pre><h2 id="execute-a-aplicação">Execute a aplicação:</h2>
+<pre tabindex="0"><code>uvicorn app:app --reload
+</code></pre><h2 id="acesse-a-documentação-interativa">Acesse a documentação interativa:</h2>
+<p>Abra o navegador e acesse:
+http://127.0.0.1:8000/docs</p>
+<p>Aqui você pode testar todos os endpoints da API de forma interativa.</p>
+<h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
+<pre><code>app.py: Arquivo principal da aplicação FastAPI.
+models.py: Modelos do banco de dados (SQLAlchemy).
+schemas.py: Schemas de validação (Pydantic).
+database.py: Configuração do banco de dados SQLite.
+routers/: Diretório com os arquivos de rotas (alunos, cursos, matrículas).
+requirements.txt: Lista de dependências do projeto.
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/redhat-rh124/">Redhat RH124</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/proxychain/">Proxychain</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+O banco de dados SQLite será criado automaticamente como escola.db na primeira execução.
+Para reiniciar o banco, basta apagar o arquivo escola.db (isso apagará todos os dados).
+</code></pre>
+<h2 id="gerando-dockerfile">Gerando dockerFile</h2>
+<p>Gerei o arquivo com a ajuda do Gemini Code</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># Usa uma imagem oficial do Python como imagem base</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># A versão python:3.10-slim é uma ótima escolha por ter um tamanho reduzido</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">FROM python:3.10-slim</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Define variáveis de ambiente</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ENV PYTHONDONTWRITEBYTECODE 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ENV PYTHONUNBUFFERED 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Define o diretório de trabalho dentro do contêiner</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">WORKDIR /app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Copia o arquivo de dependências para o diretório de trabalho</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">COPY requirements.txt .</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Instala as dependências</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN pip install --no-cache-dir --upgrade pip -r requirements.txt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Copia o restante do código da aplicação para o diretório de trabalho</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">COPY . .</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Expõe a porta 8000 para permitir a comunicação com a aplicação</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">EXPOSE 8000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Define o comando para executar a aplicação</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Usa 0.0.0.0 para torná-la acessível de fora do contêiner</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">CMD [&#34;uvicorn&#34;, &#34;app:app&#34;, &#34;--host&#34;, &#34;0.0.0.0&#34;, &#34;--port&#34;, &#34;8000&#34;, &#34;--reload&#34;]</span><span class="w">
+</span></span></span></code></pre></div><h2 id="fazendo-buid-da-imagem">Fazendo Buid da imagem</h2>
+<p><img src="/DockerBuild.png" alt="HTB"></p>
+<h2 id="push-para-o-docker-hub">Push para o Docker Hub</h2>
+<p><img src="/dockerpush.png" alt="HTB"></p>
+<h2 id="aplicação-no-ar-com-localhost">Aplicação no ar com localhost</h2>
+<p><img src="/localhostDocker.png" alt="HTB"></p>
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/docker/">Docker</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/dsniff/">DSniff</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/tcpdump/">Tcpdump</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/ferramentas-de-quebra-de-senhas/">Ferramentas De Quebra De Senhas</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/steghide/">Steghide</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/wfuzz/">Wfuzz</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/gobuster/">GoBuster</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
 </main>
     <footer>
-  <nav><p>
-  
-  
-    <span>Page 1 of 3</span>
-  
-  
-    | <a href="/posts/page/2/">Next &raquo;</a>
-  
-</p></nav>
-
   
 
 </footer>
