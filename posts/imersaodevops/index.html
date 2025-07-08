@@ -19,7 +19,7 @@
     <meta name="generator" content="Hugo 0.123.7">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imersão DevOps - Google Cloud | FXShell - DevOps &amp; Sec</title>
-    <meta name="description" content="Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino. Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino. Pré-requisitos Python 3.10 ou superior instalado Git Docker Passos para subir o projeto Crie um ambiente virtual: $ python3 -m venv ./venv Ative: $ source venv/bin/activate Instale as dependências: $ pip install -r requirements.">
+    <meta name="description" content="FastAPI Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino. Pré-requisitos Python 3.10 ou superior instalado Git Docker Passos para subir o projeto Crie um ambiente virtual: $ python3 -m venv ./venv Ative: $ source venv/bin/activate Instale as dependências: $ pip install -r requirements.txt Execute a aplicação: uvicorn app:app --reload Acesse a documentação interativa: Abra o navegador e acesse: http://127.0.0.1:8000/docs">
     <meta name="keywords" content="">
     
     
@@ -184,13 +184,12 @@ fetchInject(["/js/lazysizes.min.js"]);
   <header>
     <h1>Imersão DevOps - Google Cloud</h1>
   </header>
-  <h2 id="este-projeto-é-uma-api-desenvolvida-com-fastapi-para-gerenciar-alunos-cursos-e-matrículas-em-uma-instituição-de-ensino">Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino.</h2>
+  <h2 id="fastapi">FastAPI</h2>
 <pre tabindex="0"><code>Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino.
 </code></pre><h2 id="pré-requisitos">Pré-requisitos</h2>
-<pre tabindex="0"><code>
-    Python 3.10 ou superior instalado
-    Git
-    Docker
+<pre tabindex="0"><code>Python 3.10 ou superior instalado
+Git
+Docker
 </code></pre><h2 id="passos-para-subir-o-projeto">Passos para subir o projeto</h2>
 <pre tabindex="0"><code>Crie um ambiente virtual: $ python3 -m venv ./venv
 Ative: $ source venv/bin/activate
@@ -203,17 +202,14 @@ Ative: $ source venv/bin/activate
 http://127.0.0.1:8000/docs</p>
 <p>Aqui você pode testar todos os endpoints da API de forma interativa.</p>
 <h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
-<pre><code>app.py: Arquivo principal da aplicação FastAPI.
+<p>app.py: Arquivo principal da aplicação FastAPI.
 models.py: Modelos do banco de dados (SQLAlchemy).
 schemas.py: Schemas de validação (Pydantic).
 database.py: Configuração do banco de dados SQLite.
 routers/: Diretório com os arquivos de rotas (alunos, cursos, matrículas).
 requirements.txt: Lista de dependências do projeto.
-
-
 O banco de dados SQLite será criado automaticamente como escola.db na primeira execução.
-Para reiniciar o banco, basta apagar o arquivo escola.db (isso apagará todos os dados).
-</code></pre>
+Para reiniciar o banco, basta apagar o arquivo escola.db (isso apagará todos os dados).</p>
 <h2 id="gerando-dockerfile">Gerando dockerFile</h2>
 <p>Gerei o arquivo com a ajuda do Gemini Code</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># Usa uma imagem oficial do Python como imagem base</span><span class="w">
