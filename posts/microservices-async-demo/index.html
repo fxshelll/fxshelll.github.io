@@ -18,14 +18,13 @@
     
     <meta name="generator" content="Hugo 0.123.7">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> | FXShell - DevOps &amp; Sec</title>
-    <meta name="description" content="Site pessoal com writeups de hacking, segurança e DevOps">
+    <title>Microservices Async Demo | FXShell - DevOps &amp; Sec</title>
+    <meta name="description" content="Microservices Async Demo Este projeto demonstra uma arquitetura de microsserviços com comunicação assíncrona utilizando RabbitMQ. O objetivo é aplicar os conceitos de desacoplamento, escalabilidade e mensageria aprendidos na disciplina.
+Tecnologias utilizadas Node.js com Express RabbitMQ (mensageria) Docker e Docker Compose cURL para testes de API Estrutura do Projeto microservices-async-demo/ │ ├── docker-compose.yml ├── README.md │ ├── service-order/ │ ├── Dockerfile │ ├── package.json │ ├── wait-for-rabbit.sh │ └── src/ │ └── index.">
     <meta name="keywords" content="">
     
     
     
-    
-      <meta name="robots" content="noindex">
     
     
 
@@ -48,9 +47,7 @@
 
     
     
-      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="FXShell - DevOps &amp; Sec">
-    
-    <link rel="canonical" href="https://fxshelll.github.io/posts/">
+    <link rel="canonical" href="https://fxshelll.github.io/posts/microservices-async-demo/">
     
     
     
@@ -126,6 +123,42 @@ fetchInject(["/js/lazysizes.min.js"]);
 
     
     
+      <script>fetchInject(["/css/syntax.css"])</script>
+
+      
+      <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+        });
+        MathJax.Hub.Queue(function() {
+          
+          
+          
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i = 0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+        });
+
+        MathJax.Hub.Config({
+        
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+      <noscript>
+        <link href=/css/syntax.css rel="stylesheet">
+      </noscript>
+    
   </head>
   
   
@@ -150,69 +183,91 @@ fetchInject(["/js/lazysizes.min.js"]);
 </header>
     <main>
   <header>
-    <h1></h1>
+    <h1>Microservices Async Demo</h1>
   </header>
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/toolsforpentest/">NMAP</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+  <h1 id="microservices-async-demo">Microservices Async Demo</h1>
+<p>Este projeto demonstra uma arquitetura de microsserviços com comunicação assíncrona utilizando RabbitMQ. O objetivo é aplicar os conceitos de desacoplamento, escalabilidade e mensageria aprendidos na disciplina.</p>
+<h2 id="tecnologias-utilizadas">Tecnologias utilizadas</h2>
+<ul>
+<li>Node.js com Express</li>
+<li>RabbitMQ (mensageria)</li>
+<li>Docker e Docker Compose</li>
+<li>cURL para testes de API</li>
+</ul>
+<h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">microservices-async-demo/
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── docker-compose.yml
+</span></span><span class="line"><span class="cl">├── README.md
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── service-order/
+</span></span><span class="line"><span class="cl">│   ├── Dockerfile
+</span></span><span class="line"><span class="cl">│   ├── package.json
+</span></span><span class="line"><span class="cl">│   ├── wait-for-rabbit.sh
+</span></span><span class="line"><span class="cl">│   └── src/
+</span></span><span class="line"><span class="cl">│       └── index.js
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── service-payment/
+</span></span><span class="line"><span class="cl">│   ├── Dockerfile
+</span></span><span class="line"><span class="cl">│   ├── package.json
+</span></span><span class="line"><span class="cl">│   ├── wait-for-rabbit.sh
+</span></span><span class="line"><span class="cl">│   └── src/
+</span></span><span class="line"><span class="cl">│       └── index.js
+</span></span></code></pre></div><h2 id="microsserviços">Microsserviços</h2>
+<ul>
+<li><strong>ServiceOrder</strong>: responsável por criar e listar pedidos (<code>POST /orders</code>, <code>GET /orders</code>).</li>
+<li><strong>ServicePayment</strong>: responsável por processar pagamentos dos pedidos.</li>
+</ul>
+<h2 id="fluxo-assíncrono">Fluxo Assíncrono</h2>
+<ol>
+<li>O cliente cria um pedido via ServiceOrder.</li>
+<li>O ServiceOrder publica uma mensagem no RabbitMQ.</li>
+<li>O ServicePayment consome a mensagem e processa o pagamento.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sequenceDiagram
+</span></span><span class="line"><span class="cl">    participant Cliente
+</span></span><span class="line"><span class="cl">    participant ServiceOrder
+</span></span><span class="line"><span class="cl">    participant RabbitMQ
+</span></span><span class="line"><span class="cl">    participant ServicePayment
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    Cliente-&gt;&gt;ServiceOrder: POST /orders
+</span></span><span class="line"><span class="cl">    ServiceOrder-&gt;&gt;RabbitMQ: Publica pedido na fila
+</span></span><span class="line"><span class="cl">    RabbitMQ-&gt;&gt;ServicePayment: Entrega mensagem
+</span></span><span class="line"><span class="cl">    ServicePayment-&gt;&gt;ServicePayment: Processa pagamento
+</span></span></code></pre></div><h2 id="como-executar">Como Executar</h2>
+<ol>
+<li>Clonar o repositório</li>
+</ol>
+<pre tabindex="0"><code>git clone https://github.com/fxshelll/microservices-async-demo.git
+</code></pre><ol start="2">
+<li>Subir os serviços</li>
+</ol>
+<pre tabindex="0"><code>docker compose up --build
+</code></pre><ol start="3">
+<li>
+<p>Acessar o RabbitMQ</p>
+<p>Painel: http://localhost:15672</p>
+<p>Usuário: guest</p>
+<p>Senha: guest</p>
+</li>
+</ol>
+<h2 id="testes-com-curl">Testes com cURL</h2>
+<pre tabindex="0"><code>curl -X POST http://localhost:3001/orders \
+     -H &#34;Content-Type: application/json&#34; \
+     -d &#39;{&#34;id&#34;: 1, &#34;item&#34;: &#34;Curso Microsserviços&#34;, &#34;valor&#34;: 149.90}&#39;
+</code></pre><p>Listar pedidos</p>
+<pre tabindex="0"><code>curl http://localhost:3001/orders
+</code></pre><p>Listar pagamentos</p>
+<pre tabindex="0"><code>curl http://localhost:3002/payments
+</code></pre><p>Considerações</p>
+<pre><code>Os serviços aguardam o RabbitMQ estar pronto antes de iniciar.
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/bpytop/">bpytop</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+A fila utilizada é chamada orders.
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/microservices-async-demo/">Microservices Async Demo</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+Os pagamentos são simulados com delay e registrados com timestamp.</code></pre>
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/imersaodevops/">Imersão DevOps - Google Cloud</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
 </main>
     <footer>
-  <nav><p>
-  
-    <a href="/posts/page/2/">&laquo; Previous</a> |
-  
-  
-    <span>Page 3 of 3</span>
-  
-  
-</p></nav>
-
   
 
 </footer>

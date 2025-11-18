@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.123.7</generator>
     <language>pt-br</language>
-    <lastBuildDate>Tue, 18 Nov 2025 15:44:34 UT</lastBuildDate>
+    <lastBuildDate>Tue, 18 Nov 2025 18:42:13 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Monolito, Arquitetura em Camadas e Microsserviços</title>
@@ -2776,6 +2776,24 @@ sudo apt install bpytop </description>
       <content:encoded><![CDATA[
 Monitor de recursos que mostra uso e estatísticas de processador, memória, discos, rede e processos. https://github.com/aristocratos/bpytop
 sudo apt install bpytop ]]></content:encoded>
+    </item>
+    <item>
+      <title>Microservices Async Demo</title>
+      <link>https://fxshelll.github.io/posts/microservices-async-demo/</link>
+      <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/microservices-async-demo/</guid>
+      <description>Microservices Async Demo Este projeto demonstra uma arquitetura de microsserviços com comunicação assíncrona utilizando RabbitMQ. O objetivo é aplicar os conceitos de desacoplamento, escalabilidade e mensageria aprendidos na disciplina.
+Tecnologias utilizadas Node.js com Express RabbitMQ (mensageria) Docker e Docker Compose cURL para testes de API Estrutura do Projeto microservices-async-demo/ │ ├── docker-compose.yml ├── README.md │ ├── service-order/ │ ├── Dockerfile │ ├── package.json │ ├── wait-for-rabbit.sh │ └── src/ │ └── index.</description>
+      <content:encoded><![CDATA[Microservices Async Demo Este projeto demonstra uma arquitetura de microsserviços com comunicação assíncrona utilizando RabbitMQ. O objetivo é aplicar os conceitos de desacoplamento, escalabilidade e mensageria aprendidos na disciplina.
+Tecnologias utilizadas Node.js com Express RabbitMQ (mensageria) Docker e Docker Compose cURL para testes de API Estrutura do Projeto microservices-async-demo/ │ ├── docker-compose.yml ├── README.md │ ├── service-order/ │ ├── Dockerfile │ ├── package.json │ ├── wait-for-rabbit.sh │ └── src/ │ └── index.js │ ├── service-payment/ │ ├── Dockerfile │ ├── package.json │ ├── wait-for-rabbit.sh │ └── src/ │ └── index.js Microsserviços ServiceOrder: responsável por criar e listar pedidos (POST /orders, GET /orders). ServicePayment: responsável por processar pagamentos dos pedidos. Fluxo Assíncrono O cliente cria um pedido via ServiceOrder. O ServiceOrder publica uma mensagem no RabbitMQ. O ServicePayment consome a mensagem e processa o pagamento. sequenceDiagram participant Cliente participant ServiceOrder participant RabbitMQ participant ServicePayment Cliente-&amp;gt;&amp;gt;ServiceOrder: POST /orders ServiceOrder-&amp;gt;&amp;gt;RabbitMQ: Publica pedido na fila RabbitMQ-&amp;gt;&amp;gt;ServicePayment: Entrega mensagem ServicePayment-&amp;gt;&amp;gt;ServicePayment: Processa pagamento Como Executar Clonar o repositório git clone https://github.com/fxshelll/microservices-async-demo.git Subir os serviços docker compose up --build Acessar o RabbitMQ
+Painel: http://localhost:15672
+Usuário: guest
+Senha: guest
+Testes com cURL curl -X POST http://localhost:3001/orders \ -H &amp;#34;Content-Type: application/json&amp;#34; \ -d &amp;#39;{&amp;#34;id&amp;#34;: 1, &amp;#34;item&amp;#34;: &amp;#34;Curso Microsserviços&amp;#34;, &amp;#34;valor&amp;#34;: 149.90}&amp;#39; Listar pedidos
+curl http://localhost:3001/orders Listar pagamentos
+curl http://localhost:3002/payments Considerações
+Os serviços aguardam o RabbitMQ estar pronto antes de iniciar. A fila utilizada é chamada orders. Os pagamentos são simulados com delay e registrados com timestamp. ]]></content:encoded>
     </item>
     <item>
       <title>Imersão DevOps - Google Cloud</title>
