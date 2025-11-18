@@ -18,14 +18,14 @@
     
     <meta name="generator" content="Hugo 0.123.7">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> | FXShell - DevOps &amp; Sec</title>
-    <meta name="description" content="Site pessoal com writeups de hacking, segurança e DevOps">
+    <title>API de usuários e autenticação | FXShell - DevOps &amp; Sec</title>
+    <meta name="description" content="API de Usuários e Autenticação API REST desenvolvida com Node.js e MongoDB para gerenciamento de usuários e autenticação via JWT.
+Ideal para aplicações que exigem controle de acesso, login seguro e rotas protegidas.
+Tecnologias Utilizadas Node.js &#43; Express — Framework para construção da API MongoDB &#43; Mongoose — Banco de dados NoSQL JWT (JSON Web Token) — Autenticação segura bcrypt — Criptografia de senhas dotenv — Gerenciamento de variáveis de ambiente Swagger — Documentação dos endpoints Docker &#43; Docker Compose — Containerização da aplicação Jest &#43; Supertest — Testes automatizados Estrutura do Projeto api-users-auth/ ├── 📂 src/ # Código-fonte principal │ ├── 📂 config/ # Configuração da conexão com MongoDB │ ├── 📂 controllers/ # Funções que recebem as requisições HTTP │ ├── 📂 middleware/ # Middlewares de autenticação e autorização │ ├── 📂 models/ # Modelos de dados (ex: User) │ ├── 📂 routes/ # Definição das rotas da API │ ├── 📂 services/ # Regras de negócio (ex: login, cadastro) │ └── 📂 utils/ # Funções auxiliares (ex: hash de senha, JWT) │ ├── 📂 tests/ # Testes automatizados com Jest e Supertest ├── 📂 docs/ # Documentação adicional (ex: diagramas, notas) │ ├── 📄 .">
     <meta name="keywords" content="">
     
     
     
-    
-      <meta name="robots" content="noindex">
     
     
 
@@ -48,9 +48,7 @@
 
     
     
-      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="FXShell - DevOps &amp; Sec">
-    
-    <link rel="canonical" href="https://fxshelll.github.io/posts/">
+    <link rel="canonical" href="https://fxshelll.github.io/posts/api-de-usu%C3%A1rios-e-autentica%C3%A7%C3%A3o/">
     
     
     
@@ -126,6 +124,42 @@ fetchInject(["/js/lazysizes.min.js"]);
 
     
     
+      <script>fetchInject(["/css/syntax.css"])</script>
+
+      
+      <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+        });
+        MathJax.Hub.Queue(function() {
+          
+          
+          
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i = 0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+        });
+
+        MathJax.Hub.Config({
+        
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+      <noscript>
+        <link href=/css/syntax.css rel="stylesheet">
+      </noscript>
+    
   </head>
   
   
@@ -150,81 +184,69 @@ fetchInject(["/js/lazysizes.min.js"]);
 </header>
     <main>
   <header>
-    <h1></h1>
+    <h1>API de usuários e autenticação</h1>
   </header>
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/toolsforpentest/">NMAP</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+  <h1 id="api-de-usuários-e-autenticação">API de Usuários e Autenticação</h1>
+<p>API REST desenvolvida com Node.js e MongoDB para gerenciamento de usuários e autenticação via JWT.<br>
+Ideal para aplicações que exigem controle de acesso, login seguro e rotas protegidas.</p>
+<hr>
+<h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
+<ul>
+<li><strong>Node.js</strong> + <strong>Express</strong> — Framework para construção da API</li>
+<li><strong>MongoDB</strong> + <strong>Mongoose</strong> — Banco de dados NoSQL</li>
+<li><strong>JWT (JSON Web Token)</strong> — Autenticação segura</li>
+<li><strong>bcrypt</strong> — Criptografia de senhas</li>
+<li><strong>dotenv</strong> — Gerenciamento de variáveis de ambiente</li>
+<li><strong>Swagger</strong> — Documentação dos endpoints</li>
+<li><strong>Docker</strong> + <strong>Docker Compose</strong> — Containerização da aplicação</li>
+<li><strong>Jest</strong> + <strong>Supertest</strong> — Testes automatizados</li>
+</ul>
+<hr>
+<h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">api-users-auth/
+</span></span><span class="line"><span class="cl">├── 📂 src/                     <span class="c1"># Código-fonte principal</span>
+</span></span><span class="line"><span class="cl">│   ├── 📂 config/              <span class="c1"># Configuração da conexão com MongoDB</span>
+</span></span><span class="line"><span class="cl">│   ├── 📂 controllers/         <span class="c1"># Funções que recebem as requisições HTTP</span>
+</span></span><span class="line"><span class="cl">│   ├── 📂 middleware/          <span class="c1"># Middlewares de autenticação e autorização</span>
+</span></span><span class="line"><span class="cl">│   ├── 📂 models/              <span class="c1"># Modelos de dados (ex: User)</span>
+</span></span><span class="line"><span class="cl">│   ├── 📂 routes/              <span class="c1"># Definição das rotas da API</span>
+</span></span><span class="line"><span class="cl">│   ├── 📂 services/            <span class="c1"># Regras de negócio (ex: login, cadastro)</span>
+</span></span><span class="line"><span class="cl">│   └── 📂 utils/               <span class="c1"># Funções auxiliares (ex: hash de senha, JWT)</span>
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── 📂 tests/                   <span class="c1"># Testes automatizados com Jest e Supertest</span>
+</span></span><span class="line"><span class="cl">├── 📂 docs/                    <span class="c1"># Documentação adicional (ex: diagramas, notas)</span>
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── 📄 .env                     <span class="c1"># Variáveis de ambiente (porta, URI, segredo JWT)</span>
+</span></span><span class="line"><span class="cl">├── 📄 .gitignore               <span class="c1"># Arquivos e pastas ignorados pelo Git</span>
+</span></span><span class="line"><span class="cl">├── 📄 Dockerfile               <span class="c1"># Configuração do container da API</span>
+</span></span><span class="line"><span class="cl">├── 📄 docker-compose.yml       <span class="c1"># Orquestração dos containers (API + MongoDB)</span>
+</span></span><span class="line"><span class="cl">├── 📄 README.md                <span class="c1"># Manual do projeto</span>
+</span></span><span class="line"><span class="cl">├── 📄 package.json             <span class="c1"># Configuração do projeto Node.js</span>
+</span></span><span class="line"><span class="cl">└── 📄 swagger.yaml             <span class="c1"># Documentação dos endpoints via Swagger</span>
+</span></span></code></pre></div><h2 id="tecnologias">Tecnologias</h2>
+<p>Node.js, Express, MongoDB (Mongoose), JWT, bcrypt, Swagger, Jest, Docker.</p>
+<h2 id="como-rodar-o-projeto">Como Rodar o Projeto</h2>
+<ul>
+<li>Docker e Docker Compose instalados</li>
+<li>Node.js (opcional, para rodar localmente sem Docker)</li>
+</ul>
+<h2 id="rodando-com-docker">Rodando com Docker</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker compose up --build
+</span></span></code></pre></div><h2 id="acesse">Acesse:</h2>
+<p>API: http://localhost:3000
+Swagger: http://localhost:3000/api-docs</p>
+<h2 id="autenticação">Autenticação</h2>
+<p>A autenticação é feita via JWT. Após login, o token deve ser enviado no header:</p>
+<p>exemplo, registro de usuário:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  api-users-auth git:<span class="o">(</span>master<span class="o">)</span> ✗ curl -X POST http://localhost:3000/auth/register <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -H <span class="s2">&#34;Content-Type: application/json&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -d <span class="s1">&#39;{&#34;name&#34;:&#34;Felipe&#34;,&#34;email&#34;:&#34;felipe@example.com&#34;,&#34;password&#34;:&#34;senha123&#34;}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;user&#34;</span>:<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;Felipe&#34;</span>,<span class="s2">&#34;email&#34;</span>:<span class="s2">&#34;felipe@example.com&#34;</span>,<span class="s2">&#34;role&#34;</span>:<span class="s2">&#34;user&#34;</span>,<span class="s2">&#34;_id&#34;</span>:<span class="s2">&#34;691ccc9035416aa48b4176f6&#34;</span>,<span class="s2">&#34;createdAt&#34;</span>:<span class="s2">&#34;2025-11-18T19:44:16.950Z&#34;</span>,<span class="s2">&#34;updatedAt&#34;</span>:<span class="s2">&#34;2025-11-18T19:44:16.950Z&#34;</span>,<span class="s2">&#34;__v&#34;</span>:0<span class="o">}</span>,<span class="s2">&#34;token&#34;</span>:<span class="s2">&#34;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTFjY2M5MDM1NDE2YWE0OGI0MTc2ZjYiLCJlbWFpbCI6ImZlbGlwZUBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYzNDk1MDU2LCJleHAiOjE3NjM1ODE0NTZ9.ll6c7UcH7zrJRkZpTLOufvZv2UCjug5VZ5sFreJI9tw&#34;</span><span class="o">}</span>%
+</span></span></code></pre></div><p>Ele gera o ID do usuário e o token.</p>
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/api-de-usu%C3%A1rios-e-autentica%C3%A7%C3%A3o/">API de usuários e autenticação</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/bpytop/">bpytop</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/microservices-async-demo/">Microservices Async Demo</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/imersaodevops/">Imersão DevOps - Google Cloud</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
 </main>
     <footer>
-  <nav><p>
-  
-    <a href="/posts/page/2/">&laquo; Previous</a> |
-  
-  
-    <span>Page 3 of 3</span>
-  
-  
-</p></nav>
-
   
 
 </footer>
