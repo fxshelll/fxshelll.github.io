@@ -7,8 +7,16 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.123.7</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 04 Aug 2025 15:37:01 UT</lastBuildDate>
+    <lastBuildDate>Tue, 18 Nov 2025 15:28:08 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://fxshelll.github.io/posts/</link>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
     <item>
       <title></title>
       <link>https://fxshelll.github.io/sobre/</link>
@@ -30,14 +38,6 @@ Abr 2021 – Jan 2025
 Infraestrutura em nuvem com AZURE Kubernetes (EKS), Let&#39;s Encrypt, Jenkins, GitHub Ansible e AWX, Terraform Integrações com Azure DevOps Webservers Linux e Windows Portal R7 — Admin. de Sistemas / Suporte TI
 2017 – 2021
 Ambientes em AWS, suporte a CMS e blogs Monitoramento com Zabbix Atendimento técnico com OTRS 🎓 Formação e Certificações FIAP — Graduação em Defesa Cibernética (2018–2020) FIAP — Pós-Tech em DevOps e Arquitetura Cloud (Em andamento – 2025) RH124 – Red Hat Academy (2021) LinuxTips – Docker (2021) FIAP – Perícia Forense, Ethical Hacking (2020) 🏆 Destaques 🏅 Finalista do Innovation Challenge Itaú-FIAP 2020 🤝 Participação ativa em squads DevSecOps 📄 Baixar Currículo em PDF 📎 Contato LinkedIn GitHub E-mail ]]></content:encoded>
-    </item>
-    <item>
-      <title></title>
-      <link>https://fxshelll.github.io/posts/</link>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title></title>
