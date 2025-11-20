@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+      <meta charset="utf-8">
+    
+      
+      <meta property="og:title" content="FXShell - DevOps & Sec" />
+      <meta property="og:description" content="Site com writeups de hacking, segurança e DevOps" />
+      <meta property="og:image" content="https://fxshelll.github.io/fxshell.png" />
+      <meta property="og:url" content="https://fxshelll.github.io/" />
+      <meta property="og:type" content="website" />
+    
+      
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="FXShell - DevOps & Sec" />
+      <meta name="twitter:description" content="Site com writeups de hacking, segurança e DevOps" />
+      <meta name="twitter:image" content="https://fxshelll.github.io/fxshell.png" />
+    
+    <meta name="generator" content="Hugo 0.123.7">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escalabilidade e Conteinerização | FXShell - DevOps &amp; Sec</title>
+    <meta name="description" content="Pense em um container como uma espécie de caixinha isolada onde você coloca uma aplicação e tudo que ela precisa para rodar: bibliotecas, dependências, arquivos de configuração e recursos específicos. Essa&quot;caixinha&quot; fica fechada, isolada do ambiente externo, garantindo que a aplicação dentro dela sempre rode da mesma forma, não importa onde ela esteja
+Tecnicamente falando, um container é um ambiente isolado no nível do sistema operacional. Diferente das máquinas virtuais (que simulam um computador completo, com sistema operacional e tudo), os containers compartilham o kernel (núcleo) do sistema operacional do host.">
+    <meta name="keywords" content="">
+    
+    
+    
+    
+    
+
+  <meta name="author" content="Felipe da Matta">
+
+
+    
+
+
+
+
+    
+
+    
+    
+  <meta name="referrer" content="same-origin">
+
+
+    
+
+    
+    
+    <link rel="canonical" href="https://fxshelll.github.io/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/">
+    
+    
+    
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+
+
+<link rel="manifest" href="/site.webmanifest">
+    
+
+  
+  
+  
+  
+  
+  
+  
+    
+      
+        <style>html{font-size:12px}*{box-sizing:border-box;text-rendering:geometricPrecision}body{font-size:1rem;line-height:1.5rem;margin:0;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;word-wrap:break-word}h1,h2,h3,h4,h5,h6{line-height:1.3em}fieldset{border:none;padding:0;margin:0}pre{padding:2rem;margin:1.75rem 0;background-color:#fff;border:1px solid #ccc;overflow:auto}code[class*=language-],pre[class*=language-],pre code{font-weight:100;text-shadow:none;margin:1.75rem 0}a{cursor:pointer;color:#ff2e88;text-decoration:none;border-bottom:1px solid #ff2e88}a:hover{background-color:#ff2e88;color:#fff}.grid{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.grid.\-top{-ms-flex-align:start;align-items:flex-start}.grid.\-middle{-ms-flex-align:center;align-items:center}.grid.\-bottom{-ms-flex-align:end;align-items:flex-end}.grid.\-stretch{-ms-flex-align:stretch;align-items:stretch}.grid.\-baseline{-ms-flex-align:baseline;align-items:baseline}.grid.\-left{-ms-flex-pack:start;justify-content:flex-start}.grid.\-center{-ms-flex-pack:center;justify-content:center}.grid.\-right{-ms-flex-pack:end;justify-content:flex-end}.grid.\-between{-ms-flex-pack:justify;justify-content:space-between}.grid.\-around{-ms-flex-pack:distribute;justify-content:space-around}.cell{-ms-flex:1;flex:1;box-sizing:border-box}@media screen and (min-width:768px){.cell.\-1of12{-ms-flex:0 0 8.33333%;flex:0 0 8.33333%}.cell.\-2of12{-ms-flex:0 0 16.66667%;flex:0 0 16.66667%}.cell.\-3of12{-ms-flex:0 0 25%;flex:0 0 25%}.cell.\-4of12{-ms-flex:0 0 33.33333%;flex:0 0 33.33333%}.cell.\-5of12{-ms-flex:0 0 41.66667%;flex:0 0 41.66667%}.cell.\-6of12{-ms-flex:0 0 50%;flex:0 0 50%}.cell.\-7of12{-ms-flex:0 0 58.33333%;flex:0 0 58.33333%}.cell.\-8of12{-ms-flex:0 0 66.66667%;flex:0 0 66.66667%}.cell.\-9of12{-ms-flex:0 0 75%;flex:0 0 75%}.cell.\-10of12{-ms-flex:0 0 83.33333%;flex:0 0 83.33333%}.cell.\-11of12{-ms-flex:0 0 91.66667%;flex:0 0 91.66667%}}@media screen and (max-width:768px){.grid{-ms-flex-direction:column;flex-direction:column}.cell{-ms-flex:0 0 auto;flex:0 0 auto}}.hack,.hack blockquote,.hack code,.hack em,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack strong{font-size:1rem;font-style:normal;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif}.hack blockquote,.hack code,.hack em,.hack strong{line-height:20px}.hack blockquote,.hack code,.hack footer,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack header,.hack li,.hack ol,.hack p,.hack section,.hack ul{float:none;margin:0;padding:0}.hack blockquote,.hack h1,.hack ol,.hack p,.hack ul{margin-top:20px;margin-bottom:20px}.hack h1{position:relative;display:inline-block;display:table-cell;padding:20px 0 30px;margin:0;overflow:hidden}.hack h1:after{content:"====================================================================================================";position:absolute;bottom:10px;left:0}.hack h1+*{margin-top:0}.hack h2,.hack h3,.hack h4,.hack h5,.hack h6{position:relative;margin-bottom:1.75rem}.hack h2:before,.hack h3:before,.hack h4:before,.hack h5:before,.hack h6:before{display:inline}.hack h2:before{content:"## "}.hack h3:before{content:"### "}.hack h4:before{content:"#### "}.hack h5:before{content:"##### "}.hack h6:before{content:"###### "}.hack li{position:relative;display:block;padding-left:20px}.hack li:after{position:absolute;top:0;left:0}.hack ul>li:after{content:"-"}.hack ol{counter-reset:a}.hack ol>li:after{content:counter(a) ".";counter-increment:a}.hack ol li:nth-child(n+10):after{left:-7px}.hack blockquote{position:relative;padding-left:17px;padding-left:2ch;overflow:hidden}.hack blockquote:after{content:">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>";white-space:pre;position:absolute;top:0;left:0;line-height:20px}.hack em:after,.hack em:before{content:"*";display:inline}.hack pre code:after,.hack pre code:before{content:""}.hack code{font-weight:700}.hack code:after,.hack code:before{content:"`";display:inline}.hack hr{position:relative;height:20px;overflow:hidden;border:0;margin:20px 0}.hack hr:after{content:"----------------------------------------------------------------------------------------------------";position:absolute;top:0;left:0;line-height:20px;width:100%;word-wrap:break-word}@-moz-document url-prefix(){.hack h1{display:block}}.hack-ones ol>li:after{content:"1."}p{margin:0 0 1.75rem}.container{max-width:70rem}.container,.container-fluid{margin:0 auto;padding:0 1rem}.inner{padding:1rem}.inner2x{padding:2rem}.pull-left{float:left}.pull-right{float:right}.progress-bar{height:8px;opacity:.8;background-color:#ccc;margin-top:12px}.progress-bar.progress-bar-show-percent{margin-top:38px}.progress-bar-filled{background-color:gray;height:100%;transition:width .3s ease;position:relative;width:0}.progress-bar-filled:before{content:"";border:6px solid transparent;border-top-color:gray;position:absolute;top:-12px;right:-6px}.progress-bar-filled:after{color:gray;content:attr(data-filled);display:block;font-size:12px;white-space:nowrap;position:absolute;border:6px solid transparent;top:-38px;right:0;-ms-transform:translateX(50%);transform:translateX(50%)}table{width:100%;border-collapse:collapse;margin:1.75rem 0;color:#778087}table td,table th{vertical-align:top;border:1px solid #ccc;line-height:15px;padding:10px}table thead th{font-size:10px}table tbody td:first-child{font-weight:700;color:#333}.form{width:30rem}.form-group{margin-bottom:1.75rem;overflow:auto}.form-group label{border-bottom:2px solid #ccc;color:#333;width:10rem;display:inline-block;height:38px;line-height:38px;padding:0;float:left;position:relative}.form-group.form-success label{color:#4caf50!important;border-color:#4caf50!important}.form-group.form-warning label{color:#ff9800!important;border-color:#ff9800!important}.form-group.form-error label{color:#f44336!important;border-color:#f44336!important}.form-control{outline:none;border:none;border-bottom:2px solid #ccc;padding:.5rem 0;width:20rem;height:38px;background-color:transparent}.form-control:focus{border-color:#555}.form-group.form-textarea label:after{position:absolute;content:"";width:2px;background-color:#fff;right:-2px;top:0;bottom:0}textarea.form-control{height:auto;resize:none;padding:1rem 0;border-bottom:2px solid #ccc;border-left:2px solid #ccc;padding:.5rem}select.form-control{border-radius:0;background-color:transparent;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}.help-block{color:#999;margin-top:.5rem}.form-actions{margin-bottom:1.75rem}.btn{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;outline:none;padding:.65rem 2rem;font-size:1rem;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:relative;z-index:1}.btn:active{box-shadow:inset 0 1px 3px rgba(0,0,0,.12)}.btn.btn-ghost{border-color:#757575;color:#757575;background-color:transparent}.btn.btn-ghost:focus,.btn.btn-ghost:hover{border-color:#424242;color:#424242;z-index:2}.btn.btn-ghost:hover{background-color:transparent}.btn-block{width:100%;display:-ms-flexbox;display:flex}.btn-default{color:#fff;background-color:#e0e0e0;border:1px solid #e0e0e0;color:#333}.btn-default:focus:not(.btn-ghost),.btn-default:hover{background-color:#dcdcdc;border-color:#dcdcdc}.btn-success{color:#fff;background-color:#4caf50;border:1px solid #4caf50}.btn-success:focus:not(.btn-ghost),.btn-success:hover{background-color:#43a047;border-color:#43a047}.btn-success.btn-ghost{border-color:#4caf50;color:#4caf50}.btn-success.btn-ghost:focus,.btn-success.btn-ghost:hover{border-color:#388e3c;color:#388e3c;z-index:2}.btn-error{color:#fff;background-color:#f44336;border:1px solid #f44336}.btn-error:focus:not(.btn-ghost),.btn-error:hover{background-color:#e53935;border-color:#e53935}.btn-error.btn-ghost{border-color:#f44336;color:#f44336}.btn-error.btn-ghost:focus,.btn-error.btn-ghost:hover{border-color:#d32f2f;color:#d32f2f;z-index:2}.btn-warning{color:#fff;background-color:#ff9800;border:1px solid #ff9800}.btn-warning:focus:not(.btn-ghost),.btn-warning:hover{background-color:#fb8c00;border-color:#fb8c00}.btn-warning.btn-ghost{border-color:#ff9800;color:#ff9800}.btn-warning.btn-ghost:focus,.btn-warning.btn-ghost:hover{border-color:#f57c00;color:#f57c00;z-index:2}.btn-info{color:#fff;background-color:#00bcd4;border:1px solid #00bcd4}.btn-info:focus:not(.btn-ghost),.btn-info:hover{background-color:#00acc1;border-color:#00acc1}.btn-info.btn-ghost{border-color:#00bcd4;color:#00bcd4}.btn-info.btn-ghost:focus,.btn-info.btn-ghost:hover{border-color:#0097a7;color:#0097a7;z-index:2}.btn-primary{color:#fff;background-color:#2196f3;border:1px solid #2196f3}.btn-primary:focus:not(.btn-ghost),.btn-primary:hover{background-color:#1e88e5;border-color:#1e88e5}.btn-primary.btn-ghost{border-color:#2196f3;color:#2196f3}.btn-primary.btn-ghost:focus,.btn-primary.btn-ghost:hover{border-color:#1976d2;color:#1976d2;z-index:2}.btn-group{overflow:auto}.btn-group .btn{float:left}.btn-group .btn-ghost:not(:first-child){margin-left:-1px}.card{border:1px solid #ccc}.card .card-header{color:#333;text-align:center;background-color:#ddd;padding:.5rem 0}.alert{color:#ccc;padding:1rem;border:1px solid #ccc;margin-bottom:1.75rem}.alert-success{color:#4caf50;border-color:#4caf50}.alert-error{color:#f44336;border-color:#f44336}.alert-info{color:#00bcd4;border-color:#00bcd4}.alert-warning{color:#ff9800;border-color:#ff9800}.media:not(:last-child){margin-bottom:1.25rem}.media-left{padding-right:1rem}.media-left,.media-right{display:table-cell;vertical-align:top}.media-right{padding-left:1rem}.media-body{display:table-cell;vertical-align:top}.media-heading{font-size:1.16667rem;font-weight:700}.media-content{margin-top:.3rem}.avatarholder,.placeholder{background-color:#f0f0f0;text-align:center;color:#b9b9b9;font-size:1rem;border:1px solid #f0f0f0}.avatarholder{width:48px;height:48px;line-height:46px;font-size:2rem;background-size:cover;background-position:50%;background-repeat:no-repeat}.avatarholder.rounded{border-radius:33px}.loading{display:inline-block;content:"&nbsp;";height:20px;width:20px;margin:0 .5rem;animation:a .6s infinite linear;border:2px solid #e91e63;border-right-color:transparent;border-radius:50%}.btn .loading{margin-bottom:0;width:14px;height:14px}.btn div.loading{float:left}.alert .loading{margin-bottom:-5px}@keyframes a{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}.menu{width:100%}.menu .menu-item{display:block;color:#616161;border-color:#616161}.menu .menu-item.active,.menu .menu-item:hover{color:#000;border-color:#000;background-color:transparent}@media screen and (max-width:768px){.form-group label{display:block;border-bottom:none;width:100%}.form-group.form-textarea label:after{display:none}.form-control{width:100%}textarea.form-control{border-left:none;padding:.5rem 0}pre::-webkit-scrollbar{height:3px}}@media screen and (max-width:480px){.form{width:100%}}.dark{color:#ccc}.dark,.dark pre{background-color:#000}.dark pre{padding:0;border:none}.dark pre code{color:#00bcd4}.dark h1 a,.dark h2 a,.dark h3 a,.dark h4 a,.dark h5 a{color:#ccc}.dark code,.dark strong{color:#fff}.dark code{font-weight:100}.dark table{color:#ccc}.dark table td,.dark table th{border-color:#444}.dark table tbody td:first-child{color:#fff}.dark .form-group label{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-group.form-textarea label:after{background-color:#000}.dark .form-control{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-control:focus{border-color:#ccc;color:#ccc}.dark textarea.form-control{color:#ccc}.dark .card{border-color:rgba(95,95,95,.78)}.dark .card .card-header{background-color:transparent;color:#ccc;border-bottom:1px solid rgba(95,95,95,.78)}.dark .btn.btn-ghost.btn-default{border-color:#ababab;color:#ababab}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#9c9c9c;color:#9c9c9c;z-index:1}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#e0e0e0;color:#e0e0e0}.dark .btn.btn-ghost.btn-primary:focus,.dark .btn.btn-ghost.btn-primary:hover{border-color:#64b5f6;color:#64b5f6}.dark .btn.btn-ghost.btn-success:focus,.dark .btn.btn-ghost.btn-success:hover{border-color:#81c784;color:#81c784}.dark .btn.btn-ghost.btn-info:focus,.dark .btn.btn-ghost.btn-info:hover{border-color:#4dd0e1;color:#4dd0e1}.dark .btn.btn-ghost.btn-error:focus,.dark .btn.btn-ghost.btn-error:hover{border-color:#e57373;color:#e57373}.dark .btn.btn-ghost.btn-warning:focus,.dark .btn.btn-ghost.btn-warning:hover{border-color:#ffb74d;color:#ffb74d}.dark .avatarholder,.dark .placeholder{background-color:transparent;border-color:#333}.dark .menu .menu-item{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .menu .menu-item.active,.dark .menu .menu-item:hover{color:#fff;border-color:#ccc}:root{--screen-size-small:30em}@keyframes intro{0%{opacity:0}; 100%{opacity:1}}.blur-up{-webkit-filter:blur(5px);filter:blur(5px);transition:filter 400ms,-webkit-filter 400ms}.blur-up.lazyloaded{-webkit-filter:blur(0);filter:blur(0)}.hack .readmore{margin-bottom:2.2em}.responsive-iframe{position:relative;padding-bottom:56.25%;padding-top:25px;height:0}.responsive-iframe iframe{position:absolute;top:0;left:0;width:100%;height:100%}iframe{border:0}main,footer{animation:intro .3s both;animation-delay:.15s}footer time[datetime$=M]:before{content:"\2013\0020"}@media only screen and (max-width:30em){footer time[datetime$=M]{display:none}}blockquote cite{display:block}blockquote cite::before{content:"\2014"}:target{color:#fff}.hack li ul{margin:0}.main{padding:20px 10px}input.form-control{border-radius:0;background-color:transparent;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}input.form-control,textarea.form-control{font-size:initial}.hack .help-block{font-size:1rem}html{font-size:13px}.hack pre{font-size:17px}.hack .form input,.hack .form textarea,.hack .form button,.hack .form label{font-size:1rem}article [itemprop=description]{margin-bottom:20px;margin-top:20px}article header img{width:100%;border-radius:3px}table td,table th{line-height:inherit}img{max-width:100%}@media screen and (min-width:768px){html{font-size:1em}.container{max-width:50rem}}[v-cloak]{display:none}a[rel*="external"]::after {
+  content: " " url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20class='i-external'%20viewBox='0%200%2032%2032'%20width='14'%20height='14'%20fill='none'%20stroke='%23ff9800'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='9.38%'%3E%3Cpath%20d='M14%209%20L3%209%203%2029%2023%2029%2023%2018%20M18%204%20L28%204%2028%2014%20M28%204%20L14%2018'/%3E%3C/svg%3E");
+}
+nav a.active {
+  background-color: #ff2e88;
+  color: #fff;
+}
+a[itemprop="url"] {
+  color: #ff9800;
+}
+a[itemprop="url"]:hover {
+  color: #fff;
+}
+.muted, .help-block {
+  opacity: 0.70;
+}
+.hack .muted,
+.hack .help-block {
+  color: #e0e0e0;
+}
+</style>
+        
+
+
+  
+    <meta name="theme-color" content=#000>
+  
+
+
+      
+    
+  
+
+
+    <script>
+ 
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.fetchInject=t()}(this,function(){"use strict";const e=function(e,t,n,r,o,c,i){c=t.createElement(n),i=t.getElementsByTagName(n)[0],c.appendChild(t.createTextNode(r.text)),c.onload=o(r),i?i.parentNode.insertBefore(c,i):t.head.appendChild(c)};return function(t,n){if(!arguments.length)return Promise.reject(new ReferenceError("Failed to execute 'fetchInject': 1 argument required but only 0 present."));if(arguments[0]&&arguments[0].constructor!==Array)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 1 must be of type 'Array'."));if(arguments[1]&&arguments[1].constructor!==Promise)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 2 must be of type 'Promise'."));const r=[],o=n?[].concat(n):[],c=[];return t.forEach(e=>o.push(window.fetch(e).then(e=>[e.clone().text(),e.blob()]).then(e=>Promise.all(e).then(e=>{r.push({text:e[0],blob:e[1]})})))),Promise.all(o).then(()=>(r.forEach(t=>{c.push({then:n=>{t.blob.type.includes("text/css")?e(window,document,"style",t,n):e(window,document,"script",t,n)}})}),Promise.all(c)))}});
+fetchInject(["/js/lazysizes.min.js"]);
+</script>
+
+    <style>
+  img {
+    max-width: 100%;
+  }
+</style>
+
+    
+    
+      <script>fetchInject(["/css/syntax.css"])</script>
+
+      
+      <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+        });
+        MathJax.Hub.Queue(function() {
+          
+          
+          
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i = 0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+        });
+
+        MathJax.Hub.Config({
+        
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+      <noscript>
+        <link href=/css/syntax.css rel="stylesheet">
+      </noscript>
+    
+  </head>
+  
+  
+  
+  <body class="hack dark main container">
+    <header>
+  
+  <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
+    
+    
+      <a itemprop="url" class="" href="/"><span itemprop="name">home</span></a>
+    
+      <a itemprop="url" class="" href="/posts/"><span itemprop="name">anotações</span></a>
+    
+      <a itemprop="url" class="" href="/htb/"><span itemprop="name">HTB</span></a>
+    
+      <a itemprop="url" class="" href="/sobre/"><span itemprop="name">sobre</span></a>
+    
+  </nav>
+
+
+</header>
+    <main>
+  <header>
+    <h1>Escalabilidade e Conteinerização</h1>
+  </header>
+  <p>Pense em um container como uma espécie de caixinha isolada onde você coloca uma aplicação e tudo que ela precisa para rodar: bibliotecas, dependências, arquivos de configuração e recursos específicos. Essa&quot;caixinha&quot; fica fechada, isolada do ambiente externo, garantindo que a aplicação dentro dela sempre rode da mesma forma, não importa onde ela esteja</p>
+<p>Tecnicamente falando, um container é um ambiente isolado no nível do sistema operacional. Diferente das máquinas virtuais (que simulam um computador completo, com sistema operacional e tudo), os containers compartilham o kernel (núcleo) do sistema operacional do host. Isso significa que containers não precisam carregar um sistema inteiro para funcionar — eles reutilizam o que já existe no host, reduzindo drasticamente o uso de recursos.</p>
+<h2 id="dois-mecanismos-principais-do-kernel-linux-tornam-isso-possível">Dois mecanismos principais do kernel Linux tornam isso possível:</h2>
+<h3 id="namespaces">Namespaces:</h3>
+<p>são responsáveis por criar ambientes isolados. Por exemplo, cada container tem seu próprio espaço para processos, rede, sistema de arquivos e usuários. Isso garante que um container não interfira no outro e que aplicações possam rodar lado a lado, sem conflitos;</p>
+<h3 id="cgroups-controlgroups">Cgroups (ControlGroups):</h3>
+<p>são utilizados pra controlar a quantidade de recursos (memória, CPU, disco) que cada container pode utilizar. Assim, mesmo que um container tente consumir mais recursos que o previsto, ele fica limitado ao que foi definido, garantindo estabilidade ao sistema inteiro.</p>
+<h3 id="isso-tudo-importa-por-que">Isso tudo importa por que?</h3>
+<p>Porque essa combinação permite que você tenha um ambiente padronizado, previsível e extremamente portátil. Uma aplicação empacotada em um container roda exatamente do mesmo jeito na sua máquina, num servidor de teste, em produção ou até mesmo na nuvem. Isso elimina aquele velho problema de “na minha máquina funciona”.</p>
+<p>Se você desenvolve uma aplicação web que usa Node.js em uma versão específica, antes você precisava instalar essa versão exata na máquina que rodaria sua aplicação em produção. Com containers, você simplesmente cria uma imagem que já contém exatamente essa versão do Node, as dependências e os arquivos necessários. Ao subir essa imagem num servidor (com Docker, por exemplo), você garante que tudo rode exatamente como você planejou — sem erros surpresa.</p>
+<p><img src="imagens/docker1.png" alt="alt text"></p>
+<p><img src="imagens/docker2.png" alt="alt text"></p>
+<p><img src="imagens/docker3.png" alt="alt text"></p>
+<h3 id="fluxo">Fluxo:</h3>
+<p><img src="imagens/docker4.png" alt="alt text"></p>
+<h2 id="comandos-básicos-do-docker">Comandos básicos do Docker:</h2>
+<pre tabindex="0"><code>Listar containers em execução: docker ps;
+
+Listar todos os containers (inclusive parados): docker ps –a;
+
+Executar um container a partir de uma imagem: docker run nome-da-imagem. Exemplo: docker run hello-world;
+
+Executar um container interativo (com acesso ao terminal): docker run -it nome-da-imagem /bin/bash. Exemplo: docker run -it ubuntu bash;
+
+Parar um container em execução: docker stop id-ou-nome-do-container;
+
+Iniciar novamente um container parado: docker start id-ou-nome-do-container;
+
+Remover um container parado: docker rm id-ou-nome-do-container;
+
+Forçar a remoção de um container (mesmo que ainda esteja rodando): docker rm -f id-ou-nome-do-container.
+
+Listar imagens disponíveis localmente: docker images;
+
+Baixar uma imagem específica do Docker Hub: docker pull 
+
+nome-da-imagem. Exemplo: docker pull node:20-alpine;
+
+Remover uma imagem localmente armazenada: docker rmi 
+nome-ou-id-da-imagem.
+
+Visualizar logs de execução do container: docker logs id-ou-nome-do-container;
+
+Obter informações detalhadas sobre um container ou imagem: docker inspect id-ou-nome-do-container.
+
+Renomear um container: docker rename nome-antigo nome-novo;
+
+Executar comandos em containers já em execução: docker exec -it nome-do-container comando. Exemplo: docker exec -it meu-container bash;
+
+Copiar arquivos do host para o container: docker cp arquivo host:/caminho-container;
+
+Copiar arquivos do container para o host: docker cp container:/caminho-arquivo destino-host.
+
+Remover containers parados automaticamente: docker container prune;
+
+Remover imagens não utilizadas: docker image prune;
+
+Limpar todos os recursos Docker não utilizados: docker system prune.
+
+Liberar aplicação para acesso no host: docker run -p 80:80 nginx
+</code></pre><h3 id="dockerfile-from-run-cmd-copy-workdir">Dockerfile (FROM, RUN, CMD, COPY, WORKDIR)</h3>
+<p>Se tem uma coisa que você vai escrever muito ao trabalhar com Docker, é o tal do Dockerfile. Ele é só um arquivo de texto, mas com muito poder: é ali que você define o passo a passo para construir a imagem que vai rodar sua aplicação. Funciona como um script declarativo — você diz o que quer que aconteça e o Docker constrói.</p>
+<p>O processo é bem linear, e com o tempo você decora a ordem das instruções. Mas no começo, vale entender o papel de cada uma.</p>
+<h3 id="from">FROM</h3>
+<p>Tudo começa com o FROM. É aqui que você escolhe a base da sua imagem. Pode ser o Node, o Python, o Ubuntu ou qualquer outra coisa. O mais comum é usar imagens oficiais que já vêm prontas no Docker Hub.</p>
+<p>Exemplo: FROM node:20</p>
+<p>Isso quer dizer: “pegue a imagem do Node na versão 20 e comece a construir em cima dela”.</p>
+<h3 id="workdir">WORKDIR</h3>
+<p>Depois disso, é comum definir um diretório de trabalho com WORKDIR. Isso nada mais é do que dizer: “a partir de agora, tudo que eu fizer vai ser dentro desta pasta aqui”. Isso evita que você tenha que dar comandos com caminhos longos o tempo todo.</p>
+<p>Exemplo: WORKDIR /app</p>
+<h3 id="copy">COPY</h3>
+<p>Aí vem o COPY, que serve para colocar seus arquivos dentro da imagem. Ele seleciona o que está em sua máquina e joga dentro da imagem que está sendo construída.</p>
+<p>Exemplo: COPY . /app</p>
+<p>Isso copia tudo o que está no diretório atual para o /app da imagem.</p>
+<h3 id="run">RUN</h3>
+<p>Com os arquivos no lugar, você pode executar comandos com RUN. Ele é muito usado para instalar dependências, criar pastas, mover arquivos, o que for necessário durante a construção da imagem.</p>
+<p>Exemplo: RUN npminstall</p>
+<p>Esse comando vai rodar dentro da imagem e o resultado fica salvo como uma camada nova.</p>
+<h3 id="cmd">CMD</h3>
+<p>Por fim, vem o CMD, que define o comando que vai rodar quando o container for iniciado. É como dizer: “quando alguém rodar essa imagem, execute isso aqui por padrão”.</p>
+<p>Exemplo: CMD [&ldquo;node&rdquo;, &ldquo;index.js&rdquo;]</p>
+<p>Isso vai rodar o index.js usando o Node quando o container subir.</p>
+<p>A ordem dessas instruções importa, principalmente porque o Docker guarda o cache de cada etapa. Se você mudar algo no topo do Dockerfile, ele vai reconstruir tudo abaixo. Agora, se você só mexer no CMD, por exemplo, ele reaproveitará o restante.</p>
+<p>Com o tempo você vai aprender a montar Dockerfiles mais limpos, diretos e fáceis de manter. Mas comece entendendo bem o básico: que o Dockerfile é onde você escreve a lógica de construção da sua imagem. Sem mágica, sem mistério. Só prática e clareza.</p>
+<pre tabindex="0"><code># Etapa 1 - build
+FROM node:20 AS build
+WORKDIR /app
+COPY . .
+RUN npm install &amp;&amp;npm run build
+
+# Etapa 2 - produção
+FROM node:20-slim
+WORKDIR /app
+COPY --from=build /app/dist ./dist
+CMD [&#34;node&#34;, &#34;dist/index.js&#34;]
+</code></pre><p>A primeira etapa instala tudo, roda o build, e a segunda só carrega o resultado. Nada de node_modules, ferramentas de build ou arquivos temporários indo parar na imagem final.</p>
+<p>Esse padrão é bem comum em projetos mais maduros, porque ajuda a deixar o deploy mais leve e evita que coisas desnecessárias (ou até perigosas) acabem indo parar em produção.</p>
+<p>Se você ainda não usa, comece a testar em projetos pequenos. Depois que você se acostumar, vira um padrão.</p>
+<h3 id="multibuildinds">Multibuildinds</h3>
+<p><img src="imagens/docker6.png" alt="alt text"></p>
+<h3 id="segurança-em-containers-resumo">Segurança em containers: resumo</h3>
+<pre><code>Containers e VMs: eles compartilham o kernel com o host, então se houver escape, o risco é grande.
+
+Namespaces: isolam recursos como processos, rede, usuários e sistema de arquivos, garantindo que o container veja apenas o que está dentro dele.
+
+Capabilities: controlam permissões do processo. O root no container é limitado por padrão. É possível remover (--cap-drop) ou adicionar (--cap-add) capacidades, seguindo o princípio do menor privilégio.
+
+Seccomp: funciona como um firewall de syscalls, bloqueando chamadas perigosas. O Docker já traz um perfil padrão, mas é possível criar perfis personalizados.
+
+Boas práticas adicionais: não rodar como root, usar imagens mínimas, manter dependências atualizadas e aplicar patches regularmente.
+</code></pre>
+<h3 id="usuários-não-root-e-boas-práticas-de-permissões">Usuários não root e boas práticas de permissões</h3>
+<p>Agora vamos falar de um dos tópicos mais importantes — e muitas vezes ignorado — quando a gente começa a colocar containers em produção: rodar como root ou não. Spoiler: a resposta quase sempre é não.</p>
+<p>Por padrão, quando você sobe um container, ele roda como root. E o root dentro do container é praticamente o mesmo root do host. Mesmo que ele esteja tecnicamente isolado, isso é um risco enorme. Se alguém conseguir escapar do container (sim, isso pode acontecer), vai ter acesso privilegiado ao seu sistema. E aí, já era.</p>
+<p>A primeira boa prática aqui é criar um usuário não privilegiado dentro da imagem, e forçar o container a rodar com ele. Você pode fazer isso com o comando adduser (ou useradd, dependendo da imagem base) e depois usar USER nomedousuario. E mais: se os arquivos da aplicação forem copiados para o container, o ideal é já definir o dono desses arquivos com &ndash;chown.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">FROM node:18-alpine
+</span></span><span class="line"><span class="cl">RUN adduser -D appuser
+</span></span><span class="line"><span class="cl">USER appuser
+</span></span><span class="line"><span class="cl">WORKDIR /app
+</span></span><span class="line"><span class="cl">COPY --chown<span class="o">=</span>appuser . .
+</span></span><span class="line"><span class="cl">RUN npm ci
+</span></span><span class="line"><span class="cl">CMD <span class="o">[</span><span class="s2">&#34;npm&#34;</span>, <span class="s2">&#34;start&#34;</span><span class="o">]</span>
+</span></span></code></pre></div><h3 id="dockerignore-e-build-context">Dockerignore e build context</h3>
+<p>Quando você roda um docker build, o Docker precisa saber o que ele vai copiar para o contexto de build — basicamente, tudo que está na pasta onde você roda o comando (ou no caminho que você passar).</p>
+<p>Isso é o chamado build context. E é aqui que muita gente se atrapalha.</p>
+<p>Por padrão, se você não filtrar nada, o Docker vai tentar mandar tudo que está naquela pasta para o processo de build. Isso inclui .git, node_modules, arquivos grandes, segredos&hellip; tudo mesmo. Isso não só deixa o build mais lento, como também pode vazar dados sensíveis para a imagem final.</p>
+<p>É aí que entra o .dockerignore. Ele funciona como um .gitignore, só que para build. Você lista nele o que não deve ser enviado para o build context — simples assim:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">.git
+</span></span><span class="line"><span class="cl">node_modules
+</span></span><span class="line"><span class="cl">.env
+</span></span><span class="line"><span class="cl">.vscode
+</span></span><span class="line"><span class="cl">*.log
+</span></span></code></pre></div><p>Com isso, o Docker ignora essas pastas e arquivos quando empacota o build context. Resultado? Build mais rápido, imagem menor e mais segura.</p>
+<p>Aliás, se o seu build estiver demorando demais ou parecendo pesado demais, confira o que está no contexto. Muita gente manda gigas sem saber, só porque esqueceu de ignorar.</p>
+<p>Outra boa prática é sempre rodar o docker build o mais perto possível do Dockerfile, e garantir que sua estrutura de pastas esteja organizada. Isso evita surpresas.</p>
+<p>Enfim, usar .dockerignore é obrigatório se você quer construir imagens limpas, seguras e eficientes. Não é frescura — é parte do básico bem feito.</p>
+<h3 id="estratégias-de-cache-em-builds-com-npm-pip-etc">Estratégias de cache em builds com npm, pip, etc</h3>
+<p>Se você já rodou um docker build mais de uma vez, talvez tenha notado: às vezes o build voa, às vezes demora uma eternidade. A diferença quase sempre está no cache.</p>
+<p>O Docker armazena o resultado de cada instrução do Dockerfile em camadas. Se ele encontrar uma camada idêntica a uma que já construiu antes, ele reaproveita o cache e segue em frente. Só que para isso acontecer, você precisa saber como escrever o Dockerfile do jeito certo.</p>
+<h3 id="ferramentas-de-análise-de-imagem-dive-e-snyk">Ferramentas de análise de imagem: Dive e Snyk</h3>
+<p>Ferramentas para analise de imagem, vale estudar</p>
+<h3 id="volumes-e-redes">Volumes e Redes</h3>
+<p>Volumes e persistencia de dados quando container morre.</p>
+<p><img src="imagens/docker7.png" alt="alt text"></p>
+<p><img src="imagens/docker8.png" alt="alt text"></p>
+<p><img src="imagens/docker9.png" alt="alt text"></p>
+<p><img src="imagens/docker10.png" alt="alt text"></p>
+<p><img src="imagens/docker11.png" alt="alt text"></p>
+<p><img src="imagens/docker12.png" alt="alt text"></p>
+<p><img src="imagens/docker13.png" alt="alt text"></p>
+<p><img src="imagens/docker14.png" alt="alt text"></p>
+<h3 id="volumes-docker-funcionamento-interno-e-drivers">Volumes Docker: funcionamento interno e drivers</h3>
+<p>Quando falamos em persistência de dados no Docker, inevitavelmente estamos falando de volumes. Eles são a forma oficial, segura e recomendada de manter dados fora do ciclo de vida efêmero dos containers. Mas o que realmente acontece por trás do docker volume create?</p>
+<p>Como o Docker gerencia volumes
+Quando você cria um volume, o Docker registra esse recurso em seu próprio mecanismo de metadados interno. Ele sabe onde o volume está no sistema de arquivos do host, qual driver está usando e qual container está usando aquele volume. Por padrão, esse volume é armazenado em um caminho como:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/var/lib/docker/volumes/<span class="o">[</span>nome_do_volume<span class="o">]</span>/_data
+</span></span></code></pre></div><p>Esse _data é aquilo que o container enxerga quando você monta o volume, e o Docker se encarrega de conectar esse diretório ao caminho interno do container que você definiu, como por exemplo /var/lib/mysql.</p>
+<p>Se estiver usando uma engine diferente, como containerd ou cri-o, o funcionamento geral segue a mesma lógica, mas o caminho físico pode variar.</p>
+<h3 id="o-que-são-drivers-de-volume">O que são drivers de volume</h3>
+<p>O Docker permite usar drivers diferentes para gerenciar onde e como os dados são armazenados. Cada driver implementa uma forma específica de criar, montar e gerenciar volumes. Os mais comuns são:</p>
+<p>local (padrão): usa o sistema de arquivos do host. Simples, rápido e suficiente para a maioria dos casos;
+nfs: permite montar volumes armazenados em servidores NFS, útil para clusters e compartilhamento em rede;
+tmpfs: armazena tudo na RAM e desaparece ao reiniciar. Serve para dados temporários e testes;
+drivers de terceiros: como rexray, portworx, que integram com soluções de storage enterprise como EBS, Azure Disk, Ceph, entre outros.
+Você escolhe o driver no momento da criação:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker volume create --driver <span class="nb">local</span> meu-volume
+</span></span></code></pre></div><p>Ou, para um volume NFS:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker volume create <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --driver <span class="nb">local</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --opt <span class="nv">type</span><span class="o">=</span>nfs <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --opt <span class="nv">o</span><span class="o">=</span><span class="nv">addr</span><span class="o">=</span>192.168.1.100,rw <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--opt <span class="nv">device</span><span class="o">=</span>:/dados/nfs <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>volume-nfs
+</span></span></code></pre></div><h3 id="como-escolher-o-driver-ideal">Como escolher o driver ideal</h3>
+<p>Depende do seu cenário:</p>
+<pre tabindex="0"><code>Ambiente de desenvolvimento: use o driver local. É simples e resolve bem;
+
+Ambiente de produção com múltiplos hosts:nfs ou outro driver remoto pode ser necessário;
+
+Necessidade de performance de leitura/escrita em memória: tmpfs pode ser útil;
+
+Ambiente em cloud com orquestrador: drivers especializados como rexray com EBS ou plugins CSI no Kubernetes são boas opções.
+
+Comece com o volume local. Ele atende bem na maioria dos cenários. Só parta para opções mais complexas se houver necessidade real de compartilhamento, persistência remota ou requisitos específicos de performance.
+</code></pre><h3 id="volumes-a-opção-oficial-segura-e-portável">Volumes: a opção oficial, segura e portável</h3>
+<p>Volumes são gerenciados pelo próprio Docker. Quando você cria um volume com docker volume create, ele é registrado nos metadados internos do Docker e fica salvo, por padrão, em /var/lib/docker/volumes. O que o container enxerga é o diretório _data desse volume.</p>
+<p>Pontos fortes:</p>
+<ul>
+<li>Isolamento entre containers e o host;</li>
+<li>Gerenciamento fácil via comandos Docker;</li>
+<li>Backup e migração mais simples;</li>
+<li>Recomendado para ambientes de produção.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker run -d --name app <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v dados-app:/usr/src/app/data <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  minha-imagem
+</span></span></code></pre></div><h3 id="bridge-o-padrão-que-funciona-para-muita-coisa">Bridge: o padrão que funciona para muita coisa</h3>
+<p>Quando você não especifica uma rede, o Docker automaticamente coloca seu container na rede bridge padrão. Essa rede cria um isolamento de rede dentro do host e fornece resolução de nomes entre containers.</p>
+<h3 id="criação-e-uso-de-redes-personalizadas">Criação e uso de redes personalizadas</h3>
+<p>Uma das grandes vantagens do Docker é poder simular ambientes com vários serviços isolados, mas que ainda assim precisam conversar entre si. E é exatamente aqui que entram as redes personalizadas. Com elas, você tem mais controle, isolamento e previsibilidade. Vamos entender o porquê</p>
+<h3 id="como-funciona-o-dns-interno-do-docker">Como funciona o DNS interno do Docker</h3>
+<p>Quando você cria uma rede personalizada com docker network create, o Docker automaticamente habilita um serviço de DNS interno para essa rede. Isso significa que cada container que estiver conectado a ela pode ser referenciado pelo seu nome (ou seja, o nome definido na flag &ndash;name).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker network create minha-rede
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">dockerrun -d --name banco --network minha-rede postgres
+</span></span></code></pre></div><p>Nesse caso, a minha-api consegue se conectar ao banco de dados usando o hostname banco, sem precisar de IP fixo, sem um “jeitinho”. O Docker cuida da resolução de nomes.</p>
+<h3 id="como-containers-se-descobrem-via-hostname">Como containers se descobrem via hostname</h3>
+<p>Se os containers estão na mesma rede personalizada, o nome de um é visível para o outro. Isso simplifica muito a configuração de aplicações distribuídas.</p>
+<p>Por exemplo, uma aplicação Node.js pode se conectar ao MongoDB apenas apontando a URI para mongodb://mongo:27017, assumindo que o container com o Mongo se chama mongo e ambos estão na mesma rede.</p>
+<h3 id="como-isolar-e-expor-serviços-de-forma-segura">Como isolar e expor serviços de forma segura</h3>
+<p>Redes personalizadas são isoladas por padrão. Isso significa que apenas containers conectados à mesma rede conseguem se enxergar. Com isso, você pode:</p>
+<ul>
+<li>
+<p>Isolar bancos de dados, evitando que sejam acessados por containers que não deveriam;</p>
+</li>
+<li>
+<p>Separar ambientes (ex: dev e prod);</p>
+</li>
+<li>
+<p>Reduzir a superfície de ataque, limitando o tráfego entre containers.</p>
+</li>
+</ul>
+<p>E caso precise expor um serviço (como um frontend ou API), basta mapear a porta com -p no dockerrun, ou configurar diretamente no Docker Compose.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker run -d --name frontend --network minha-rede -p 80:3000 minha-app
+</span></span></code></pre></div><h3 id="conectando-e-desconectando-containers-dinamicamente">Conectando e desconectando containers dinamicamente</h3>
+<p>Outro ponto importante é que você pode conectar e desconectar containers de redes a qualquer momento:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker network connect minha-rede containerX
+</span></span><span class="line"><span class="cl">docker network disconnect minha-rede containerY
+</span></span></code></pre></div><p>Isso permite criar arquiteturas dinâmicas, com controle fino sobre quem fala com quem.</p>
+<p>Redes personalizadas não só organizam o tráfego entre seus containers, como também são uma ferramenta fundamental de segurança e isolamento. Entender como elas funcionam e como aproveitar o DNS interno do Docker muda completamente o jeito de estruturar suas aplicações multicontainer. E quando o projeto crescer? A mesma lógica de redes personalizadas será usada em ferramentas como Docker Compose e orquestradores como o Kubernetes.</p>
+<h3 id="segurança-com-usuários-não-root-e-permissões-de-arquivos">Segurança com usuários não-root e permissões de arquivos</h3>
+<p>Criar containers seguros vai além de configurar uma imagem funcional. Um dos pilares mais importantes na segurança de ambientes Docker é evitar que containers rodem como root, além de configurar corretamente as permissões de arquivos dentro e fora do container.</p>
+<h3 id="por-que-evitar-o-usuário-root">Por que evitar o usuário root?</h3>
+<p>Quando um container é iniciado com o usuário root, ele tem permissões totais dentro daquele ambiente isolado. O problema é que, em caso de falha de segurança ou fuga de container (container breakout), esse usuário pode comprometer o host inteiro. A superfície de ataque aumenta consideravelmente.</p>
+<p>Boas práticas:</p>
+<ul>
+<li>
+<p>Nunca use root em containers que precisam interagir com dados sensíveis ou que vão rodar em produção;</p>
+</li>
+<li>
+<p>Prefira rodar com um usuário com permissões mínimas necessárias;</p>
+</li>
+<li>
+<p>Adicione esse usuário no momento da construção da imagem.</p>
+</li>
+</ul>
+<h3 id="como-criar-um-usuário-não-root-na-imagem-docker">Como criar um usuário não-root na imagem Docker</h3>
+<p>Dentro do Dockerfile, você pode criar um usuário e definir que ele será o usuário padrão do container:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">FROM node:18
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Cria o usuário</span>
+</span></span><span class="line"><span class="cl">RUN useradd -m appuser
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Define permissões para a pasta da aplicação</span>
+</span></span><span class="line"><span class="cl">WORKDIR /app
+</span></span><span class="line"><span class="cl">COPY . .
+</span></span><span class="line"><span class="cl">RUN chown -R appuser:appuser /app
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Troca para o usuário</span>
+</span></span><span class="line"><span class="cl">USER appuser
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">CMD <span class="o">[</span><span class="s2">&#34;node&#34;</span>, <span class="s2">&#34;index.js&#34;</span><span class="o">]</span>
+</span></span></code></pre></div><p>O comando USER muda o usuário efetivo usado durante a execução do container.</p>
+<h3 id="permissões-de-arquivos-e-diretórios">Permissões de arquivos e diretórios</h3>
+<p>Mesmo com um usuário não-root, é fundamental garantir que os arquivos e pastas tenham permissões adequadas.</p>
+<ul>
+<li>
+<p>Use chmod e chown corretamente durante o build da imagem;</p>
+</li>
+<li>
+<p>Garanta que arquivos sensíveis (como tokens, .env, .ssh) estejam protegidos ou fora do contexto do container;</p>
+</li>
+<li>
+<p>Ao usar volumes, saiba que o usuário do host pode ser diferente do usuário do container — e isso pode gerar problemas de permissão;</p>
+</li>
+</ul>
+<blockquote>
+<p>Solução comum: mapear o mesmo UID/GID no host e no container, ou usar &ndash;user $(id -u):$(id -g) ao rodar o container.</p>
+</blockquote>
+<h3 id="evitando-escalonamento-de-privilégio">Evitando escalonamento de privilégio</h3>
+<p>Mesmo com um usuário não-root, containers mal configurados podem ser explorados. Algumas proteções adicionais:</p>
+<ul>
+<li>
+<p>Use readOnlyRootFilesystem (em ambientes orquestrados como Kubernetes);</p>
+</li>
+<li>
+<p>Não monte o socket do Docker (/var/run/docker.sock) dentro do container;</p>
+</li>
+<li>
+<p>Use &ndash;cap-drop ALL para remover todas as capabilities Linux e adicione apenas as estritamente necessárias;</p>
+</li>
+<li>
+<p>Habilite o AppArmor, SELinux ou seccomp no seu host.</p>
+</li>
+</ul>
+<h3 id="exemplo-prático-rodando-container-com-uidgid-definidos">Exemplo prático: rodando container com UID/GID definidos</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker run <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --rm <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span> --user <span class="k">$(</span>id -u<span class="k">)</span>:<span class="k">$(</span>id -g<span class="k">)</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/app <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  minha-imagem
+</span></span></code></pre></div><p>Esse comando garante que o usuário dentro do container terá os mesmos IDs do usuário do host, evitando problemas de permissão nos volumes montados.</p>
+<p>Evitar o uso do root e gerenciar corretamente permissões dentro dos containers são passos cruciais para criar aplicações seguras e prontas para produção. Isso reduz a superfície de ataque e garante que falhas isoladas não se transformem em brechas críticas.</p>
+<p>A segurança começa na imagem, passa pelo runtime e se estende até o host. Portanto, cuide de cada camada com atenção!</p>
+<p>Para compreender mais sobre o assunto, deixo aqui a sugestão de um ótimo livro:</p>
+<pre tabindex="0"><code>“Docker: Up &amp; Running” (3ª edição)
+
+Autores: Sean P. Kane e Karl Matthias
+
+Editora: O&#39;Reilly Media
+
+Ano: 2023
+</code></pre><p>Esse livro é um prato cheio para quem já entende os fundamentos e quer dominar recursos como BuildKit, rootless containers, redes avançadas e integração com Kubernetes. Recomendo especialmente os capítulos sobre “Segurança”, “Redes” e “Práticas modernas de build”</p>
+<h2 id="docker-compose-orquestração-de-múltiplos-containers">Docker Compose: Orquestração de Múltiplos Containers</h2>
+<p>Docker Compose é uma ferramenta que permite definir e executar aplicações multi-container Docker. Com ele, você usa um arquivo YAML para configurar os serviços da sua aplicação, redes e volumes. Depois, com um único comando, você sobe ou derruba todo o ambiente.</p>
+<h3 id="por-que-usar-docker-compose">Por que usar Docker Compose?</h3>
+<ul>
+<li><strong>Ambientes de desenvolvimento:</strong> Facilita a configuração de ambientes complexos com bancos de dados, filas de mensagens, e outros serviços.</li>
+<li><strong>Testes:</strong> Garante que o ambiente de teste seja idêntico ao de produção (ou o mais próximo possível).</li>
+<li><strong>Aplicações pequenas/médias:</strong> Ideal para orquestrar aplicações com alguns serviços sem a complexidade de Kubernetes.</li>
+</ul>
+<p>Exemplo prático de docker compose no projeto abaixo em nextjs
+<a href="https://github.com/viniciosneves/todo-app-aula-docker">https://github.com/viniciosneves/todo-app-aula-docker</a></p>
+<p>Criado um dockerfile:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="l">FROM node:22 AS builder </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">WORKDIR /app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">COPY package*.json .</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN npm install</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">COPY . .</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN npm run build</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">FROM node:22-slim</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">WORKDIR /app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">COPY package*.json .</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN npm install</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">COPY --from=builder /app/dist ./dist</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">EXPOSE 3000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">CMD [&#34;node&#34;, &#34;dist/main&#34;]</span><span class="w">
+</span></span></span></code></pre></div><p>e um dockercompose.yml:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">postgres</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres:16-alpine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;5432:5432&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">${DB_DATABASE:-todo_db}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">${DB_USERNAME:-postgres}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">${DB_PASSWORD:-postgres}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">pgdata:/var/lib/postgresql/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">todo-networks</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">app</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;3000:3000&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l">postgres</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">DB_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="l">${DB_USERNAME:-postgres}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">${DB_PASSWORD:-postgres}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">DB_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l">${DB_DATABASE:-todo_db}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">postgres</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">todo-networks</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">todo-networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">bridge</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pgdata</span><span class="p">:</span><span class="w"> 
+</span></span></span></code></pre></div><p>e criado o arquivo .env:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># Database Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">DB_HOST=postgres</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">DB_PORT=5432</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">DB_USERNAME=postgres</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">DB_PASSWORD=postgres</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">DB_DATABASE=todo_db</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Application</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">PORT=3000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">NODE_ENV=development</span><span class="w">
+</span></span></span></code></pre></div><p>Um outro exemplo abaixo:</p>
+<h3 id="exemplo-de-docker-composeyml">Exemplo de <code>docker-compose.yml</code></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.8&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">web</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;80:80&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">.:/app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">db</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">DATABASE_URL</span><span class="p">:</span><span class="w"> </span><span class="l">postgres://user:password@db:5432/mydatabase</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres:13</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">mydatabase</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">password</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">db-data:/var/lib/postgresql/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">db-data</span><span class="p">:</span><span class="w">
+</span></span></span></code></pre></div><h3 id="comandos-básicos-do-docker-compose">Comandos básicos do Docker Compose:</h3>
+<pre tabindex="0"><code>Subir todos os serviços definidos no docker-compose.yml: docker compose up
+
+Subir os serviços em segundo plano (detached mode): docker compose up -d
+
+Construir ou reconstruir as imagens dos serviços: docker compose build
+
+Parar os serviços e remover os containers: docker compose down
+
+Parar os serviços, mas manter os containers: docker compose stop
+
+Listar os serviços em execução: docker compose ps
+
+Visualizar os logs de todos os serviços (ou de um específico): docker compose logs [nome-do-servico]
+
+Executar um comando em um serviço: docker compose exec [nome-do-servico] [comando]
+</code></pre>
+</main>
+    <footer>
+  
+
+</footer>
+  </body>
+</html>
