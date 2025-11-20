@@ -195,11 +195,11 @@ fetchInject(["/js/lazysizes.min.js"]);
 <h3 id="isso-tudo-importa-por-que">Isso tudo importa por que?</h3>
 <p>Porque essa combinação permite que você tenha um ambiente padronizado, previsível e extremamente portátil. Uma aplicação empacotada em um container roda exatamente do mesmo jeito na sua máquina, num servidor de teste, em produção ou até mesmo na nuvem. Isso elimina aquele velho problema de “na minha máquina funciona”.</p>
 <p>Se você desenvolve uma aplicação web que usa Node.js em uma versão específica, antes você precisava instalar essa versão exata na máquina que rodaria sua aplicação em produção. Com containers, você simplesmente cria uma imagem que já contém exatamente essa versão do Node, as dependências e os arquivos necessários. Ao subir essa imagem num servidor (com Docker, por exemplo), você garante que tudo rode exatamente como você planejou — sem erros surpresa.</p>
-<p><img src="../../static/docker1.png" alt="alt text"></p>
-<p><img src="../../static/docker2.png" alt="alt text"></p>
-<p><img src="../../static/docker3.png" alt="alt text"></p>
+<p><img src="/docker1.png" alt="DOCKER"></p>
+<p><img src="/docker2.png" alt="DOCKER"></p>
+<p><img src="/docker3.png" alt="DOCKER"></p>
 <h3 id="fluxo">Fluxo:</h3>
-<p><img src="../../static/docker4.png" alt="alt text"></p>
+<p><img src="/docker4.png" alt="DOCKER"></p>
 <h2 id="comandos-básicos-do-docker">Comandos básicos do Docker:</h2>
 <pre tabindex="0"><code>Listar containers em execução: docker ps;
 
@@ -284,7 +284,7 @@ CMD [&#34;node&#34;, &#34;dist/index.js&#34;]
 <p>Esse padrão é bem comum em projetos mais maduros, porque ajuda a deixar o deploy mais leve e evita que coisas desnecessárias (ou até perigosas) acabem indo parar em produção.</p>
 <p>Se você ainda não usa, comece a testar em projetos pequenos. Depois que você se acostumar, vira um padrão.</p>
 <h3 id="multibuildinds">Multibuildinds</h3>
-<p><img src="../../static/docker6.png" alt="alt text"></p>
+<p><img src="/docker6.png" alt="DOCKER"></p>
 <h3 id="segurança-em-containers-resumo">Segurança em containers: resumo</h3>
 <pre><code>Containers e VMs: eles compartilham o kernel com o host, então se houver escape, o risco é grande.
 
@@ -328,14 +328,14 @@ Boas práticas adicionais: não rodar como root, usar imagens mínimas, manter d
 <p>Ferramentas para analise de imagem, vale estudar</p>
 <h3 id="volumes-e-redes">Volumes e Redes</h3>
 <p>Volumes e persistencia de dados quando container morre.</p>
-<p><img src="../../static/docker7.png" alt="alt text"></p>
-<p><img src="../../static/docker8.png" alt="alt text"></p>
-<p><img src="../../static/docker9.png" alt="alt text"></p>
-<p><img src="../../static/docker10.png" alt="alt text"></p>
-<p><img src="../../static/docker11.png" alt="alt text"></p>
-<p><img src="../../static/docker12.png" alt="alt text"></p>
-<p><img src="../../static/docker13.png" alt="alt text"></p>
-<p><img src="../../static/docker14.png" alt="alt text"></p>
+<p><img src="/docker7.png" alt="DOCKER"></p>
+<p><img src="/docker8.png" alt="DOCKER"></p>
+<p><img src="/docker9.png" alt="DOCKER"></p>
+<p><img src="/docker10.png" alt="DOCKER"></p>
+<p><img src="/docker11.png" alt="DOCKER"></p>
+<p><img src="/docker12.png" alt="DOCKER"></p>
+<p><img src="/docker13.png" alt="DOCKER"></p>
+<p><img src="/docker14.png" alt="DOCKER"></p>
 <h3 id="volumes-docker-funcionamento-interno-e-drivers">Volumes Docker: funcionamento interno e drivers</h3>
 <p>Quando falamos em persistência de dados no Docker, inevitavelmente estamos falando de volumes. Eles são a forma oficial, segura e recomendada de manter dados fora do ciclo de vida efêmero dos containers. Mas o que realmente acontece por trás do docker volume create?</p>
 <p>Como o Docker gerencia volumes
