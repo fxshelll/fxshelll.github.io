@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 07 Jan 2026 19:46:05 UT</lastBuildDate>
+    <lastBuildDate>Wed, 07 Jan 2026 21:10:01 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
@@ -37,7 +37,7 @@ LinkedIn • GitHub • E-mail 🧠 Resumo Sou formado em Defesa Cibernética e 
 Set 2025 – Atual
 Atuação como DevOps SRE prestando serviço para a B3 (Bolsa de Valores) Gerenciamento de infraestrutura em Microsoft Azure Criação e manutenção de pipelines CI/CD com GitHub Actions e Flyway Automação de recursos utilizando Azure CLI Provisionamento e padronização de ambientes utilizando Terraform Execução e orquestração de automações com AWX / Ansible Testes e integração com APIs via Postman Administração e configuração de aplicações no Azure Kubernetes Service (AKS) Criação, edição e manutenção de arquivos YAML para deploys no cluster Gerenciamento de Storage Accounts e monitoramento com Grafana Consultas em SQL e suporte às esteiras de deploy Grupo NC — DevOps Sênior
 Fev 2025 – Set 2025
-Gestão de infraestrutura em nuvem com AWS Administração de clusters Kubernetes (AKS) Automatizações com Terraform, Shellscript, PowerShell GitOps com ArgoCD e CI/CD com GitHub Actions Observabilidade com DataDog HashiCorp Vault para segredos e autenticação Confluence e Jira para documentação Linx — DevOps Sênior / Pleno
+Gestão de infraestrutura em nuvem com AWS Administração de clusters Kubernetes (EKS) Automatizações com Terraform, Shellscript, PowerShell GitOps com ArgoCD e CI/CD com GitHub Actions Observabilidade com DataDog HashiCorp Vault para segredos e autenticação Confluence e Jira para documentação Linx — DevOps Sênior / Pleno
 Abr 2021 – Jan 2025
 Infraestrutura em nuvem com AZURE Kubernetes (EKS), Let's Encrypt, Jenkins, GitHub Ansible e AWX, Terraform Integrações com Azure DevOps Webservers Linux e Windows Portal R7 — Admin. de Sistemas / Suporte TI
 2017 – 2021
