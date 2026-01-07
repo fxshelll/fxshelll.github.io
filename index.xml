@@ -5,13 +5,14 @@
     <link>https://fxshelll.github.io/</link>
     <description>Recent content in inicio on FXShell - DevOps &amp; Sec</description>
     <ttl>1440</ttl>
-    <generator>Hugo 0.123.7</generator>
+    <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Thu, 20 Nov 2025 16:18:36 UT</lastBuildDate>
+    <lastBuildDate>Wed, 07 Jan 2026 19:21:48 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://fxshelll.github.io/posts/</link>
+      <pubDate>Wed, 24 Sep 2025 12:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/posts/</guid>
       <description></description>
@@ -23,19 +24,20 @@
       <pubDate>Thu, 15 May 2025 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/sobre/</guid>
-      <description>Felipe da Matta
+      <description> Felipe da Matta
 Cloud Architect | DevOps SRE
 São Paulo, Brasil
-LinkedIn • GitHub • E-mail 🧠 Resumo Sou formado em Defesa Cibernética e atualmente curso uma pós-graduação em DevOps e Arquitetura Cloud pela FIAP, com foco em soluções modernas, escaláveis e seguras. Atuo como DevOps/SRE, sempre buscando entregar ambientes resilientes e inteligentes, com automação, observabilidade e boas práticas de segurança desde o início do ciclo de vida. Tenho paixão por criar laboratórios, experimentar novas ferramentas, escrever scripts úteis e documentar tudo para facilitar o trabalho em equipe e compartilhar conhecimento.</description>
+LinkedIn • GitHub • E-mail 🧠 Resumo Sou formado em Defesa Cibernética e atualmente curso uma pós-graduação em DevOps e Arquitetura Cloud pela FIAP, com foco em soluções modernas, escaláveis e seguras. Atuo como DevOps/SRE, sempre buscando entregar ambientes resilientes e inteligentes, com automação, observabilidade e boas práticas de segurança desde o início do ciclo de vida. Tenho paixão por criar laboratórios, experimentar novas ferramentas, escrever scripts úteis e documentar tudo para facilitar o trabalho em equipe e compartilhar conhecimento. Meu objetivo é sempre entregar soluções que funcionem na prática e tragam valor real para o negócio.
+</description>
       <content:encoded><![CDATA[ Felipe da Matta
 Cloud Architect | DevOps SRE
 São Paulo, Brasil
 LinkedIn • GitHub • E-mail 🧠 Resumo Sou formado em Defesa Cibernética e atualmente curso uma pós-graduação em DevOps e Arquitetura Cloud pela FIAP, com foco em soluções modernas, escaláveis e seguras. Atuo como DevOps/SRE, sempre buscando entregar ambientes resilientes e inteligentes, com automação, observabilidade e boas práticas de segurança desde o início do ciclo de vida. Tenho paixão por criar laboratórios, experimentar novas ferramentas, escrever scripts úteis e documentar tudo para facilitar o trabalho em equipe e compartilhar conhecimento. Meu objetivo é sempre entregar soluções que funcionem na prática e tragam valor real para o negócio.
-🚀 Especialidades Cloud &amp; Infraestrutura: AWS, Azure — administração de ambientes Windows e Linux, provisionamento e gerenciamento completo de infraestrutura em nuvem. Infrastructure as Code (IaC): Terraform, Ansible, Chef. Contêineres &amp; Orquestração: Kubernetes (EKS e AKS), Helm Charts. CI/CD &amp; Automação: GitHub Actions, Jenkins, ArgoCD, Azure DevOps, FluxCD. Servidores Web &amp; HTTPS: NGINX, IIS, Apache. Scripting &amp; Programação: Bash, PowerShell, Python, Go. Observabilidade &amp; Alertas: Elasticsearch, Grafana, Prometheus, Zabbix, CloudWatch, Opsgenie. Segurança e Gestão de Segredos: Vault by HashiCorp, API Gateway, Ingress Controller. Performance &amp; Distribuição de Conteúdo: Akamai, CloudFront. Bancos de Dados: MySQL, MongoDB. Documentação e Organização de Times: Confluence, Jira, Sharepoint. 💼 Experiência Grupo NC — DevOps Sênior
+🚀 Especialidades Cloud & Infraestrutura: AWS, Azure — administração de ambientes Windows e Linux, provisionamento e gerenciamento completo de infraestrutura em nuvem. Infrastructure as Code (IaC): Terraform, Ansible, Chef. Contêineres & Orquestração: Kubernetes (EKS e AKS), Helm Charts. CI/CD & Automação: GitHub Actions, Jenkins, ArgoCD, Azure DevOps, FluxCD. Servidores Web & HTTPS: NGINX, IIS, Apache. Scripting & Programação: Bash, PowerShell, Python, Go. Observabilidade & Alertas: Elasticsearch, Grafana, Prometheus, Zabbix, CloudWatch, Opsgenie. Segurança e Gestão de Segredos: Vault by HashiCorp, API Gateway, Ingress Controller. Performance & Distribuição de Conteúdo: Akamai, CloudFront. Bancos de Dados: MySQL, MongoDB. Documentação e Organização de Times: Confluence, Jira, Sharepoint. 💼 Experiência Grupo NC — DevOps Sênior
 Fev 2025 – Atual
 Gestão de infraestrutura em nuvem com AWS Administração de clusters Kubernetes (AKS) Automatizações com Terraform, Shellscript, PowerShell GitOps com ArgoCD e CI/CD com GitHub Actions Observabilidade com DataDog HashiCorp Vault para segredos e autenticação Confluence e Jira para documentação Linx — DevOps Sênior / Pleno
 Abr 2021 – Jan 2025
-Infraestrutura em nuvem com AZURE Kubernetes (EKS), Let&#39;s Encrypt, Jenkins, GitHub Ansible e AWX, Terraform Integrações com Azure DevOps Webservers Linux e Windows Portal R7 — Admin. de Sistemas / Suporte TI
+Infraestrutura em nuvem com AZURE Kubernetes (EKS), Let's Encrypt, Jenkins, GitHub Ansible e AWX, Terraform Integrações com Azure DevOps Webservers Linux e Windows Portal R7 — Admin. de Sistemas / Suporte TI
 2017 – 2021
 Ambientes em AWS, suporte a CMS e blogs Monitoramento com Zabbix Atendimento técnico com OTRS 🎓 Formação e Certificações FIAP — Graduação em Defesa Cibernética (2018–2020) FIAP — Pós-Tech em DevOps e Arquitetura Cloud (Em andamento – 2025) RH124 – Red Hat Academy (2021) LinuxTips – Docker (2021) FIAP – Perícia Forense, Ethical Hacking (2020) 🏆 Destaques 🏅 Finalista do Innovation Challenge Itaú-FIAP 2020 🤝 Participação ativa em squads DevSecOps 📄 Baixar Currículo em PDF 📎 Contato LinkedIn GitHub E-mail ]]></content:encoded>
     </item>
@@ -45,7 +47,8 @@ Ambientes em AWS, suporte a CMS e blogs Monitoramento com Zabbix Atendimento té
       <pubDate>Sat, 17 Oct 2020 16:29:18 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/htb/</guid>
-      <description></description>
+      <description>
+</description>
       <content:encoded><![CDATA[
 ]]></content:encoded>
     </item>
@@ -55,7 +58,8 @@ Ambientes em AWS, suporte a CMS e blogs Monitoramento com Zabbix Atendimento té
       <pubDate>Sat, 18 Aug 2018 22:23:01 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/notes/</guid>
-      <description>notes!</description>
+      <description>notes!
+</description>
       <content:encoded><![CDATA[notes!
 ]]></content:encoded>
     </item>
