@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 07 Jan 2026 21:10:01 UT</lastBuildDate>
+    <lastBuildDate>Thu, 12 Feb 2026 17:34:36 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
@@ -39,9 +39,9 @@ Atuação como DevOps SRE prestando serviço para a B3 (Bolsa de Valores) Gerenc
 Fev 2025 – Set 2025
 Gestão de infraestrutura em nuvem com AWS Administração de clusters Kubernetes (EKS) Automatizações com Terraform, Shellscript, PowerShell GitOps com ArgoCD e CI/CD com GitHub Actions Observabilidade com DataDog HashiCorp Vault para segredos e autenticação Confluence e Jira para documentação Linx — DevOps Sênior / Pleno
 Abr 2021 – Jan 2025
-Infraestrutura em nuvem com AZURE Kubernetes (EKS), Let's Encrypt, Jenkins, GitHub Ansible e AWX, Terraform Integrações com Azure DevOps Webservers Linux e Windows Portal R7 — Admin. de Sistemas / Suporte TI
+Provisionamento e gestão de infraestrutura em nuvem Microsoft Azure, com foco em alta disponibilidade e escalabilidade Administração e orquestração de containers com Kubernetes (AKS), incluindo deploys, configuração de ingressos e gestão de workloads Implementação e manutenção de proxies e balanceamento de carga utilizando NGINX e outras soluções de reverse proxy Configuração e otimização de webservers Linux e Windows para ambientes de produção Automação de infraestrutura e configurações com Terraform, Ansible e AWX Integração e automação de pipelines com Jenkins, GitHub e Azure DevOps Implementação de certificados TLS com Let's Encrypt, garantindo comunicação segura entre serviços Sustentação e administração do Apache Solr em ambientes de e-commerce, garantindo indexação e performance de buscas Monitoramento, troubleshooting e melhorias contínuas em ambientes críticos de produção Portal R7 — Administrador de Sistemas / Suporte TI
 2017 – 2021
-Ambientes em AWS, suporte a CMS e blogs Monitoramento com Zabbix Atendimento técnico com OTRS 🎓 Formação e Certificações FIAP — Graduação em Defesa Cibernética (2018–2020) FIAP — Pós-Tech em DevOps e Arquitetura Cloud (Em andamento – 2025) RH124 – Red Hat Academy (2021) LinuxTips – Docker (2021) FIAP – Perícia Forense, Ethical Hacking (2020) 🏆 Destaques 🏅 Finalista do Innovation Challenge Itaú-FIAP 2020 🤝 Participação ativa em squads DevSecOps 📄 Baixar Currículo em PDF 📎 Contato LinkedIn GitHub E-mail ]]></content:encoded>
+Administração de ambientes em AWS, garantindo disponibilidade e performance das aplicações Sustentação e suporte ao CMS proprietário do portal R7, responsável pela publicação de conteúdos jornalísticos em tempo real Atuação em plataforma de publicação integrada a microserviços (artigos, vídeos, blogs e widgets dinâmicos) Administração e troubleshooting em servidores Linux em ambiente de alta audiência Configuração e otimização de cache reverso com Varnish, melhorando desempenho e tempo de resposta Monitoramento de infraestrutura e serviços com Zabbix, incluindo criação de alertas e análise proativa Análise de logs e observabilidade com Kibana/Elastic Stack para diagnóstico de incidentes Atendimento e gestão de chamados técnicos via OTRS, com foco em SLA e resolução eficiente Suporte a blogs e plataformas digitais, garantindo estabilidade e continuidade dos serviços 🎓 Formação e Certificações FIAP — Graduação em Defesa Cibernética (2018–2020) FIAP — Pós-Tech em DevOps e Arquitetura Cloud (Em andamento – 2025) RH124 – Red Hat Academy (2021) LinuxTips – Docker (2021) FIAP – Perícia Forense, Ethical Hacking (2020) 🏆 Destaques 🏅 Finalista do Innovation Challenge Itaú-FIAP 2020 🤝 Participação ativa em squads DevSecOps 📄 Baixar Currículo em PDF 📎 Contato LinkedIn GitHub E-mail ]]></content:encoded>
     </item>
     <item>
       <title></title>
