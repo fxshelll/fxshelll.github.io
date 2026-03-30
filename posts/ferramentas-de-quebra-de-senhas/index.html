@@ -19,8 +19,7 @@
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ferramentas De Quebra De Senhas | FXShell - DevOps &amp; Sec</title>
-    <meta name="description" content="Ferramentas de Quebra de Senhas
-Hydra
+    <meta name="description" content="Hydra
 O Hydra é uma ferramenta famosa que realiza ataque de dicionário a serviços. Seu uso é, basicamente, assim:
 hydra -l &lt;login&gt; -p &lt;senha&gt; &lt;IP&gt; &lt;serviço&gt; -t &lt;tasks&gt;
 Abaixo, um exemplo de uma tentativa única (-t 1) com o usuário root (-l root) e a senha 12345 (-p 12345) no endereço 10.0.2.2 no serviço ssh:
@@ -200,8 +199,7 @@ fetchInject(["/js/lazysizes.min.js"]);
   <header>
     <h1>Ferramentas De Quebra De Senhas</h1>
   </header>
-  <p>Ferramentas de Quebra de Senhas</p>
-<h2 id="hydra">Hydra</h2>
+  <h2 id="hydra">Hydra</h2>
 <p>O Hydra é uma ferramenta famosa que realiza ataque de dicionário a serviços. Seu uso é, basicamente, assim:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hydra -l &lt;login&gt; -p &lt;senha&gt; &lt;IP&gt; &lt;serviço&gt; -t &lt;tasks&gt;
 </span></span></code></pre></div><p>Abaixo, um exemplo de uma tentativa única (-t 1) com o usuário root (-l root) e a senha 12345 (-p 12345) no endereço 10.0.2.2 no serviço ssh:</p>
@@ -210,68 +208,60 @@ fetchInject(["/js/lazysizes.min.js"]);
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hydra -L &lt;arquivo_login&gt; -P &lt;arquivo_senha&gt; &lt;IP&gt; &lt;serviço&gt;
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hydra -L login.txt -P senha.txt 10.0.2.2 ssh -t <span style="color:#ae81ff">4</span>
 </span></span></code></pre></div><p>O Hydra também possui uma interface gráfica que pode ser chamada com o comando:</p>
-<pre tabindex="0"><code class="language-xhydra" data-lang="xhydra"></code></pre><h2 id="medusa">Medusa</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>xhydra
+</span></span></code></pre></div><h2 id="medusa">Medusa</h2>
 <p>Assim como o Hydra, o Medusa realiza ataque de dicionário a serviços. Seu uso é basicamente:</p>
-<p>Para listar os módulos</p>
-<p>medusa -q | more</p>
-<p>Comando:</p>
-<p>medusa -h <ip> -u <usuario> -p <senha> -M <modulo></p>
-<p>medusa -h 10.10.100.25 -u admin -p 1234 -M ftp</p>
-<p>Lista de IP, usuários e senhas</p>
-<p>medusa -H <ips> -U <usuarios> -P <senhas> -M <modulo></p>
-<p>medusa -H hosts.txt -U users.txt -P pass.txt -M smbnt</p>
-<h2 id="john-the-ripper">John the Ripper</h2>
+<p>Para listar os módulos:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>medusa -q | more
+</span></span></code></pre></div><p>Comando:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>medusa -h &lt;ip&gt; -u &lt;usuario&gt; -p &lt;senha&gt; -M &lt;modulo&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>medusa -h 10.10.100.25 -u admin -p <span style="color:#ae81ff">1234</span> -M ftp
+</span></span></code></pre></div><p>Lista de IPs, usuários e senhas:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>medusa -H &lt;ips&gt; -U &lt;usuarios&gt; -P &lt;senhas&gt; -M &lt;modulo&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>medusa -H hosts.txt -U users.txt -P pass.txt -M smbnt
+</span></span></code></pre></div><h2 id="john-the-ripper">John the Ripper</h2>
 <p>O John the Ripper (o nome da ferramenta faz alusão a um famoso psicopata do século 19, Jack, o Estripador) é uma das ferramentas mais usadas em pentest, sendo ele um utilitário que faz quebra de senhas de três modos:</p>
-<pre><code>WordList → Ele tenta por uma Wordlist, testando as combinaçõesde senha/usuário.
-
-Single Crack → Ele tenta quebrar a senha usando as informaçõesde login.
-
-Incremental → Sendo o modo mais robusto no John the Ripper,ele tentará cada caractere possível até achar a senha correta. Epor esse motivo, é indicado o uso de parâmetros com o intuito dereduzir o tempo de quebra.
-</code></pre>
+<ul>
+<li><strong>WordList</strong> → Tenta quebrar a senha usando uma wordlist com combinações de senha/usuário.</li>
+<li><strong>Single Crack</strong> → Tenta quebrar a senha usando as informações de login.</li>
+<li><strong>Incremental</strong> → O modo mais robusto: tenta cada caractere possível até achar a senha correta. Por esse motivo, é indicado o uso de parâmetros para reduzir o tempo de quebra.</li>
+</ul>
 <p>No caso do modo incremental, é necessário ter o arquivo contendo o hash da senha do usuário (SAM no Windows ou /etc/shadow no Linux).</p>
 <p>Seu uso é basicamente:</p>
-<p>john <arquivo> &ndash;wordlist=dicionario.txt</p>
-<p>john <arquivo> &ndash;single</p>
-<p>john <arquivo> &ndash;incremental</p>
-<p>john <arquivo> &ndash;wordlist=dicionario.txt &ndash;format=NT</p>
-<p>As senhas quebradas são armazenadas no arquivo:</p>
-<p>&lt;home_do_usuário)&gt;/.john/john.pot</p>
-<p>E assim como o Hydra, o JtR também tem uma Interface Gráfica, que pode ser chamada pelo comando:</p>
-<p>johnny</p>
-<h2 id="ophcrack">OphCrack</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>john &lt;arquivo&gt; --wordlist<span style="color:#f92672">=</span>dicionario.txt
+</span></span><span style="display:flex;"><span>john &lt;arquivo&gt; --single
+</span></span><span style="display:flex;"><span>john &lt;arquivo&gt; --incremental
+</span></span><span style="display:flex;"><span>john &lt;arquivo&gt; --wordlist<span style="color:#f92672">=</span>dicionario.txt --format<span style="color:#f92672">=</span>NT
+</span></span></code></pre></div><p>As senhas quebradas são armazenadas no arquivo:</p>
+<pre tabindex="0"><code>~/.john/john.pot
+</code></pre><p>E assim como o Hydra, o JtR também tem uma interface gráfica, que pode ser chamada pelo comando:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>johnny
+</span></span></code></pre></div><h2 id="ophcrack">OphCrack</h2>
 <p>O OphCrack é uma ferramenta nativa do Kali Linux e específica para uso com Rainbow Tables. Com uma interface gráfica bem intuitiva, o OphCrack é ideal para realizar ataques de Brute Force em sistemas Windows.</p>
 <h2 id="hashcat">Hashcat</h2>
 <p>Também nativo do Kali, o Hashcat é uma ferramenta específica para realizar ataques do tipo Password Cracking. Uma das features mais interessantes dela é a possibilidade de se utilizar o processador da placa de vídeo para dar mais performance ao ataque.</p>
 <p>Seu uso é basicamente:</p>
-<p>hashcat -m <tipo do hash> -a <tipo do ataque> -o &lt;arquivo de saída&gt; <arquivo de hash> &lt;dicionário&gt;</p>
-<p>Exemplo:</p>
-<p>hashcat -m 1800 -a 0 -o cracked.txt /etc/shadow /usr/share</p>
-<p>/usr/share/wordlists/rockyou.txt</p>
-<p>Caso os drivers da placa de vídeo não estejam instalados, é necessário utilizar a opção &ndash;force, desta forma:</p>
-<p>hashcat -m 1800 -a 0 -o cracked.txt /etc/shadow /usr/share /usr/share/wordlists/rockyou.txt &ndash;force</p>
-<h2 id="metasploit-framework">Metasploit Framework</h2>
-<p>O Metasploit (MSF) é um framework criado por H.D.Moore, que serve para elaboração e execução de um repositório de exploits.</p>
-<p>Apesar de não ser esse o objetivo da ferramenta, o MSF possui módulos de ataque Força Bruta para diversas aplicações, como, por exemplo, o SSH, que pode ser executado por meio da sequência de comandos abaixo:</p>
-<pre tabindex="0"><code>service postgresql start
-
-msfconsole
-
-use &lt;auxiliar&gt;
-
-auxiliary/scanner/ssh/ssh_login
-
-auxiliary/scanner/ftp/ftp_login
-
-auxiliary/scanner/smb/smb_login
-
-auxiliary/scanner/telnet/telnet_login
-
-show options
-
-set &lt;parametros&gt;
-
-run
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hashcat -m &lt;tipo <span style="color:#66d9ef">do</span> hash&gt; -a &lt;tipo <span style="color:#66d9ef">do</span> ataque&gt; -o &lt;arquivo de saída&gt; &lt;arquivo de hash&gt; &lt;dicionário&gt;
+</span></span></code></pre></div><p>Exemplo:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hashcat -m <span style="color:#ae81ff">1800</span> -a <span style="color:#ae81ff">0</span> -o cracked.txt /etc/shadow /usr/share/wordlists/rockyou.txt
+</span></span></code></pre></div><p>Caso os drivers da placa de vídeo não estejam instalados, é necessário utilizar a opção <code>--force</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hashcat -m <span style="color:#ae81ff">1800</span> -a <span style="color:#ae81ff">0</span> -o cracked.txt /etc/shadow /usr/share/wordlists/rockyou.txt --force
+</span></span></code></pre></div><h2 id="metasploit-framework">Metasploit Framework</h2>
+<p>O Metasploit (MSF) é um framework criado por H.D. Moore que serve para elaboração e execução de exploits.</p>
+<p>Apesar de não ser esse o objetivo principal da ferramenta, o MSF possui módulos de ataque de força bruta para diversas aplicações, como o SSH. Pode ser executado pela sequência de comandos abaixo:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>service postgresql start
+</span></span><span style="display:flex;"><span>msfconsole
+</span></span><span style="display:flex;"><span>use auxiliary/scanner/ssh/ssh_login
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># outros módulos disponíveis:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># use auxiliary/scanner/ftp/ftp_login</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># use auxiliary/scanner/smb/smb_login</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># use auxiliary/scanner/telnet/telnet_login</span>
+</span></span><span style="display:flex;"><span>show options
+</span></span><span style="display:flex;"><span>set &lt;parametros&gt;
+</span></span><span style="display:flex;"><span>run
+</span></span></code></pre></div>
 </main>
     <footer>
   

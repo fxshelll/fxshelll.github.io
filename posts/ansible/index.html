@@ -20,16 +20,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ansible | FXShell - DevOps &amp; Sec</title>
     <meta name="description" content="
-O ansible é uma forma de comunicação superluminica. Ou seja passar uma informação ao mesmo tempo para objetos.
-É uma ferramenta opensource que te possibilita realizar comunicação e interação com diversos destinos ao mesmo tempo, tudo de forma automatizada.
-- Gerenciamento de mudança
-- Provisionamento
-- Automação 
-- Orquestração
+O Ansible é uma forma de comunicação superlumínica. Ou seja, passar uma informação ao mesmo tempo para vários objetos.
+É uma ferramenta open source que possibilita comunicação e interação com diversos destinos ao mesmo tempo, tudo de forma automatizada.
+
+Gerenciamento de mudança
+Provisionamento
+Automação
+Orquestração
+
 Gerenciamento de Mudança
 =&gt; Idempotente
-Executa somente uma vez as alterações, se não houve alteração ele não executa.
-=&gt; Pode também criar rotinas automatizadas por versão, exemplo (php7 em uma maquina client, rodo o ansible que está configurado com o php 7.5, ele vai reverter tudo para o 7.5)">
+Executa somente uma vez as alterações; se não houve alteração, ele não executa.
+=&gt; Pode também criar rotinas automatizadas por versão — por exemplo: se uma máquina client está com PHP 7, ao rodar o Ansible configurado com PHP 7.5, ele vai reverter tudo para o 7.5.">
     <meta name="keywords" content="devops, ansible, linux">
     
     
@@ -205,16 +207,18 @@ fetchInject(["/js/lazysizes.min.js"]);
     <h1>Ansible</h1>
   </header>
   <p><img src="/Ansible.jpg" alt="HTB"></p>
-<p>O ansible é uma forma de comunicação superluminica. Ou seja passar uma informação ao mesmo tempo para objetos.</p>
-<p>É uma ferramenta opensource que te possibilita realizar comunicação e interação com diversos destinos ao mesmo tempo, tudo de forma automatizada.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>- Gerenciamento de mudança
-</span></span><span style="display:flex;"><span>- Provisionamento
-</span></span><span style="display:flex;"><span>- Automação 
-</span></span><span style="display:flex;"><span>- Orquestração
-</span></span></code></pre></div><h2 id="gerenciamento-de-mudança">Gerenciamento de Mudança</h2>
+<p>O Ansible é uma forma de comunicação superlumínica. Ou seja, passar uma informação ao mesmo tempo para vários objetos.</p>
+<p>É uma ferramenta open source que possibilita comunicação e interação com diversos destinos ao mesmo tempo, tudo de forma automatizada.</p>
+<ul>
+<li>Gerenciamento de mudança</li>
+<li>Provisionamento</li>
+<li>Automação</li>
+<li>Orquestração</li>
+</ul>
+<h2 id="gerenciamento-de-mudança">Gerenciamento de Mudança</h2>
 <p>=&gt; Idempotente
-Executa somente uma vez as alterações, se não houve alteração ele não executa.</p>
-<p>=&gt; Pode também criar rotinas automatizadas por versão, exemplo (php7 em uma maquina client, rodo o ansible que está configurado com o php 7.5, ele vai reverter tudo para o 7.5)</p>
+Executa somente uma vez as alterações; se não houve alteração, ele não executa.</p>
+<p>=&gt; Pode também criar rotinas automatizadas por versão — por exemplo: se uma máquina client está com PHP 7, ao rodar o Ansible configurado com PHP 7.5, ele vai reverter tudo para o 7.5.</p>
 <h2 id="provisionamento">Provisionamento</h2>
 <p>=&gt; Configuração
 =&gt; Instalação
@@ -226,28 +230,28 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 =&gt; Realizar decisões
 =&gt; Ad-hoc tasks</p>
 <h2 id="orquestração">Orquestração</h2>
-<p>=&gt; Múltíiplos servidores
-=&gt; Muliplas aplicações
+<p>=&gt; Múltiplos servidores
+=&gt; Múltiplas aplicações
 =&gt; Diferentes tarefas
-=&gt; Ambiente  Hibrido</p>
+=&gt; Ambiente Híbrido</p>
 <h2 id="por-que-o-ansible">Por que o Ansible?</h2>
 <p>De que forma o Ansible é diferente de outras ferramentas?</p>
 <p>É fácil - o Ansible usa uma sintaxe simples (YAML) e é fácil para qualquer pessoa (desenvolvedores, administradores de sistemas, gerentes) entender. APIs são simples e úteis.</p>
-<p>Sem agente - Ansible usa ssh para conectar e executar comandos. Você não precisa de nenhum agente / software adicional em execução no seu cliente.</p>
+<p>Sem agente - O Ansible usa SSH para conectar e executar comandos. Você não precisa de nenhum agente ou software adicional em execução no seu cliente.</p>
 <p>Configuração rápida - como você não precisa instalar agentes ou daemons extras, a configuração é muito simples e rápida.</p>
-<p>Seguro - uma vez que usa ssh para comunicação, é muito seguro e protegido. Não requer nenhuma porta extra ou daemons vulneráveis ​​em seus servidores.</p>
+<p>Seguro - como usa SSH para comunicação, é muito seguro e protegido. Não requer nenhuma porta extra ou daemons vulneráveis em seus servidores.</p>
 <h2 id="arquitetura--funcionamento-do-ansible">Arquitetura &amp; funcionamento do Ansible</h2>
 <p><img src="/ansible_engine.png" alt="HTB"></p>
 <p><img src="/ansible_engine2.png" alt="HTB"></p>
 <h2 id="como-ele-funciona">Como ele funciona?</h2>
-<p>Desenvolvido em python, versão &lt;3.5 ou Python &lt;2.7</p>
-<p>Procura sempre o interpretador em /usr/bin/python
-&ndash;&gt; Variavel: ansible_python_interpreter</p>
-<p>Utiliza-se também do serviço SSH para comunicação com os servidores linux, like ou WinRM para comunicação com servidores M$ Windows.</p>
+<p>Desenvolvido em Python, versão &gt;= 3.5 ou Python &gt;= 2.7.</p>
+<p>Procura sempre o interpretador em <code>/usr/bin/python</code>.
+&ndash;&gt; Variável: <code>ansible_python_interpreter</code></p>
+<p>Utiliza-se também do serviço SSH para comunicação com servidores Linux, e WinRM para servidores Windows.</p>
 <p>-&gt; Usuário + Senha
--&gt; Chave SSH (Para servidores Linux)</p>
-<p>Autenticação descentralizada</p>
-<p>Pode-se autenticar/conectar-se com LDAP e kerberos.</p>
+-&gt; Chave SSH (para servidores Linux)</p>
+<p>Autenticação descentralizada.</p>
+<p>Pode-se autenticar/conectar-se com LDAP e Kerberos.</p>
 <h2 id="instalação-do-ansible">Instalação do Ansible</h2>
 <p>Por padrão, o Ansible gerencia as máquinas por meio do protocolo SSH. Depois que o Ansible for instalado, ele não adicionará um banco de dados e não haverá daemons para iniciar ou manter em execução. Você só precisa instalá-lo em uma máquina e ele pode gerenciar uma frota inteira de máquinas remotas a partir desse ponto central. Quando o Ansible gerencia máquinas remotas, ele não deixa o software instalado ou em execução nelas, então não há dúvidas reais sobre como atualizar o Ansible ao mudar para uma nova versão.</p>
 <p>A única dependência que o Ansible tem para instalação é o Python. O Ansible pode ser instalado diretamente usando o gerenciador de pacotes do sistema operacional com base no sistema operacional que você está executando e via pip, que é o gerenciador de pacotes do Python.</p>
@@ -255,10 +259,9 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 <p>Certifique-se de habilitar o repo EPEL antes de executar o comando abaixo para RHEL e CentOS.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo yum install ansible
 </span></span></code></pre></div><p>Ubuntu:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ 	
-</span></span><span style="display:flex;"><span>$ sudo apt-add-repository ppa:ansible/ansible 
-</span></span><span style="display:flex;"><span>$ sudo apt-get update 
-</span></span><span style="display:flex;"><span>$ sudo apt-get install ansible
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-add-repository ppa:ansible/ansible
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install ansible
 </span></span></code></pre></div><p>Instalação Ansible usando pip</p>
 <p>(caso não tenha o pip instalado faça:)</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo apt-get install python3-pip
@@ -267,19 +270,21 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span></code></pre></div><p>Se precisar fazer upgrade</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo pip3 install ansible --upgrade
 </span></span></code></pre></div><p><img src="/ansible_install.png" alt="HTB"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>- instale o ssh 
-</span></span><span style="display:flex;"><span>- gere sua chave ssh, ssh-keygen -t rsa
-</span></span><span style="display:flex;"><span>- instale o sshpass
-</span></span></code></pre></div><h2 id="configurando-o-ansible">Configurando o Ansible</h2>
+<ul>
+<li>Instale o SSH</li>
+<li>Gere sua chave SSH: <code>ssh-keygen -t rsa</code></li>
+<li>Instale o sshpass</li>
+</ul>
+<h2 id="configurando-o-ansible">Configurando o Ansible</h2>
 <p>O principal arquivo de configuração do ansible, é o <code>ansible.cfg</code></p>
 <p>Sua localização padrão é /etc/ansible/ansible.cfg</p>
-<p>Alterações e configurações são interpretadas respeitando a seguinte ordem.:</p>
-<p>-&gt; Váriavel ANSIBLE_CONFIG
--&gt; ansible.cfg no diretorio corrente
--&gt; .ansible.cfg diretorio home
+<p>Alterações e configurações são interpretadas respeitando a seguinte ordem:</p>
+<p>-&gt; Variável ANSIBLE_CONFIG
+-&gt; ansible.cfg no diretório corrente
+-&gt; .ansible.cfg diretório home
 -&gt; /etc/ansible/ansible.cfg</p>
-<p>A primeira coisa a se fazer é fazer uma cópia do &lsquo;ansible.cfg&rsquo;, que fica dentro do /etc/ansible/</p>
-<p>Preservei o original e joguei um arquivo mais resumido com as opções mais utilizadas do ansible.</p>
+<p>A primeira coisa a fazer é copiar o <code>ansible.cfg</code>, que fica dentro de <code>/etc/ansible/</code>.</p>
+<p>Preservei o original e criei um arquivo mais resumido com as opções mais utilizadas do Ansible.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#f92672">[</span>defaults<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#--- General settings</span>
@@ -309,7 +314,7 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span>ssh_executable          <span style="color:#f92672">=</span> /usr/bin/ssh
 </span></span><span style="display:flex;"><span>private_key_file        <span style="color:#f92672">=</span> ~/.ssh/id_rsa
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>privilege_scalation<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>privilege_escalation<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>become                  <span style="color:#f92672">=</span> True
 </span></span><span style="display:flex;"><span>become_method           <span style="color:#f92672">=</span> sudo
@@ -322,7 +327,7 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span>transfer_method         <span style="color:#f92672">=</span> smart
 </span></span><span style="display:flex;"><span>retries                 <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
 </span></span></code></pre></div><p> </p>
-<h2 id="testando-na-maquina-alvo">Testando na maquina alvo</h2>
+<h2 id="testando-na-máquina-alvo">Testando na máquina alvo</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -m ping
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>WARNING<span style="color:#f92672">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
 </span></span><span style="display:flex;"><span>
@@ -364,8 +369,8 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span>META: ran handlers
 </span></span><span style="display:flex;"><span>META: ran handlers
 </span></span><span style="display:flex;"><span>osboxes@FXSHELL:/etc/ansible$ 
-</span></span></code></pre></div><p>Podemos também explicitar para ele ignorar a mensagem do python.</p>
-<p>basta adicionar no ansible.cfg a linha</p>
+</span></span></code></pre></div><p>Podemos também explicitar para ele ignorar a mensagem do Python.</p>
+<p>Basta adicionar no <code>ansible.cfg</code> a linha:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>interpreter_python    <span style="color:#f92672">=</span> auto_legacy_silent
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.234 -u osboxes -k -m ping
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>WARNING<span style="color:#f92672">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
@@ -379,10 +384,10 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ping&#34;</span>: <span style="color:#e6db74">&#34;pong&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>osboxes@FXSHELL:/etc/ansible$ 
-</span></span></code></pre></div><p>Existe um modulo bem interessante chamado ansible facts, varrendo todos os targets montando uma especie de inventário deles.</p>
-<p>Para buscar essas informações basta executar o modulo &lsquo;setup&rsquo;</p>
+</span></span></code></pre></div><p>Existe um módulo bem interessante chamado Ansible Facts, que varre todos os targets montando uma espécie de inventário deles.</p>
+<p>Para buscar essas informações, basta executar o módulo <code>setup</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.234 -u osboxes -k -m setup
-</span></span></code></pre></div><p>Também existe um modulo chamado systemd com o argumento &lsquo;-a&rsquo; com &ldquo;name=ssh state=restarted&rdquo;</p>
+</span></span></code></pre></div><p>Também existe um módulo chamado <code>systemd</code> com o argumento <code>-a</code> com <code>&quot;name=ssh state=restarted&quot;</code>.</p>
 <p>Ficando dessa forma:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -b -m systemd -a <span style="color:#e6db74">&#34;name=ssh state=restarted&#34;</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -b -m systemd -a <span style="color:#e6db74">&#34;name=ssh state=restarted&#34;</span>
@@ -616,7 +621,7 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;WatchdogUSec&#34;</span>: <span style="color:#e6db74">&#34;0&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><p>Um modulo muito legal também é o modulo &lsquo;shell&rsquo; que posso executar qualquer comando dentro do meu alvo.</p>
+</span></span></code></pre></div><p>Um módulo muito legal também é o módulo <code>shell</code>, que permite executar qualquer comando dentro do alvo.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -b -m shell -a <span style="color:#e6db74">&#34;systemctl status ssh&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>WARNING<span style="color:#f92672">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
 </span></span><span style="display:flex;"><span>
@@ -642,7 +647,7 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span>Apr <span style="color:#ae81ff">07</span> 23:26:56 node2 sshd<span style="color:#f92672">[</span>2446<span style="color:#f92672">]</span>: pam_unix<span style="color:#f92672">(</span>sshd:session<span style="color:#f92672">)</span>: session opened <span style="color:#66d9ef">for</span> user osboxes by <span style="color:#f92672">(</span>uid<span style="color:#f92672">=</span>0<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>Apr <span style="color:#ae81ff">07</span> 23:29:11 node2 sshd<span style="color:#f92672">[</span>2478<span style="color:#f92672">]</span>: Accepted password <span style="color:#66d9ef">for</span> osboxes from 192.168.1.168 port <span style="color:#ae81ff">52236</span> ssh2
 </span></span><span style="display:flex;"><span>Apr <span style="color:#ae81ff">07</span> 23:29:11 node2 sshd<span style="color:#f92672">[</span>2478<span style="color:#f92672">]</span>: pam_unix<span style="color:#f92672">(</span>sshd:session<span style="color:#f92672">)</span>: session opened <span style="color:#66d9ef">for</span> user osboxes by <span style="color:#f92672">(</span>uid<span style="color:#f92672">=</span>0<span style="color:#f92672">)</span>
-</span></span></code></pre></div><p>Se eu não tivesse um usuário comum com poderes de elevação de privilégio eu posso usar a flag &lsquo;-K&rsquo; maiusculo para solicitar a senha de super usuário para elevação. (isso caso meu usuário comum não tivesse permissões)</p>
+</span></span></code></pre></div><p>Caso não haja um usuário comum com poderes de elevação de privilégio, use a flag <code>-K</code> (maiúsculo) para solicitar a senha de superusuário (caso o usuário comum não tenha permissões suficientes).</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -K -m shell -a <span style="color:#e6db74">&#34;systemctl status ssh&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>WARNING<span style="color:#f92672">]</span>: log file at /var/log/ansible.log is not writeable and we cannot create it, aborting
 </span></span><span style="display:flex;"><span>
@@ -660,22 +665,22 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span>   Memory: 2.4M
 </span></span><span style="display:flex;"><span>   CGroup: /system.slice/ssh.service
 </span></span><span style="display:flex;"><span>           └─2438 /usr/sbin/sshd -D
-</span></span></code></pre></div><p>Uma outra opção seria também não especificar nenhum modulo, ele vai pegar o modulo command por padrão.</p>
+</span></span></code></pre></div><p>Uma outra opção é não especificar nenhum módulo — ele vai usar o módulo <code>command</code> por padrão.</p>
 <p>exemplo:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>osboxes@FXSHELL:/etc/ansible$ ansible 192.168.1.151 -u osboxes -k -a <span style="color:#e6db74">&#34;pwd&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>SSH password: 
 </span></span><span style="display:flex;"><span>192.168.1.151 | CHANGED | rc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> &gt;&gt;
 </span></span><span style="display:flex;"><span>/home/osboxes
-</span></span></code></pre></div><p>=&gt; flag -u, determino usuário</p>
-<p>=&gt; flag -k, senha</p>
-<p>=&gt; flag -i, inventário que será utilizado</p>
-<p>=&gt; flag -K, solicita a elevação de privilégio</p>
-<p>=&gt; flag -b, executar elevação de privilégio (especificar no ansible.cfg)</p>
-<p>=&gt; flag -m, modulo que será utilizado</p>
-<p>=&gt; flag -a, argumento do modulo</p>
-<p>para obter ajuda pode fazer também o &ndash;help = ajuda.</p>
-<p>Posso também dar um comando &lsquo;all&rsquo; se meus targets estiverem dentro do arquivo hosts.</p>
+</span></span></code></pre></div><p>=&gt; flag <code>-u</code>: determina o usuário</p>
+<p>=&gt; flag <code>-k</code>: solicita senha</p>
+<p>=&gt; flag <code>-i</code>: inventário que será utilizado</p>
+<p>=&gt; flag <code>-K</code>: solicita a elevação de privilégio</p>
+<p>=&gt; flag <code>-b</code>: executa com elevação de privilégio (especificar no ansible.cfg)</p>
+<p>=&gt; flag <code>-m</code>: módulo que será utilizado</p>
+<p>=&gt; flag <code>-a</code>: argumento do módulo</p>
+<p>Para obter ajuda, use <code>--help</code>.</p>
+<p>Também é possível usar o comando <code>all</code> se os targets estiverem dentro do arquivo <code>hosts</code>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@FXSHELL /e/ansible# cat hosts
 </span></span><span style="display:flex;"><span>192.168.1.151
 </span></span><span style="display:flex;"><span>192.168.1.234
@@ -695,7 +700,7 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;changed&#34;</span>: false,
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ping&#34;</span>: <span style="color:#e6db74">&#34;pong&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><p>Imagine que eu preciso executar isso em muitos hosts, para facilitar isso existe uma forma de trabalhar com grupos, dentro do arquivo de hosts.</p>
+</span></span></code></pre></div><p>Imagine que eu preciso executar isso em muitos hosts. Para facilitar, existe uma forma de trabalhar com grupos dentro do arquivo de hosts.</p>
 <p>Exemplo, no arquivo hosts:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#f92672">[</span>servidores_bd<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>192.168.1.151
@@ -703,17 +708,16 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>servidores_web<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>192.168.1.234
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ansible -i hosts servidores_bd -m ping -u osboxes -k
-</span></span></code></pre></div><p>Também posso colocar um subgrupo, exemplo:</p>
+</span></span></code></pre></div><p>Também é possível criar subgrupos, exemplo:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#f92672">[</span>servidores:children<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>servidores_web
 </span></span><span style="display:flex;"><span>servidores_bd
-</span></span></code></pre></div><p>Ele visualizara todos os subgrupos dele e executará os comandos.</p>
-<p>Também posso utilizar variáveis para ajudar na identificação dos hosts, como por exemplo.</p>
-<p>Posso setar a variavél</p>
+</span></span></code></pre></div><p>Ele visualizará todos os subgrupos e executará os comandos.</p>
+<p>Também é possível utilizar variáveis para ajudar na identificação dos hosts, por exemplo, setando a variável:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mysql ansible_ssh_host<span style="color:#f92672">=</span>192.168.1.234
-</span></span></code></pre></div><p>Posso aplicar regras também para grupos de servidores como por exemplo:</p>
+</span></span></code></pre></div><p>Também é possível aplicar regras para grupos de servidores, por exemplo:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#f92672">[</span>servidores_bd:vars<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>ansible_ssh+port<span style="color:#f92672">=</span><span style="color:#ae81ff">22</span>
+</span></span><span style="display:flex;"><span>ansible_ssh_port<span style="color:#f92672">=</span><span style="color:#ae81ff">22</span>
 </span></span><span style="display:flex;"><span>ansible_ssh_user<span style="color:#f92672">=</span>osboxes
 </span></span><span style="display:flex;"><span>ansible_ssh_pass<span style="color:#f92672">=</span>osboxes.org 
 </span></span><span style="display:flex;"><span>ansible_become<span style="color:#f92672">=</span>yes
@@ -721,9 +725,9 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span>ansible_become_user<span style="color:#f92672">=</span>osboxes
 </span></span><span style="display:flex;"><span>ansible_become_pass<span style="color:#f92672">=</span>osboxes
 </span></span><span style="display:flex;"><span>ansible_connection<span style="color:#f92672">=</span>ssh
-</span></span></code></pre></div><p>Por padrão o ansible trabalha com o python 2.7, mas é possivel alterar o intepretador coma a váriavel:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ansible_python_interpreter<span style="color:#f92672">=(</span>localização <span style="color:#66d9ef">do</span> python<span style="color:#f92672">)</span>
-</span></span></code></pre></div><p>Com isso basta eu executar as regras só o comando com o modulo &lsquo;ping&rsquo;.</p>
+</span></span></code></pre></div><p>Por padrão, o Ansible trabalha com Python 2.7, mas é possível alterar o interpretador com a variável:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ansible_python_interpreter<span style="color:#f92672">=(</span>localização <span style="color:#66d9ef">do</span> Python<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Com isso, basta executar o comando com o módulo <code>ping</code>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@FXSHELL /e/ansible# ansible -i hosts servidores_web -m ping
 </span></span><span style="display:flex;"><span>192.168.1.234 | SUCCESS <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ansible_facts&#34;</span>: <span style="color:#f92672">{</span>
@@ -732,15 +736,15 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;changed&#34;</span>: false,
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ping&#34;</span>: <span style="color:#e6db74">&#34;pong&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h2 id="oque-são-roles">Oque são Roles</h2>
-<p>As roles (funções) são um conjunto de intes independentes destinados a provisionar uma determinada aplicação/infraestrutura.</p>
+</span></span></code></pre></div><h2 id="o-que-são-roles">O que são Roles</h2>
+<p>As roles (funções) são um conjunto de itens independentes destinados a provisionar uma determinada aplicação ou infraestrutura.</p>
 <p>Itens:</p>
-<p>=&gt; Variaveis</p>
-<p>=&gt; Modulos</p>
+<p>=&gt; Variáveis</p>
+<p>=&gt; Módulos</p>
 <p>=&gt; Modelos</p>
 <p>=&gt; Tarefas</p>
 <p>=&gt; Ações</p>
-<p>Pode-se associar-se roles com projetos.</p>
+<p>Pode-se associar roles com projetos.</p>
 <p>As roles possuem uma estrutura padrão de diretórios para seus projetos:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>playbook.yml
 </span></span><span style="display:flex;"><span>└── roles
@@ -752,34 +756,34 @@ Executa somente uma vez as alterações, se não houve alteração ele não exec
 </span></span><span style="display:flex;"><span>        ├── tasks
 </span></span><span style="display:flex;"><span>        ├── templates
 </span></span><span style="display:flex;"><span>        └── vars
-</span></span></code></pre></div><p>Tasks =&gt; lista de tarefas para serem executadas em uma role.</p>
-<p>handlers =&gt; são manipuladores/eventos acionados por uma task.</p>
-<p>files =&gt; arquivos utilizados para deploy dentro de uma role.</p>
-<p>templates =&gt; modelos para deploy dentro de uma role (permite o uso de variáveis)</p>
-<p>vars =&gt; variáveis adicionais de uma role.</p>
-<p>defaults =&gt; variáveis padrão de uma role. Prioridade máxima.</p>
-<p>meta =&gt; traga dependências de uma role para outra role - primeiro diretório a ser analisado.</p>
-<p>Nota: dentro dos diretorios tasks, handlers, vars, defaults e meta, deverá existir um arquivo com o nome de main.yml para que o mesmo seja interpretado.</p>
+</span></span></code></pre></div><p><strong>tasks</strong> =&gt; lista de tarefas para serem executadas em uma role.</p>
+<p><strong>handlers</strong> =&gt; manipuladores/eventos acionados por uma task.</p>
+<p><strong>files</strong> =&gt; arquivos utilizados para deploy dentro de uma role.</p>
+<p><strong>templates</strong> =&gt; modelos para deploy dentro de uma role (permite o uso de variáveis).</p>
+<p><strong>vars</strong> =&gt; variáveis adicionais de uma role.</p>
+<p><strong>defaults</strong> =&gt; variáveis padrão de uma role. Prioridade máxima.</p>
+<p><strong>meta</strong> =&gt; traz dependências de uma role para outra role — primeiro diretório a ser analisado.</p>
+<p>Nota: dentro dos diretórios <code>tasks</code>, <code>handlers</code>, <code>vars</code>, <code>defaults</code> e <code>meta</code>, deve existir um arquivo chamado <code>main.yml</code> para que seja interpretado.</p>
 <p>Dentro do playbook eu preciso ter:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">webserver</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">webserver</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">roles</span>:
-</span></span><span style="display:flex;"><span>    -<span style="color:#ae81ff">common</span>
-</span></span><span style="display:flex;"><span>    -<span style="color:#ae81ff">nginx</span>
-</span></span><span style="display:flex;"><span>    -<span style="color:#ae81ff">php</span>
-</span></span><span style="display:flex;"><span>    -<span style="color:#ae81ff">mysql</span>
-</span></span></code></pre></div><p>Nota: O que determina a execução de uma role são as tasks, cadastradas no arquivo &rsquo;tasks/main.yml&rsquo;.</p>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">common</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">php</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">mysql</span>
+</span></span></code></pre></div><p>Nota: o que determina a execução de uma role são as tasks, cadastradas no arquivo <code>tasks/main.yml</code>.</p>
 <h2 id="variáveis">Variáveis</h2>
-<p>São utilizadas pelo ansible para lhe ajudar a trabalhar com diferentes tipos de sistemas, arquiteturas e/ou lhe auxiliar no processo de repetição durante a execução de uma role.</p>
-<p>O ansible interpreta as variáveis de diferentes arquivos. Para isso o mesmo mantém a seguinte ordem de prioridades (do menor para o maior):</p>
+<p>São utilizadas pelo Ansible para trabalhar com diferentes tipos de sistemas, arquiteturas e/ou auxiliar no processo de repetição durante a execução de uma role.</p>
+<p>O Ansible interpreta as variáveis de diferentes arquivos. Para isso, mantém a seguinte ordem de prioridades (do menor para o maior):</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>1. role/defaults/main.yml
 </span></span><span style="display:flex;"><span>2. inventory file
 </span></span><span style="display:flex;"><span>3. host_vars/*
 </span></span><span style="display:flex;"><span>4. group_vars/*
 </span></span><span style="display:flex;"><span>5. roles/vars/main.yml
-</span></span></code></pre></div><p>As variáveis são comumente utilizadas pelos SysAdmin para facilitar no provisionamento de seus sistemas/infraestrutura. Entretando, o ansible permite através do modulo setup obter o que chamamos de Systems Facts.</p>
-<p>Os Systems Facts são descobertos pelo ansible através do modulo setup, trazendo informações de todo o sistema. Experimente executar o comando:</p>
+</span></span></code></pre></div><p>As variáveis são comumente utilizadas pelos SysAdmins para facilitar o provisionamento de seus sistemas/infraestrutura. Entretanto, o Ansible permite, através do módulo <code>setup</code>, obter o que chamamos de Systems Facts.</p>
+<p>Os Systems Facts são descobertos pelo Ansible através do módulo <code>setup</code>, trazendo informações de todo o sistema. Experimente executar o comando:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ansible hostname -m setup
-</span></span></code></pre></div><p>Para separar um pouco mais as regras coloquei minhas variaveis dentro de group_vars, com ordem de prioridade 4.</p>
+</span></span></code></pre></div><p>Para separar melhor as regras, coloquei minhas variáveis dentro de <code>group_vars</code>, com ordem de prioridade 4.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>├── group_vars
 </span></span><span style="display:flex;"><span>│   └── servidores
 </span></span><span style="display:flex;"><span>├── hosts

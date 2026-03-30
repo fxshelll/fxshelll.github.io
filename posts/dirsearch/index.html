@@ -20,16 +20,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dirsearch | FXShell - DevOps &amp; Sec</title>
     <meta name="description" content="DIRSEARCH
-================
 https://github.com/maurosoria/dirsearch
-O dirsearch é uma ferramenta simples de linha de comando projetada para diretórios e arquivos de força bruta em sites.
-Particularmente prefiro ele ao invés do DIRB ou GoBuster, já obtive mais resultados com ele, porém depois vou escrever sobre essas outras duas ferramentas aqui também.
+O dirsearch é uma ferramenta simples de linha de comando projetada para força bruta em diretórios e arquivos de sites.
+Particularmente prefiro ele ao DIRB ou GoBuster — já obtive mais resultados com ele. Vou escrever sobre essas outras ferramentas também.
 Uso
 git clone https://github.com/maurosoria/dirsearch.git
-$ cd dirsearch
+cd dirsearch
 python3 dirsearch.py -u &lt;URL&gt; -e &lt;EXTENSION&gt;
 Exemplo
-$ python3 dirsearch.py -u http://sitedoalvo.com.br(ou IP) -e *">
+$ python3 dirsearch.py -u http://sitedoalvo.com.br(ou IP) -e *
+ _|. _ _  _  _  _ _|_    v0.3.9
+(_||| _) (/_(_|| (_| )
+
+Extensions:  | HTTP method: getSuffixes: CHANGELOG.md | HTTP method: get | Threads: 10 | Wordlist size: 6552 | Request count: 6552
+
+Error Log: /root/dirsearch/logs/errors-20-06-29_23-59-23.log
+
+Target: http://10.10.10.185
+
+Output File: /root/dirsearch/reports/10.10.10.185/20-06-29_23-59-24
+
+[23:59:24] Starting: 
+[00:00:12] 301 -  313B  - /images  -&gt;  http://10.10.10.185/images/
+[00:00:14] 403 -  277B  - /index.shtml
+[00:00:14] 200 -   67KB - /index.php
+[00:00:14] 200 -   67KB - /index.php/login/
+[00:00:14] 403 -  277B  - /install.sql
+[00:00:17] 403 -  277B  - /localhost.sql
+[00:00:17] 403 -  277B  - /log.sqlite
+[00:00:18] 200 -    4KB - /login.php
+[00:00:18] 403 -  277B  - /login.shtml
+[00:00:19] 403 -  277B  - /logs.sqlite
+O dirsearch vai encontrar pastas e urls uteis para a exploração de vulnerabilidades.">
     <meta name="keywords" content="segurança, ctf, ferramentas">
     
     
@@ -205,15 +227,14 @@ fetchInject(["/js/lazysizes.min.js"]);
     <h1>Dirsearch</h1>
   </header>
   <h2 id="dirsearch">DIRSEARCH</h2>
-<p>================
-<code>https://github.com/maurosoria/dirsearch</code></p>
-<p>O <code>dirsearch</code> é uma ferramenta simples de linha de comando projetada para diretórios e arquivos de força bruta em sites.</p>
-<p>Particularmente prefiro ele ao invés do <code>DIRB</code> ou <code>GoBuster</code>, já obtive mais resultados com ele, porém depois vou escrever sobre essas outras duas ferramentas aqui também.</p>
+<p><code>https://github.com/maurosoria/dirsearch</code></p>
+<p>O <code>dirsearch</code> é uma ferramenta simples de linha de comando projetada para força bruta em diretórios e arquivos de sites.</p>
+<p>Particularmente prefiro ele ao <code>DIRB</code> ou <code>GoBuster</code> — já obtive mais resultados com ele. Vou escrever sobre essas outras ferramentas também.</p>
 <h2 id="uso">Uso</h2>
-<p>git clone <a href="https://github.com/maurosoria/dirsearch.git">https://github.com/maurosoria/dirsearch.git</a></p>
-<p><code>$ cd dirsearch</code></p>
-<p><code>python3 dirsearch.py -u &lt;URL&gt; -e &lt;EXTENSION&gt;</code></p>
-<h2 id="exemplo">Exemplo</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git clone https://github.com/maurosoria/dirsearch.git
+</span></span><span style="display:flex;"><span>cd dirsearch
+</span></span><span style="display:flex;"><span>python3 dirsearch.py -u &lt;URL&gt; -e &lt;EXTENSION&gt;
+</span></span></code></pre></div><h2 id="exemplo">Exemplo</h2>
 <p><code>$ python3 dirsearch.py -u http://sitedoalvo.com.br(ou IP) -e *</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span> _<span style="color:#f92672">|.</span> _ _  _  _  _ _<span style="color:#f92672">|</span>_    v0<span style="color:#ae81ff">.3.9</span>
 </span></span><span style="display:flex;"><span>(_<span style="color:#f92672">|||</span> _) (<span style="color:#f92672">/</span>_(_<span style="color:#f92672">||</span> (_<span style="color:#f92672">|</span> )

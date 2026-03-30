@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 30 Mar 2026 17:02:38 UT</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 19:11:13 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Monolito, Arquitetura em Camadas e Microsserviços</title>
@@ -102,13 +102,13 @@ a forma como eles conversam define a qualidade do sistema inteiro.
       <pubDate>Wed, 30 Sep 2020 23:59:51 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/posts/kubernetes/</guid>
-      <description>Introdução e Arquitetura do Kubernetes Começaremos explorando os fundamentos do Kubernetes Kubernetes, conceitos essenciais para construir uma base sólida que facilitará o entendimento da arquitetura e do funcionamento dessa plataforma de orquestração de contêineres.
+      <description>Introdução e Arquitetura do Kubernetes Começaremos explorando os fundamentos do Kubernetes — conceitos essenciais para construir uma base sólida que facilitará o entendimento da arquitetura e do funcionamento dessa plataforma de orquestração de contêineres.
 O que é Kubernetes? O Kubernetes é uma plataforma open source para orquestração de contêineres, criada para automatizar grande parte das tarefas manuais relacionadas a implantação, administração e escalonamento de aplicações em contêineres.
-Inicialmente criado pelo Google e atualmente mantido pela Cloud Native Computing Foundation (CNCF), o Kubernetes se consolidou como o padrão de mercado para orquestração de contêineres, sendo amplamente adotado em arquiteturas de microsserviços e computação em nuvem. Por que usar Kubernetes? Inicialmente criado pelo Google e atualmente mantido pela Cloud Native Computing Foundation (CNCF), o Kubernetes se consolidou como o padrão de mercado para orquestração de contêineres, sendo amplamente adotado em arquiteturas de microsserviços e computação em nuvem.
+Por que usar Kubernetes? Inicialmente criado pelo Google e atualmente mantido pela Cloud Native Computing Foundation (CNCF), o Kubernetes se consolidou como o padrão de mercado para orquestração de contêineres, sendo amplamente adotado em arquiteturas de microsserviços e computação em nuvem.
 </description>
-      <content:encoded><![CDATA[Introdução e Arquitetura do Kubernetes Começaremos explorando os fundamentos do Kubernetes Kubernetes, conceitos essenciais para construir uma base sólida que facilitará o entendimento da arquitetura e do funcionamento dessa plataforma de orquestração de contêineres.
+      <content:encoded><![CDATA[Introdução e Arquitetura do Kubernetes Começaremos explorando os fundamentos do Kubernetes — conceitos essenciais para construir uma base sólida que facilitará o entendimento da arquitetura e do funcionamento dessa plataforma de orquestração de contêineres.
 O que é Kubernetes? O Kubernetes é uma plataforma open source para orquestração de contêineres, criada para automatizar grande parte das tarefas manuais relacionadas a implantação, administração e escalonamento de aplicações em contêineres.
-Inicialmente criado pelo Google e atualmente mantido pela Cloud Native Computing Foundation (CNCF), o Kubernetes se consolidou como o padrão de mercado para orquestração de contêineres, sendo amplamente adotado em arquiteturas de microsserviços e computação em nuvem. Por que usar Kubernetes? Inicialmente criado pelo Google e atualmente mantido pela Cloud Native Computing Foundation (CNCF), o Kubernetes se consolidou como o padrão de mercado para orquestração de contêineres, sendo amplamente adotado em arquiteturas de microsserviços e computação em nuvem.
+Por que usar Kubernetes? Inicialmente criado pelo Google e atualmente mantido pela Cloud Native Computing Foundation (CNCF), o Kubernetes se consolidou como o padrão de mercado para orquestração de contêineres, sendo amplamente adotado em arquiteturas de microsserviços e computação em nuvem.
 Empacotamento Consistente As aplicações são empacotadas de forma que se comportem da mesma maneira em ambientes de desenvolvimento, teste e produção, eliminando o clássico problema do &ldquo;funciona na minha máquina&rdquo;.
 Abstração de Infraestrutura Desenvolvedores não precisam se preocupar com servidores específicos. O Kubernetes se encarrega de alocar recursos e encontrar o melhor local para executar cada aplicação.
 Escalabilidade sob Demanda O Kubernetes pode escalar automaticamente as aplicações — para mais ou para menos — com base na demanda real, otimizando recursos, desempenho e custos.

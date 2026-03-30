@@ -19,17 +19,17 @@
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoBuster | FXShell - DevOps &amp; Sec</title>
-    <meta name="description" content="GoBuster Primo do DIRB
-O Gobuster é uma ótima ferramenta utilizada para força bruta em URI’s (diretórios e arquivos)
-    -fw – força o processamento de um domínio com resultados curinga.
-    -np – oculta a saída do progresso.
-    -m &lt;modo&gt; – qual modo usar, dir ou dns (padrão: dir).
-    -q – desativa a saída de banner / sublinhado.
-    -t &lt;threads&gt; – número de encadeamentos a serem executados (padrão: 10).
-    -u &lt;url / domain&gt; – URL completo (incluindo esquema) ou nome de domínio base.
-    -v – saída detalhada (mostra todos os resultados).
-    -w &lt;wordlist&gt; – caminho para a lista de palavras usada para força bruta (use – para stdin).
-Eu poderia usar o DIRB? Sim, por que ele vai fazer o scanning de páginas também. Ficaria assim:">
+    <meta name="description" content="GoBuster — primo do DIRB
+O GoBuster é uma ótima ferramenta utilizada para força bruta em URIs (diretórios e arquivos).
+-fw  – força o processamento de um domínio com resultados curinga.
+-np  – oculta a saída do progresso.
+-m &lt;modo&gt;  – qual modo usar: dir ou dns (padrão: dir).
+-q   – desativa a saída de banner/sublinhado.
+-t &lt;threads&gt;  – número de threads a serem executadas (padrão: 10).
+-u &lt;url/domain&gt;  – URL completo (incluindo esquema) ou nome de domínio base.
+-v   – saída detalhada (mostra todos os resultados).
+-w &lt;wordlist&gt;  – caminho para a wordlist usada na força bruta (use - para stdin).
+Eu poderia usar o DIRB? Sim, pois ele também faz o scanning de páginas. Ficaria assim:">
     <meta name="keywords" content="segurança, ctf, ferramentas">
     
     
@@ -204,23 +204,24 @@ fetchInject(["/js/lazysizes.min.js"]);
   <header>
     <h1>GoBuster</h1>
   </header>
-  <p>GoBuster Primo do DIRB</p>
-<p>O Gobuster é uma ótima ferramenta utilizada para força bruta em URI’s (diretórios e arquivos)</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>    -fw – força o processamento de um domínio com resultados curinga.
-</span></span><span style="display:flex;"><span>    -np – oculta a saída <span style="color:#66d9ef">do</span> progresso.
-</span></span><span style="display:flex;"><span>    -m &lt;modo&gt; – qual modo usar, dir ou dns <span style="color:#f92672">(</span>padrão: dir<span style="color:#f92672">)</span>.
-</span></span><span style="display:flex;"><span>    -q – desativa a saída de banner / sublinhado.
-</span></span><span style="display:flex;"><span>    -t &lt;threads&gt; – número de encadeamentos a serem executados <span style="color:#f92672">(</span>padrão: 10<span style="color:#f92672">)</span>.
-</span></span><span style="display:flex;"><span>    -u &lt;url / domain&gt; – URL completo <span style="color:#f92672">(</span>incluindo esquema<span style="color:#f92672">)</span> ou nome de domínio base.
-</span></span><span style="display:flex;"><span>    -v – saída detalhada <span style="color:#f92672">(</span>mostra todos os resultados<span style="color:#f92672">)</span>.
-</span></span><span style="display:flex;"><span>    -w &lt;wordlist&gt; – caminho para a lista de palavras usada para força bruta <span style="color:#f92672">(</span>use – para stdin<span style="color:#f92672">)</span>.
-</span></span></code></pre></div><p>Eu poderia usar o DIRB? Sim, por que ele vai fazer o scanning de páginas também. Ficaria assim:</p>
+  <p>GoBuster — primo do DIRB</p>
+<p>O GoBuster é uma ótima ferramenta utilizada para força bruta em URIs (diretórios e arquivos).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>-fw  – força o processamento de um domínio com resultados curinga.
+</span></span><span style="display:flex;"><span>-np  – oculta a saída <span style="color:#66d9ef">do</span> progresso.
+</span></span><span style="display:flex;"><span>-m &lt;modo&gt;  – qual modo usar: dir ou dns <span style="color:#f92672">(</span>padrão: dir<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>-q   – desativa a saída de banner/sublinhado.
+</span></span><span style="display:flex;"><span>-t &lt;threads&gt;  – número de threads a serem executadas <span style="color:#f92672">(</span>padrão: 10<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>-u &lt;url/domain&gt;  – URL completo <span style="color:#f92672">(</span>incluindo esquema<span style="color:#f92672">)</span> ou nome de domínio base.
+</span></span><span style="display:flex;"><span>-v   – saída detalhada <span style="color:#f92672">(</span>mostra todos os resultados<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>-w &lt;wordlist&gt;  – caminho para a wordlist usada na força bruta <span style="color:#f92672">(</span>use - para stdin<span style="color:#f92672">)</span>.
+</span></span></code></pre></div><p>Eu poderia usar o DIRB? Sim, pois ele também faz o scanning de páginas. Ficaria assim:</p>
 <p><code>$ dirb http://192.168.219.128:65535 /usr/share/dirb/wordlists/big.txt</code></p>
-<p>Com o GoBuster faria o brute force + o scanning de diretórios, utilizando a mesma wordlist do DIRB.</p>
+<p>Com o GoBuster, faço o brute force + scanning de diretórios, usando a mesma wordlist do DIRB.</p>
 <p><code>$ gobuster dir -u http://192.168.219.128:65535 -w /usr/share/dirb/wordlists/big.txt</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">-</span>w <span style="color:#f92672">&lt;</span>wordlist<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span>u <span style="color:#f92672">&lt;</span>url<span style="color:#f92672">&gt;</span>
-</span></span></code></pre></div>
+<p>Flags mais usadas:</p>
+<pre tabindex="0"><code>-w &lt;wordlist&gt;
+-u &lt;url&gt;
+</code></pre>
 </main>
     <footer>
   

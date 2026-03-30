@@ -20,13 +20,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker | FXShell - DevOps &amp; Sec</title>
     <meta name="description" content="Aprendizado baseado no curso do Linuxtips, do Jefferson. Apenas para conhecimento sem fins lucrativos postei aqui para o meu aprendizado pessoal.
-Quando falamos de container, estamos falando de
-isolamento. Esse container está sendo executado
-dentro de um servidor, este fica completamente
-isolado da maquina. E dentro deste cercado eu
-tenho processos locais do container. Claro consigo
-ver os processos do meu host local, o servidor
-fisico que está rodando este container.">
+Quando falamos de container, estamos falando de isolamento. Esse container é executado dentro de um servidor, completamente isolado da máquina host. Dentro desse ambiente isolado tenho processos locais do container — embora ainda consiga ver os processos do host físico que está rodando o container.
+Duas formas de isolamento:">
     <meta name="keywords" content="devops, docker, linux">
     
     
@@ -202,28 +197,23 @@ fetchInject(["/js/lazysizes.min.js"]);
     <h1>Docker</h1>
   </header>
   <p>Aprendizado baseado no curso do Linuxtips, do Jefferson. Apenas para conhecimento sem fins lucrativos postei aqui para o meu aprendizado pessoal.</p>
-<p>Quando falamos de container, estamos falando de
-isolamento. Esse container está sendo executado
-dentro de um servidor, este fica completamente
-isolado da maquina. E dentro deste cercado eu
-tenho processos locais do container. Claro consigo
-ver os processos do meu host local, o servidor
-fisico que está rodando este container.</p>
-<p>Duas formas de isolamento, lógica e física.</p>
-<p>Lógica (namespaces): redes, usuários, processos
-Física (Cgroups): CPU, memoria, disco.</p>
-<p>#O que é o Docker?</p>
-<p>Todos as imagens em camadas são read-only exceto a primeira camada ou seja a ultima é alterada. Se eu tenho 5 Containers de 500mb rodando, não será 5GB de espaço alocado no disco do servidor. Continuará sendo 500MB, pois ele usa a mesma imagem em todas as camadas.</p>
+<p>Quando falamos de container, estamos falando de isolamento. Esse container é executado dentro de um servidor, completamente isolado da máquina host. Dentro desse ambiente isolado tenho processos locais do container — embora ainda consiga ver os processos do host físico que está rodando o container.</p>
+<p>Duas formas de isolamento:</p>
+<ul>
+<li><strong>Lógica (namespaces):</strong> redes, usuários, processos</li>
+<li><strong>Física (Cgroups):</strong> CPU, memória, disco</li>
+</ul>
+<h2 id="o-que-é-o-docker">O que é o Docker?</h2>
+<p>Todas as imagens em camadas são read-only, exceto a camada mais superior (onde as alterações acontecem). Se eu tenho 5 containers de 500 MB rodando, não serão 5 GB alocados no disco — continuará sendo 500 MB, pois todos compartilham a mesma imagem base.</p>
 <p>O módulo do kernel Linux é o responsável por criar rotas, redirects e boa parte da tarefa de roteamento de pacotes para o Docker é o <code>Netfilter</code></p>
 <p>O módulo do kernel Linux é o responsável pelo isolamento de recursos como CPU e memória é o <code>Cgroups</code></p>
 <p>O módulo do kernel Linux é o responsável pelo isolamento de processos, é o <code>namespaces</code></p>
-<h1 id="instalando-o-docker">Instalando o Docker</h1>
-<p>Comandos Utilizados:</p>
-<h1 id="curl--fssl---bash">curl -fsSL <a href="https://get.docker.com/">https://get.docker.com/</a> | bash</h1>
-<h1 id="docker-version">docker version</h1>
-<h1 id="docker-container-ls">docker container ls</h1>
-<p>a versão paga do Docker é a versão Docker EE (enterprise)</p>
-<p>Mas vamos utilizar a versão CE, versão gratuita.</p>
+<h2 id="instalando-o-docker">Instalando o Docker</h2>
+<p>Comandos utilizados:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>curl -fsSL https://get.docker.com/ | bash
+</span></span><span style="display:flex;"><span>docker version
+</span></span><span style="display:flex;"><span>docker container ls
+</span></span></code></pre></div><p>A versão paga do Docker é a Docker EE (Enterprise Edition), mas vamos utilizar a versão CE, gratuita.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>osboxes@osboxes:~$ docker version
 </span></span><span style="display:flex;"><span>Client: Docker Engine - Community
 </span></span><span style="display:flex;"><span> Version:           19.03.13
@@ -234,11 +224,10 @@ Física (Cgroups): CPU, memoria, disco.</p>
 </span></span><span style="display:flex;"><span> OS/Arch:           linux/amd64
 </span></span><span style="display:flex;"><span> Experimental:      false
 </span></span><span style="display:flex;"><span>Got permission denied <span style="color:#66d9ef">while</span> trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/version: dial unix /var/run/docker.sock: connect: permission denied
-</span></span></code></pre></div><p>#Executando e administrando containers Docker</p>
-<p>A primeira coisa a se fazer é o famoso hello-word</p>
-<p>Algo como:</p>
-<p>#$ docker container run hello-world</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container run hello-world
+</span></span></code></pre></div><h2 id="executando-e-administrando-containers-docker">Executando e administrando containers Docker</h2>
+<p>A primeira coisa a fazer é o famoso hello-world:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker container run hello-world
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container run hello-world
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Hello from Docker!
 </span></span><span style="display:flex;"><span>This message shows that your installation appears to be working correctly.
@@ -260,13 +249,13 @@ Física (Cgroups): CPU, memoria, disco.</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>For more examples and ideas, visit:
 </span></span><span style="display:flex;"><span> https://docs.docker.com/get-started/
-</span></span></code></pre></div><p>Para visualizar todos os containers que estão em execução, parados ou mortos, eu utilizo o comando:</p>
-<p>#$ docker container ls -a</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container ls -a
+</span></span></code></pre></div><p>Para visualizar todos os containers que estão em execução, parados ou finalizados:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker container ls -a
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container ls -a
 </span></span><span style="display:flex;"><span>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
 </span></span><span style="display:flex;"><span>fc4253022db8        hello-world         <span style="color:#e6db74">&#34;/hello&#34;</span>            <span style="color:#ae81ff">36</span> seconds ago      Exited <span style="color:#f92672">(</span>0<span style="color:#f92672">)</span> <span style="color:#ae81ff">34</span> seconds ago                       reverent_neumann
 </span></span><span style="display:flex;"><span>106fbfd9aba4        hello-world         <span style="color:#e6db74">&#34;/hello&#34;</span>            <span style="color:#ae81ff">8</span> minutes ago       Exited <span style="color:#f92672">(</span>0<span style="color:#f92672">)</span> <span style="color:#ae81ff">8</span> minutes ago                        hungry_kapitsa
-</span></span></code></pre></div><p>Outra coisa interessante é usar o comando <code>-ti</code> para cair dentro do container que acabou de subir, ou seja eu quero um terminal com interatividade, no caso seria algo como:</p>
+</span></span></code></pre></div><p>Outra coisa interessante é usar a flag <code>-ti</code> para entrar dentro do container que acabou de subir — ou seja, um terminal interativo:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container run -ti ubuntu
 </span></span><span style="display:flex;"><span>Unable to find image <span style="color:#e6db74">&#39;ubuntu:latest&#39;</span> locally
 </span></span><span style="display:flex;"><span>latest: Pulling from library/ubuntu
@@ -281,8 +270,8 @@ Física (Cgroups): CPU, memoria, disco.</p>
 </span></span><span style="display:flex;"><span>UID          PID    PPID  C STIME TTY          TIME CMD
 </span></span><span style="display:flex;"><span>root           <span style="color:#ae81ff">1</span>       <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">0</span> 17:15 pts/0    00:00:00 /bin/bash
 </span></span><span style="display:flex;"><span>root           <span style="color:#ae81ff">8</span>       <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">0</span> 17:17 pts/0    00:00:00 ps -ef
-</span></span></code></pre></div><p>Se eu der um CTRL+D eu saiu do container criado e ele morre.</p>
-<p>Todo container tem um entrypoint, neste caso é o próprio bash, então quando saimos dele, ele é finalizado também.</p>
+</span></span></code></pre></div><p>Se eu der <code>CTRL+D</code>, saio do container e ele morre.</p>
+<p>Todo container tem um entrypoint — neste caso é o próprio bash, então quando saímos dele, o container é finalizado também.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container run -ti centos
 </span></span><span style="display:flex;"><span>Unable to find image <span style="color:#e6db74">&#39;centos:latest&#39;</span> locally
 </span></span><span style="display:flex;"><span>latest: Pulling from library/centos
@@ -298,26 +287,25 @@ Física (Cgroups): CPU, memoria, disco.</p>
 </span></span><span style="display:flex;"><span>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 </span></span><span style="display:flex;"><span>ca53ed399c0d        centos              <span style="color:#e6db74">&#34;/bin/bash&#34;</span>         <span style="color:#ae81ff">2</span> minutes ago       Up <span style="color:#ae81ff">2</span> minutes                            pensive_turing
 </span></span><span style="display:flex;"><span>root@osboxes:~# 
-</span></span></code></pre></div><p>Como faço para voltar, agora utilizo o comando <code>docker container attach + [CONTAINER ID]</code></p>
-<p>#$docker container attach ca53ed399c0d</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container attach ca53ed399c0d
+</span></span></code></pre></div><p>Para voltar, utilizo o comando <code>docker container attach [CONTAINER ID]</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker container attach ca53ed399c0d
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container attach ca53ed399c0d
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>root@ca53ed399c0d /<span style="color:#f92672">]</span><span style="color:#75715e"># cat /etc/redhat-release </span>
 </span></span><span style="display:flex;"><span>CentOS Linux release 8.2.2004 <span style="color:#f92672">(</span>Core<span style="color:#f92672">)</span> 
-</span></span></code></pre></div><p>Agora se eu subir um container do nginx por exemplo, nunca use a flag <code>-ti</code> vai parecer que está travado, acontece que você pediu para ele criar o container do nginx com interatividade, mas acontece que ele vai tentar abrir uma console, só que o entrypoint do <code>nginx</code> não é o bash, é o próprio processo.</p>
-<p>Todo processo tem que estar em execução em primeiro plano, em foreign ground.</p>
-<p>Mesmo se você attachar o nginx para tentar acessa-lo ficara parecendo que esta travando, novamente, o nginx está rodando em primeiro plano, se você entrar nele e sair, vai matar o container dele.</p>
-<p>Ou seja neste caso não pode estar rodando como daemon.</p>
-<p>Neste caso não vou utilizar ele com o <code>-ti</code> mas sim como <code>-d</code>, para rodar como daemon e não com interatividade.</p>
-<h1 id="-docker-container-run-nginx">$ docker container run nginx</h1>
-<p>Primeiro eu rodo o <code>run</code> sem a flag <code>-d</code> para ele baixar o container pra mim localmente. Ai então rodo com a flag para ele deixar o processo do nginx como daemon.</p>
-<h1 id="-docker-container-run--d-nginx">$ docker container run -d nginx</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container ls
+</span></span></code></pre></div><p>Agora, se eu subir um container do nginx, nunca use a flag <code>-ti</code> — vai parecer que travou. O que acontece é que você pediu interatividade, mas o entrypoint do nginx não é o bash, é o próprio processo do nginx.</p>
+<p>Todo processo precisa estar em execução em primeiro plano (foreground).</p>
+<p>Mesmo se você attachar o nginx para tentar acessá-lo, vai parecer que travou — porque o nginx está rodando em foreground e, se você sair, mata o container.</p>
+<p>Ou seja, neste caso não pode rodar como daemon com <code>-ti</code>.</p>
+<p>Use a flag <code>-d</code> para rodar em background (daemon):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker container run nginx      <span style="color:#75715e"># baixa a imagem localmente</span>
+</span></span><span style="display:flex;"><span>docker container run -d nginx   <span style="color:#75715e"># sobe em background</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container ls
 </span></span><span style="display:flex;"><span>CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS               NAMES
 </span></span><span style="display:flex;"><span>fecca31902c0        nginx               <span style="color:#e6db74">&#34;/docker-entrypoint.…&#34;</span>   About a minute ago   Up About a minute   80/tcp              affectionate_dijkstra
 </span></span><span style="display:flex;"><span>ca53ed399c0d        centos              <span style="color:#e6db74">&#34;/bin/bash&#34;</span>              <span style="color:#ae81ff">34</span> hours ago         Up <span style="color:#ae81ff">34</span> hours                             pensive_turing
 </span></span></code></pre></div><p>Agora tenho o CentOS e o Nginx rodando.</p>
-<p>Para que eu possa acessar esse container do nginx, visto que o entrypoint dele é o próprio processo, eu executo o comando <code>exec</code></p>
-<p>O comando <code>exec</code> me permite rodar comandos no container e me trás os resultados em tela, neste caso posso executar comandos como &ldquo;ls, cat&rdquo; normalmente.</p>
+<p>Para acessar o container do nginx, já que o entrypoint é o próprio processo, uso o comando <code>exec</code>.</p>
+<p>O comando <code>exec</code> permite rodar comandos dentro do container e ver os resultados na tela — posso executar <code>ls</code>, <code>cat</code> e outros normalmente.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container exec -ti fecca31902c0 ls
 </span></span><span style="display:flex;"><span>bin   dev		   docker-entrypoint.sh  home  lib64  mnt  proc  run   srv  tmp  var
 </span></span><span style="display:flex;"><span>boot  docker-entrypoint.d  etc			 lib   media  opt  root  sbin  sys  usr
