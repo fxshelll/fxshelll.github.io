@@ -205,9 +205,12 @@ fetchInject(["/js/lazysizes.min.js"]);
 </ul>
 <h2 id="o-que-é-o-docker">O que é o Docker?</h2>
 <p>Todas as imagens em camadas são read-only, exceto a camada mais superior (onde as alterações acontecem). Se eu tenho 5 containers de 500 MB rodando, não serão 5 GB alocados no disco — continuará sendo 500 MB, pois todos compartilham a mesma imagem base.</p>
-<p>O módulo do kernel Linux é o responsável por criar rotas, redirects e boa parte da tarefa de roteamento de pacotes para o Docker é o <code>Netfilter</code></p>
-<p>O módulo do kernel Linux é o responsável pelo isolamento de recursos como CPU e memória é o <code>Cgroups</code></p>
-<p>O módulo do kernel Linux é o responsável pelo isolamento de processos, é o <code>namespaces</code></p>
+<p>Os principais módulos do kernel Linux utilizados pelo Docker são:</p>
+<ul>
+<li><strong><code>Netfilter</code></strong>: responsável por criar rotas, redirects e boa parte do roteamento de pacotes.</li>
+<li><strong><code>Cgroups</code></strong>: responsável pelo isolamento de recursos como CPU e memória.</li>
+<li><strong><code>Namespaces</code></strong>: responsável pelo isolamento de processos, redes e usuários.</li>
+</ul>
 <h2 id="instalando-o-docker">Instalando o Docker</h2>
 <p>Comandos utilizados:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>curl -fsSL https://get.docker.com/ | bash
@@ -370,7 +373,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></code></pre></div><p>E também tenho o restart do container, caso precise.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container restart fecca31902c0
 </span></span><span style="display:flex;"><span>fecca31902c0
-</span></span></code></pre></div><p>O comando <code>insepect</code> vai trazer os detalhes daquele container.</p>
+</span></span></code></pre></div><p>O comando <code>inspect</code> vai trazer os detalhes daquele container.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container inspect fecca31902c0
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">{</span>
@@ -621,8 +624,6 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span><span style="display:flex;"><span>Error response from daemon: You cannot remove a running container 425c61ede184f202b4ae9c3678c429735296fa916253dc953d723414cd3d52cb. Stop the container before attempting removal or force remove
 </span></span><span style="display:flex;"><span>root@osboxes:~# docker container rm -f 425c61ede184
 </span></span><span style="display:flex;"><span>425c61ede184
-</span></span><span style="display:flex;"><span>root@osboxes:~# docker container rm -f 425c61ede184
-</span></span><span style="display:flex;"><span>425c61ede184
 </span></span><span style="display:flex;"><span>root@osboxes:~# docker container ls
 </span></span><span style="display:flex;"><span>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 </span></span><span style="display:flex;"><span>ca53ed399c0d        centos              <span style="color:#e6db74">&#34;/bin/bash&#34;</span>         <span style="color:#ae81ff">35</span> hours ago        Up <span style="color:#ae81ff">18</span> minutes                           pensive_turing
@@ -631,33 +632,33 @@ fetchInject(["/js/lazysizes.min.js"]);
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container stats 7f824cb8005e
 </span></span></code></pre></div><p>Para testar os recursos pode-se utilizar o programa Stress.</p>
 <p><code>root@7f824cb8005e:/# apt-get install stress</code></p>
-<p>Para ver detalhes do seu uso, utilize</p>
-<h1 id="-stress-help">$ stress &ndash;help</h1>
-<p>Fiz o seguinte comando</p>
-<p><code>stress --cpu 1 --vm-bytes 128 --vm 1</code></p>
-<p>Posso utilizar para ver os dados também o famoso <code>top</code></p>
+<p>Para ver detalhes do seu uso:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>stress --help
+</span></span></code></pre></div><p>Exemplo de uso:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>stress --cpu <span style="color:#ae81ff">1</span> --vm-bytes 128M --vm <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>Posso utilizar para ver os dados também o famoso <code>top</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container top 7f824cb8005e
 </span></span></code></pre></div><p>Claro, se o mesmo estiver instalado no container</p>
 <p>Para criar um container do nginx por exemplo com limitação de memória e cpu, eu posso definir isso na criação. Exemplo:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container run -d -m 128M --cpus 0.5 nginx
 </span></span></code></pre></div><p>Neste caso estou definindo 128MB de ram para o container e que ele se limite a usar só 50% de CPU.</p>
 <p>Posso testar utilizando o stress.</p>
-<p>Agora quero mudar quero que utilize 80% de CPU, então eu posso fazer um update.</p>
+<p>Agora quero que utilize 80% de CPU, então eu posso fazer um update.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container update --cpus 0.8  --memory 64M 7f824cb8005e
 </span></span></code></pre></div><p>Agora ele vai utilizar 80% de CPU e 64MB de memória, para o ID que no caso é do nginx.</p>
 <h1 id="criando-um-dockerfile">Criando um Dockerfile</h1>
 <p>Depois de criar uma pasta para alocar o Dockerfile, eu crio um arquivo no vim</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>FROM debian
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>LABEL app<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;BIKER&#34;</span>
-</span></span><span style="display:flex;"><span>ENV FXSHELL<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Devops&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>RUN apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y stress <span style="color:#f92672">&amp;&amp;</span> apt-get clean
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>CMD stress --cpu <span style="color:#ae81ff">1</span> --vm-bytes 64M --vm <span style="color:#ae81ff">1</span>
-</span></span></code></pre></div><p>Depois de criado, vou buildar</p>
-<h1 id="-docker-image-build--t-toskeira10">$ docker image build -t toskeira:1.0</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~/tosko_dockerfile# docker image build -t toskeira:1.0 .
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">debian</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> app<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;BIKER&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> FXSHELL<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Devops&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y stress <span style="color:#f92672">&amp;&amp;</span> apt-get clean<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> stress --cpu <span style="color:#ae81ff">1</span> --vm-bytes 64M --vm <span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Depois de criado, vou buildar</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker image build -t toskeira:1.0 .
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~/tosko_dockerfile# docker image build -t toskeira:1.0 .
 </span></span><span style="display:flex;"><span>Sending build context to Docker daemon  2.048kB
 </span></span><span style="display:flex;"><span>Step 1/5 : FROM debian
 </span></span><span style="display:flex;"><span>latest: Pulling from library/debian
@@ -719,7 +720,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></code></pre></div><p>Posso também utilizar o comando update.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@osboxes:~# docker container update --cpus 0.8  --memory 64M <span style="color:#f92672">[</span>CONTAINER ID<span style="color:#f92672">]</span>
 </span></span></code></pre></div><p>Limitando CPU para 80% e memoria para 64M</p>
-<p>#Entendendo volumes</p>
+<h1 id="entendendo-volumes">Entendendo volumes</h1>
 <p>Volumes nada mais sao do que diretorios externos ao container, que são montados diretamente nele, dessa forma bypassam seu filesystem, ou seja, não seguem aquele padrão de camadas.</p>
 <p>A principal função do volume é persistir os dados. Diferentemente do filesystem do container, que é volátil e toda informação escrita nele é perdida quando o container morre, quando você escreve em um volume aquele dado continua lá. independentemente do estado do container.</p>
 <p>=&gt; É iniciado quando o container é criado</p>
@@ -728,7 +729,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 <p>=&gt; Alterações em um volume são feitas diretamente do volume.</p>
 <p>=&gt; Alterações em um volume não irão com a imagem quando você fizer uma cópia ou snapshot de um container.</p>
 <p>=&gt; Volumes continuam a existir mesmo se você deletar o container.</p>
-<p>#Exemplo</p>
+<h2 id="exemplo">Exemplo</h2>
 <p>Criamos uma pasta para montar nosso volume no local:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@FXSHELL ~# mkdir /opt/moranguinho
 </span></span></code></pre></div><p>Volumes do tipo bind é quando eu já tenho um diretório que quero montar especifico.</p>
@@ -776,7 +777,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span><span style="display:flex;"><span>touch: cannot touch <span style="color:#e6db74">&#39;teste3&#39;</span>: Read-only file system
 </span></span><span style="display:flex;"><span>root@e779e386475a:/moranguinho# 
 </span></span></code></pre></div><p>Mostrando a mensagem como read-only.</p>
-<p>#Docker volume</p>
+<h2 id="docker-volume">Docker volume</h2>
 <p>Posso checar todos os volumes criados com o comando:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@FXSHELL ~# docker volume ls
 </span></span><span style="display:flex;"><span>DRIVER              VOLUME NAME
@@ -833,30 +834,16 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span><span style="display:flex;"><span>root@FXSHELL /v/l/d/v/g/_data# ls
 </span></span><span style="display:flex;"><span>teste1  teste2  teste3  teste4_final
 </span></span><span style="display:flex;"><span>root@FXSHELL /v/l/d/v/g/_data# 
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@FXSHELL /v/l/d/v/g/_data# docker container ls
-</span></span><span style="display:flex;"><span>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-</span></span><span style="display:flex;"><span>4983b4a108a3        debian              <span style="color:#e6db74">&#34;bash&#34;</span>              <span style="color:#ae81ff">11</span> seconds ago      Up <span style="color:#ae81ff">10</span> seconds                           frosty_bartik
-</span></span><span style="display:flex;"><span>root@FXSHELL /v/l/d/v/g/_data# 
-</span></span><span style="display:flex;"><span>docker container run -ti --mount type<span style="color:#f92672">=</span>volume,src<span style="color:#f92672">=</span>moranguinho,dst<span style="color:#f92672">=</span>/moranguinho debian
-</span></span><span style="display:flex;"><span>root@13aacd8dfd58:/# ls
-</span></span><span style="display:flex;"><span>bin   dev  moranguinho  lib    media  opt   root  sbin  sys  usr
-</span></span><span style="display:flex;"><span>boot  etc  home      lib64  mnt    proc  run   srv   tmp  var
-</span></span><span style="display:flex;"><span>root@13aacd8dfd58:/# cd moranguinho/
+</span></span></code></pre></div><p>Posso subir um segundo container montando o mesmo volume e confirmar que o arquivo está lá:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker container run -ti --mount type<span style="color:#f92672">=</span>volume,src<span style="color:#f92672">=</span>moranguinho,dst<span style="color:#f92672">=</span>/moranguinho debian
 </span></span><span style="display:flex;"><span>root@13aacd8dfd58:/moranguinho# ls
 </span></span><span style="display:flex;"><span>teste1  teste2  teste3  teste4_final
-</span></span><span style="display:flex;"><span>root@13aacd8dfd58:/moranguinho# ⏎                                               root@FXSHELL /v/l/d/v/g/_data# ls
-</span></span><span style="display:flex;"><span>teste1  teste2  teste3  teste4_final
-</span></span><span style="display:flex;"><span>root@FXSHELL /v/l/d/v/g/_data# docker container ls
-</span></span><span style="display:flex;"><span>CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
-</span></span><span style="display:flex;"><span>13aacd8dfd58        debian              <span style="color:#e6db74">&#34;bash&#34;</span>              <span style="color:#ae81ff">14</span> seconds ago       Up <span style="color:#ae81ff">12</span> seconds                           flamboyant_moore
-</span></span><span style="display:flex;"><span>4983b4a108a3        debian              <span style="color:#e6db74">&#34;bash&#34;</span>              About a minute ago   Up About a minute                       frosty_bartik
-</span></span><span style="display:flex;"><span>root@FXSHELL /v/l/d/v/g/_data# 
-</span></span><span style="display:flex;"><span>docker container exec -ti 13aacd8dfd58 touch /moranguinho/13aacd8dfd58
-</span></span><span style="display:flex;"><span>root@FXSHELL /v/l/d/v/g/_data# 
+</span></span></code></pre></div><p>Posso também executar comandos em containers em execução e confirmar que todos compartilham o mesmo volume:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker container exec -ti 13aacd8dfd58 touch /moranguinho/13aacd8dfd58
 </span></span><span style="display:flex;"><span>docker container exec -ti 4983b4a108a3 touch /moranguinho/4983b4a108a3
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>root@FXSHELL /v/l/d/v/g/_data# ls
 </span></span><span style="display:flex;"><span>13aacd8dfd58  4983b4a108a3  teste1  teste2  teste3  teste4_final
-</span></span><span style="display:flex;"><span>root@FXSHELL /v/l/d/v/g/_data# 
 </span></span></code></pre></div><p>Para remover o volume basta remover todos os containers que estiverem em uso com ele.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@FXSHELL /v/l/d/v/g/_data <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span><span style="color:#75715e"># docker container ls -a</span>
 </span></span><span style="display:flex;"><span>CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
@@ -980,7 +967,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span><span style="display:flex;"><span>root@FXSHELL ~# 
 </span></span><span style="display:flex;"><span>root@FXSHELL ~# docker container run -ti --mount type<span style="color:#f92672">=</span>volume,src<span style="color:#f92672">=</span>dbdados,dst<span style="color:#f92672">=</span>/data --mount type<span style="color:#f92672">=</span>bind,src<span style="color:#f92672">=</span>/opt/backup,dst<span style="color:#f92672">=</span>/backup debian tar -cvf /backup/bkp-banco.tar /data
 </span></span></code></pre></div><p>montando um volume do tipo bind dentro deste novo container e empacotando com o tar, o bkp.</p>
-<p>#EXEMPLO DE COMANDOS</p>
+<h2 id="referência-rápida-de-comandos">Referência rápida de comandos</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># docker container run -ti --mount type=bind,src=/volume,dst=/volume ubuntu</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># docker container run -ti --mount type=bind,src=/root/primeiro_container,dst=/volume ubuntu</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># docker container run -ti --mount type=bind,src=/root/primeiro_container,dst=/volume,ro ubuntu</span>
@@ -993,113 +980,155 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># docker run -d -p 5432:5432 --name pgsql1 --volumes-from dbdados -e POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># docker run -d -p 5433:5432 --name pgsql2 --volumes-from dbdados -e  POSTGRESQL_USER=docker -e POSTGRESQL_PASS=docker -e POSTGRESQL_DB=docker kamui/postgresql</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># docker run -ti --volumes-from dbdados -v $(pwd):/backup debian tar -cvf /backup/backup.tar /data</span>
-</span></span></code></pre></div><p>#Criando um dockerfile</p>
-<p>$ vim dockerfiles/1/Dockerfile</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>FROM debian <span style="color:#75715e">#qual imagem vou me basear</span>
+</span></span></code></pre></div><h1 id="criando-um-dockerfile-1">Criando um Dockerfile</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>vim dockerfiles/1/Dockerfile
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">debian</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y apache2 <span style="color:#f92672">&amp;&amp;</span> apt-get clean<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_LOCK_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/lock&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_PID_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/run/apache2.pid&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_RUN_USER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www-data&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_RUN_GROUP<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www-data&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_LOG_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/log/apache2&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Webserver&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0.0&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">VOLUME</span> <span style="color:#e6db74">/var/www/html</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">80</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Para criar o container, faço um docker build:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker build .
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ou com nome e tag:</span>
+</span></span><span style="display:flex;"><span>docker image build -t meu_apache:1.0 .
+</span></span></code></pre></div><h1 id="exemplos-de-dockerfiles">Exemplos de Dockerfiles</h1>
+<p>Apache simples:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">debian</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y apache2 <span style="color:#f92672">&amp;&amp;</span> apt-get clean<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_LOCK_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/lock&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_PID_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/run/apache2.pid&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_RUN_USER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www-data&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_RUN_GROUP<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www-data&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_LOG_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/log/apache2&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Webserver&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">VOLUME</span> <span style="color:#e6db74">/var/www/html</span>/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">80</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Apache com entrypoint:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">debian</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y apache2 <span style="color:#f92672">&amp;&amp;</span> apt-get clean<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_LOCK_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/lock&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_PID_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/run/apache2/apache2.pid&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_RUN_USER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www-data&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_RUN_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/run/apache2&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_RUN_GROUP<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www-data&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> APACHE_LOG_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/log/apache2&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Webserver&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">VOLUME</span> <span style="color:#e6db74">/var/www/html</span>/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">80</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;/usr/sbin/apachectl&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;-D&#34;</span>, <span style="color:#e6db74">&#34;FOREGROUND&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>App Go simples:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>RUN apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y apache2 <span style="color:#f92672">&amp;&amp;</span> apt-get clean  <span style="color:#75715e">#executa oque vai fazer</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_LOCK_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/lock&#34;</span>   <span style="color:#75715e">#Variavel de ambiente para não ter dois apache rodando</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_PID_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/run/apache2.pid&#34;</span>  <span style="color:#75715e">#Variavel de ambiente de identificação do processo</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_RUN_USER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www.data&#34;</span>         <span style="color:#75715e">#Variavel de ambiente usuário responsável pelo apache</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_RUN_GROUP<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www-data&#34;</span>         <span style="color:#75715e">#Variavel de ambiente grupo responsável pelo apache</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_LOG_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/log/apache2&#34;</span> <span style="color:#75715e">#onde vai salvar os logs do apache</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>LABEL description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Webserver&#34;</span> <span style="color:#75715e">#faz uma descrição (qualquer chave=valor)</span>
-</span></span><span style="display:flex;"><span>LABEL version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0.0&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>VOLUME /var/www/html <span style="color:#75715e">#docker vai criar automaticamente esse volume</span>
-</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">80</span> <span style="color:#75715e">#com a flag -P irá pegar o expose qualquer porta = 80</span>
-</span></span></code></pre></div><p>Para criar o container eu faço um docker build.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@FXSHELL ~# docker build .
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ou
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>root@FXSHELL ~# docker image build -t meu_apache:1.0 .
-</span></span></code></pre></div><p>#Exemplos de Dockerfiles</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>FROM debian
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>RUN apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y apache2 <span style="color:#f92672">&amp;&amp;</span> apt-get clean
-</span></span><span style="display:flex;"><span>ENV APACHE_LOCK_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/lock&#34;</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_PID_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/run/apache2.pid&#34;</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_RUN_USER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www-data&#34;</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_RUN_GROUP<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www-data&#34;</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_LOG_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/log/apache2&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>LABEL description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Webserver&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>VOLUME /var/www/html/
-</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">80</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>FROM debian
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>RUN apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y apache2 <span style="color:#f92672">&amp;&amp;</span> apt-get clean
-</span></span><span style="display:flex;"><span>ENV APACHE_LOCK_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/lock&#34;</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_PID_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/run/apache2/apache2.pid&#34;</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_RUN_USER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www-data&#34;</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_RUN_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/run/apache2&#34;</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_RUN_GROUP<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www-data&#34;</span>
-</span></span><span style="display:flex;"><span>ENV APACHE_LOG_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/log/apache2&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>LABEL description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Webserver&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>VOLUME /var/www/html/
-</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">80</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ENTRYPOINT <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;/usr/sbin/apachectl&#34;</span><span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;-D&#34;</span>, <span style="color:#e6db74">&#34;FOREGROUND&#34;</span><span style="color:#f92672">]</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>package main
-</span></span><span style="display:flex;"><span>import <span style="color:#e6db74">&#34;fmt&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>func main<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    fmt.Println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;GIROPOPS STRIGUS GIRUS - LINUXTIPS&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>FROM golang
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>WORKDIR /app
-</span></span><span style="display:flex;"><span>ADD . /app
-</span></span><span style="display:flex;"><span>RUN go build -o goapp
-</span></span><span style="display:flex;"><span>ENTRYPOINT ./goapp
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>FROM golang AS buildando
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ADD . /src
-</span></span><span style="display:flex;"><span>WORKDIR /src
-</span></span><span style="display:flex;"><span>RUN go build -o goapp
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>FROM alpine:3.1
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>WORKDIR /app
-</span></span><span style="display:flex;"><span>COPY --from<span style="color:#f92672">=</span>buildando /src/goapp /app
-</span></span><span style="display:flex;"><span>ENTRYPOINT ./goapp
-</span></span></code></pre></div><p>ADD =&gt; Copia novos arquivos, diretórios, arquivos TAR ou arquivos remotos e os adicionam ao filesystem do container;</p>
-<p>CMD =&gt; Executa um comando, diferente do RUN que executa o comando no momento em que está &ldquo;buildando&rdquo; a imagem, o CMD executa no início da execução do container;</p>
-<p>LABEL =&gt; Adiciona metadados a imagem como versão, descrição e fabricante;</p>
-<p>COPY =&gt; Copia novos arquivos e diretórios e os adicionam ao filesystem do container;</p>
-<p>ENTRYPOINT =&gt; Permite você configurar um container para rodar um executável, e quando esse executável for finalizado, o container também será;</p>
-<p>ENV =&gt; Informa variáveis de ambiente ao container;</p>
-<p>EXPOSE =&gt; Informa qual porta o container estará ouvindo;</p>
-<p>FROM =&gt; Indica qual imagem será utilizada como base, ela precisa ser a primeira linha do Dockerfile;</p>
-<p>MAINTAINER =&gt; Autor da imagem;</p>
-<p>RUN =&gt; Executa qualquer comando em uma nova camada no topo da imagem e &ldquo;commita&rdquo; as alterações. Essas alterações você poderá utilizar nas próximas instruções de seu Dockerfile;</p>
-<p>USER =&gt; Determina qual o usuário será utilizado na imagem. Por default é o root;</p>
-<p>VOLUME =&gt; Permite a criação de um ponto de montagem no container;</p>
-<p>WORKDIR =&gt; Responsável por mudar do diretório / (raiz) para o especificado nele;</p>
-<ul>
-<li>
-<p>Um Dockerfile serve para criar uma imagem de um container</p>
-<p>A finalidade da instrução FROM no Dockerfile é para indicar uma imagem base</p>
-<p>Para &ldquo;buildar&rdquo; uma nova imagem, utilizo o comando, &lsquo;docker build -t nomedaimagem:1.0 .&rsquo;</p>
-<p>As instruções para que o Dockerfile adicione um arquivo, são &lsquo;ADD&rsquo; ou &lsquo;COPY&rsquo;</p>
-<p>No momento de criação da imagem o Dockerfile executa o comando &lsquo;RUN&rsquo;</p>
-<p>Os comandos que executam um comando na inicialização do container são &lsquo;ENTRYPOINT&rsquo; ou &lsquo;CMD&rsquo;</p>
-<p>A instrução que indica qual usuário que será utilizado no container é o &lsquo;USER&rsquo;</p>
-<p>Indica que determinado diretório no container será um volume com o comando &lsquo;VOLUME&rsquo;</p>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;GIROPOPS STRIGUS GIRUS - LINUXTIPS&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">golang</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ADD</span> . /app<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> go build -o goapp<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> ./goapp<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Multi-stage build com Go + Alpine (imagem final menor):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">golang</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">buildando</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ADD</span> . /src<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/src</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> go build -o goapp<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">alpine:3.1</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>buildando /src/goapp /app<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> ./goapp<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h2 id="referência-das-instruções-do-dockerfile">Referência das instruções do Dockerfile</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Instrução</th>
+          <th>Descrição</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>FROM</code></td>
+          <td>Indica a imagem base — deve ser a primeira linha do Dockerfile</td>
+      </tr>
+      <tr>
+          <td><code>RUN</code></td>
+          <td>Executa um comando durante o build, criando uma nova camada na imagem</td>
+      </tr>
+      <tr>
+          <td><code>CMD</code></td>
+          <td>Define o comando padrão executado na inicialização do container</td>
+      </tr>
+      <tr>
+          <td><code>ENTRYPOINT</code></td>
+          <td>Configura o executável principal; quando encerra, o container encerra</td>
+      </tr>
+      <tr>
+          <td><code>COPY</code></td>
+          <td>Copia arquivos e diretórios para o filesystem do container</td>
+      </tr>
+      <tr>
+          <td><code>ADD</code></td>
+          <td>Como COPY, mas também suporta arquivos TAR e URLs remotas</td>
+      </tr>
+      <tr>
+          <td><code>ENV</code></td>
+          <td>Define variáveis de ambiente no container</td>
+      </tr>
+      <tr>
+          <td><code>EXPOSE</code></td>
+          <td>Documenta qual porta o container escuta</td>
+      </tr>
+      <tr>
+          <td><code>VOLUME</code></td>
+          <td>Cria um ponto de montagem para volumes persistentes</td>
+      </tr>
+      <tr>
+          <td><code>WORKDIR</code></td>
+          <td>Define o diretório de trabalho dentro do container</td>
+      </tr>
+      <tr>
+          <td><code>USER</code></td>
+          <td>Define o usuário utilizado na imagem (padrão: root)</td>
+      </tr>
+      <tr>
+          <td><code>LABEL</code></td>
+          <td>Adiciona metadados como versão, descrição e autor</td>
+      </tr>
+      <tr>
+          <td><code>MAINTAINER</code></td>
+          <td>Autor da imagem (deprecado; prefira <code>LABEL maintainer=</code>)</td>
+      </tr>
+  </tbody>
+</table>
+<p>Para buildar uma imagem:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker build -t nomedaimagem:1.0 .
+</span></span></code></pre></div><p>Indica que determinado diretório no container será um volume com o comando &lsquo;VOLUME&rsquo;</p>
 <p>É possível ter duas instruções FROM dentro do mesmo Dockerfile.</p>
 <p>Para referenciá-lo em outra parte do arquivo utilizo o &lsquo;FROM debian AS giropops&rsquo;</p>
 <p>Para listar todas as imagens do container eu faço &lsquo;docker image ls&rsquo;</p>
 <p>É possível criar uma imagem a partir de um container em execução.</p>
 <p>Com o comando &ldquo;docker commit&rdquo; eu crio uma imagem apartir de um container em execução.</p>
-</li>
-</ul>
 <p>**</p>
 <p>#SUBINDO UMA IMAGEM PARA SUA CONTA DO DOCKERHUB</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@FXSHELL ~/d/2# docker image ls
@@ -1133,7 +1162,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span><span style="display:flex;"><span>fpmatta/toddy   1.0       e1c0c1113bca   <span style="color:#ae81ff">31</span> minutes ago   267MB
 </span></span><span style="display:flex;"><span>registry        <span style="color:#ae81ff">2</span>         678dfa38fcfa   <span style="color:#ae81ff">6</span> weeks ago      26.2MB
 </span></span><span style="display:flex;"><span>root@FXSHELL ~# 
-</span></span></code></pre></div><p>Preciso retagear o nome da minha imagem, passando o meu registry local que no caso é o &rsquo;localhost:5000&rsquo;</p>
+</span></span></code></pre></div><p>Preciso retagear o nome da minha imagem, passando o meu registry local que no caso é o &rsquo;localhost:5000'</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>root@FXSHELL ~# docker image ls
 </span></span><span style="display:flex;"><span>REPOSITORY      TAG       IMAGE ID       CREATED          SIZE
 </span></span><span style="display:flex;"><span>fpmatta/toddy   1.0       e1c0c1113bca   <span style="color:#ae81ff">31</span> minutes ago   267MB
