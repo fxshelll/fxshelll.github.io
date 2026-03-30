@@ -197,6 +197,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://fxshelll.github.io/busca/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://fxshelll.github.io/categories/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

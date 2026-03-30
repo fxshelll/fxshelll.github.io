@@ -182,6 +182,8 @@ fetchInject(["/js/lazysizes.min.js"]);
     
       <a itemprop="url" class="" href="/sobre/"><span itemprop="name">sobre</span></a>
     
+      <a itemprop="url" class="" href="/busca/"><span itemprop="name">busca</span></a>
+    
   </nav>
 
 
@@ -385,17 +387,17 @@ Recebem instruções do Control Plane.
 <p><img src="/kub1.png" alt="K8S">
 Figura 1 - Control Plane
 API Server - O Gateway Inteligente: o API Server é muito mais do que um simples gateway HTTP. É um servidor altamente sofisticado que implementa múltiplas funcionalidades críticas:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="l">Arquitetura Interna do API Server</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">Request Pipeline</span><span class="p">:</span><span class="w"> </span><span class="nt">cada requisição passa por uma pipeline de processamento rigorosamente definida</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">Authentication</span><span class="p">:</span><span class="w"> </span><span class="l">verifica a identidade do requisitante usando certificados X.509, tokens JWT, ou plugins externos.</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">Authorization</span><span class="p">:</span><span class="w"> </span><span class="l">determina se o usuário tem permissão para realizar a operação usando RBAC, ABAC ou webhooks.</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">Admission Control</span><span class="p">:</span><span class="w"> </span><span class="l">aplica políticas de negócio e validações antes de persistir o objeto.</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">Validation</span><span class="p">:</span><span class="w"> </span><span class="l">verifica se o objeto está sintática e semanticamente correto.</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">Persistence</span><span class="p">:</span><span class="w"> </span><span class="l">armazena o objeto no etcd.</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">Response</span><span class="p">:</span><span class="w"> </span><span class="l">retorna confirmação ou erro para o cliente.</span><span class="w">
-</span></span></span></code></pre></div><h2 id="etcd---o-sistema-nervoso-central">etcd - O Sistema Nervoso Central</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ae81ff">Arquitetura Interna do API Server</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Request Pipeline</span>: <span style="color:#f92672">cada requisição passa por uma pipeline de processamento rigorosamente definida</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Authentication</span>: <span style="color:#ae81ff">verifica a identidade do requisitante usando certificados X.509, tokens JWT, ou plugins externos.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Authorization</span>: <span style="color:#ae81ff">determina se o usuário tem permissão para realizar a operação usando RBAC, ABAC ou webhooks.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Admission Control</span>: <span style="color:#ae81ff">aplica políticas de negócio e validações antes de persistir o objeto.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Validation</span>: <span style="color:#ae81ff">verifica se o objeto está sintática e semanticamente correto.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Persistence</span>: <span style="color:#ae81ff">armazena o objeto no etcd.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Response</span>: <span style="color:#ae81ff">retorna confirmação ou erro para o cliente.</span>
+</span></span></code></pre></div><h2 id="etcd---o-sistema-nervoso-central">etcd - O Sistema Nervoso Central</h2>
 <p>O etcd é um banco de dados distribuído que utiliza o algoritmo de consenso Raft para garantir consistência em um cluster. É o único local onde o Kubernetes armazena seu estado.</p>
 <h2 id="arquitetura-e-funcionamento-do-raft">Arquitetura e Funcionamento do Raft</h2>
 <p>O protocolo Raft garante que todas as operações sejam aplicadas na mesma ordem em todos os nós do cluster:</p>
@@ -405,69 +407,69 @@ Figura 2 - Estrutura de Dados no etcd</p>
 <p>Scheduler - O Estrategista de Recursos: o Kubernetes Scheduler é um componente sofisticado que toma decisões de placement usando algoritmos complexos de otimização.</p>
 <p>Processo de Scheduling Detalhado: o processo de scheduling acontece em duas fases principais:</p>
 <p>Fase 1 - Filtering (Predicates):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">NodeResourcesFit</span><span class="p">:</span><span class="w"> </span><span class="l">verifica se o nó tem recursos suficientes (CPU, memória, storage).</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">NodeAffinity</span><span class="p">:</span><span class="w"> </span><span class="l">aplica regras de afinidade de nó.</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">PodAffinity/AntiAffinity</span><span class="p">:</span><span class="w"> </span><span class="l">considera afinidade entre pods.</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">Taints and Tolerations</span><span class="p">:</span><span class="w"> </span><span class="l">respeita restrições de scheduling.</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">VolumeBinding</span><span class="p">:</span><span class="w"> </span><span class="l">verifica disponibilidade de volumes.</span><span class="w">
-</span></span></span></code></pre></div><p>Fase 2 - Scoring (Priorities):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">NodeResourcesFit</span><span class="p">:</span><span class="w"> </span><span class="l">pontua nós com base em utilização de recursos.</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ImageLocality</span><span class="p">:</span><span class="w"> </span><span class="l">favorece nós que já têm a imagem do container.</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">InterPodAffinity</span><span class="p">:</span><span class="w"> </span><span class="l">pontua baseado em afinidade entre pods.</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">NodeAffinity</span><span class="p">:</span><span class="w"> </span><span class="l">aplica pesos às preferências de afinidade.</span><span class="w">
-</span></span></span></code></pre></div><p>Controller Manager - O Maestro dos Control Loops: o Controller Manager é uma coleção de controllers que implementam a lógica de negócio do Kubernetes. Cada controller executa um &ldquo;control loop&rdquo; independente.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">NodeResourcesFit</span>: <span style="color:#ae81ff">verifica se o nó tem recursos suficientes (CPU, memória, storage).</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">NodeAffinity</span>: <span style="color:#ae81ff">aplica regras de afinidade de nó.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">PodAffinity/AntiAffinity</span>: <span style="color:#ae81ff">considera afinidade entre pods.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Taints and Tolerations</span>: <span style="color:#ae81ff">respeita restrições de scheduling.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VolumeBinding</span>: <span style="color:#ae81ff">verifica disponibilidade de volumes.</span>
+</span></span></code></pre></div><p>Fase 2 - Scoring (Priorities):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">NodeResourcesFit</span>: <span style="color:#ae81ff">pontua nós com base em utilização de recursos.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">ImageLocality</span>: <span style="color:#ae81ff">favorece nós que já têm a imagem do container.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">InterPodAffinity</span>: <span style="color:#ae81ff">pontua baseado em afinidade entre pods.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">NodeAffinity</span>: <span style="color:#ae81ff">aplica pesos às preferências de afinidade.</span>
+</span></span></code></pre></div><p>Controller Manager - O Maestro dos Control Loops: o Controller Manager é uma coleção de controllers que implementam a lógica de negócio do Kubernetes. Cada controller executa um &ldquo;control loop&rdquo; independente.</p>
 <h2 id="worker-nodes---os-executores-especializados">Worker Nodes - Os Executores Especializados</h2>
 <p>Arquitetura Detalhada dos Worker Nodes: cada Worker Node é um ambiente de execução completo que deve ser capaz de:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="l">Executar containers de forma isolada e segura;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Manter comunicação com o Control Plane;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Implementar políticas de rede;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Coletar métricas e logs;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Gerenciar recursos locais (CPU, memória, storage).</span><span class="w">
-</span></span></span></code></pre></div><p><img src="/kub3.png" alt="K8S">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ae81ff">Executar containers de forma isolada e segura;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Manter comunicação com o Control Plane;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Implementar políticas de rede;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Coletar métricas e logs;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Gerenciar recursos locais (CPU, memória, storage).</span>
+</span></span></code></pre></div><p><img src="/kub3.png" alt="K8S">
 Figura 3 - Worker Nodes</p>
 <p>kubelet - O Agente Node Superinteligente: o kubelet é o agente mais complexo do Kubernetes, responsável por traduzir especificações declarativas em ações concretas no sistema operacional.</p>
 <p>kube-proxy - O Maestro da Rede: o kube-proxy implementa a abstração de Services do Kubernetes, fornecendo load balancing e service discovery.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Comunicação e Fluxos de Dados Avançados;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Fluxos Críticos de Operação;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Criação Completa de um Pod;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Alta Disponibilidade e Topologias de Cluster;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Control Plane HA - Arquitetura Stacked etcd.</span><span class="w">
-</span></span></span></code></pre></div><p><img src="/kub4.png" alt="K8S">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Comunicação e Fluxos de Dados Avançados;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Fluxos Críticos de Operação;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Criação Completa de um Pod;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Alta Disponibilidade e Topologias de Cluster;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Control Plane HA - Arquitetura Stacked etcd.</span>
+</span></span></code></pre></div><p><img src="/kub4.png" alt="K8S">
 Figura 4 - Kubelet</p>
 <p><img src="/kub5.png" alt="K8S">
 Figura 5 - Load Balancer</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="l">Troubleshooting e Diagnósticos Avançados;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Problemas Críticos do Control Plane;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">API Server Troubleshooting;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">Sintoma</span><span class="p">:</span><span class="w"> </span><span class="l">API Server não responde ou responde lentamente.</span><span class="w">
-</span></span></span></code></pre></div><p>Soluções Comuns:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="l">Aumentar limites de file descriptors;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Otimizar configurações de timeout;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Verificar e renovar certificados;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">Analisar admission controllers demorados.</span><span class="w">
-</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ae81ff">Troubleshooting e Diagnósticos Avançados;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Problemas Críticos do Control Plane;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">API Server Troubleshooting;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Sintoma</span>: <span style="color:#ae81ff">API Server não responde ou responde lentamente.</span>
+</span></span></code></pre></div><p>Soluções Comuns:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ae81ff">Aumentar limites de file descriptors;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Otimizar configurações de timeout;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Verificar e renovar certificados;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Analisar admission controllers demorados.</span>
+</span></span></code></pre></div>
 </main>
     <footer>
   

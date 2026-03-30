@@ -18,12 +18,8 @@
     
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The_silver_searcher | FXShell - DevOps &amp; Sec</title>
-    <meta name="description" content="AG
-======
-https://github.com/ggreer/the_silver_searcher
-Uma ferramenta de busca de código semelhante a ack, com foco na velocidade, faz uma busca recursiva em diretórios e arquivos.
-apt-get install silversearcher-ag">
+    <title>Busca | FXShell - DevOps &amp; Sec</title>
+    <meta name="description" content="">
     <meta name="keywords" content="">
     
     
@@ -50,7 +46,7 @@ apt-get install silversearcher-ag">
 
     
     
-    <link rel="canonical" href="https://fxshelll.github.io/posts/the_silver_searcher/">
+    <link rel="canonical" href="https://fxshelll.github.io/busca/">
     
     
     
@@ -152,18 +148,158 @@ fetchInject(["/js/lazysizes.min.js"]);
 </header>
     <main>
   <header>
-    <h1>The_silver_searcher</h1>
+    <h1>Busca</h1>
   </header>
-  <h2 id="ag">AG</h2>
-<p>======
-<code>https://github.com/ggreer/the_silver_searcher</code></p>
-<p>Uma ferramenta de busca de código semelhante a ack, com foco na velocidade, faz uma busca recursiva em diretórios e arquivos.</p>
-<p><code>apt-get install silversearcher-ag</code></p>
-
+  <noscript>
+    <p style="color:#888;">A busca requer JavaScript para funcionar.</p>
+  </noscript>
+  <div id="search-app">
+    <div v-cloak>
+      <section>
+        <form v-on:submit.prevent class="form" action="https://fxshelll.github.io/busca">
+          <fieldset class="form-group">
+            <input v-model="query" id="query" name="s" type="search" class="form-control" maxlength="64" autocomplete="off" placeholder="buscar posts, writeups, anotações...">
+            <div class="help-block" style="font-size:0.8rem; color:#666;">pressione <kbd>s</kbd> para focar a busca a qualquer momento</div>
+          </fieldset>
+        </form>
+      </section>
+      <section v-if="results.length">
+        <p style="color:#888; font-size:0.85rem;"><i>Resultados para "{ resultsForSearch }"</i></p>
+        <div id="search-results">
+          <article v-for="result in results" itemscope itemtype="http://schema.org/CreativeWork" style="margin-bottom:1.2rem;">
+            <header itemprop="name">
+              <h2 itemprop="name" style="margin-bottom:4px;"><a :href="result.item.url"><span v-html="result.item.title"></span></a></h2>
+            </header>
+            <div v-html="result.item.summary" itemprop="description" style="font-size:0.85rem; color:#999;"></div>
+            <nav class="readmore"><p><a itemprop="url" :href="result.item.url" style="font-size:0.85rem;">ler mais &raquo;</a></p></nav>
+          </article>
+        </div>
+      </section>
+      <section v-if="query && !results.length" style="color:#666; font-size:0.85rem;">
+        <p>Nenhum resultado encontrado para "{ query }".</p>
+      </section>
+    </div>
+  </div>
 </main>
     <footer>
   
 
+  <script>
+    fetchInject([
+      "/js/vue.min.js",
+      "/js/lodash.custom.min.js",
+      "/js/fuse.min.js",
+      "/js/mark.min.js"
+    ]).then(() => {
+      (function (window, document, undefined) {
+        "use strict";
+
+        const getQueryByParam = param => decodeURIComponent(
+          (location.search.split(param + '=')[1] || '').split('&')[0]
+        ).replace(/\+/g, ' ');
+
+        const queryParam = 's';
+        const selectors = {
+          appContainer: '#search-app',
+          resultContainer: '#search-results',
+          searchInput: '#query'
+        };
+
+        const fuseOpts = {
+          shouldSort: true,
+          tokenize: true,
+          matchAllTokens: false,
+          includeScore: true,
+          includeMatches: true,
+          threshold: 0.4,
+          keys: [
+            { name: "title", weight: 0.8 },
+            { name: "contents", weight: 0.5 },
+            { name: "tags", weight: 0.3 }
+          ]
+        };
+
+        const getSearchInput = () => document.querySelector(selectors.searchInput);
+        const focusSearchInput = () => getSearchInput() && getSearchInput().focus();
+        const searchQuery = getSearchInput() ? (getSearchInput().value = getQueryByParam(queryParam)) : '';
+
+        const fuse = new Fuse([], fuseOpts);
+        window.fetch('/index.json').then(response => {
+          response.text().then(searchData => {
+            fuse.setCollection(JSON.parse(searchData));
+            searchQuery && search(searchQuery);
+          });
+        });
+
+        const getUrl = (query) => {
+          const encodedQuery = encodeURIComponent(query);
+          const url = window.location.pathname;
+          return (encodedQuery)
+            ? `${url}?${queryParam}=${encodedQuery}`
+            : url;
+        };
+
+        let mark = new Mark(document.querySelector(selectors.resultContainer) || document.body);
+
+        const app = new Vue({
+          delimiters: ['{', '}'],
+          el: selectors.appContainer,
+          data: {
+            fuse: null,
+            results: [],
+            query: getQueryByParam(queryParam),
+            resultsForSearch: getQueryByParam(queryParam)
+          },
+          mounted () {
+            this.fuse = fuse;
+            window.onpopstate = (evt) => {
+              this.query = evt.state ? evt.state.query : '';
+            };
+            document.onkeyup = function (evt) {
+              evt.key === 's' && focusSearchInput();
+            }
+            focusSearchInput();
+          },
+          watch: {
+            query () {
+              this.executeSearch();
+              window.history.replaceState(
+                {query: this.query},
+                null,
+                getUrl(this.query)
+              );
+            }
+          },
+          beforeUpdate: function () {
+            if (document.querySelector(selectors.resultContainer)) {
+              mark.unmark();
+            }
+          },
+          updated: function () {
+            this.$nextTick(function () {
+              const el = document.querySelector(selectors.resultContainer);
+              if (el) {
+                mark = new Mark(el);
+                mark.mark(this.query.trim());
+              }
+            })
+          },
+          methods: {
+            executeSearch: _.debounce(function () {
+              const trimmedQuery = this.query.trim();
+              this.resultsForSearch = trimmedQuery;
+              this.results = (trimmedQuery) ? this.fuse.search(trimmedQuery) : [];
+            }, 250)
+          }
+        });
+
+        const search = query => {
+          app.results = fuse.search(query);
+        };
+
+      })(window, document);
+    });
+  </script>
 </footer>
   </body>
 </html>
