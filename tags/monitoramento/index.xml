@@ -1,0 +1,26 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <docs>https://blogs.law.harvard.edu/tech/rss</docs>
+    <title>Monitoramento on FXShell - DevOps &amp; Sec</title>
+    <link>https://fxshelll.github.io/tags/monitoramento/</link>
+    <description>Recent content in Monitoramento on FXShell - DevOps &amp; Sec</description>
+    <ttl>1440</ttl>
+    <generator>Hugo 0.152.2</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Mon, 30 Mar 2026 16:45:53 UT</lastBuildDate>
+    <atom:link href="https://fxshelll.github.io/tags/monitoramento/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>bpytop</title>
+      <link>https://fxshelll.github.io/posts/bpytop/</link>
+      <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/bpytop/</guid>
+      <description>
+Monitor de recursos que mostra uso e estatísticas de processador, memória, discos, rede e processos. https://github.com/aristocratos/bpytop
+sudo apt install bpytop </description>
+      <content:encoded><![CDATA[
+Monitor de recursos que mostra uso e estatísticas de processador, memória, discos, rede e processos. https://github.com/aristocratos/bpytop
+sudo apt install bpytop ]]></content:encoded>
+    </item>
+  </channel>
+</rss>

