@@ -18,14 +18,26 @@
     
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> | FXShell - DevOps &amp; Sec</title>
-    <meta name="description" content="Site pessoal com writeups de hacking, segurança e DevOps">
+    <title>Seu terminal pode ser muito mais produtivo com Zsh | FXShell - DevOps &amp; Sec</title>
+    <meta name="description" content="Se você passa boa parte do dia no terminal, vale muito a pena investir alguns minutos configurando o Zsh com Oh My Zsh. A diferença na produtividade é real — autocomplete inteligente, highlight de sintaxe, histórico gigante e plugins que evitam você digitar a mesma coisa mil vezes.
+Esse post é baseado na minha configuração pessoal do .zshrc. Bora ver o que tem dentro.
+
+Instalando o Zsh e Oh My Zsh
+# Instalar o Zsh (Debian/Ubuntu)
+sudo apt install zsh
+
+# Definir como shell padrão
+chsh -s $(which zsh)
+
+# Instalar o Oh My Zsh
+sh -c &#34;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&#34;
+
+Tema
+O tema padrão que uso é o robbyrussell — simples, limpo e mostra o branch do git direto no prompt.">
     <meta name="keywords" content="">
     
     
     
-    
-      <meta name="robots" content="noindex">
     
     
 
@@ -48,9 +60,7 @@
 
     
     
-      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="FXShell - DevOps &amp; Sec">
-    
-    <link rel="canonical" href="https://fxshelll.github.io/posts/">
+    <link rel="canonical" href="https://fxshelll.github.io/posts/zsh-terminal-produtivo/">
     
     
     
@@ -126,6 +136,42 @@ fetchInject(["/js/lazysizes.min.js"]);
 
     
     
+      <script>fetchInject(["/css/syntax.css"])</script>
+
+      
+      <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+        });
+        MathJax.Hub.Queue(function() {
+          
+          
+          
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i = 0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+        });
+
+        MathJax.Hub.Config({
+        
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+      <noscript>
+        <link href=/css/syntax.css rel="stylesheet">
+      </noscript>
+    
   </head>
   
   
@@ -150,117 +196,127 @@ fetchInject(["/js/lazysizes.min.js"]);
 </header>
     <main>
   <header>
-    <h1></h1>
+    <h1>Seu terminal pode ser muito mais produtivo com Zsh</h1>
   </header>
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/nikto/">Nikto</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
+  <p>Se você passa boa parte do dia no terminal, vale muito a pena investir alguns minutos configurando o Zsh com Oh My Zsh. A diferença na produtividade é real — autocomplete inteligente, highlight de sintaxe, histórico gigante e plugins que evitam você digitar a mesma coisa mil vezes.</p>
+<p>Esse post é baseado na minha configuração pessoal do <code>.zshrc</code>. Bora ver o que tem dentro.</p>
+<hr>
+<h2 id="instalando-o-zsh-e-oh-my-zsh">Instalando o Zsh e Oh My Zsh</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Instalar o Zsh (Debian/Ubuntu)</span>
+</span></span><span class="line"><span class="cl">sudo apt install zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Definir como shell padrão</span>
+</span></span><span class="line"><span class="cl">chsh -s <span class="k">$(</span>which zsh<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Instalar o Oh My Zsh</span>
+</span></span><span class="line"><span class="cl">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><hr>
+<h2 id="tema">Tema</h2>
+<p>O tema padrão que uso é o <code>robbyrussell</code> — simples, limpo e mostra o branch do git direto no prompt.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&#34;robbyrussell&#34;</span>
+</span></span></code></pre></div><p>Se quiser algo mais visual com ícones e informações de contexto (k8s, cloud, etc.), vale testar o <strong>Powerlevel10k</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Instalar o Powerlevel10k</span>
+</span></span><span class="line"><span class="cl">git clone --depth<span class="o">=</span><span class="m">1</span> https://github.com/romkatv/powerlevel10k.git <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="nv">$HOME</span><span class="p">/.oh-my-zsh/custom</span><span class="si">}</span>/themes/powerlevel10k
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># No .zshrc:</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&#34;powerlevel10k/powerlevel10k&#34;</span>
+</span></span></code></pre></div><hr>
+<h2 id="plugins-essenciais">Plugins essenciais</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">plugins</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">   git
+</span></span><span class="line"><span class="cl">   dnf
+</span></span><span class="line"><span class="cl">   zsh-syntax-highlighting
+</span></span><span class="line"><span class="cl">   zsh-autosuggestions
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span></code></pre></div><h3 id="zsh-autosuggestions">zsh-autosuggestions</h3>
+<p>Sugere comandos em cinza enquanto você digita, baseado no seu histórico. Pressione <code>→</code> para aceitar. Um dos plugins mais úteis que existem.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git clone https://github.com/zsh-users/zsh-autosuggestions <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/zsh-autosuggestions
+</span></span></code></pre></div><h3 id="zsh-syntax-highlighting">zsh-syntax-highlighting</h3>
+<p>Colore os comandos em tempo real — verde se o comando existe, vermelho se não existe. Evita muito erro de digitação.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/zsh-syntax-highlighting
+</span></span></code></pre></div><h3 id="git">git</h3>
+<p>Plugin built-in do Oh My Zsh. Traz dezenas de aliases prontos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gst   <span class="c1"># git status</span>
+</span></span><span class="line"><span class="cl">gco   <span class="c1"># git checkout</span>
+</span></span><span class="line"><span class="cl">gcmsg <span class="c1"># git commit -m</span>
+</span></span><span class="line"><span class="cl">gp    <span class="c1"># git push</span>
+</span></span><span class="line"><span class="cl">gl    <span class="c1"># git pull</span>
+</span></span><span class="line"><span class="cl">glog  <span class="c1"># git log bonito</span>
+</span></span></code></pre></div><hr>
+<h2 id="histórico-gigante-e-inteligente">Histórico gigante e inteligente</h2>
+<p>Essa é uma das partes que mais uso. Um histórico bem configurado vale ouro — principalmente quando você precisa lembrar aquele comando raro que rodou meses atrás.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">HISTFILE</span><span class="o">=</span><span class="si">${</span><span class="nv">ZDOTDIR</span><span class="k">:-</span><span class="nv">$HOME</span><span class="si">}</span>/.zsh_history
+</span></span><span class="line"><span class="cl"><span class="nv">SAVEHIST</span><span class="o">=</span><span class="m">1000000</span>
+</span></span><span class="line"><span class="cl"><span class="nv">HISTSIZE</span><span class="o">=</span><span class="m">1000000</span>
+</span></span><span class="line"><span class="cl"><span class="nv">HIST_STAMPS</span><span class="o">=</span><span class="s2">&#34;yyyy-mm-dd&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">setopt INC_APPEND_HISTORY        <span class="c1"># Grava no arquivo imediatamente (não só ao fechar o shell)</span>
+</span></span><span class="line"><span class="cl">setopt SHARE_HISTORY             <span class="c1"># Compartilha histórico entre todas as sessões abertas</span>
+</span></span><span class="line"><span class="cl">setopt HIST_EXPIRE_DUPS_FIRST    <span class="c1"># Remove duplicatas primeiro quando o histórico encher</span>
+</span></span><span class="line"><span class="cl">setopt HIST_IGNORE_DUPS          <span class="c1"># Não grava se o comando foi o mesmo do anterior</span>
+</span></span><span class="line"><span class="cl">setopt HIST_IGNORE_ALL_DUPS      <span class="c1"># Remove entradas antigas se o mesmo comando for repetido</span>
+</span></span><span class="line"><span class="cl">setopt HIST_FIND_NO_DUPS         <span class="c1"># Não mostra duplicatas ao navegar com ↑</span>
+</span></span><span class="line"><span class="cl">setopt HIST_IGNORE_SPACE         <span class="c1"># Não grava comandos que começam com espaço (útil para senhas)</span>
+</span></span><span class="line"><span class="cl">setopt HIST_SAVE_NO_DUPS         <span class="c1"># Não escreve duplicatas no arquivo de histórico</span>
+</span></span><span class="line"><span class="cl">setopt HIST_REDUCE_BLANKS        <span class="c1"># Remove espaços desnecessários antes de gravar</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">history</span><span class="o">=</span><span class="s2">&#34;history 0&#34;</span>        <span class="c1"># Mostra o histórico completo (sem limite de linhas)</span>
+</span></span></code></pre></div><p>O <code>HIST_IGNORE_SPACE</code> é especialmente útil: qualquer comando precedido de espaço não entra no histórico — ótimo pra quando você cola uma senha ou token diretamente no terminal.</p>
+<hr>
+<h2 id="fzf--busca-fuzzy-no-histórico">fzf — busca fuzzy no histórico</h2>
+<p>O <code>fzf</code> transforma o <code>Ctrl+R</code> em uma busca interativa e fuzzy pelo histórico inteiro. Essencial.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Instalar</span>
+</span></span><span class="line"><span class="cl">sudo apt install fzf
+</span></span><span class="line"><span class="cl"><span class="c1"># ou via git</span>
+</span></span><span class="line"><span class="cl">git clone --depth <span class="m">1</span> https://github.com/junegunn/fzf.git ~/.fzf <span class="o">&amp;&amp;</span> ~/.fzf/install
+</span></span></code></pre></div><p>No <code>.zshrc</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span> -f ~/.fzf.zsh <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> ~/.fzf.zsh
+</span></span></code></pre></div><p>Depois é só apertar <code>Ctrl+R</code> e digitar qualquer trecho do comando que você procura.</p>
+<hr>
+<h2 id="meu-zshrc-completo">Meu <code>.zshrc</code> completo</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ZSH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.oh-my-zsh&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&#34;robbyrussell&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">HISTFILE</span><span class="o">=</span><span class="si">${</span><span class="nv">ZDOTDIR</span><span class="k">:-</span><span class="nv">$HOME</span><span class="si">}</span>/.zsh_history
+</span></span><span class="line"><span class="cl"><span class="nv">SAVEHIST</span><span class="o">=</span><span class="m">1000000</span>
+</span></span><span class="line"><span class="cl"><span class="nv">HISTSIZE</span><span class="o">=</span><span class="m">1000000</span>
+</span></span><span class="line"><span class="cl"><span class="nv">HIST_STAMPS</span><span class="o">=</span><span class="s2">&#34;yyyy-mm-dd&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">setopt INC_APPEND_HISTORY
+</span></span><span class="line"><span class="cl">setopt SHARE_HISTORY
+</span></span><span class="line"><span class="cl">setopt HIST_EXPIRE_DUPS_FIRST
+</span></span><span class="line"><span class="cl">setopt HIST_IGNORE_DUPS
+</span></span><span class="line"><span class="cl">setopt HIST_IGNORE_ALL_DUPS
+</span></span><span class="line"><span class="cl">setopt HIST_FIND_NO_DUPS
+</span></span><span class="line"><span class="cl">setopt HIST_IGNORE_SPACE
+</span></span><span class="line"><span class="cl">setopt HIST_SAVE_NO_DUPS
+</span></span><span class="line"><span class="cl">setopt HIST_REDUCE_BLANKS
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">history</span><span class="o">=</span><span class="s2">&#34;history 0&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">plugins</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">   git
+</span></span><span class="line"><span class="cl">   dnf
+</span></span><span class="line"><span class="cl">   zsh-syntax-highlighting
+</span></span><span class="line"><span class="cl">   zsh-autosuggestions
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> <span class="nv">$ZSH</span>/oh-my-zsh.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -f ~/.fzf.zsh <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> ~/.fzf.zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.nvm&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -s <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -s <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.local/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><hr>
+<p>Com isso você já tem um terminal muito mais agradável de usar. Os plugins de autosuggestions e syntax highlighting sozinhos já valem a instalação. O histórico inteligente é o tipo de coisa que você sente falta quando usa uma máquina sem ele.</p>
 
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/searchexploit/">Searchexploit</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/toolsforpentest/">NMAP</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/api-de-usu%C3%A1rios-e-autentica%C3%A7%C3%A3o/">API de usuários e autenticação</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/bpytop/">bpytop</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/">Escalabilidade e Conteinerização</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/microservices-async-demo/">Microservices Async Demo</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
-    <article itemscope itemtype="http://schema.org/CreativeWork">
-  <header>
-    <h2 itemprop="name">
-      <a href="/posts/imersaodevops/">Imersão DevOps - Google Cloud</a>
-    </h2>
-    
-  </header>
-  <meta itemprop="inLanguage" content="pt-br">
-  
-</article>
-
-  
 </main>
     <footer>
-  <nav><p>
-  
-    <a href="/posts/page/2/">&laquo; Previous</a> |
-  
-  
-    <span>Page 3 of 3</span>
-  
-  
-</p></nav>
-
   
 
 </footer>

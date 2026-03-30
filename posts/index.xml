@@ -7,8 +7,33 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Thu, 26 Mar 2026 13:49:28 UT</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 14:48:55 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Seu terminal pode ser muito mais produtivo com Zsh</title>
+      <link>https://fxshelll.github.io/posts/zsh-terminal-produtivo/</link>
+      <pubDate>Mon, 30 Mar 2026 03:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/zsh-terminal-produtivo/</guid>
+      <description>Se você passa boa parte do dia no terminal, vale muito a pena investir alguns minutos configurando o Zsh com Oh My Zsh. A diferença na produtividade é real — autocomplete inteligente, highlight de sintaxe, histórico gigante e plugins que evitam você digitar a mesma coisa mil vezes.
+Esse post é baseado na minha configuração pessoal do .zshrc. Bora ver o que tem dentro.
+Instalando o Zsh e Oh My Zsh # Instalar o Zsh (Debian/Ubuntu) sudo apt install zsh # Definir como shell padrão chsh -s $(which zsh) # Instalar o Oh My Zsh sh -c &#34;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&#34; Tema O tema padrão que uso é o robbyrussell — simples, limpo e mostra o branch do git direto no prompt.
+</description>
+      <content:encoded><![CDATA[Se você passa boa parte do dia no terminal, vale muito a pena investir alguns minutos configurando o Zsh com Oh My Zsh. A diferença na produtividade é real — autocomplete inteligente, highlight de sintaxe, histórico gigante e plugins que evitam você digitar a mesma coisa mil vezes.
+Esse post é baseado na minha configuração pessoal do .zshrc. Bora ver o que tem dentro.
+Instalando o Zsh e Oh My Zsh # Instalar o Zsh (Debian/Ubuntu) sudo apt install zsh # Definir como shell padrão chsh -s $(which zsh) # Instalar o Oh My Zsh sh -c &#34;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&#34; Tema O tema padrão que uso é o robbyrussell — simples, limpo e mostra o branch do git direto no prompt.
+ZSH_THEME=&#34;robbyrussell&#34; Se quiser algo mais visual com ícones e informações de contexto (k8s, cloud, etc.), vale testar o Powerlevel10k:
+# Instalar o Powerlevel10k git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \ ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k # No .zshrc: ZSH_THEME=&#34;powerlevel10k/powerlevel10k&#34; Plugins essenciais plugins=( git dnf zsh-syntax-highlighting zsh-autosuggestions ) zsh-autosuggestions Sugere comandos em cinza enquanto você digita, baseado no seu histórico. Pressione → para aceitar. Um dos plugins mais úteis que existem.
+git clone https://github.com/zsh-users/zsh-autosuggestions \ ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions zsh-syntax-highlighting Colore os comandos em tempo real — verde se o comando existe, vermelho se não existe. Evita muito erro de digitação.
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \ ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting git Plugin built-in do Oh My Zsh. Traz dezenas de aliases prontos:
+gst # git status gco # git checkout gcmsg # git commit -m gp # git push gl # git pull glog # git log bonito Histórico gigante e inteligente Essa é uma das partes que mais uso. Um histórico bem configurado vale ouro — principalmente quando você precisa lembrar aquele comando raro que rodou meses atrás.
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history SAVEHIST=1000000 HISTSIZE=1000000 HIST_STAMPS=&#34;yyyy-mm-dd&#34; setopt INC_APPEND_HISTORY # Grava no arquivo imediatamente (não só ao fechar o shell) setopt SHARE_HISTORY # Compartilha histórico entre todas as sessões abertas setopt HIST_EXPIRE_DUPS_FIRST # Remove duplicatas primeiro quando o histórico encher setopt HIST_IGNORE_DUPS # Não grava se o comando foi o mesmo do anterior setopt HIST_IGNORE_ALL_DUPS # Remove entradas antigas se o mesmo comando for repetido setopt HIST_FIND_NO_DUPS # Não mostra duplicatas ao navegar com ↑ setopt HIST_IGNORE_SPACE # Não grava comandos que começam com espaço (útil para senhas) setopt HIST_SAVE_NO_DUPS # Não escreve duplicatas no arquivo de histórico setopt HIST_REDUCE_BLANKS # Remove espaços desnecessários antes de gravar alias history=&#34;history 0&#34; # Mostra o histórico completo (sem limite de linhas) O HIST_IGNORE_SPACE é especialmente útil: qualquer comando precedido de espaço não entra no histórico — ótimo pra quando você cola uma senha ou token diretamente no terminal.
+fzf — busca fuzzy no histórico O fzf transforma o Ctrl+R em uma busca interativa e fuzzy pelo histórico inteiro. Essencial.
+# Instalar sudo apt install fzf # ou via git git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &amp;&amp; ~/.fzf/install No .zshrc:
+[ -f ~/.fzf.zsh ] &amp;&amp; source ~/.fzf.zsh Depois é só apertar Ctrl+R e digitar qualquer trecho do comando que você procura.
+Meu .zshrc completo export ZSH=&#34;$HOME/.oh-my-zsh&#34; ZSH_THEME=&#34;robbyrussell&#34; HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history SAVEHIST=1000000 HISTSIZE=1000000 HIST_STAMPS=&#34;yyyy-mm-dd&#34; setopt INC_APPEND_HISTORY setopt SHARE_HISTORY setopt HIST_EXPIRE_DUPS_FIRST setopt HIST_IGNORE_DUPS setopt HIST_IGNORE_ALL_DUPS setopt HIST_FIND_NO_DUPS setopt HIST_IGNORE_SPACE setopt HIST_SAVE_NO_DUPS setopt HIST_REDUCE_BLANKS alias history=&#34;history 0&#34; plugins=( git dnf zsh-syntax-highlighting zsh-autosuggestions ) source $ZSH/oh-my-zsh.sh [ -f ~/.fzf.zsh ] &amp;&amp; source ~/.fzf.zsh export NVM_DIR=&#34;$HOME/.nvm&#34; [ -s &#34;$NVM_DIR/nvm.sh&#34; ] &amp;&amp; \. &#34;$NVM_DIR/nvm.sh&#34; [ -s &#34;$NVM_DIR/bash_completion&#34; ] &amp;&amp; \. &#34;$NVM_DIR/bash_completion&#34; export PATH=&#34;$HOME/.local/bin:$PATH&#34; Com isso você já tem um terminal muito mais agradável de usar. Os plugins de autosuggestions e syntax highlighting sozinhos já valem a instalação. O histórico inteligente é o tipo de coisa que você sente falta quando usa uma máquina sem ele.
+]]></content:encoded>
+    </item>
     <item>
       <title>Monolito, Arquitetura em Camadas e Microsserviços</title>
       <link>https://fxshelll.github.io/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</link>
