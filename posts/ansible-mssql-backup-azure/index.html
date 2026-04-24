@@ -509,7 +509,114 @@ fetchInject(["/js/lazysizes.min.js"]);
 
 # Transaction Log a cada hora (bancos com recovery_model FULL)
 0 * * * *   cd /opt/ansible/mssql-backup &amp;&amp; ansible-playbook playbook-backup.yml -e backup_type=log   --vault-password-file=.vault_pass
-</code></pre><h2 id="para-que-serve-no-mercado">Para Que Serve no Mercado</h2>
+</code></pre><h2 id="lifecycle-management--reduzindo-custo-de-armazenamento">Lifecycle Management — Reduzindo Custo de Armazenamento</h2>
+<p>O <code>BACKUP TO URL</code> grava os arquivos no tier <strong>Hot</strong> por padrão. Isso faz sentido nos primeiros dias, quando a chance de precisar de um restore rápido é maior. Mas backups são arquivos que você escreve uma vez e só lê em emergência — manter meses de backups no tier Hot é jogar dinheiro fora.</p>
+<p>O Azure Blob Storage oferece quatro tiers de armazenamento, cada um com custo e latência de acesso diferentes:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Tier</th>
+          <th>Custo/GB/mês (aprox.)</th>
+          <th>Acesso</th>
+          <th>Uso ideal</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Hot</strong></td>
+          <td>~$0.018</td>
+          <td>Imediato</td>
+          <td>Backups recentes (últimos 7 dias)</td>
+      </tr>
+      <tr>
+          <td><strong>Cool</strong></td>
+          <td>~$0.010</td>
+          <td>Imediato</td>
+          <td>Backups da última semana a um mês</td>
+      </tr>
+      <tr>
+          <td><strong>Cold</strong></td>
+          <td>~$0.0036</td>
+          <td>Imediato</td>
+          <td>Backups de 1 a 3 meses</td>
+      </tr>
+      <tr>
+          <td><strong>Archive</strong></td>
+          <td>~$0.002</td>
+          <td>Horas para reidratar</td>
+          <td>Retenção longa ou compliance</td>
+      </tr>
+  </tbody>
+</table>
+<p>A diferença é significativa: um backup de 100 GB no tier Hot custa ~$1.80/mês, no Cold custa ~$0.36/mês. Em um ambiente com vários servidores e meses de retenção, a economia acumula rápido.</p>
+<h3 id="lifecycle-management-policy">Lifecycle Management Policy</h3>
+<p>Em vez de mover blobs manualmente entre tiers, o Azure permite criar uma <strong>Lifecycle Management Policy</strong> no Storage Account. Essa política é avaliada automaticamente uma vez por dia e move os blobs entre tiers com base na idade — sem script, sem cron, sem custo de operação.</p>
+<p>A estratégia recomendada para backups:</p>
+<pre tabindex="0"><code>0-7 dias   → Hot      (restore imediato se precisar)
+7-30 dias  → Cool     (metade do custo)
+30-90 dias → Cold     (1/5 do custo)
+90+ dias   → Archive ou deletar (conforme retenção exigida)
+</code></pre><h3 id="configurando-via-azure-cli">Configurando via Azure CLI</h3>
+<p>Primeiro, crie um arquivo JSON com a política de lifecycle. Este exemplo aplica a movimentação progressiva entre tiers e deleta backups com mais de 365 dias:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;rules&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;enabled&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;backup-lifecycle&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Lifecycle&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;definition&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;actions&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;baseBlob&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;tierToCool&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;daysAfterModificationGreaterThan&#34;</span><span class="p">:</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;tierToCold&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;daysAfterModificationGreaterThan&#34;</span><span class="p">:</span> <span class="mi">30</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;tierToArchive&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;daysAfterModificationGreaterThan&#34;</span><span class="p">:</span> <span class="mi">90</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;delete&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;daysAfterModificationGreaterThan&#34;</span><span class="p">:</span> <span class="mi">365</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;filters&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;blobTypes&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;blockBlob&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;prefixMatch&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;sql-backup-full/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;sql-backup-diff/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;sql-backup-log/&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>O filtro <code>prefixMatch</code> garante que a política se aplica apenas aos containers de backup, sem afetar outros blobs na mesma Storage Account.</p>
+<p>Agora aplique a política na Storage Account:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Aplicar a lifecycle policy</span>
+</span></span><span class="line"><span class="cl">az storage account management-policy create <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --account-name minhaconta <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --resource-group meu-rg <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --policy @lifecycle-policy.json
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Verificar a política aplicada</span>
+</span></span><span class="line"><span class="cl">az storage account management-policy show <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --account-name minhaconta <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --resource-group meu-rg
+</span></span></code></pre></div><h3 id="considerações-sobre-archive-e-restore">Considerações sobre Archive e Restore</h3>
+<p>O tier Archive tem o menor custo de armazenamento, mas a reidratação leva horas (Standard: até 15 horas, High Priority: até 1 hora com custo maior). Se o restore precisa ser rápido, considere usar Cold como tier final em vez de Archive — o custo é ligeiramente maior, mas o acesso é imediato.</p>
+<p>Para verificar em qual tier cada blob está:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Listar blobs com o tier de acesso</span>
+</span></span><span class="line"><span class="cl">az storage blob list <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --account-name minhaconta <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --container-name sql-backup-full <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --query <span class="s2">&#34;[].{name:name, tier:properties.blobTier, modified:properties.lastModified}&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --output table <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --auth-mode login
+</span></span></code></pre></div><p>A Lifecycle Policy é avaliada uma vez por dia pelo Azure. Após criar a política, os blobs existentes serão movidos gradualmente nas próximas 24-48 horas conforme as regras definidas.</p>
+<h2 id="para-que-serve-no-mercado">Para Que Serve no Mercado</h2>
 <p>Times de DBA e SRE que gerenciam ambientes com SQL Server Windows enfrentam o desafio de manter backups consistentes sem depender de jobs do SQL Server Agent configurados manualmente em cada instância. Com Ansible, a política de backup fica no código, versionada no Git, aplicável a qualquer número de servidores com um único comando.</p>
 <p>O modelo <code>BACKUP TO URL</code> faz o SQL Server enviar o backup diretamente ao Azure via TLS, sem staging intermediário. A máquina de controle funciona apenas como orquestradora — sem impacto de I/O de dados, independente do tamanho dos backups. Isso permite escalar o número de servidores e bancos sem aumentar disco na infraestrutura Ansible.</p>
 <p>O suporte a point-in-time recovery é o que diferencia um backup operacional de um backup de compliance — em caso de corrupção de dados, ransomware ou erro humano, a capacidade de restaurar para um momento específico pode ser a diferença entre minutos e horas de downtime.</p>
@@ -523,6 +630,8 @@ fetchInject(["/js/lazysizes.min.js"]);
 <li><a href="https://learn.microsoft.com/pt-br/sql/t-sql/statements/backup-transact-sql">T-SQL BACKUP DATABASE</a></li>
 <li><a href="https://learn.microsoft.com/pt-br/sql/t-sql/statements/restore-statements-transact-sql">T-SQL RESTORE DATABASE</a></li>
 <li><a href="https://docs.ansible.com/ansible/latest/vault_guide/index.html">ansible-vault</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/azure/storage/blobs/lifecycle-management-overview">Lifecycle Management Policy — Azure Blob Storage</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/azure/storage/blobs/access-tiers-overview">Access Tiers — Hot, Cool, Cold, Archive</a></li>
 </ul>
 
 </main>
