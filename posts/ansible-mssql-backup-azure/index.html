@@ -301,81 +301,81 @@ fetchInject(["/js/lazysizes.min.js"]);
             └── restore.sql.j2
 </code></pre><h2 id="inventário-e-variáveis">Inventário e Variáveis</h2>
 <p>O inventário declara os SQL Servers (Windows, via WinRM). A máquina ops não precisa mais estar no inventário para os backups:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[sqlservers]</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sql01 ansible_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.1.20</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sql02 ansible_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.1.21</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sql03 ansible_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.1.22</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[sqlservers:vars]</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ansible_user</span><span style="color:#f92672">=</span><span style="color:#e6db74">ansible_svc</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ansible_password</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ vault_winrm_password }}&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ansible_connection</span><span style="color:#f92672">=</span><span style="color:#e6db74">winrm</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ansible_winrm_transport</span><span style="color:#f92672">=</span><span style="color:#e6db74">ntlm</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ansible_winrm_server_cert_validation</span><span style="color:#f92672">=</span><span style="color:#e6db74">ignore</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ansible_port</span><span style="color:#f92672">=</span><span style="color:#e6db74">5985</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[sqlservers]</span>
+</span></span><span class="line"><span class="cl"><span class="na">sql01 ansible_host</span><span class="o">=</span><span class="s">192.168.1.20</span>
+</span></span><span class="line"><span class="cl"><span class="na">sql02 ansible_host</span><span class="o">=</span><span class="s">192.168.1.21</span>
+</span></span><span class="line"><span class="cl"><span class="na">sql03 ansible_host</span><span class="o">=</span><span class="s">192.168.1.22</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[sqlservers:vars]</span>
+</span></span><span class="line"><span class="cl"><span class="na">ansible_user</span><span class="o">=</span><span class="s">ansible_svc</span>
+</span></span><span class="line"><span class="cl"><span class="na">ansible_password</span><span class="o">=</span><span class="s">&#34;{{ vault_winrm_password }}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="na">ansible_connection</span><span class="o">=</span><span class="s">winrm</span>
+</span></span><span class="line"><span class="cl"><span class="na">ansible_winrm_transport</span><span class="o">=</span><span class="s">ntlm</span>
+</span></span><span class="line"><span class="cl"><span class="na">ansible_winrm_server_cert_validation</span><span class="o">=</span><span class="s">ignore</span>
+</span></span><span class="line"><span class="cl"><span class="na">ansible_port</span><span class="o">=</span><span class="s">5985</span>
 </span></span></code></pre></div><p>Em <code>group_vars/sqlservers.yml</code>, cada banco é declarado com seu modelo de recuperação, o que determina se backup de log é possível:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">databases</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;AppDB&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">recovery_model</span>: <span style="color:#e6db74">&#34;FULL&#34;</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;LegacyDB&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">recovery_model</span>: <span style="color:#e6db74">&#34;SIMPLE&#34;</span>    <span style="color:#75715e"># só aceita full e diff</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">backup_compression</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">verify_backup</span>: <span style="color:#66d9ef">true</span>
-</span></span></code></pre></div><p>Em <code>group_vars/all.yml</code>, a URL base da conta é usada tanto para construir as URLs dos blobs quanto como nome do <code>CREDENTIAL</code> no SQL Server:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">azure_storage_account</span>: <span style="color:#e6db74">&#34;minhaconta&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">azure_container_full</span>:  <span style="color:#e6db74">&#34;sql-backup-full&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">azure_container_diff</span>:  <span style="color:#e6db74">&#34;sql-backup-diff&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">azure_container_log</span>:   <span style="color:#e6db74">&#34;sql-backup-log&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># SAS Token: permissões read + write + create + list</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">vault_azure_sas_token</span>: !<span style="color:#ae81ff">vault |</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">$ANSIBLE_VAULT;1.1;AES256</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">&lt;criptografado&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">azure_blob_base_url</span>: <span style="color:#e6db74">&#34;https://{{ azure_storage_account }}.blob.core.windows.net&#34;</span>
-</span></span></code></pre></div><p>Para criar o vault:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ansible-vault encrypt_string <span style="color:#e6db74">&#39;sv=2022-11-02&amp;ss=b&amp;...&#39;</span> --name <span style="color:#e6db74">&#39;vault_azure_sas_token&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">databases</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;AppDB&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">recovery_model</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;FULL&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;LegacyDB&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">recovery_model</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;SIMPLE&#34;</span><span class="w">    </span><span class="c"># só aceita full e diff</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">backup_compression</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">verify_backup</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></div><p>Em <code>group_vars/all.yml</code>, a URL base da conta é usada tanto para construir as URLs dos blobs quanto como nome do <code>CREDENTIAL</code> no SQL Server:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">azure_storage_account</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;minhaconta&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">azure_container_full</span><span class="p">:</span><span class="w">  </span><span class="s2">&#34;sql-backup-full&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">azure_container_diff</span><span class="p">:</span><span class="w">  </span><span class="s2">&#34;sql-backup-diff&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">azure_container_log</span><span class="p">:</span><span class="w">   </span><span class="s2">&#34;sql-backup-log&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># SAS Token: permissões read + write + create + list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">vault_azure_sas_token</span><span class="p">:</span><span class="w"> </span>!<span class="l">vault |</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">$ANSIBLE_VAULT;1.1;AES256</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">&lt;criptografado&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">azure_blob_base_url</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://{{ azure_storage_account }}.blob.core.windows.net&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>Para criar o vault:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ansible-vault encrypt_string <span class="s1">&#39;sv=2022-11-02&amp;ss=b&amp;...&#39;</span> --name <span class="s1">&#39;vault_azure_sas_token&#39;</span>
 </span></span></code></pre></div><h2 id="sql-server-credential">SQL Server CREDENTIAL</h2>
 <p>Antes de executar qualquer backup, a role cria (ou atualiza) um <code>CREDENTIAL</code> no SQL Server com o SAS Token. Esse objeto é o que permite o SQL Server autenticar no Azure sem precisar de credenciais da conta de armazenamento:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> CREDENTIAL [https:<span style="color:#f92672">//</span>minhaconta.blob.core.windows.net]
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span> <span style="color:#66d9ef">IDENTITY</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;SHARED ACCESS SIGNATURE&#39;</span>,
-</span></span><span style="display:flex;"><span>SECRET <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sv=2022-11-02&amp;ss=b&amp;srt=co&amp;sp=rwdlc&amp;se=2027-01-01...&amp;sig=...&#39;</span>;
-</span></span></code></pre></div><p>O Ansible executa esse script via <code>win_shell</code> + <code>sqlcmd</code> com <code>no_log: true</code>, garantindo que o SAS Token nunca apareça nos logs da execução.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="n">CREDENTIAL</span><span class="w"> </span><span class="p">[</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">minhaconta</span><span class="p">.</span><span class="nb">blob</span><span class="p">.</span><span class="n">core</span><span class="p">.</span><span class="n">windows</span><span class="p">.</span><span class="n">net</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WITH</span><span class="w"> </span><span class="k">IDENTITY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SHARED ACCESS SIGNATURE&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">SECRET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sv=2022-11-02&amp;ss=b&amp;srt=co&amp;sp=rwdlc&amp;se=2027-01-01...&amp;sig=...&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>O Ansible executa esse script via <code>win_shell</code> + <code>sqlcmd</code> com <code>no_log: true</code>, garantindo que o SAS Token nunca apareça nos logs da execução.</p>
 <h2 id="os-três-tipos-de-backup">Os Três Tipos de Backup</h2>
 <h3 id="full--backup-completo">Full — Backup Completo</h3>
 <p>O backup Full captura o banco inteiro. É sempre o ponto de partida para qualquer cadeia de restore.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ansible-playbook playbook-backup.yml -e backup_type<span style="color:#f92672">=</span>full --ask-vault-pass
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ansible-playbook playbook-backup.yml -e <span class="nv">backup_type</span><span class="o">=</span>full --ask-vault-pass
 </span></span></code></pre></div><p>O script T-SQL gerado pelo template aponta direto para a URL do blob no Azure:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>BACKUP <span style="color:#66d9ef">DATABASE</span> [AppDB]
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">TO</span> URL <span style="color:#f92672">=</span> N<span style="color:#e6db74">&#39;https://minhaconta.blob.core.windows.net/sql-backup-full/sql01/2026-04-24/sql01_AppDB_FULL_20260424030000.bak&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span>
-</span></span><span style="display:flex;"><span>    FORMAT, INIT,
-</span></span><span style="display:flex;"><span>    NAME <span style="color:#f92672">=</span> N<span style="color:#e6db74">&#39;AppDB - Full Backup 20260424030000&#39;</span>,
-</span></span><span style="display:flex;"><span>    COMPRESSION,
-</span></span><span style="display:flex;"><span>    STATS <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,
-</span></span><span style="display:flex;"><span>    CHECKSUM;
-</span></span></code></pre></div><p>Após o backup, o SQL Server executa <code>RESTORE VERIFYONLY FROM URL</code> para confirmar a integridade do arquivo diretamente no Azure, antes do Ansible registrar o resultado.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">BACKUP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="p">[</span><span class="n">AppDB</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">TO</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;https://minhaconta.blob.core.windows.net/sql-backup-full/sql01/2026-04-24/sql01_AppDB_FULL_20260424030000.bak&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WITH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">FORMAT</span><span class="p">,</span><span class="w"> </span><span class="n">INIT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;AppDB - Full Backup 20260424030000&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">COMPRESSION</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">STATS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">CHECKSUM</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>Após o backup, o SQL Server executa <code>RESTORE VERIFYONLY FROM URL</code> para confirmar a integridade do arquivo diretamente no Azure, antes do Ansible registrar o resultado.</p>
 <h3 id="differential--backup-diferencial">Differential — Backup Diferencial</h3>
 <p>Captura apenas os dados que mudaram desde o último Full. Muito mais rápido e menor em tamanho, ideal para execuções diárias quando o Full é semanal.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ansible-playbook playbook-backup.yml -e backup_type<span style="color:#f92672">=</span>diff --ask-vault-pass
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>BACKUP <span style="color:#66d9ef">DATABASE</span> [AppDB]
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">TO</span> URL <span style="color:#f92672">=</span> N<span style="color:#e6db74">&#39;https://minhaconta.blob.core.windows.net/sql-backup-diff/sql01/2026-04-24/sql01_AppDB_DIFF_20260424120000.bak&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span>
-</span></span><span style="display:flex;"><span>    DIFFERENTIAL,
-</span></span><span style="display:flex;"><span>    COMPRESSION,
-</span></span><span style="display:flex;"><span>    STATS <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,
-</span></span><span style="display:flex;"><span>    CHECKSUM;
-</span></span></code></pre></div><h3 id="transaction-log--backup-de-log-de-transações">Transaction Log — Backup de Log de Transações</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ansible-playbook playbook-backup.yml -e <span class="nv">backup_type</span><span class="o">=</span>diff --ask-vault-pass
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">BACKUP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="p">[</span><span class="n">AppDB</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">TO</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;https://minhaconta.blob.core.windows.net/sql-backup-diff/sql01/2026-04-24/sql01_AppDB_DIFF_20260424120000.bak&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WITH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">DIFFERENTIAL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">COMPRESSION</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">STATS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">CHECKSUM</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h3 id="transaction-log--backup-de-log-de-transações">Transaction Log — Backup de Log de Transações</h3>
 <p>Captura todas as transações registradas no log desde o último backup de log. Permite restaurar o banco para qualquer ponto no tempo (point-in-time recovery). Requer que o banco use o modelo de recuperação FULL ou BULK_LOGGED — o script verifica isso antes de executar.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ansible-playbook playbook-backup.yml -e backup_type<span style="color:#f92672">=</span>log --ask-vault-pass
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>BACKUP LOG [AppDB]
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">TO</span> URL <span style="color:#f92672">=</span> N<span style="color:#e6db74">&#39;https://minhaconta.blob.core.windows.net/sql-backup-log/sql01/2026-04-24/sql01_AppDB_LOG_20260424150000.bak&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span>
-</span></span><span style="display:flex;"><span>    COMPRESSION,
-</span></span><span style="display:flex;"><span>    STATS <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,
-</span></span><span style="display:flex;"><span>    CHECKSUM;
-</span></span></code></pre></div><h2 id="fluxo-interno-de-cada-backup">Fluxo Interno de Cada Backup</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ansible-playbook playbook-backup.yml -e <span class="nv">backup_type</span><span class="o">=</span>log --ask-vault-pass
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">BACKUP</span><span class="w"> </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">AppDB</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">TO</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;https://minhaconta.blob.core.windows.net/sql-backup-log/sql01/2026-04-24/sql01_AppDB_LOG_20260424150000.bak&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WITH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">COMPRESSION</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">STATS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">CHECKSUM</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="fluxo-interno-de-cada-backup">Fluxo Interno de Cada Backup</h2>
 <p>Para cada banco, a role <code>mssql_backup</code> executa na sequência:</p>
 <ol>
 <li>Cria ou atualiza o SQL Server CREDENTIAL com o SAS Token (via <code>win_shell</code> + <code>sqlcmd</code>, <code>no_log: true</code>)</li>
@@ -415,91 +415,91 @@ fetchInject(["/js/lazysizes.min.js"]);
   </tbody>
 </table>
 <p>O playbook lista os blobs disponíveis no Azure via API REST (apenas metadados, sem download) usando o módulo <code>uri</code> do Ansible, e passa as URLs para o SQL Server executar <code>RESTORE FROM URL</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Restore simples</span>
-</span></span><span style="display:flex;"><span>ansible-playbook playbook-restore.yml <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_db<span style="color:#f92672">=</span>AppDB <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_target_host<span style="color:#f92672">=</span>sql01 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_date<span style="color:#f92672">=</span>2026-04-24 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --ask-vault-pass
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Point-in-time recovery</span>
-</span></span><span style="display:flex;"><span>ansible-playbook playbook-restore.yml <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_db<span style="color:#f92672">=</span>AppDB <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_target_host<span style="color:#f92672">=</span>sql01 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_date<span style="color:#f92672">=</span>2026-04-24 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_mode<span style="color:#f92672">=</span>point_in_time <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_stopat<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2026-04-24T14:30:00&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --ask-vault-pass
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Restaurar com nome diferente (não sobrescreve o banco original)</span>
-</span></span><span style="display:flex;"><span>ansible-playbook playbook-restore.yml <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_db<span style="color:#f92672">=</span>AppDB <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_new_name<span style="color:#f92672">=</span>AppDB_RestoreTest <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_target_host<span style="color:#f92672">=</span>sql01 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_date<span style="color:#f92672">=</span>2026-04-24 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_mode<span style="color:#f92672">=</span>full_diff <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --ask-vault-pass
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Restore simples</span>
+</span></span><span class="line"><span class="cl">ansible-playbook playbook-restore.yml <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_db</span><span class="o">=</span>AppDB <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_target_host</span><span class="o">=</span>sql01 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_date</span><span class="o">=</span>2026-04-24 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --ask-vault-pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Point-in-time recovery</span>
+</span></span><span class="line"><span class="cl">ansible-playbook playbook-restore.yml <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_db</span><span class="o">=</span>AppDB <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_target_host</span><span class="o">=</span>sql01 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_date</span><span class="o">=</span>2026-04-24 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_mode</span><span class="o">=</span>point_in_time <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_stopat</span><span class="o">=</span><span class="s2">&#34;2026-04-24T14:30:00&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --ask-vault-pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Restaurar com nome diferente (não sobrescreve o banco original)</span>
+</span></span><span class="line"><span class="cl">ansible-playbook playbook-restore.yml <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_db</span><span class="o">=</span>AppDB <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_new_name</span><span class="o">=</span>AppDB_RestoreTest <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_target_host</span><span class="o">=</span>sql01 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_date</span><span class="o">=</span>2026-04-24 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_mode</span><span class="o">=</span>full_diff <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --ask-vault-pass
 </span></span></code></pre></div><p>O script T-SQL de restore lê os arquivos diretamente do Azure, gerenciando o estado do banco durante a sequência:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- FULL com NORECOVERY (banco fica em &#34;restaurando&#34; para aceitar diff/log)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RESTORE <span style="color:#66d9ef">DATABASE</span> [AppDB]
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> URL <span style="color:#f92672">=</span> N<span style="color:#e6db74">&#39;https://minhaconta.blob.core.windows.net/sql-backup-full/sql01/2026-04-24/sql01_AppDB_FULL_20260424030000.bak&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span> NORECOVERY, <span style="color:#66d9ef">REPLACE</span>, STATS <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- DIFF com NORECOVERY
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RESTORE <span style="color:#66d9ef">DATABASE</span> [AppDB]
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> URL <span style="color:#f92672">=</span> N<span style="color:#e6db74">&#39;https://minhaconta.blob.core.windows.net/sql-backup-diff/sql01/2026-04-24/sql01_AppDB_DIFF_20260424120000.bak&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span> NORECOVERY, STATS <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- LOG final com RECOVERY (encerra a sequência) e STOPAT opcional
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RESTORE LOG [AppDB]
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> URL <span style="color:#f92672">=</span> N<span style="color:#e6db74">&#39;https://minhaconta.blob.core.windows.net/sql-backup-log/sql01/2026-04-24/sql01_AppDB_LOG_20260424150000.bak&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span> STOPAT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;2026-04-24 14:30:00&#39;</span>, RECOVERY;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Volta para multi-user
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">DATABASE</span> [AppDB] <span style="color:#66d9ef">SET</span> MULTI_USER;
-</span></span></code></pre></div><p>O uso de <code>NORECOVERY</code> em todos os passos exceto o último é obrigatório — ele mantém o banco em modo de restauração para aceitar os próximos arquivos. Apenas o último comando usa <code>RECOVERY</code>, que finaliza a sequência e coloca o banco online.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- FULL com NORECOVERY (banco fica em &#34;restaurando&#34; para aceitar diff/log)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">RESTORE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="p">[</span><span class="n">AppDB</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;https://minhaconta.blob.core.windows.net/sql-backup-full/sql01/2026-04-24/sql01_AppDB_FULL_20260424030000.bak&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WITH</span><span class="w"> </span><span class="n">NORECOVERY</span><span class="p">,</span><span class="w"> </span><span class="k">REPLACE</span><span class="p">,</span><span class="w"> </span><span class="n">STATS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- DIFF com NORECOVERY
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">RESTORE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="p">[</span><span class="n">AppDB</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;https://minhaconta.blob.core.windows.net/sql-backup-diff/sql01/2026-04-24/sql01_AppDB_DIFF_20260424120000.bak&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WITH</span><span class="w"> </span><span class="n">NORECOVERY</span><span class="p">,</span><span class="w"> </span><span class="n">STATS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- LOG final com RECOVERY (encerra a sequência) e STOPAT opcional
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">RESTORE</span><span class="w"> </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">AppDB</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;https://minhaconta.blob.core.windows.net/sql-backup-log/sql01/2026-04-24/sql01_AppDB_LOG_20260424150000.bak&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WITH</span><span class="w"> </span><span class="n">STOPAT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2026-04-24 14:30:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">RECOVERY</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Volta para multi-user
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="p">[</span><span class="n">AppDB</span><span class="p">]</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">MULTI_USER</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>O uso de <code>NORECOVERY</code> em todos os passos exceto o último é obrigatório — ele mantém o banco em modo de restauração para aceitar os próximos arquivos. Apenas o último comando usa <code>RECOVERY</code>, que finaliza a sequência e coloca o banco online.</p>
 <h2 id="segurança">Segurança</h2>
 <p>Todos os segredos ficam no vault — nunca em texto plano:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Criptografar SAS token do Azure (permissões: read + write + create + list)</span>
-</span></span><span style="display:flex;"><span>ansible-vault encrypt_string <span style="color:#e6db74">&#39;sv=2022-11-02&amp;ss=b...&#39;</span> --name <span style="color:#e6db74">&#39;vault_azure_sas_token&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Criptografar senha WinRM</span>
-</span></span><span style="display:flex;"><span>ansible-vault encrypt_string <span style="color:#e6db74">&#39;SenhaDoServico123!&#39;</span> --name <span style="color:#e6db74">&#39;vault_winrm_password&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Criptografar senha SQL</span>
-</span></span><span style="display:flex;"><span>ansible-vault encrypt_string <span style="color:#e6db74">&#39;SenhaSql123!&#39;</span> --name <span style="color:#e6db74">&#39;mssql_password&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Criptografar SAS token do Azure (permissões: read + write + create + list)</span>
+</span></span><span class="line"><span class="cl">ansible-vault encrypt_string <span class="s1">&#39;sv=2022-11-02&amp;ss=b...&#39;</span> --name <span class="s1">&#39;vault_azure_sas_token&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Criptografar senha WinRM</span>
+</span></span><span class="line"><span class="cl">ansible-vault encrypt_string <span class="s1">&#39;SenhaDoServico123!&#39;</span> --name <span class="s1">&#39;vault_winrm_password&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Criptografar senha SQL</span>
+</span></span><span class="line"><span class="cl">ansible-vault encrypt_string <span class="s1">&#39;SenhaSql123!&#39;</span> --name <span class="s1">&#39;mssql_password&#39;</span>
 </span></span></code></pre></div><p>O SAS Token é passado para o SQL Server dentro do script T-SQL gerado em <code>C:\Windows\Temp\</code> com <code>no_log: true</code> no Ansible, e o arquivo temporário é removido imediatamente após a execução. O token nunca aparece nos logs do Ansible nem no histórico do shell.</p>
 <p>O usuário SQL usado (<code>backup_svc</code>) precisa das permissões mínimas para <code>BACKUP TO URL</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> LOGIN backup_svc <span style="color:#66d9ef">WITH</span> PASSWORD <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;SenhaSql123!&#39;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">CONNECT</span> <span style="color:#66d9ef">SQL</span> <span style="color:#66d9ef">TO</span> backup_svc;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Em cada banco:
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">EXEC</span> sp_addrolemember <span style="color:#e6db74">&#39;db_backupoperator&#39;</span>, <span style="color:#e6db74">&#39;backup_svc&#39;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">VIEW</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#66d9ef">STATE</span> <span style="color:#66d9ef">TO</span> backup_svc;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Para criar o CREDENTIAL (necessário para BACKUP TO URL):
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">ANY</span> CREDENTIAL <span style="color:#66d9ef">TO</span> backup_svc;
-</span></span></code></pre></div><h2 id="executando">Executando</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Testar conectividade antes de tudo</span>
-</span></span><span style="display:flex;"><span>ansible sqlservers -m win_ping --ask-vault-pass
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup Full de todos os bancos (recomendado: madrugada — ex: 02:00)</span>
-</span></span><span style="display:flex;"><span>ansible-playbook playbook-backup.yml -e backup_type<span style="color:#f92672">=</span>full --ask-vault-pass
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup Full de um banco específico</span>
-</span></span><span style="display:flex;"><span>ansible-playbook playbook-backup.yml -e backup_type<span style="color:#f92672">=</span>full -e target_db<span style="color:#f92672">=</span>AppDB --ask-vault-pass
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup Differential (pode rodar durante o dia — arquivo menor, menos impacto de rede)</span>
-</span></span><span style="display:flex;"><span>ansible-playbook playbook-backup.yml -e backup_type<span style="color:#f92672">=</span>diff --ask-vault-pass
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup de Log (pode rodar a cada hora — arquivo pequeno, impacto mínimo)</span>
-</span></span><span style="display:flex;"><span>ansible-playbook playbook-backup.yml -e backup_type<span style="color:#f92672">=</span>log --ask-vault-pass
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Restore full + diff + log (recomendado: madrugada — evita concorrência com queries ativas)</span>
-</span></span><span style="display:flex;"><span>ansible-playbook playbook-restore.yml <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_db<span style="color:#f92672">=</span>AppDB <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_target_host<span style="color:#f92672">=</span>sql01 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_date<span style="color:#f92672">=</span>2026-04-24 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -e restore_mode<span style="color:#f92672">=</span>full_diff_log <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --ask-vault-pass
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">backup_svc</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SenhaSql123!&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GRANT</span><span class="w"> </span><span class="k">CONNECT</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">backup_svc</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Em cada banco:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_addrolemember</span><span class="w"> </span><span class="s1">&#39;db_backupoperator&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;backup_svc&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GRANT</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">STATE</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">backup_svc</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Para criar o CREDENTIAL (necessário para BACKUP TO URL):
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">GRANT</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">ANY</span><span class="w"> </span><span class="n">CREDENTIAL</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">backup_svc</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="executando">Executando</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Testar conectividade antes de tudo</span>
+</span></span><span class="line"><span class="cl">ansible sqlservers -m win_ping --ask-vault-pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Backup Full de todos os bancos (recomendado: madrugada — ex: 02:00)</span>
+</span></span><span class="line"><span class="cl">ansible-playbook playbook-backup.yml -e <span class="nv">backup_type</span><span class="o">=</span>full --ask-vault-pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Backup Full de um banco específico</span>
+</span></span><span class="line"><span class="cl">ansible-playbook playbook-backup.yml -e <span class="nv">backup_type</span><span class="o">=</span>full -e <span class="nv">target_db</span><span class="o">=</span>AppDB --ask-vault-pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Backup Differential (pode rodar durante o dia — arquivo menor, menos impacto de rede)</span>
+</span></span><span class="line"><span class="cl">ansible-playbook playbook-backup.yml -e <span class="nv">backup_type</span><span class="o">=</span>diff --ask-vault-pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Backup de Log (pode rodar a cada hora — arquivo pequeno, impacto mínimo)</span>
+</span></span><span class="line"><span class="cl">ansible-playbook playbook-backup.yml -e <span class="nv">backup_type</span><span class="o">=</span>log --ask-vault-pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Restore full + diff + log (recomendado: madrugada — evita concorrência com queries ativas)</span>
+</span></span><span class="line"><span class="cl">ansible-playbook playbook-restore.yml <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_db</span><span class="o">=</span>AppDB <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_target_host</span><span class="o">=</span>sql01 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_date</span><span class="o">=</span>2026-04-24 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">restore_mode</span><span class="o">=</span>full_diff_log <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --ask-vault-pass
 </span></span></code></pre></div><h3 id="agendamento-sugerido-cron-no-controller">Agendamento sugerido (cron no controller)</h3>
 <pre tabindex="0"><code class="language-cron" data-lang="cron"># Full todo domingo às 02:00
 0 2 * * 0  cd /opt/ansible/mssql-backup &amp;&amp; ansible-playbook playbook-backup.yml -e backup_type=full  --vault-password-file=.vault_pass

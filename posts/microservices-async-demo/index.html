@@ -262,24 +262,24 @@ fetchInject(["/js/lazysizes.min.js"]);
 <li>cURL para testes de API</li>
 </ul>
 <h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>microservices-async-demo/
-</span></span><span style="display:flex;"><span>│
-</span></span><span style="display:flex;"><span>├── docker-compose.yml
-</span></span><span style="display:flex;"><span>├── README.md
-</span></span><span style="display:flex;"><span>│
-</span></span><span style="display:flex;"><span>├── service-order/
-</span></span><span style="display:flex;"><span>│   ├── Dockerfile
-</span></span><span style="display:flex;"><span>│   ├── package.json
-</span></span><span style="display:flex;"><span>│   ├── wait-for-rabbit.sh
-</span></span><span style="display:flex;"><span>│   └── src/
-</span></span><span style="display:flex;"><span>│       └── index.js
-</span></span><span style="display:flex;"><span>│
-</span></span><span style="display:flex;"><span>├── service-payment/
-</span></span><span style="display:flex;"><span>│   ├── Dockerfile
-</span></span><span style="display:flex;"><span>│   ├── package.json
-</span></span><span style="display:flex;"><span>│   ├── wait-for-rabbit.sh
-</span></span><span style="display:flex;"><span>│   └── src/
-</span></span><span style="display:flex;"><span>│       └── index.js
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">microservices-async-demo/
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── docker-compose.yml
+</span></span><span class="line"><span class="cl">├── README.md
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── service-order/
+</span></span><span class="line"><span class="cl">│   ├── Dockerfile
+</span></span><span class="line"><span class="cl">│   ├── package.json
+</span></span><span class="line"><span class="cl">│   ├── wait-for-rabbit.sh
+</span></span><span class="line"><span class="cl">│   └── src/
+</span></span><span class="line"><span class="cl">│       └── index.js
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── service-payment/
+</span></span><span class="line"><span class="cl">│   ├── Dockerfile
+</span></span><span class="line"><span class="cl">│   ├── package.json
+</span></span><span class="line"><span class="cl">│   ├── wait-for-rabbit.sh
+</span></span><span class="line"><span class="cl">│   └── src/
+</span></span><span class="line"><span class="cl">│       └── index.js
 </span></span></code></pre></div><h2 id="microsserviços">Microsserviços</h2>
 <ul>
 <li><strong>ServiceOrder</strong>: responsável por criar e listar pedidos (<code>POST /orders</code>, <code>GET /orders</code>).</li>
@@ -305,11 +305,11 @@ fetchInject(["/js/lazysizes.min.js"]);
 <ol>
 <li>Clonar o repositório:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git clone https://github.com/fxshelll/microservices-async-demo.git
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git clone https://github.com/fxshelll/microservices-async-demo.git
 </span></span></code></pre></div><ol start="2">
 <li>Subir os serviços:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker compose up --build
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker compose up --build
 </span></span></code></pre></div><ol start="3">
 <li>
 <p>Acessar o RabbitMQ</p>
@@ -319,13 +319,13 @@ fetchInject(["/js/lazysizes.min.js"]);
 </li>
 </ol>
 <h2 id="testes-com-curl">Testes com cURL</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>curl -X POST http://localhost:3001/orders <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -d <span style="color:#e6db74">&#39;{&#34;id&#34;: 1, &#34;item&#34;: &#34;Curso Microsserviços&#34;, &#34;valor&#34;: 149.90}&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl -X POST http://localhost:3001/orders <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     -H <span class="s2">&#34;Content-Type: application/json&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     -d <span class="s1">&#39;{&#34;id&#34;: 1, &#34;item&#34;: &#34;Curso Microsserviços&#34;, &#34;valor&#34;: 149.90}&#39;</span>
 </span></span></code></pre></div><h2 id="listar-pedidos">Listar pedidos</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>curl http://localhost:3001/orders
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl http://localhost:3001/orders
 </span></span></code></pre></div><h2 id="listar-pagamentos">Listar pagamentos</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>curl http://localhost:3002/payments
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl http://localhost:3002/payments
 </span></span></code></pre></div><h2 id="considerações">Considerações</h2>
 <pre><code>Os serviços aguardam o RabbitMQ estar pronto antes de iniciar.
 

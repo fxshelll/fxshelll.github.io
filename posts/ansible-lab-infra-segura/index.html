@@ -271,28 +271,28 @@ fetchInject(["/js/lazysizes.min.js"]);
 <hr>
 <h2 id="preparando-o-ambiente-com-vagrant">Preparando o Ambiente com Vagrant</h2>
 <p>O Vagrant cria as 4 VMs localmente com um único <code>vagrant up</code>. Cada máquina recebe um IP fixo na rede privada <code>192.168.56.0/24</code>, o que permite que o Ansible se comunique com todas elas sem nenhuma configuração extra de rede.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">Vagrant</span><span style="color:#f92672">.</span>configure(<span style="color:#e6db74">&#34;2&#34;</span>) <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>config<span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>  config<span style="color:#f92672">.</span>vm<span style="color:#f92672">.</span>box <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;debian/bookworm64&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  nodes <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;lb-01&#34;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;192.168.56.10&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;web-01&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;192.168.56.11&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;web-02&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;192.168.56.12&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;db-01&#34;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;192.168.56.13&#34;</span>
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  nodes<span style="color:#f92672">.</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>name, ip<span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>    config<span style="color:#f92672">.</span>vm<span style="color:#f92672">.</span>define name <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>node<span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>      node<span style="color:#f92672">.</span>vm<span style="color:#f92672">.</span>hostname <span style="color:#f92672">=</span> name
-</span></span><span style="display:flex;"><span>      node<span style="color:#f92672">.</span>vm<span style="color:#f92672">.</span>network <span style="color:#e6db74">&#34;private_network&#34;</span>, <span style="color:#e6db74">ip</span>: ip
-</span></span><span style="display:flex;"><span>      node<span style="color:#f92672">.</span>vm<span style="color:#f92672">.</span>provider <span style="color:#e6db74">&#34;virtualbox&#34;</span> <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>vb<span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>        vb<span style="color:#f92672">.</span>memory <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;512&#34;</span>
-</span></span><span style="display:flex;"><span>        vb<span style="color:#f92672">.</span>cpus <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vagrant up
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&#34;2&#34;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&#34;debian/bookworm64&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">nodes</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;lb-01&#34;</span>  <span class="o">=&gt;</span> <span class="s2">&#34;192.168.56.10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;web-01&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;192.168.56.11&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;web-02&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;192.168.56.12&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;db-01&#34;</span>  <span class="o">=&gt;</span> <span class="s2">&#34;192.168.56.13&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">nodes</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="p">,</span> <span class="n">ip</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="nb">name</span> <span class="k">do</span> <span class="o">|</span><span class="n">node</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">      <span class="n">node</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="nb">name</span>
+</span></span><span class="line"><span class="cl">      <span class="n">node</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&#34;private_network&#34;</span><span class="p">,</span> <span class="ss">ip</span><span class="p">:</span> <span class="n">ip</span>
+</span></span><span class="line"><span class="cl">      <span class="n">node</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provider</span> <span class="s2">&#34;virtualbox&#34;</span> <span class="k">do</span> <span class="o">|</span><span class="n">vb</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vb</span><span class="o">.</span><span class="n">memory</span> <span class="o">=</span> <span class="s2">&#34;512&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vb</span><span class="o">.</span><span class="n">cpus</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">      <span class="k">end</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vagrant up
 </span></span></code></pre></div><p>Quando as VMs estiverem rodando, o Ansible assume o controle.</p>
 <hr>
 <h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
@@ -322,115 +322,115 @@ fetchInject(["/js/lazysizes.min.js"]);
         └── vars/main.yml
 </code></pre><h3 id="ansiblecfg">ansible.cfg</h3>
 <p>O arquivo de configuração do Ansible define o comportamento padrão da ferramenta: onde está o inventário, qual usuário usar para se conectar, se deve escalar privilégios automaticamente, entre outros. Isso evita ter que repetir essas opções em todo comando que você rodar.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[defaults]</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">inventory</span>         <span style="color:#f92672">=</span> <span style="color:#e6db74">inventory/hosts.ini</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">remote_user</span>       <span style="color:#f92672">=</span> <span style="color:#e6db74">vagrant</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">private_key_file</span>  <span style="color:#f92672">=</span> <span style="color:#e6db74">~/.vagrant.d/insecure_private_key</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">host_key_checking</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">False</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">forks</span>             <span style="color:#f92672">=</span> <span style="color:#e6db74">5</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">log_path</span>          <span style="color:#f92672">=</span> <span style="color:#e6db74">ansible.log</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[privilege_escalation]</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">become</span>            <span style="color:#f92672">=</span> <span style="color:#e6db74">True</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">become_method</span>     <span style="color:#f92672">=</span> <span style="color:#e6db74">sudo</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">become_user</span>       <span style="color:#f92672">=</span> <span style="color:#e6db74">root</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">become_ask_pass</span>   <span style="color:#f92672">=</span> <span style="color:#e6db74">False</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[defaults]</span>
+</span></span><span class="line"><span class="cl"><span class="na">inventory</span>         <span class="o">=</span> <span class="s">inventory/hosts.ini</span>
+</span></span><span class="line"><span class="cl"><span class="na">remote_user</span>       <span class="o">=</span> <span class="s">vagrant</span>
+</span></span><span class="line"><span class="cl"><span class="na">private_key_file</span>  <span class="o">=</span> <span class="s">~/.vagrant.d/insecure_private_key</span>
+</span></span><span class="line"><span class="cl"><span class="na">host_key_checking</span> <span class="o">=</span> <span class="s">False</span>
+</span></span><span class="line"><span class="cl"><span class="na">forks</span>             <span class="o">=</span> <span class="s">5</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_path</span>          <span class="o">=</span> <span class="s">ansible.log</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[privilege_escalation]</span>
+</span></span><span class="line"><span class="cl"><span class="na">become</span>            <span class="o">=</span> <span class="s">True</span>
+</span></span><span class="line"><span class="cl"><span class="na">become_method</span>     <span class="o">=</span> <span class="s">sudo</span>
+</span></span><span class="line"><span class="cl"><span class="na">become_user</span>       <span class="o">=</span> <span class="s">root</span>
+</span></span><span class="line"><span class="cl"><span class="na">become_ask_pass</span>   <span class="o">=</span> <span class="s">False</span>
 </span></span></code></pre></div><h3 id="inventoryhostsini">inventory/hosts.ini</h3>
 <p>O inventário é onde você diz ao Ansible quais servidores existem e como agrupá-los. Grupos permitem aplicar roles e variáveis diferentes para cada tipo de servidor — tudo o que estiver em <code>[webservers]</code> recebe as configurações de web server, tudo em <code>[database]</code> recebe as de banco de dados, e assim por diante.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[loadbalancer]</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">lb-01 ansible_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.56.10</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[webservers]</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">web-01 ansible_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.56.11</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">web-02 ansible_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.56.12</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[database]</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">db-01 ansible_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.56.13</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[all:vars]</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ansible_python_interpreter</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/bin/python3</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[webservers:vars]</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">db_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.56.13</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[loadbalancer:vars]</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">web_backends</span><span style="color:#f92672">=</span><span style="color:#e6db74">[&#34;192.168.56.11&#34;, &#34;192.168.56.12&#34;]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[loadbalancer]</span>
+</span></span><span class="line"><span class="cl"><span class="na">lb-01 ansible_host</span><span class="o">=</span><span class="s">192.168.56.10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[webservers]</span>
+</span></span><span class="line"><span class="cl"><span class="na">web-01 ansible_host</span><span class="o">=</span><span class="s">192.168.56.11</span>
+</span></span><span class="line"><span class="cl"><span class="na">web-02 ansible_host</span><span class="o">=</span><span class="s">192.168.56.12</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[database]</span>
+</span></span><span class="line"><span class="cl"><span class="na">db-01 ansible_host</span><span class="o">=</span><span class="s">192.168.56.13</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[all:vars]</span>
+</span></span><span class="line"><span class="cl"><span class="na">ansible_python_interpreter</span><span class="o">=</span><span class="s">/usr/bin/python3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[webservers:vars]</span>
+</span></span><span class="line"><span class="cl"><span class="na">db_host</span><span class="o">=</span><span class="s">192.168.56.13</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[loadbalancer:vars]</span>
+</span></span><span class="line"><span class="cl"><span class="na">web_backends</span><span class="o">=</span><span class="s">[&#34;192.168.56.11&#34;, &#34;192.168.56.12&#34;]</span>
 </span></span></code></pre></div><hr>
 <h2 id="as-roles">As Roles</h2>
 <h3 id="common">common</h3>
 <p>Responsável pelas configurações base que todo servidor precisa ter: pacotes essenciais e sincronização de hora via <code>chrony</code>. Simples, mas garante uma base consistente em todas as máquinas — sem isso, você pode ter servidores com versões diferentes de ferramentas ou relógios dessincronizados, o que causa problemas sutis difíceis de depurar.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># roles/common/tasks/main.yml</span>
-</span></span><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Atualizar cache do apt</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">apt</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">update_cache</span>: <span style="color:#66d9ef">yes</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cache_valid_time</span>: <span style="color:#ae81ff">3600</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Instalar pacotes base</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">apt</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">vim</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">curl</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">wget</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">htop</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">net-tools</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">chrony</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">present</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Garantir chrony rodando</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">service</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">chrony</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">started</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">yes</span>
-</span></span></code></pre></div><h3 id="hardening">hardening</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># roles/common/tasks/main.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Atualizar cache do apt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">apt</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">update_cache</span><span class="p">:</span><span class="w"> </span><span class="kc">yes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">cache_valid_time</span><span class="p">:</span><span class="w"> </span><span class="m">3600</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Instalar pacotes base</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">apt</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">vim</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">curl</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">wget</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">htop</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">net-tools</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">chrony</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">present</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Garantir chrony rodando</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">chrony</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">started</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">yes</span><span class="w">
+</span></span></span></code></pre></div><h3 id="hardening">hardening</h3>
 <p>Esta é a role mais importante do ponto de vista de segurança. Ela configura o firewall, restringe o acesso SSH e ativa o bloqueio automático de IPs suspeitos — aplicado em todos os servidores, sem exceção.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># roles/hardening/tasks/main.yml</span>
-</span></span><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Instalar ferramentas de segurança</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">apt</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">ufw</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">fail2ban</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">unattended-upgrades</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">present</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Configurar UFW - política padrão deny</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ufw</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">enabled</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">policy</span>: <span style="color:#ae81ff">deny</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">direction</span>: <span style="color:#ae81ff">incoming</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Permitir SSH</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ufw</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">rule</span>: <span style="color:#ae81ff">allow</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">port</span>: <span style="color:#e6db74">&#34;22&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proto</span>: <span style="color:#ae81ff">tcp</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Aplicar configurações de segurança no SSH</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">src</span>: <span style="color:#ae81ff">sshd_config.j2</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">dest</span>: <span style="color:#ae81ff">/etc/ssh/sshd_config</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">owner</span>: <span style="color:#ae81ff">root</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">group</span>: <span style="color:#ae81ff">root</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">mode</span>: <span style="color:#e6db74">&#34;0600&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">validate</span>: <span style="color:#ae81ff">/usr/sbin/sshd -t -f %s</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">notify</span>: <span style="color:#ae81ff">Reiniciar SSH</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Ativar fail2ban</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">service</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">fail2ban</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">started</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">yes</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Configurar atualizações automáticas de segurança</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">copy</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">dest</span>: <span style="color:#ae81ff">/etc/apt/apt.conf.d/50unattended-upgrades</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: |<span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Unattended-Upgrade::Allowed-Origins {
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;${distro_id}:${distro_codename}-security&#34;;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      };
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Unattended-Upgrade::Automatic-Reboot &#34;false&#34;;</span>
-</span></span></code></pre></div><p>O template do SSH — arquivos <code>.j2</code> são templates Jinja2, que permitem usar variáveis e lógica dentro de arquivos de configuração — desabilita login por senha e acesso direto como root, dois dos vetores de ataque mais comuns em servidores expostos na internet.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># roles/hardening/tasks/main.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Instalar ferramentas de segurança</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">apt</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ufw</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">fail2ban</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">unattended-upgrades</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">present</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Configurar UFW - política padrão deny</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ufw</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">enabled</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">policy</span><span class="p">:</span><span class="w"> </span><span class="l">deny</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l">incoming</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Permitir SSH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ufw</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="l">allow</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;22&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">proto</span><span class="p">:</span><span class="w"> </span><span class="l">tcp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Aplicar configurações de segurança no SSH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l">sshd_config.j2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/ssh/sshd_config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;0600&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">validate</span><span class="p">:</span><span class="w"> </span><span class="l">/usr/sbin/sshd -t -f %s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">notify</span><span class="p">:</span><span class="w"> </span><span class="l">Reiniciar SSH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Ativar fail2ban</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fail2ban</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">started</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">yes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Configurar atualizações automáticas de segurança</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">copy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/apt/apt.conf.d/50unattended-upgrades</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">      Unattended-Upgrade::Allowed-Origins {
+</span></span></span><span class="line"><span class="cl"><span class="sd">        &#34;${distro_id}:${distro_codename}-security&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="sd">      };
+</span></span></span><span class="line"><span class="cl"><span class="sd">      Unattended-Upgrade::Automatic-Reboot &#34;false&#34;;</span><span class="w">
+</span></span></span></code></pre></div><p>O template do SSH — arquivos <code>.j2</code> são templates Jinja2, que permitem usar variáveis e lógica dentro de arquivos de configuração — desabilita login por senha e acesso direto como root, dois dos vetores de ataque mais comuns em servidores expostos na internet.</p>
 <pre tabindex="0"><code class="language-jinja2" data-lang="jinja2">{# roles/hardening/templates/sshd_config.j2 #}
 Port 22
 Protocol 2
@@ -457,32 +457,32 @@ PrintLastLog yes
 </code></pre><p>Com <code>PasswordAuthentication no</code>, ataques de força bruta por senha simplesmente não funcionam — o servidor nem aceita esse tipo de autenticação. O <code>fail2ban</code> complementa banindo automaticamente IPs que insistem em tentar.</p>
 <h3 id="haproxy">haproxy</h3>
 <p>O load balancer distribui o tráfego entre os dois web servers em round-robin — cada requisição vai alternadamente para <code>web-01</code> e <code>web-02</code> — e verifica a saúde de cada servidor antes de repassar requisições. Se um web server cair, o HAProxy detecta pelo health check e para de mandar tráfego para ele até que volte.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># roles/haproxy/tasks/main.yml</span>
-</span></span><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Instalar HAProxy</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">apt</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">haproxy</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">present</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Permitir porta 80 no firewall</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ufw</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">rule</span>: <span style="color:#ae81ff">allow</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">port</span>: <span style="color:#e6db74">&#34;80&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proto</span>: <span style="color:#ae81ff">tcp</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Configurar HAProxy</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">src</span>: <span style="color:#ae81ff">haproxy.cfg.j2</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">dest</span>: <span style="color:#ae81ff">/etc/haproxy/haproxy.cfg</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">validate</span>: <span style="color:#ae81ff">haproxy -c -f %s</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">notify</span>: <span style="color:#ae81ff">Reiniciar HAProxy</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Garantir HAProxy rodando</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">service</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">haproxy</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">started</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">yes</span>
-</span></span></code></pre></div><p>Note o <code>validate</code> na task de configuração: o Ansible só aplica o arquivo se o HAProxy confirmar que a sintaxe está correta. Isso evita derrubar o serviço por conta de um erro de configuração.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># roles/haproxy/tasks/main.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Instalar HAProxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">apt</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">haproxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">present</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Permitir porta 80 no firewall</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ufw</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="l">allow</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;80&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">proto</span><span class="p">:</span><span class="w"> </span><span class="l">tcp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Configurar HAProxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l">haproxy.cfg.j2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/haproxy/haproxy.cfg</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">validate</span><span class="p">:</span><span class="w"> </span><span class="l">haproxy -c -f %s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">notify</span><span class="p">:</span><span class="w"> </span><span class="l">Reiniciar HAProxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Garantir HAProxy rodando</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">haproxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">started</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">yes</span><span class="w">
+</span></span></span></code></pre></div><p>Note o <code>validate</code> na task de configuração: o Ansible só aplica o arquivo se o HAProxy confirmar que a sintaxe está correta. Isso evita derrubar o serviço por conta de um erro de configuração.</p>
 <pre tabindex="0"><code class="language-jinja2" data-lang="jinja2">{# roles/haproxy/templates/haproxy.cfg.j2 #}
 global
     log /dev/log local0
@@ -512,126 +512,126 @@ backend web_backends
     {% endfor %}
 </code></pre><h3 id="nginx--php">nginx + php</h3>
 <p>Os web servers aceitam conexões apenas do load balancer — qualquer acesso direto pela porta 80 de outro IP é bloqueado pelo UFW. Isso garante que todo tráfego passe obrigatoriamente pelo HAProxy, sem atalhos.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># roles/nginx/tasks/main.yml</span>
-</span></span><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Instalar Nginx</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">apt</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">present</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Permitir porta 80 apenas do load balancer</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ufw</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">rule</span>: <span style="color:#ae81ff">allow</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">src</span>: <span style="color:#e6db74">&#34;192.168.56.10&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">port</span>: <span style="color:#e6db74">&#34;80&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proto</span>: <span style="color:#ae81ff">tcp</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Criar endpoint de health check</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">copy</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">dest</span>: <span style="color:#ae81ff">/var/www/html/health</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: <span style="color:#e6db74">&#34;OK&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">owner</span>: <span style="color:#ae81ff">www-data</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">group</span>: <span style="color:#ae81ff">www-data</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Criar página de identificação do servidor</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">copy</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">dest</span>: <span style="color:#ae81ff">/var/www/html/index.html</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: <span style="color:#e6db74">&#34;&lt;h1&gt;Servidor: {{ inventory_hostname }}&lt;/h1&gt;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">owner</span>: <span style="color:#ae81ff">www-data</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">group</span>: <span style="color:#ae81ff">www-data</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Garantir Nginx rodando</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">service</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">started</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">yes</span>
-</span></span></code></pre></div><h3 id="mysql">mysql</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># roles/nginx/tasks/main.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Instalar Nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">apt</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">present</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Permitir porta 80 apenas do load balancer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ufw</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="l">allow</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;192.168.56.10&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;80&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">proto</span><span class="p">:</span><span class="w"> </span><span class="l">tcp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Criar endpoint de health check</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">copy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l">/var/www/html/health</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;OK&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l">www-data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l">www-data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Criar página de identificação do servidor</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">copy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l">/var/www/html/index.html</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&lt;h1&gt;Servidor: {{ inventory_hostname }}&lt;/h1&gt;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l">www-data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l">www-data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Garantir Nginx rodando</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">started</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">yes</span><span class="w">
+</span></span></span></code></pre></div><h3 id="mysql">mysql</h3>
 <p>O MySQL é configurado para escutar apenas no IP interno e aceitar conexões somente da sub-rede <code>192.168.56.0/24</code>. Usuário de aplicação criado com privilégios mínimos — sem acesso root, sem acesso de fora da rede interna.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># roles/mysql/tasks/main.yml</span>
-</span></span><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Instalar MySQL e dependências Python</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">apt</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">mysql-server</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">python3-mysqldb</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">present</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Garantir MySQL rodando</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">service</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">started</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">yes</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Criar banco de dados da aplicação</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mysql_db</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;{{ db_name }}&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">present</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Criar usuário com acesso restrito por IP</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mysql_user</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;{{ db_user }}&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">password</span>: <span style="color:#e6db74">&#34;{{ db_password }}&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">priv</span>: <span style="color:#e6db74">&#34;{{ db_name }}.*:ALL&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">host</span>: <span style="color:#e6db74">&#34;192.168.56.%&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">state</span>: <span style="color:#ae81ff">present</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Restringir MySQL ao IP interno</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">lineinfile</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/etc/mysql/mysql.conf.d/mysqld.cnf</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">regexp</span>: <span style="color:#e6db74">&#34;^bind-address&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">line</span>: <span style="color:#e6db74">&#34;bind-address = 192.168.56.13&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">notify</span>: <span style="color:#ae81ff">Reiniciar MySQL</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Liberar acesso ao MySQL apenas da rede interna</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ufw</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">rule</span>: <span style="color:#ae81ff">allow</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">src</span>: <span style="color:#e6db74">&#34;192.168.56.0/24&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">port</span>: <span style="color:#e6db74">&#34;3306&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proto</span>: <span style="color:#ae81ff">tcp</span>
-</span></span></code></pre></div><p>A senha do banco nunca deve ir em texto plano no repositório. O <code>ansible-vault</code> criptografa valores sensíveis dentro dos arquivos YAML — você commita o arquivo normalmente, mas só quem tem a chave consegue descriptografar.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ansible-vault encrypt_string <span style="color:#e6db74">&#39;SuaSenha&#39;</span> --name <span style="color:#e6db74">&#39;vault_db_password&#39;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># roles/mysql/vars/main.yml</span>
-</span></span><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span><span style="color:#f92672">db_name</span>: <span style="color:#ae81ff">appdb</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">db_user</span>: <span style="color:#ae81ff">appuser</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">db_password</span>: <span style="color:#e6db74">&#34;{{ vault_db_password }}&#34;</span>
-</span></span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># roles/mysql/tasks/main.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Instalar MySQL e dependências Python</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">apt</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">mysql-server</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">python3-mysqldb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">present</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Garantir MySQL rodando</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mysql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">started</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">yes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Criar banco de dados da aplicação</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mysql_db</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ db_name }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">present</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Criar usuário com acesso restrito por IP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mysql_user</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ db_user }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ db_password }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">priv</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ db_name }}.*:ALL&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;192.168.56.%&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">present</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Restringir MySQL ao IP interno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">lineinfile</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/mysql/mysql.conf.d/mysqld.cnf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">regexp</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;^bind-address&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">line</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;bind-address = 192.168.56.13&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">notify</span><span class="p">:</span><span class="w"> </span><span class="l">Reiniciar MySQL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Liberar acesso ao MySQL apenas da rede interna</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ufw</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="l">allow</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;192.168.56.0/24&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;3306&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">proto</span><span class="p">:</span><span class="w"> </span><span class="l">tcp</span><span class="w">
+</span></span></span></code></pre></div><p>A senha do banco nunca deve ir em texto plano no repositório. O <code>ansible-vault</code> criptografa valores sensíveis dentro dos arquivos YAML — você commita o arquivo normalmente, mas só quem tem a chave consegue descriptografar.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ansible-vault encrypt_string <span class="s1">&#39;SuaSenha&#39;</span> --name <span class="s1">&#39;vault_db_password&#39;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># roles/mysql/vars/main.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">db_name</span><span class="p">:</span><span class="w"> </span><span class="l">appdb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">db_user</span><span class="p">:</span><span class="w"> </span><span class="l">appuser</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">db_password</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ vault_db_password }}&#34;</span><span class="w">
+</span></span></span></code></pre></div><hr>
 <h2 id="playbook-principal">Playbook Principal</h2>
 <p>O playbook é o arquivo que orquestra tudo — ele define qual conjunto de roles é aplicado em qual grupo de servidores, e em qual ordem. É o ponto de entrada da automação.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># playbook.yml</span>
-</span></span><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Provisionar Load Balancer</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">loadbalancer</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">roles</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">common</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">hardening</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">haproxy</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Provisionar Servidores Web</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">webservers</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">roles</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">common</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">hardening</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">nginx</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">php</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Provisionar Banco de Dados</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">database</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">roles</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">common</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">hardening</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">mysql</span>
-</span></span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># playbook.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Provisionar Load Balancer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">loadbalancer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">roles</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">common</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">hardening</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">haproxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Provisionar Servidores Web</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">webservers</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">roles</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">common</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">hardening</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">php</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Provisionar Banco de Dados</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">database</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">roles</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">common</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">hardening</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">mysql</span><span class="w">
+</span></span></span></code></pre></div><hr>
 <h2 id="executando">Executando</h2>
 <p>Antes de rodar de verdade, vale sempre fazer um dry-run com <code>--check --diff</code> para visualizar exatamente o que seria alterado em cada servidor, sem modificar nada:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Verificar conectividade com todos os nós</span>
-</span></span><span style="display:flex;"><span>ansible all -m ping
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dry run — simula a execução sem alterar nada</span>
-</span></span><span style="display:flex;"><span>ansible-playbook playbook.yml --check --diff
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Execução real</span>
-</span></span><span style="display:flex;"><span>ansible-playbook playbook.yml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Verificar conectividade com todos os nós</span>
+</span></span><span class="line"><span class="cl">ansible all -m ping
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Dry run — simula a execução sem alterar nada</span>
+</span></span><span class="line"><span class="cl">ansible-playbook playbook.yml --check --diff
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Execução real</span>
+</span></span><span class="line"><span class="cl">ansible-playbook playbook.yml
 </span></span></code></pre></div><p>Resultado esperado:</p>
 <pre tabindex="0"><code>PLAY RECAP
 lb-01  : ok=14  changed=12  unreachable=0  failed=0
@@ -640,49 +640,49 @@ web-02 : ok=17  changed=15  unreachable=0  failed=0
 db-01  : ok=16  changed=14  unreachable=0  failed=0
 </code></pre><hr>
 <h2 id="verificando-a-stack">Verificando a Stack</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># O load balancer deve alternar entre web-01 e web-02</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>1..6<span style="color:#f92672">}</span>; <span style="color:#66d9ef">do</span> curl -s http://192.168.56.10; echo; <span style="color:#66d9ef">done</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Servidor: web-01</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Servidor: web-02</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Servidor: web-01</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Servidor: web-02</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Health check do HAProxy</span>
-</span></span><span style="display:flex;"><span>curl http://192.168.56.10/health
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># OK</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Confirmar fail2ban ativo em todos os servidores</span>
-</span></span><span style="display:flex;"><span>ansible all -m shell -a <span style="color:#e6db74">&#34;fail2ban-client status&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Confirmar firewall ativo</span>
-</span></span><span style="display:flex;"><span>ansible all -m shell -a <span style="color:#e6db74">&#34;ufw status verbose&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># O load balancer deve alternar entre web-01 e web-02</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> i in <span class="o">{</span>1..6<span class="o">}</span><span class="p">;</span> <span class="k">do</span> curl -s http://192.168.56.10<span class="p">;</span> echo<span class="p">;</span> <span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Servidor: web-01</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Servidor: web-02</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Servidor: web-01</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Servidor: web-02</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Health check do HAProxy</span>
+</span></span><span class="line"><span class="cl">curl http://192.168.56.10/health
+</span></span><span class="line"><span class="cl"><span class="c1"># OK</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Confirmar fail2ban ativo em todos os servidores</span>
+</span></span><span class="line"><span class="cl">ansible all -m shell -a <span class="s2">&#34;fail2ban-client status&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Confirmar firewall ativo</span>
+</span></span><span class="line"><span class="cl">ansible all -m shell -a <span class="s2">&#34;ufw status verbose&#34;</span>
 </span></span></code></pre></div><hr>
 <h2 id="idempotência">Idempotência</h2>
 <p>Um conceito central no Ansible — e na automação de infraestrutura em geral — é a <strong>idempotência</strong>: a capacidade de executar a mesma operação várias vezes e sempre chegar ao mesmo resultado, sem efeitos colaterais.</p>
 <p>Rode o playbook novamente sem ter alterado nada:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ansible-playbook playbook.yml
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>PLAY RECAP
-</span></span><span style="display:flex;"><span>lb-01  : ok<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>  changed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>  unreachable<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>  failed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>web-01 : ok<span style="color:#f92672">=</span><span style="color:#ae81ff">17</span>  changed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>  unreachable<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>  failed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>web-02 : ok<span style="color:#f92672">=</span><span style="color:#ae81ff">17</span>  changed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>  unreachable<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>  failed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>db-01  : ok<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>  changed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>  unreachable<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>  failed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ansible-playbook playbook.yml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PLAY RECAP
+</span></span><span class="line"><span class="cl">lb-01  : <span class="nv">ok</span><span class="o">=</span><span class="m">14</span>  <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>  <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>  <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">web-01 : <span class="nv">ok</span><span class="o">=</span><span class="m">17</span>  <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>  <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>  <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">web-02 : <span class="nv">ok</span><span class="o">=</span><span class="m">17</span>  <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>  <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>  <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">db-01  : <span class="nv">ok</span><span class="o">=</span><span class="m">16</span>  <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>  <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>  <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>
 </span></span></code></pre></div><p><code>changed=0</code> em todos os servidores. Antes de executar qualquer task, o Ansible verifica se o recurso já está no estado desejado. Se o pacote já está instalado, não instala de novo. Se o arquivo de configuração já está correto, não sobrescreve. Isso significa que você pode rodar o mesmo playbook quantas vezes quiser — em manutenção, em auditoria, em CI/CD — sem risco de quebrar o ambiente.</p>
 <hr>
 <h2 id="comandos-ad-hoc-para-o-dia-a-dia">Comandos Ad-hoc para o Dia a Dia</h2>
 <p>Nem tudo precisa de um playbook. Para tarefas pontuais, o Ansible permite rodar comandos diretamente em um grupo de servidores sem precisar criar um arquivo YAML:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Ver uso de memória em todos os servidores</span>
-</span></span><span style="display:flex;"><span>ansible all -m shell -a <span style="color:#e6db74">&#34;free -h&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reiniciar nginx nos web servers</span>
-</span></span><span style="display:flex;"><span>ansible webservers -m service -a <span style="color:#e6db74">&#34;name=nginx state=restarted&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Coletar informações do sistema (distribuição, versão, etc.)</span>
-</span></span><span style="display:flex;"><span>ansible all -m setup -a <span style="color:#e6db74">&#34;filter=ansible_distribution*&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verificar quais portas estão abertas</span>
-</span></span><span style="display:flex;"><span>ansible all -m shell -a <span style="color:#e6db74">&#34;ss -tlnp&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Ver uso de memória em todos os servidores</span>
+</span></span><span class="line"><span class="cl">ansible all -m shell -a <span class="s2">&#34;free -h&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Reiniciar nginx nos web servers</span>
+</span></span><span class="line"><span class="cl">ansible webservers -m service -a <span class="s2">&#34;name=nginx state=restarted&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Coletar informações do sistema (distribuição, versão, etc.)</span>
+</span></span><span class="line"><span class="cl">ansible all -m setup -a <span class="s2">&#34;filter=ansible_distribution*&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Verificar quais portas estão abertas</span>
+</span></span><span class="line"><span class="cl">ansible all -m shell -a <span class="s2">&#34;ss -tlnp&#34;</span>
 </span></span></code></pre></div><hr>
 <h2 id="para-que-isso-serve-no-mercado">Para Que Isso Serve no Mercado</h2>
 <p>Este lab reproduz, em escala reduzida, um padrão que existe em praticamente qualquer empresa com infraestrutura web:</p>

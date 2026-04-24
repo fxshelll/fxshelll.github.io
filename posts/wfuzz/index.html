@@ -199,7 +199,7 @@ fetchInject(["/js/lazysizes.min.js"]);
     <h1>Wfuzz</h1>
   </header>
   <p>É uma ferramenta de fuzzing criada para facilitar a avaliação de aplicações web. Baseia-se num conceito simples: substitui qualquer referência à palavra-chave <code>FUZZ</code> pelo valor de um determinado payload. Um payload no Wfuzz é uma fonte de dados.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt --hc <span style="color:#ae81ff">404</span> http://10.15.0.1/FUZZ
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt --hc <span class="m">404</span> http://10.15.0.1/FUZZ
 </span></span></code></pre></div><p><code>-c</code> colorir saída</p>
 <p><code>-w</code> caminho da wordlist</p>
 <p><code>--hc</code> ignorar códigos de resposta (ex: 404)</p>

