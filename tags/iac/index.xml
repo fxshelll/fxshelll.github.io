@@ -7,7 +7,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Fri, 24 Apr 2026 16:35:58 UT</lastBuildDate>
+    <lastBuildDate>Fri, 24 Apr 2026 17:33:49 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/tags/iac/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Terraform AWS — Provisionando uma VPC Segura com ALB, EC2 e RDS</title>
