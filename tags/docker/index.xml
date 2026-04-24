@@ -4,10 +4,15 @@
     <title>Docker on FXShell - DevOps &amp; Sec</title>
     <link>https://fxshelll.github.io/tags/docker/</link>
     <description>Recent content in Docker on FXShell - DevOps &amp; Sec</description>
+    <image>
+      <title>Docker on FXShell - DevOps &amp; Sec</title>
+      <link>https://fxshelll.github.io/tags/docker/</link>
+      <url>fxshell.png</url>
+    </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Fri, 24 Apr 2026 18:53:12 UT</lastBuildDate>
+    <lastBuildDate>Fri, 24 Apr 2026 19:05:54 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker</title>
