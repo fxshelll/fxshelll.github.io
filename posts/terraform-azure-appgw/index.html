@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+      <meta charset="utf-8"><meta property="og:title" content="Application Gateway no Azure com Terraform — Lab de Backend API com Path Routing" />
+      <meta property="og:description" content="Lab completo com Terraform provisionando Azure Application Gateway com roteamento por URL path, health probes HTTP e backend API em Python — com comparativo detalhado entre App Gateway e Load Balancer." />
+      <meta property="og:image" content="https://fxshelll.github.io/og-terraform-azure-appgw.png" />
+      <meta property="og:url" content="https://fxshelll.github.io/posts/terraform-azure-appgw/" />
+      <meta property="og:type" content="article" />
+      <meta property="article:published_time" content="2026-04-25T00:00:00Z" />
+      <meta property="article:tag" content="terraform" />
+      <meta property="article:tag" content="azure" />
+      <meta property="article:tag" content="appgateway" />
+      <meta property="article:tag" content="devops" />
+      <meta property="article:tag" content="cloud" />
+      <meta property="article:tag" content="networking" />
+      <meta property="article:tag" content="iac" />
+      <meta property="article:tag" content="loadbalancer" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Application Gateway no Azure com Terraform — Lab de Backend API com Path Routing" />
+      <meta name="twitter:description" content="Lab completo com Terraform provisionando Azure Application Gateway com roteamento por URL path, health probes HTTP e backend API em Python — com comparativo detalhado entre App Gateway e Load Balancer." />
+      <meta name="twitter:image" content="https://fxshelll.github.io/og-terraform-azure-appgw.png" />
+    
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Gateway no Azure com Terraform — Lab de Backend API com Path Routing | FXShell - DevOps &amp; Sec</title>
+    <meta name="description" content="Lab completo com Terraform provisionando Azure Application Gateway com roteamento por URL path, health probes HTTP e backend API em Python — com comparativo detalhado entre App Gateway e Load Balancer.">
+    <meta name="keywords" content="terraform, azure, appgateway, devops, cloud, networking, iac, loadbalancer">
+    
+    
+    
+    
+    
+
+  <meta name="author" content="Felipe da Matta">
+
+
+    
+    
+
+    
+    
+  <meta name="referrer" content="same-origin">
+
+
+    
+
+    
+    
+    <link rel="canonical" href="https://fxshelll.github.io/posts/terraform-azure-appgw/">
+    
+    
+    
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+
+
+<link rel="manifest" href="/site.webmanifest">
+    
+
+  
+  
+  
+  
+  
+  
+  
+    
+      
+        <style>html{font-size:12px}*{box-sizing:border-box;text-rendering:geometricPrecision}body{font-size:1rem;line-height:1.5rem;margin:0;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;word-wrap:break-word}h1,h2,h3,h4,h5,h6{line-height:1.3em}fieldset{border:none;padding:0;margin:0}pre{padding:2rem;margin:1.75rem 0;background-color:#fff;border:1px solid #ccc;overflow:auto}code[class*=language-],pre[class*=language-],pre code{font-weight:100;text-shadow:none;margin:1.75rem 0}a{cursor:pointer;color:#ff2e88;text-decoration:none;border-bottom:1px solid #ff2e88}a:hover{background-color:#ff2e88;color:#fff}.grid{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.grid.\-top{-ms-flex-align:start;align-items:flex-start}.grid.\-middle{-ms-flex-align:center;align-items:center}.grid.\-bottom{-ms-flex-align:end;align-items:flex-end}.grid.\-stretch{-ms-flex-align:stretch;align-items:stretch}.grid.\-baseline{-ms-flex-align:baseline;align-items:baseline}.grid.\-left{-ms-flex-pack:start;justify-content:flex-start}.grid.\-center{-ms-flex-pack:center;justify-content:center}.grid.\-right{-ms-flex-pack:end;justify-content:flex-end}.grid.\-between{-ms-flex-pack:justify;justify-content:space-between}.grid.\-around{-ms-flex-pack:distribute;justify-content:space-around}.cell{-ms-flex:1;flex:1;box-sizing:border-box}@media screen and (min-width:768px){.cell.\-1of12{-ms-flex:0 0 8.33333%;flex:0 0 8.33333%}.cell.\-2of12{-ms-flex:0 0 16.66667%;flex:0 0 16.66667%}.cell.\-3of12{-ms-flex:0 0 25%;flex:0 0 25%}.cell.\-4of12{-ms-flex:0 0 33.33333%;flex:0 0 33.33333%}.cell.\-5of12{-ms-flex:0 0 41.66667%;flex:0 0 41.66667%}.cell.\-6of12{-ms-flex:0 0 50%;flex:0 0 50%}.cell.\-7of12{-ms-flex:0 0 58.33333%;flex:0 0 58.33333%}.cell.\-8of12{-ms-flex:0 0 66.66667%;flex:0 0 66.66667%}.cell.\-9of12{-ms-flex:0 0 75%;flex:0 0 75%}.cell.\-10of12{-ms-flex:0 0 83.33333%;flex:0 0 83.33333%}.cell.\-11of12{-ms-flex:0 0 91.66667%;flex:0 0 91.66667%}}@media screen and (max-width:768px){.grid{-ms-flex-direction:column;flex-direction:column}.cell{-ms-flex:0 0 auto;flex:0 0 auto}}.hack,.hack blockquote,.hack code,.hack em,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack strong{font-size:1rem;font-style:normal;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif}.hack blockquote,.hack code,.hack em,.hack strong{line-height:20px}.hack blockquote,.hack code,.hack footer,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack header,.hack li,.hack ol,.hack p,.hack section,.hack ul{float:none;margin:0;padding:0}.hack blockquote,.hack h1,.hack ol,.hack p,.hack ul{margin-top:20px;margin-bottom:20px}.hack h1{position:relative;display:inline-block;display:table-cell;padding:20px 0 30px;margin:0;overflow:hidden}.hack h1:after{content:"====================================================================================================";position:absolute;bottom:10px;left:0}.hack h1+*{margin-top:0}.hack h2,.hack h3,.hack h4,.hack h5,.hack h6{position:relative;margin-bottom:1.75rem}.hack h2:before,.hack h3:before,.hack h4:before,.hack h5:before,.hack h6:before{display:inline}.hack h2:before{content:"## "}.hack h3:before{content:"### "}.hack h4:before{content:"#### "}.hack h5:before{content:"##### "}.hack h6:before{content:"###### "}.hack li{position:relative;display:block;padding-left:20px}.hack li:after{position:absolute;top:0;left:0}.hack ul>li:after{content:"-"}.hack ol{counter-reset:a}.hack ol>li:after{content:counter(a) ".";counter-increment:a}.hack ol li:nth-child(n+10):after{left:-7px}.hack blockquote{position:relative;padding-left:17px;padding-left:2ch;overflow:hidden}.hack blockquote:after{content:">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>";white-space:pre;position:absolute;top:0;left:0;line-height:20px}.hack em:after,.hack em:before{content:"*";display:inline}.hack pre code:after,.hack pre code:before{content:""}.hack code{font-weight:700}.hack code:after,.hack code:before{content:"`";display:inline}.hack hr{position:relative;height:20px;overflow:hidden;border:0;margin:20px 0}.hack hr:after{content:"----------------------------------------------------------------------------------------------------";position:absolute;top:0;left:0;line-height:20px;width:100%;word-wrap:break-word}@-moz-document url-prefix(){.hack h1{display:block}}.hack-ones ol>li:after{content:"1."}p{margin:0 0 1.75rem}.container{max-width:70rem}.container,.container-fluid{margin:0 auto;padding:0 1rem}.inner{padding:1rem}.inner2x{padding:2rem}.pull-left{float:left}.pull-right{float:right}.progress-bar{height:8px;opacity:.8;background-color:#ccc;margin-top:12px}.progress-bar.progress-bar-show-percent{margin-top:38px}.progress-bar-filled{background-color:gray;height:100%;transition:width .3s ease;position:relative;width:0}.progress-bar-filled:before{content:"";border:6px solid transparent;border-top-color:gray;position:absolute;top:-12px;right:-6px}.progress-bar-filled:after{color:gray;content:attr(data-filled);display:block;font-size:12px;white-space:nowrap;position:absolute;border:6px solid transparent;top:-38px;right:0;-ms-transform:translateX(50%);transform:translateX(50%)}table{width:100%;border-collapse:collapse;margin:1.75rem 0;color:#778087}table td,table th{vertical-align:top;border:1px solid #ccc;line-height:15px;padding:10px}table thead th{font-size:10px}table tbody td:first-child{font-weight:700;color:#333}.form{width:30rem}.form-group{margin-bottom:1.75rem;overflow:auto}.form-group label{border-bottom:2px solid #ccc;color:#333;width:10rem;display:inline-block;height:38px;line-height:38px;padding:0;float:left;position:relative}.form-group.form-success label{color:#4caf50!important;border-color:#4caf50!important}.form-group.form-warning label{color:#ff9800!important;border-color:#ff9800!important}.form-group.form-error label{color:#f44336!important;border-color:#f44336!important}.form-control{outline:none;border:none;border-bottom:2px solid #ccc;padding:.5rem 0;width:20rem;height:38px;background-color:transparent}.form-control:focus{border-color:#555}.form-group.form-textarea label:after{position:absolute;content:"";width:2px;background-color:#fff;right:-2px;top:0;bottom:0}textarea.form-control{height:auto;resize:none;padding:1rem 0;border-bottom:2px solid #ccc;border-left:2px solid #ccc;padding:.5rem}select.form-control{border-radius:0;background-color:transparent;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}.help-block{color:#999;margin-top:.5rem}.form-actions{margin-bottom:1.75rem}.btn{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;outline:none;padding:.65rem 2rem;font-size:1rem;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:relative;z-index:1}.btn:active{box-shadow:inset 0 1px 3px rgba(0,0,0,.12)}.btn.btn-ghost{border-color:#757575;color:#757575;background-color:transparent}.btn.btn-ghost:focus,.btn.btn-ghost:hover{border-color:#424242;color:#424242;z-index:2}.btn.btn-ghost:hover{background-color:transparent}.btn-block{width:100%;display:-ms-flexbox;display:flex}.btn-default{color:#fff;background-color:#e0e0e0;border:1px solid #e0e0e0;color:#333}.btn-default:focus:not(.btn-ghost),.btn-default:hover{background-color:#dcdcdc;border-color:#dcdcdc}.btn-success{color:#fff;background-color:#4caf50;border:1px solid #4caf50}.btn-success:focus:not(.btn-ghost),.btn-success:hover{background-color:#43a047;border-color:#43a047}.btn-success.btn-ghost{border-color:#4caf50;color:#4caf50}.btn-success.btn-ghost:focus,.btn-success.btn-ghost:hover{border-color:#388e3c;color:#388e3c;z-index:2}.btn-error{color:#fff;background-color:#f44336;border:1px solid #f44336}.btn-error:focus:not(.btn-ghost),.btn-error:hover{background-color:#e53935;border-color:#e53935}.btn-error.btn-ghost{border-color:#f44336;color:#f44336}.btn-error.btn-ghost:focus,.btn-error.btn-ghost:hover{border-color:#d32f2f;color:#d32f2f;z-index:2}.btn-warning{color:#fff;background-color:#ff9800;border:1px solid #ff9800}.btn-warning:focus:not(.btn-ghost),.btn-warning:hover{background-color:#fb8c00;border-color:#fb8c00}.btn-warning.btn-ghost{border-color:#ff9800;color:#ff9800}.btn-warning.btn-ghost:focus,.btn-warning.btn-ghost:hover{border-color:#f57c00;color:#f57c00;z-index:2}.btn-info{color:#fff;background-color:#00bcd4;border:1px solid #00bcd4}.btn-info:focus:not(.btn-ghost),.btn-info:hover{background-color:#00acc1;border-color:#00acc1}.btn-info.btn-ghost{border-color:#00bcd4;color:#00bcd4}.btn-info.btn-ghost:focus,.btn-info.btn-ghost:hover{border-color:#0097a7;color:#0097a7;z-index:2}.btn-primary{color:#fff;background-color:#2196f3;border:1px solid #2196f3}.btn-primary:focus:not(.btn-ghost),.btn-primary:hover{background-color:#1e88e5;border-color:#1e88e5}.btn-primary.btn-ghost{border-color:#2196f3;color:#2196f3}.btn-primary.btn-ghost:focus,.btn-primary.btn-ghost:hover{border-color:#1976d2;color:#1976d2;z-index:2}.btn-group{overflow:auto}.btn-group .btn{float:left}.btn-group .btn-ghost:not(:first-child){margin-left:-1px}.card{border:1px solid #ccc}.card .card-header{color:#333;text-align:center;background-color:#ddd;padding:.5rem 0}.alert{color:#ccc;padding:1rem;border:1px solid #ccc;margin-bottom:1.75rem}.alert-success{color:#4caf50;border-color:#4caf50}.alert-error{color:#f44336;border-color:#f44336}.alert-info{color:#00bcd4;border-color:#00bcd4}.alert-warning{color:#ff9800;border-color:#ff9800}.media:not(:last-child){margin-bottom:1.25rem}.media-left{padding-right:1rem}.media-left,.media-right{display:table-cell;vertical-align:top}.media-right{padding-left:1rem}.media-body{display:table-cell;vertical-align:top}.media-heading{font-size:1.16667rem;font-weight:700}.media-content{margin-top:.3rem}.avatarholder,.placeholder{background-color:#f0f0f0;text-align:center;color:#b9b9b9;font-size:1rem;border:1px solid #f0f0f0}.avatarholder{width:48px;height:48px;line-height:46px;font-size:2rem;background-size:cover;background-position:50%;background-repeat:no-repeat}.avatarholder.rounded{border-radius:33px}.loading{display:inline-block;content:"&nbsp;";height:20px;width:20px;margin:0 .5rem;animation:a .6s infinite linear;border:2px solid #e91e63;border-right-color:transparent;border-radius:50%}.btn .loading{margin-bottom:0;width:14px;height:14px}.btn div.loading{float:left}.alert .loading{margin-bottom:-5px}@keyframes a{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}.menu{width:100%}.menu .menu-item{display:block;color:#616161;border-color:#616161}.menu .menu-item.active,.menu .menu-item:hover{color:#000;border-color:#000;background-color:transparent}@media screen and (max-width:768px){.form-group label{display:block;border-bottom:none;width:100%}.form-group.form-textarea label:after{display:none}.form-control{width:100%}textarea.form-control{border-left:none;padding:.5rem 0}pre::-webkit-scrollbar{height:3px}}@media screen and (max-width:480px){.form{width:100%}}.dark{color:#ccc}.dark,.dark pre{background-color:#000}.dark pre{padding:0;border:none}.dark pre code{color:#00bcd4}.dark h1 a,.dark h2 a,.dark h3 a,.dark h4 a,.dark h5 a{color:#ccc}.dark code,.dark strong{color:#fff}.dark code{font-weight:100}.dark table{color:#ccc}.dark table td,.dark table th{border-color:#444}.dark table tbody td:first-child{color:#fff}.dark .form-group label{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-group.form-textarea label:after{background-color:#000}.dark .form-control{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-control:focus{border-color:#ccc;color:#ccc}.dark textarea.form-control{color:#ccc}.dark .card{border-color:rgba(95,95,95,.78)}.dark .card .card-header{background-color:transparent;color:#ccc;border-bottom:1px solid rgba(95,95,95,.78)}.dark .btn.btn-ghost.btn-default{border-color:#ababab;color:#ababab}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#9c9c9c;color:#9c9c9c;z-index:1}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#e0e0e0;color:#e0e0e0}.dark .btn.btn-ghost.btn-primary:focus,.dark .btn.btn-ghost.btn-primary:hover{border-color:#64b5f6;color:#64b5f6}.dark .btn.btn-ghost.btn-success:focus,.dark .btn.btn-ghost.btn-success:hover{border-color:#81c784;color:#81c784}.dark .btn.btn-ghost.btn-info:focus,.dark .btn.btn-ghost.btn-info:hover{border-color:#4dd0e1;color:#4dd0e1}.dark .btn.btn-ghost.btn-error:focus,.dark .btn.btn-ghost.btn-error:hover{border-color:#e57373;color:#e57373}.dark .btn.btn-ghost.btn-warning:focus,.dark .btn.btn-ghost.btn-warning:hover{border-color:#ffb74d;color:#ffb74d}.dark .avatarholder,.dark .placeholder{background-color:transparent;border-color:#333}.dark .menu .menu-item{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .menu .menu-item.active,.dark .menu .menu-item:hover{color:#fff;border-color:#ccc}:root{--screen-size-small:30em}@keyframes intro{0%{opacity:0}; 100%{opacity:1}}.blur-up{-webkit-filter:blur(5px);filter:blur(5px);transition:filter 400ms,-webkit-filter 400ms}.blur-up.lazyloaded{-webkit-filter:blur(0);filter:blur(0)}.hack .readmore{margin-bottom:2.2em}.responsive-iframe{position:relative;padding-bottom:56.25%;padding-top:25px;height:0}.responsive-iframe iframe{position:absolute;top:0;left:0;width:100%;height:100%}iframe{border:0}main,footer{animation:intro .3s both;animation-delay:.15s}footer time[datetime$=M]:before{content:"\2013\0020"}@media only screen and (max-width:30em){footer time[datetime$=M]{display:none}}blockquote cite{display:block}blockquote cite::before{content:"\2014"}:target{color:#fff}.hack li ul{margin:0}.main{padding:20px 10px}input.form-control{border-radius:0;background-color:initial;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}input.form-control,textarea.form-control{font-size:initial}.hack .help-block{font-size:1rem}html{font-size:13px}.hack pre{font-size:17px}.hack .form input,.hack .form textarea,.hack .form button,.hack .form label{font-size:1rem}article [itemprop=description]{margin-bottom:20px;margin-top:20px}article header img{width:100%;border-radius:3px}table td,table th{line-height:inherit}img{max-width:100%}@media screen and (min-width:768px){html{font-size:1em}.container{max-width:50rem}}[v-cloak]{display:none}a[rel*="external"]::after {
+  content: " " url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20class='i-external'%20viewBox='0%200%2032%2032'%20width='14'%20height='14'%20fill='none'%20stroke='%23ff9800'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='9.38%'%3E%3Cpath%20d='M14%209%20L3%209%203%2029%2023%2029%2023%2018%20M18%204%20L28%204%2028%2014%20M28%204%20L14%2018'/%3E%3C/svg%3E");
+}
+nav a.active {
+  background-color: #ff2e88;
+  color: #fff;
+}
+a[itemprop="url"] {
+  color: #ff9800;
+}
+a[itemprop="url"]:hover {
+  color: #fff;
+}
+.muted, .help-block {
+  opacity: 0.70;
+}
+.hack .muted,
+.hack .help-block {
+  color: #e0e0e0;
+}
+</style>
+        
+
+
+  
+    <meta name="theme-color" content=#000>
+  
+
+
+      
+    
+  
+
+
+    <script>
+ 
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.fetchInject=t()}(this,function(){"use strict";const e=function(e,t,n,r,o,c,i){c=t.createElement(n),i=t.getElementsByTagName(n)[0],c.appendChild(t.createTextNode(r.text)),c.onload=o(r),i?i.parentNode.insertBefore(c,i):t.head.appendChild(c)};return function(t,n){if(!arguments.length)return Promise.reject(new ReferenceError("Failed to execute 'fetchInject': 1 argument required but only 0 present."));if(arguments[0]&&arguments[0].constructor!==Array)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 1 must be of type 'Array'."));if(arguments[1]&&arguments[1].constructor!==Promise)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 2 must be of type 'Promise'."));const r=[],o=n?[].concat(n):[],c=[];return t.forEach(e=>o.push(window.fetch(e).then(e=>[e.clone().text(),e.blob()]).then(e=>Promise.all(e).then(e=>{r.push({text:e[0],blob:e[1]})})))),Promise.all(o).then(()=>(r.forEach(t=>{c.push({then:n=>{t.blob.type.includes("text/css")?e(window,document,"style",t,n):e(window,document,"script",t,n)}})}),Promise.all(c)))}});
+fetchInject(["/js/lazysizes.min.js"]);
+</script>
+
+    <style>
+  img {
+    max-width: 100%;
+  }
+</style>
+
+    
+    
+      <script>fetchInject(["/css/syntax.css"])</script>
+
+      
+      <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+        });
+        MathJax.Hub.Queue(function() {
+          
+          
+          
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i = 0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+        });
+
+        MathJax.Hub.Config({
+        
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+      <noscript>
+        <link href=/css/syntax.css rel="stylesheet">
+      </noscript>
+    
+  </head>
+  
+  
+  
+  <body class="hack dark main container">
+<header>
+  
+  <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
+    
+    
+      
+        <a itemprop="url" class="" href="/"><span itemprop="name">home</span></a>
+      
+    
+      
+        <a itemprop="url" class="" href="/posts/"><span itemprop="name">anotações</span></a>
+      
+    
+      
+        <a itemprop="url" class="" href="/sobre/"><span itemprop="name">sobre</span></a>
+      
+    
+      
+        <a itemprop="url" class="" href="/busca/" title="Buscar" style="color:#ff9800; vertical-align:middle;">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-bottom:2px;"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        </a>
+      
+    
+  </nav>
+
+
+</header>
+    <main>
+  <header>
+    <h1>Application Gateway no Azure com Terraform — Lab de Backend API com Path Routing</h1>
+  </header>
+  <p>Se a sua aplicação expõe múltiplas APIs numa mesma infraestrutura e você precisa rotear o tráfego por URL — <code>/api/orders</code> para um pool, <code>/api/inventory</code> para outro — um Load Balancer tradicional não resolve. Ele opera na camada 4 (TCP/UDP), enxerga apenas IP e porta, e distribui conexões sem entender o conteúdo HTTP. O Azure Application Gateway opera na camada 7 e faz exatamente esse roteamento baseado em path, header e host — além de oferecer SSL termination, health probes HTTP e integração com WAF.</p>
+<p>Este lab provisiona com Terraform um cenário completo: uma API backend em Python rodando em 3 VMs, um Application Gateway com URL path map, health probes customizados e backend pools separados por rota.</p>
+<h2 id="application-gateway-vs-load-balancer--o-que-muda">Application Gateway vs Load Balancer — O Que Muda</h2>
+<p>Antes de entrar no lab, vale entender <strong>por que</strong> escolher um em vez do outro. A diferença fundamental é a camada OSI em que cada um opera:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Característica</th>
+          <th>Azure Load Balancer (L4)</th>
+          <th>Azure Application Gateway (L7)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Camada OSI</strong></td>
+          <td>4 — TCP/UDP</td>
+          <td>7 — HTTP/HTTPS</td>
+      </tr>
+      <tr>
+          <td><strong>O que enxerga</strong></td>
+          <td>IP de origem/destino, porta</td>
+          <td>URL, headers, cookies, hostname</td>
+      </tr>
+      <tr>
+          <td><strong>Roteamento</strong></td>
+          <td>Por IP + porta (regras de NAT)</td>
+          <td>Por URL path, header, hostname</td>
+      </tr>
+      <tr>
+          <td><strong>Health probe</strong></td>
+          <td>TCP ou HTTP (código de status)</td>
+          <td>HTTP com path, hostname e match de body</td>
+      </tr>
+      <tr>
+          <td><strong>SSL/TLS</strong></td>
+          <td>Pass-through (não termina)</td>
+          <td>SSL termination e re-encryption</td>
+      </tr>
+      <tr>
+          <td><strong>WAF</strong></td>
+          <td>Não</td>
+          <td>Sim (WAF v2 integrado ou add-on)</td>
+      </tr>
+      <tr>
+          <td><strong>Session affinity</strong></td>
+          <td>Por IP de origem (hash)</td>
+          <td>Cookie-based affinity nativo</td>
+      </tr>
+      <tr>
+          <td><strong>Rewrite</strong></td>
+          <td>Não</td>
+          <td>Headers, URL path e query string</td>
+      </tr>
+      <tr>
+          <td><strong>Autoscale</strong></td>
+          <td>Sim</td>
+          <td>Sim (Standard_v2)</td>
+      </tr>
+      <tr>
+          <td><strong>Custo</strong></td>
+          <td>Mais barato</td>
+          <td>Mais caro (paga por capacity units)</td>
+      </tr>
+      <tr>
+          <td><strong>Caso de uso</strong></td>
+          <td>Tráfego não-HTTP (DB, DNS, gaming)</td>
+          <td>APIs, microsserviços, apps web</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="quando-usar-load-balancer">Quando usar Load Balancer</h3>
+<ul>
+<li>Tráfego TCP/UDP puro — bancos de dados, servidores DNS, jogos multiplayer</li>
+<li>Cenários onde você só precisa distribuir conexões por IP e porta</li>
+<li>Custo é prioridade e você não precisa de nenhum recurso HTTP</li>
+<li>Balanceamento interno entre VMs na mesma VNet sem exposição pública</li>
+</ul>
+<h3 id="quando-usar-application-gateway">Quando usar Application Gateway</h3>
+<ul>
+<li>APIs HTTP/HTTPS que precisam de roteamento por URL path (microsserviços)</li>
+<li>Aplicações que exigem SSL termination centralizado</li>
+<li>Cenários que precisam de WAF para proteção contra OWASP Top 10</li>
+<li>Session affinity por cookie (aplicações stateful)</li>
+<li>Redirect HTTP → HTTPS, rewrite de headers e URL</li>
+</ul>
+<h3 id="vantagens-do-application-gateway-em-detalhes">Vantagens do Application Gateway em detalhes</h3>
+<p><strong>Roteamento por URL path</strong> — O recurso central. Com <code>url_path_map</code>, o gateway inspeciona o path da requisição HTTP e direciona para backend pools diferentes. <code>/api/orders</code> pode ir para um conjunto de servidores otimizado para consultas de pedidos, enquanto <code>/api/inventory</code> vai para outro pool com mais memória. Com Load Balancer, todo tráfego na porta 80/443 vai para o mesmo backend — não há como diferenciar por rota.</p>
+<p><strong>Health probes HTTP inteligentes</strong> — O Load Balancer verifica se a porta TCP está respondendo. O Application Gateway faz um <code>GET /health</code> (ou qualquer path configurado), valida o status code HTTP e pode até verificar o conteúdo do body. Se o backend retorna 200 mas com <code>{&quot;status&quot;:&quot;degraded&quot;}</code>, o probe pode detectar isso. Isso reduz drasticamente falsos positivos de &ldquo;healthy&rdquo; em backends que aceitam conexão TCP mas não estão funcionando corretamente.</p>
+<p><strong>SSL termination (offload)</strong> — O TLS é terminado no gateway, que faz a descriptografia e encaminha tráfego HTTP puro para os backends. Isso elimina o custo de CPU de TLS em cada VM backend e centraliza a gestão de certificados em um único ponto. Opcionalmente, o gateway pode re-encriptar o tráfego para o backend (end-to-end TLS), mas o certificado pode ser diferente — self-signed, por exemplo.</p>
+<p><strong>WAF integrado</strong> — O Application Gateway com SKU <code>WAF_v2</code> inclui proteção contra ataques OWASP Top 10 (SQL injection, XSS, CSRF) sem precisar de um appliance separado. As regras são gerenciadas centralmente e atualizadas pela Microsoft. Com Load Balancer, proteção WAF exige uma solução externa.</p>
+<p><strong>Autoscale zone-redundant (v2)</strong> — O SKU <code>Standard_v2</code> escala automaticamente as instâncias do gateway baseado no tráfego e pode ser distribuído entre Availability Zones, eliminando o gateway como ponto único de falha.</p>
+<h2 id="objetivo-do-lab">Objetivo do Lab</h2>
+<p>Provisionar com Terraform um Application Gateway que recebe requisições HTTP, roteia por URL path para backend pools distintos e monitora a saúde dos backends com health probes HTTP customizados. A aplicação backend é uma API Python minimalista que serve <code>/api/orders</code>, <code>/api/inventory</code> e <code>/health</code>.</p>
+<h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
+<p><strong>Terraform</strong> é a ferramenta de Infrastructure as Code que provisiona todos os recursos no Azure de forma declarativa e versionável.</p>
+<p><strong>Azure Application Gateway</strong> é o balanceador de carga de camada 7 da Microsoft que inspeciona o conteúdo HTTP das requisições e roteia para diferentes backend pools baseado em regras de URL path, headers e hostnames.</p>
+<p><strong>Azure Virtual Network</strong> isola a infraestrutura com subnets dedicadas — uma para o Application Gateway (requisito obrigatório) e outra para os backends.</p>
+<p><strong>Cloud-init</strong> configura as VMs no primeiro boot, instalando Python e iniciando a API backend como um serviço systemd, sem necessidade de acesso SSH manual.</p>
+<h2 id="arquitetura">Arquitetura</h2>
+<pre tabindex="0"><code>┌──────────────────────────────────────────────────────────────────────┐
+│                    REQUEST FLOW                                       │
+│                                                                       │
+│  ┌───────────┐  HTTPS    ┌────────────────────────────┐              │
+│  │  Usuario   │ ────────► │   Application Gateway      │              │
+│  │ (Internet) │           │   Standard_v2               │              │
+│  └───────────┘           │                              │              │
+│                           │  Listener :80                │              │
+│                           │  URL Path Map:               │              │
+│                           │    /api/orders → pool-orders │              │
+│                           │    /api/inventory → pool-inv │              │
+│                           │  Health Probe: GET /health   │              │
+│                           └──────────┬───────────────────┘              │
+│                                      │  :8080                          │
+│                           ┌──────────┼──────────┐                      │
+│                           ▼          ▼          ▼                      │
+│                     ┌──────────┐ ┌──────────┐ ┌──────────┐            │
+│                     │backend-1 │ │backend-2 │ │backend-3 │            │
+│                     │10.10.2.4 │ │10.10.2.5 │ │10.10.2.6 │            │
+│                     │ Python   │ │ Python   │ │ Python   │            │
+│                     │ API:8080 │ │ API:8080 │ │ API:8080 │            │
+│                     └──────────┘ └──────────┘ └──────────┘            │
+└──────────────────────────────────────────────────────────────────────┘
+</code></pre><table>
+  <thead>
+      <tr>
+          <th>Componente</th>
+          <th>Função</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>Application Gateway</code></td>
+          <td>Recebe tráfego HTTP, roteia por URL path, monitora health dos backends</td>
+      </tr>
+      <tr>
+          <td><code>Listener</code></td>
+          <td>Escuta na porta 80 com o IP público do gateway</td>
+      </tr>
+      <tr>
+          <td><code>URL Path Map</code></td>
+          <td>Mapeia <code>/api/orders</code> e <code>/api/inventory</code> para backend pools diferentes</td>
+      </tr>
+      <tr>
+          <td><code>Health Probe</code></td>
+          <td>Verifica <code>/health</code> a cada 15s — remove backend do pool após 3 falhas</td>
+      </tr>
+      <tr>
+          <td><code>Backend Pool</code></td>
+          <td>Grupo de VMs que recebe o tráfego roteado pelo gateway</td>
+      </tr>
+      <tr>
+          <td><code>vm-backend-1..3</code></td>
+          <td>VMs Ubuntu com API Python servindo na porta 8080</td>
+      </tr>
+  </tbody>
+</table>
+<p><img src="/terraform-azure-appgw.gif" alt="Diagrama animado — Azure Application Gateway"></p>
+<h2 id="como-funciona-o-path-based-routing">Como Funciona o Path-Based Routing</h2>
+<p>Quando uma requisição chega ao Application Gateway, o processamento segue esta sequência:</p>
+<ol>
+<li>O <strong>Listener</strong> aceita a conexão HTTP na porta 80 (ou 443 com TLS)</li>
+<li>A <strong>Request Routing Rule</strong> associa o listener ao <strong>URL Path Map</strong></li>
+<li>O <strong>URL Path Map</strong> inspeciona o path da URL e encontra a <code>path_rule</code> correspondente</li>
+<li>A requisição é encaminhada para o <strong>Backend Pool</strong> definido na regra, usando as configurações do <strong>Backend HTTP Settings</strong> (porta 8080, timeout, affinity)</li>
+<li>O gateway mantém um <strong>Health Probe</strong> periódico que faz <code>GET /health</code> em cada backend — backends que falham são removidos do pool automaticamente</li>
+</ol>
+<p>Se nenhuma <code>path_rule</code> corresponde ao path da requisição, o gateway usa o <code>default_backend_address_pool</code> definido no path map.</p>
+<blockquote>
+<p><strong>Subnet dedicada:</strong> O Application Gateway v2 exige uma subnet dedicada (sem outras VMs ou serviços). O Terraform cria <code>snet-appgw</code> exclusivamente para o gateway e <code>snet-backend</code> para as VMs — não tente colocar ambos na mesma subnet.</p>
+</blockquote>
+<h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
+<pre tabindex="0"><code>terraform-azure-appgw/
+├── main.tf                       # Provider, backend, módulos
+├── variables.tf                  # Variáveis de entrada
+├── outputs.tf                    # Outputs (IP público, FQDN)
+├── modules/
+│   ├── networking/
+│   │   ├── main.tf               # VNet, subnets, NSGs
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── backend_app/
+│   │   ├── main.tf               # VMs + cloud-init (API Python)
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── app_gateway/
+│       ├── main.tf               # AppGW, listeners, path map, probes
+│       ├── variables.tf
+│       └── outputs.tf
+└── diagrama/
+    ├── terraform-azure-appgw.html
+    ├── terraform-azure-appgw.gif
+    └── gerar_gif.py
+</code></pre><h2 id="networking--vnet-e-subnets">Networking — VNet e Subnets</h2>
+<p>A VNet usa o CIDR <code>10.10.0.0/16</code> com duas subnets isoladas:</p>
+<pre tabindex="0"><code>10.10.0.0/16  (vnet-appgw-lab)
+├── 10.10.1.0/24  snet-appgw     ← Application Gateway (dedicada)
+└── 10.10.2.0/24  snet-backend   ← VMs backend
+</code></pre><p>O NSG da subnet do gateway permite HTTP (80), HTTPS (443) e o range de portas de gerenciamento <code>65200-65535</code> (obrigatório para o Application Gateway v2 funcionar — sem essa regra, o health do gateway fica degraded).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-hcl" data-lang="hcl"><span class="line"><span class="cl"><span class="k">security_rule</span> {
+</span></span><span class="line"><span class="cl"><span class="n">  name</span>                       <span class="o">=</span> <span class="s2">&#34;AllowGatewayManager&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  priority</span>                   <span class="o">=</span> <span class="m">120</span>
+</span></span><span class="line"><span class="cl"><span class="n">  direction</span>                  <span class="o">=</span> <span class="s2">&#34;Inbound&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  access</span>                     <span class="o">=</span> <span class="s2">&#34;Allow&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  protocol</span>                   <span class="o">=</span> <span class="s2">&#34;Tcp&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  source_port_range</span>          <span class="o">=</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  destination_port_range</span>     <span class="o">=</span> <span class="s2">&#34;65200-65535&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  source_address_prefix</span>      <span class="o">=</span> <span class="s2">&#34;GatewayManager&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  destination_address_prefix</span> <span class="o">=</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><p>O NSG da subnet de backend permite tráfego apenas da subnet do gateway na porta 8080 — nenhum acesso direto da internet aos backends:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-hcl" data-lang="hcl"><span class="line"><span class="cl"><span class="k">security_rule</span> {
+</span></span><span class="line"><span class="cl"><span class="n">  name</span>                       <span class="o">=</span> <span class="s2">&#34;AllowAppGwToBackend&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  priority</span>                   <span class="o">=</span> <span class="m">100</span>
+</span></span><span class="line"><span class="cl"><span class="n">  direction</span>                  <span class="o">=</span> <span class="s2">&#34;Inbound&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  access</span>                     <span class="o">=</span> <span class="s2">&#34;Allow&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  protocol</span>                   <span class="o">=</span> <span class="s2">&#34;Tcp&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  source_port_range</span>          <span class="o">=</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  destination_port_range</span>     <span class="o">=</span> <span class="s2">&#34;8080&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  source_address_prefix</span>      <span class="o">=</span> <span class="s2">&#34;10.10.1.0/24&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  destination_address_prefix</span> <span class="o">=</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><h2 id="backend-api--python-com-cloud-init">Backend API — Python com cloud-init</h2>
+<p>Cada VM backend roda uma API HTTP em Python puro (sem framework) na porta 8080, provisionada automaticamente via cloud-init no primeiro boot. A API serve três endpoints:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Endpoint</th>
+          <th>Retorno</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>GET /health</code></td>
+          <td><code>{&quot;status&quot;: &quot;healthy&quot;}</code> — usado pelo health probe</td>
+      </tr>
+      <tr>
+          <td><code>GET /api/orders</code></td>
+          <td>Lista de pedidos fictícios + hostname do servidor</td>
+      </tr>
+      <tr>
+          <td><code>GET /api/inventory</code></td>
+          <td>Lista de estoque fictício + hostname do servidor</td>
+      </tr>
+  </tbody>
+</table>
+<p>O hostname no response permite verificar qual backend respondeu — útil para confirmar que o round-robin está funcionando.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Handler</span><span class="p">(</span><span class="n">BaseHTTPRequestHandler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">==</span> <span class="s2">&#34;/health&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">send_response</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">send_header</span><span class="p">(</span><span class="s2">&#34;Content-Type&#34;</span><span class="p">,</span> <span class="s2">&#34;application/json&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">end_headers</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;healthy&#34;</span><span class="p">})</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">==</span> <span class="s2">&#34;/api/orders&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;server&#34;</span><span class="p">:</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;orders&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;product&#34;</span><span class="p">:</span> <span class="s2">&#34;Widget A&#34;</span><span class="p">,</span> <span class="s2">&#34;qty&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;product&#34;</span><span class="p">:</span> <span class="s2">&#34;Widget B&#34;</span><span class="p">,</span> <span class="s2">&#34;qty&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># ...</span>
+</span></span></code></pre></div><p>A API roda como serviço systemd (<code>api-backend.service</code>) com <code>Restart=always</code>, garantindo que ela reinicie automaticamente em caso de crash.</p>
+<h2 id="application-gateway--path-map-e-health-probes">Application Gateway — Path Map e Health Probes</h2>
+<p>O gateway é o componente central. O Terraform configura:</p>
+<h3 id="url-path-map">URL Path Map</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-hcl" data-lang="hcl"><span class="line"><span class="cl"><span class="k">url_path_map</span> {
+</span></span><span class="line"><span class="cl"><span class="n">  name</span>                               <span class="o">=</span> <span class="s2">&#34;url-path-map&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  default_backend_address_pool_name</span>  <span class="o">=</span> <span class="s2">&#34;pool-orders&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  default_backend_http_settings_name</span> <span class="o">=</span> <span class="s2">&#34;http-settings-default&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">path_rule</span> {
+</span></span><span class="line"><span class="cl"><span class="n">    name</span>                       <span class="o">=</span> <span class="s2">&#34;rule-orders&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">    paths</span>                      <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;/api/orders&#34;, &#34;/api/orders/*&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">    backend_address_pool_name</span>  <span class="o">=</span> <span class="s2">&#34;pool-orders&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">    backend_http_settings_name</span> <span class="o">=</span> <span class="s2">&#34;http-settings-default&#34;</span>
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">path_rule</span> {
+</span></span><span class="line"><span class="cl"><span class="n">    name</span>                       <span class="o">=</span> <span class="s2">&#34;rule-inventory&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">    paths</span>                      <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;/api/inventory&#34;, &#34;/api/inventory/*&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">    backend_address_pool_name</span>  <span class="o">=</span> <span class="s2">&#34;pool-inventory&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">    backend_http_settings_name</span> <span class="o">=</span> <span class="s2">&#34;http-settings-default&#34;</span>
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><p>O <code>default_backend_address_pool</code> captura qualquer path que não tenha regra explícita — sem ele, o gateway retorna 502.</p>
+<h3 id="health-probe">Health Probe</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-hcl" data-lang="hcl"><span class="line"><span class="cl"><span class="k">probe</span> {
+</span></span><span class="line"><span class="cl"><span class="n">  name</span>                <span class="o">=</span> <span class="s2">&#34;probe-health&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  host</span>                <span class="o">=</span> <span class="s2">&#34;127.0.0.1&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  path</span>                <span class="o">=</span> <span class="s2">&#34;/health&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  protocol</span>            <span class="o">=</span> <span class="s2">&#34;Http&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  interval</span>            <span class="o">=</span> <span class="m">15</span>
+</span></span><span class="line"><span class="cl"><span class="n">  timeout</span>             <span class="o">=</span> <span class="m">10</span>
+</span></span><span class="line"><span class="cl"><span class="n">  unhealthy_threshold</span> <span class="o">=</span> <span class="m">3</span>
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><p>O probe faz <code>GET /health</code> a cada 15 segundos. Se um backend não responder 200 em 3 tentativas consecutivas (45 segundos), ele é removido do pool. Quando volta a responder, é readicionado automaticamente.</p>
+<h3 id="backend-http-settings">Backend HTTP Settings</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-hcl" data-lang="hcl"><span class="line"><span class="cl"><span class="k">backend_http_settings</span> {
+</span></span><span class="line"><span class="cl"><span class="n">  name</span>                  <span class="o">=</span> <span class="s2">&#34;http-settings-default&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  cookie_based_affinity</span> <span class="o">=</span> <span class="s2">&#34;Disabled&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  port</span>                  <span class="o">=</span> <span class="m">8080</span>
+</span></span><span class="line"><span class="cl"><span class="n">  protocol</span>              <span class="o">=</span> <span class="s2">&#34;Http&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">  request_timeout</span>       <span class="o">=</span> <span class="m">30</span>
+</span></span><span class="line"><span class="cl"><span class="n">  probe_name</span>            <span class="o">=</span> <span class="s2">&#34;probe-health&#34;</span>
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><p>O <code>cookie_based_affinity</code> está desabilitado porque a API é stateless — cada requisição pode ir para qualquer backend. Em aplicações stateful (sessões), habilitar isso faz o gateway inserir um cookie <code>ApplicationGatewayAffinity</code> que fixa o usuário no mesmo backend.</p>
+<h2 id="executando">Executando</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Inicializar</span>
+</span></span><span class="line"><span class="cl">terraform init
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Revisar o plano</span>
+</span></span><span class="line"><span class="cl">terraform plan -var<span class="o">=</span><span class="s2">&#34;admin_password=SenhaSegura123!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Aplicar</span>
+</span></span><span class="line"><span class="cl">terraform apply -var<span class="o">=</span><span class="s2">&#34;admin_password=SenhaSegura123!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Testar os endpoints (após ~5 min para provisionamento + cloud-init)</span>
+</span></span><span class="line"><span class="cl">curl http://<span class="k">$(</span>terraform output -raw appgw_public_ip<span class="k">)</span>/api/orders
+</span></span><span class="line"><span class="cl">curl http://<span class="k">$(</span>terraform output -raw appgw_public_ip<span class="k">)</span>/api/inventory
+</span></span><span class="line"><span class="cl">curl http://<span class="k">$(</span>terraform output -raw appgw_public_ip<span class="k">)</span>/health
+</span></span></code></pre></div><p>Executando múltiplas requisições, o campo <code>server</code> no JSON alterna entre <code>vm-backend-1</code>, <code>vm-backend-2</code> e <code>vm-backend-3</code> — confirmando que o round-robin distribui o tráfego entre os backends.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Verificar distribuição round-robin</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> i in <span class="k">$(</span>seq <span class="m">1</span> 10<span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  curl -s http://<span class="k">$(</span>terraform output -raw appgw_public_ip<span class="k">)</span>/api/orders <span class="p">|</span> jq .server
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></div><h2 id="monitoramento-e-troubleshooting">Monitoramento e Troubleshooting</h2>
+<h3 id="verificar-health-dos-backends">Verificar health dos backends</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Via Azure CLI — mostra o estado de cada backend no pool</span>
+</span></span><span class="line"><span class="cl">az network application-gateway show-backend-health <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --resource-group rg-appgw-lab <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --name appgw-lab <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --query <span class="s1">&#39;backendAddressPools[].backendHttpSettingsCollection[].servers[]&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --output table
+</span></span></code></pre></div><h3 id="logs-de-diagnóstico">Logs de diagnóstico</h3>
+<p>O Application Gateway gera logs de acesso e performance que podem ser enviados para um Log Analytics Workspace:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Habilitar diagnostic settings</span>
+</span></span><span class="line"><span class="cl">az monitor diagnostic-settings create <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --name appgw-diagnostics <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --resource <span class="k">$(</span>az network application-gateway show -g rg-appgw-lab -n appgw-lab --query id -o tsv<span class="k">)</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --workspace <span class="k">$(</span>az monitor log-analytics workspace show -g rg-appgw-lab -n law-appgw-lab --query id -o tsv<span class="k">)</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --logs <span class="s1">&#39;[{&#34;category&#34;:&#34;ApplicationGatewayAccessLog&#34;,&#34;enabled&#34;:true},{&#34;category&#34;:&#34;ApplicationGatewayPerformanceLog&#34;,&#34;enabled&#34;:true}]&#39;</span>
+</span></span></code></pre></div><h3 id="problemas-comuns">Problemas comuns</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Sintoma</th>
+          <th>Causa provável</th>
+          <th>Solução</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Gateway health: Unhealthy</td>
+          <td>Falta da regra NSG para portas 65200-65535</td>
+          <td>Adicionar regra <code>AllowGatewayManager</code></td>
+      </tr>
+      <tr>
+          <td>Backend: Unhealthy</td>
+          <td>Health probe falhando (API não está rodando)</td>
+          <td>Verificar <code>systemctl status api-backend</code> na VM</td>
+      </tr>
+      <tr>
+          <td>HTTP 502</td>
+          <td>Nenhum backend healthy no pool</td>
+          <td>Verificar NSG da subnet backend e porta 8080</td>
+      </tr>
+      <tr>
+          <td>HTTP 504</td>
+          <td>Backend demora mais que o <code>request_timeout</code></td>
+          <td>Aumentar timeout no <code>backend_http_settings</code></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="para-que-serve-no-mercado">Para Que Serve no Mercado</h2>
+<p>O Application Gateway é o ponto de entrada padrão para aplicações web e APIs no Azure. Em arquiteturas de microsserviços, ele substitui a necessidade de um reverse proxy (Nginx/HAProxy) gerenciado manualmente, centralizando roteamento, TLS e WAF em um serviço gerenciado com autoscale.</p>
+<p>A capacidade de rotear por URL path permite que uma única URL pública (<code>api.empresa.com</code>) distribua tráfego para dezenas de microsserviços diferentes, cada um em seu backend pool — sem que o cliente precise saber quantos serviços existem por trás.</p>
+<p>Para times que já usam Terraform, o Application Gateway é um recurso complexo de configurar pela primeira vez (listeners, rules, probes, pools — tudo é interdependente), mas uma vez modularizado como neste lab, fica trivial replicar para novos ambientes.</p>
+<h2 id="conclusão">Conclusão</h2>
+<p>O Application Gateway resolve um problema que o Load Balancer não consegue: rotear tráfego HTTP com inteligência. Se a sua aplicação é web ou API, o gateway oferece roteamento por path, health probes inteligentes, SSL termination e WAF — tudo em um único serviço gerenciado. O Load Balancer continua sendo a escolha certa para tráfego não-HTTP (bancos de dados, protocolos customizados), mas para qualquer coisa que fala HTTP, o Application Gateway é a ferramenta adequada.</p>
+<h2 id="referências">Referências</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/pt-br/azure/application-gateway/overview">Azure Application Gateway — Documentação oficial</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/azure/application-gateway/url-route-overview">URL path-based routing overview</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/azure/architecture/guide/technology-choices/load-balancing-overview">Application Gateway vs Load Balancer</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/azure/application-gateway/application-gateway-probe-overview">Health probes — Application Gateway</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/azure/web-application-firewall/ag/ag-overview">WAF on Application Gateway</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway">Terraform azurerm_application_gateway</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/azure/application-gateway/configuration-infrastructure">Subnet requirements for Application Gateway v2</a></li>
+</ul>
+
+</main>
+    <footer>
+  
+
+</footer>
+  </body>
+</html>
