@@ -195,7 +195,7 @@ fetchInject(["/js/lazysizes.min.js"]);
     <h1>Ansible SSL: Certificados Let&#39;s Encrypt Automáticos com AWX</h1>
   </header>
   <p>Você já acordou às 3 da manhã com o alerta de que um certificado SSL expirou em produção? Ou descobriu que um cliente tentou acessar o site e viu a tela vermelha do browser dizendo &ldquo;conexão não é segura&rdquo;? Esse é o custo de gerenciar SSL na mão.</p>
-<p>Neste lab eu automatizei o ciclo completo de criação e renovação de certificados SSL para três sites diferentes — <code>fxshell.com.br</code>, <code>devopslab.com.br</code> e <code>infrastack.com.br</code> — usando Ansible + Certbot + Let&rsquo;s Encrypt. Cada certificado cobre o domínio raiz <strong>e</strong> o <code>www</code> no mesmo cert (SAN). O AWX agenda a renovação automática toda <strong>terça-feira às 03:00 UTC</strong>; quando disparado manualmente, um survey pergunta quais tenants renovar antes de executar. Nenhum clique desnecessário, nenhuma surpresa.</p>
+<p>Neste lab eu automatizei o ciclo completo de criação e renovação de certificados SSL para três sites diferentes — <code>fxshell1.com.br</code>, <code>fxshell2.com.br</code> e <code>fxshell3.com.br</code> — usando Ansible + Certbot + Let&rsquo;s Encrypt. Cada certificado cobre o domínio raiz <strong>e</strong> o <code>www</code> no mesmo cert (SAN). O AWX agenda a renovação automática toda <strong>terça-feira às 03:00 UTC</strong>; quando disparado manualmente, um survey pergunta quais tenants renovar antes de executar. Nenhum clique desnecessário, nenhuma surpresa.</p>
 <hr>
 <h2 id="objetivo-do-lab">Objetivo do Lab</h2>
 <p>Construir uma automação completa que:</p>
@@ -232,7 +232,7 @@ fetchInject(["/js/lazysizes.min.js"]);
          │ SSH              │ SSH                │ SSH
          ▼                  ▼                    ▼
 ┌──────────────┐  ┌──────────────────┐  ┌──────────────────┐
-│ fxshell.com  │  │ devopslab.com.br │  │ infrastack.com.br│
+│ fxshell1.com  │  │ fxshell2.com.br │  │ fxshell3.com.br│
 │ Nginx + SSL  │  │ Nginx + SSL      │  │ Nginx + SSL      │
 │ 192.168.1.10 │  │ 192.168.1.11     │  │ 192.168.1.12     │
 └──────┬───────┘  └────────┬─────────┘  └────────┬─────────┘
@@ -328,39 +328,39 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">children</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">webservers</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">hosts</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">fxshell_server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">fxshell1_server</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_host</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.1.10</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domain</span><span class="p">:</span><span class="w"> </span><span class="l">fxshell.com.br         </span><span class="w"> </span><span class="c"># cert-name no Certbot</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domain</span><span class="p">:</span><span class="w"> </span><span class="l">fxshell1.com.br         </span><span class="w"> </span><span class="c"># cert-name no Certbot</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domains:                         # SAN</span><span class="p">:</span><span class="w"> </span><span class="l">raiz + www no mesmo cert</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">fxshell.com.br</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">www.fxshell.com.br</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_email</span><span class="p">:</span><span class="w"> </span><span class="l">admin@fxshell.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">fxshell1.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">www.fxshell1.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_email</span><span class="p">:</span><span class="w"> </span><span class="l">admin@fxshell1.com.br</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_webroot</span><span class="p">:</span><span class="w"> </span><span class="l">/var/www/fxshell</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">nginx_config_name</span><span class="p">:</span><span class="w"> </span><span class="l">fxshell.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">nginx_config_name</span><span class="p">:</span><span class="w"> </span><span class="l">fxshell1.com.br</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">devopslab_server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">fxshell2_server</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_host</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.1.11</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domain</span><span class="p">:</span><span class="w"> </span><span class="l">devopslab.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domain</span><span class="p">:</span><span class="w"> </span><span class="l">fxshell2.com.br</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domains</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">devopslab.com.br</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">www.devopslab.com.br</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_email</span><span class="p">:</span><span class="w"> </span><span class="l">admin@devopslab.com.br</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_webroot</span><span class="p">:</span><span class="w"> </span><span class="l">/var/www/devopslab</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">nginx_config_name</span><span class="p">:</span><span class="w"> </span><span class="l">devopslab.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">fxshell2.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">www.fxshell2.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_email</span><span class="p">:</span><span class="w"> </span><span class="l">admin@fxshell2.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_webroot</span><span class="p">:</span><span class="w"> </span><span class="l">/var/www/fxshell2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">nginx_config_name</span><span class="p">:</span><span class="w"> </span><span class="l">fxshell2.com.br</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">infrastack_server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">fxshell3_server</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_host</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.1.12</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domain</span><span class="p">:</span><span class="w"> </span><span class="l">infrastack.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domain</span><span class="p">:</span><span class="w"> </span><span class="l">fxshell3.com.br</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domains</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">infrastack.com.br</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">www.infrastack.com.br</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_email</span><span class="p">:</span><span class="w"> </span><span class="l">admin@infrastack.com.br</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_webroot</span><span class="p">:</span><span class="w"> </span><span class="l">/var/www/infrastack</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">nginx_config_name</span><span class="p">:</span><span class="w"> </span><span class="l">infrastack.com.br</span><span class="w">
-</span></span></span></code></pre></div><p>O Certbot aceita múltiplos <code>--domain</code> num único comando. O primeiro domínio da lista vira o nome do certificado (<code>/etc/letsencrypt/live/fxshell.com.br/</code>), e os demais entram como SANs. O resultado é um único arquivo <code>.pem</code> válido para <code>fxshell.com.br</code> e <code>www.fxshell.com.br</code> — sem precisar de dois certificados separados.</p>
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">fxshell3.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">www.fxshell3.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_email</span><span class="p">:</span><span class="w"> </span><span class="l">admin@fxshell3.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_webroot</span><span class="p">:</span><span class="w"> </span><span class="l">/var/www/fxshell3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">nginx_config_name</span><span class="p">:</span><span class="w"> </span><span class="l">fxshell3.com.br</span><span class="w">
+</span></span></span></code></pre></div><p>O Certbot aceita múltiplos <code>--domain</code> num único comando. O primeiro domínio da lista vira o nome do certificado (<code>/etc/letsencrypt/live/fxshell1.com.br/</code>), e os demais entram como SANs. O resultado é um único arquivo <code>.pem</code> válido para <code>fxshell1.com.br</code> e <code>www.fxshell1.com.br</code> — sem precisar de dois certificados separados.</p>
 <hr>
 <h2 id="role-ssl_certbot--o-coração-da-emissão">Role <code>ssl_certbot</code> — O Coração da Emissão</h2>
 <p>A task mais importante da role verifica se o certificado já existe antes de tentar emitir. Isso garante idempotência — você pode rodar o playbook quantas vezes quiser sem gerar requisições desnecessárias para a CA (o Let&rsquo;s Encrypt tem rate limits).</p>
@@ -385,10 +385,10 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="sd">    --rsa-key-size {{ certbot_rsa_key_size }}
 </span></span></span><span class="line"><span class="cl"><span class="sd">    --keep-until-expiring</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l">not cert_exists.stat.exists</span><span class="w">
-</span></span></span></code></pre></div><p>Para <code>fxshell_server</code>, o comando expandido fica:</p>
+</span></span></span></code></pre></div><p>Para <code>fxshell1_server</code>, o comando expandido fica:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">certbot certonly --webroot --webroot-path /var/www/fxshell <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --domain fxshell.com.br --domain www.fxshell.com.br <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --email admin@fxshell.com.br --agree-tos --non-interactive <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --domain fxshell1.com.br --domain www.fxshell1.com.br <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --email admin@fxshell1.com.br --agree-tos --non-interactive <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --rsa-key-size <span class="m">4096</span> --keep-until-expiring
 </span></span></code></pre></div><p>O flag <code>--keep-until-expiring</code> garante que, mesmo se o certificado já existir, o Certbot não vai renovar antes de 30 dias. O flag <code>--staging</code> permite testar o fluxo completo sem consumir os rate limits de produção do Let&rsquo;s Encrypt.</p>
 <hr>
@@ -444,7 +444,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 <li><strong>Schedule automático</strong> — toda terça-feira às 03:00 UTC, renova todos os hosts do grupo <code>webservers</code></li>
 <li><strong>Execução manual com survey</strong> — antes de executar, o AWX exibe um formulário para o operador selecionar quais tenants renovar</li>
 </ul>
-<p>O survey de seleção de tenants funciona assim: o campo <code>tenants</code> aceita o nome de um ou mais hosts separados por vírgula (ex: <code>fxshell_server,devopslab_server</code>) ou o grupo <code>webservers</code> para renovar todos. Esse valor é passado para a diretiva <code>hosts:</code> do playbook, que funciona como um <code>--limit</code> dinâmico.</p>
+<p>O survey de seleção de tenants funciona assim: o campo <code>tenants</code> aceita o nome de um ou mais hosts separados por vírgula (ex: <code>fxshell1_server,fxshell2_server</code>) ou o grupo <code>webservers</code> para renovar todos. Esse valor é passado para a diretiva <code>hosts:</code> do playbook, que funciona como um <code>--limit</code> dinâmico.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># O playbook usa o valor do survey como filtro de hosts</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Renovar certificados SSL Let&#39;s Encrypt</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ tenants | default(&#39;webservers&#39;) }}&#34;</span><span class="w">
@@ -479,17 +479,17 @@ Schedules    → Adicionar no job de renovação:
 </span></span><span class="line"><span class="cl">ansible-playbook playbook-ssl-create.yml
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 5. Emitir só para um site específico</span>
-</span></span><span class="line"><span class="cl">ansible-playbook playbook-ssl-create.yml -l fxshell_server
+</span></span><span class="line"><span class="cl">ansible-playbook playbook-ssl-create.yml -l fxshell1_server
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 6. Forçar renovação manualmente</span>
 </span></span><span class="line"><span class="cl">ansible-playbook playbook-ssl-renewal.yml -e <span class="s2">&#34;force_renewal=true&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 7. Testar HTTPS após emissão</span>
-</span></span><span class="line"><span class="cl">curl -I https://fxshell.com.br
-</span></span><span class="line"><span class="cl">curl -I https://devopslab.com.br
-</span></span><span class="line"><span class="cl">curl -I https://infrastack.com.br
+</span></span><span class="line"><span class="cl">curl -I https://fxshell1.com.br
+</span></span><span class="line"><span class="cl">curl -I https://fxshell2.com.br
+</span></span><span class="line"><span class="cl">curl -I https://fxshell3.com.br
 </span></span></code></pre></div><p>Para verificar os headers de segurança:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -sI https://fxshell.com.br <span class="p">|</span> grep -E <span class="s2">&#34;Strict-Transport|X-Frame|X-Content&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -sI https://fxshell1.com.br <span class="p">|</span> grep -E <span class="s2">&#34;Strict-Transport|X-Frame|X-Content&#34;</span>
 </span></span></code></pre></div><hr>
 <h2 id="monitoramento-e-troubleshooting">Monitoramento e Troubleshooting</h2>
 <table>
@@ -540,7 +540,7 @@ Schedules    → Adicionar no job de renovação:
 </span></span><span class="line"><span class="cl">cat /var/log/certbot-renewal.log
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Testar validade do certificado manualmente</span>
-</span></span><span class="line"><span class="cl">openssl s_client -connect fxshell.com.br:443 -servername fxshell.com.br &lt; /dev/null 2&gt;/dev/null <span class="se">\
+</span></span><span class="line"><span class="cl">openssl s_client -connect fxshell1.com.br:443 -servername fxshell1.com.br &lt; /dev/null 2&gt;/dev/null <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> openssl x509 -noout -enddate
 </span></span></code></pre></div><hr>
 <h2 id="para-que-serve-no-mercado">Para Que Serve no Mercado</h2>
