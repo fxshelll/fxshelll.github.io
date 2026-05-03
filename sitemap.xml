@@ -3,7 +3,57 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://fxshelll.github.io/posts/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-03T10:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/ansible/</loc>
+    <lastmod>2026-05-03T10:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/posts/ansible-ssl-letsencrypt/</loc>
+    <lastmod>2026-05-03T10:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/automa%C3%A7%C3%A3o/</loc>
+    <lastmod>2026-05-03T10:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/awx/</loc>
+    <lastmod>2026-05-03T10:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/devops/</loc>
+    <lastmod>2026-05-03T10:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/letsencrypt/</loc>
+    <lastmod>2026-05-03T10:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/nginx/</loc>
+    <lastmod>2026-05-03T10:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/seguran%C3%A7a/</loc>
+    <lastmod>2026-05-03T10:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/ssl/</loc>
+    <lastmod>2026-05-03T10:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/</loc>
+    <lastmod>2026-05-03T10:00:00-03:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -13,11 +63,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://fxshelll.github.io/tags/azure/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/devops/</loc>
     <lastmod>2026-05-02T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -62,11 +107,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://fxshelll.github.io/tags/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://fxshelll.github.io/posts/togglemaster-postech-fase4/</loc>
     <lastmod>2026-05-02T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -107,11 +147,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://fxshelll.github.io/tags/ansible/</loc>
-    <lastmod>2026-04-21T10:00:00-03:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://fxshelll.github.io/posts/ansible-lab-infra-segura/</loc>
     <lastmod>2026-04-21T10:00:00-03:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -133,16 +168,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://fxshelll.github.io/tags/mysql/</loc>
-    <lastmod>2026-04-21T10:00:00-03:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/nginx/</loc>
-    <lastmod>2026-04-21T10:00:00-03:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/seguran%C3%A7a/</loc>
     <lastmod>2026-04-21T10:00:00-03:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
