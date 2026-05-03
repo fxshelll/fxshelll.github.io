@@ -12,8 +12,107 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 26 Apr 2026 01:47:16 UT</lastBuildDate>
+    <lastBuildDate>Sun, 03 May 2026 04:38:53 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Argocd</title>
+      <link>https://fxshelll.github.io/tags/argocd/</link>
+      <pubDate>Sat, 02 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/argocd/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Azure</title>
+      <link>https://fxshelll.github.io/tags/azure/</link>
+      <pubDate>Sat, 02 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/azure/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Devops</title>
+      <link>https://fxshelll.github.io/tags/devops/</link>
+      <pubDate>Sat, 02 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/devops/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Fiap</title>
+      <link>https://fxshelll.github.io/tags/fiap/</link>
+      <pubDate>Sat, 02 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/fiap/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Gitops</title>
+      <link>https://fxshelll.github.io/tags/gitops/</link>
+      <pubDate>Sat, 02 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/gitops/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Grafana</title>
+      <link>https://fxshelll.github.io/tags/grafana/</link>
+      <pubDate>Sat, 02 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/grafana/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://fxshelll.github.io/tags/kubernetes/</link>
+      <pubDate>Sat, 02 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/kubernetes/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Loki</title>
+      <link>https://fxshelll.github.io/tags/loki/</link>
+      <pubDate>Sat, 02 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/loki/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Opentelemetry</title>
+      <link>https://fxshelll.github.io/tags/opentelemetry/</link>
+      <pubDate>Sat, 02 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/opentelemetry/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Postech</title>
+      <link>https://fxshelll.github.io/tags/postech/</link>
+      <pubDate>Sat, 02 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/postech/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Prometheus</title>
+      <link>https://fxshelll.github.io/tags/prometheus/</link>
+      <pubDate>Sat, 02 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/prometheus/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
     <item>
       <title>Appgateway</title>
       <link>https://fxshelll.github.io/tags/appgateway/</link>
@@ -24,29 +123,11 @@
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
-      <title>Azure</title>
-      <link>https://fxshelll.github.io/tags/azure/</link>
-      <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/azure/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
       <title>Cloud</title>
       <link>https://fxshelll.github.io/tags/cloud/</link>
       <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/tags/cloud/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
-      <title>Devops</title>
-      <link>https://fxshelll.github.io/tags/devops/</link>
-      <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/devops/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
@@ -218,15 +299,6 @@
       <pubDate>Mon, 30 Mar 2026 03:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/tags/shell/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
-      <title>Kubernetes</title>
-      <link>https://fxshelll.github.io/tags/kubernetes/</link>
-      <pubDate>Wed, 24 Sep 2025 12:00:00 UT</pubDate>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/kubernetes/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>

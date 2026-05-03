@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+      <meta charset="utf-8"><meta property="og:title" content="ToggleMaster — POSTECH Fase 4: Observabilidade Total em Kubernetes com OpenTelemetry" />
+      <meta property="og:description" content="Tech Challenge Fase 4 da FIAP PosTech — instrumentação de microsserviços com OpenTelemetry, stack de observabilidade Prometheus/Loki/Grafana no AKS, alertas inteligentes com OpsGenie e Self-Healing automático via GitHub Actions." />
+      <meta property="og:image" content="https://fxshelll.github.io/togglemaster-postech-fase4.gif" />
+      <meta property="og:url" content="https://fxshelll.github.io/posts/togglemaster-postech-fase4/" />
+      <meta property="og:type" content="article" />
+      <meta property="article:published_time" content="2026-05-02T00:00:00Z" />
+      <meta property="article:tag" content="kubernetes" />
+      <meta property="article:tag" content="devops" />
+      <meta property="article:tag" content="opentelemetry" />
+      <meta property="article:tag" content="grafana" />
+      <meta property="article:tag" content="prometheus" />
+      <meta property="article:tag" content="loki" />
+      <meta property="article:tag" content="gitops" />
+      <meta property="article:tag" content="argocd" />
+      <meta property="article:tag" content="azure" />
+      <meta property="article:tag" content="fiap" />
+      <meta property="article:tag" content="postech" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="ToggleMaster — POSTECH Fase 4: Observabilidade Total em Kubernetes com OpenTelemetry" />
+      <meta name="twitter:description" content="Tech Challenge Fase 4 da FIAP PosTech — instrumentação de microsserviços com OpenTelemetry, stack de observabilidade Prometheus/Loki/Grafana no AKS, alertas inteligentes com OpsGenie e Self-Healing automático via GitHub Actions." />
+      <meta name="twitter:image" content="https://fxshelll.github.io/togglemaster-postech-fase4.gif" />
+    
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToggleMaster — POSTECH Fase 4: Observabilidade Total em Kubernetes com OpenTelemetry | FXShell - DevOps &amp; Sec</title>
+    <meta name="description" content="Tech Challenge Fase 4 da FIAP PosTech — instrumentação de microsserviços com OpenTelemetry, stack de observabilidade Prometheus/Loki/Grafana no AKS, alertas inteligentes com OpsGenie e Self-Healing automático via GitHub Actions.">
+    <meta name="keywords" content="kubernetes, devops, opentelemetry, grafana, prometheus, loki, gitops, argocd, azure, fiap, postech">
+    
+    
+    
+    
+    
+
+  <meta name="author" content="Felipe da Matta">
+
+
+    
+    
+
+    
+    
+  <meta name="referrer" content="same-origin">
+
+
+    
+
+    
+    
+    <link rel="canonical" href="https://fxshelll.github.io/posts/togglemaster-postech-fase4/">
+    
+    
+    
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+
+
+<link rel="manifest" href="/site.webmanifest">
+    
+
+  
+  
+  
+  
+  
+  
+  
+    
+      
+        <style>html{font-size:12px}*{box-sizing:border-box;text-rendering:geometricPrecision}body{font-size:1rem;line-height:1.5rem;margin:0;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;word-wrap:break-word}h1,h2,h3,h4,h5,h6{line-height:1.3em}fieldset{border:none;padding:0;margin:0}pre{padding:2rem;margin:1.75rem 0;background-color:#fff;border:1px solid #ccc;overflow:auto}code[class*=language-],pre[class*=language-],pre code{font-weight:100;text-shadow:none;margin:1.75rem 0}a{cursor:pointer;color:#ff2e88;text-decoration:none;border-bottom:1px solid #ff2e88}a:hover{background-color:#ff2e88;color:#fff}.grid{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.grid.\-top{-ms-flex-align:start;align-items:flex-start}.grid.\-middle{-ms-flex-align:center;align-items:center}.grid.\-bottom{-ms-flex-align:end;align-items:flex-end}.grid.\-stretch{-ms-flex-align:stretch;align-items:stretch}.grid.\-baseline{-ms-flex-align:baseline;align-items:baseline}.grid.\-left{-ms-flex-pack:start;justify-content:flex-start}.grid.\-center{-ms-flex-pack:center;justify-content:center}.grid.\-right{-ms-flex-pack:end;justify-content:flex-end}.grid.\-between{-ms-flex-pack:justify;justify-content:space-between}.grid.\-around{-ms-flex-pack:distribute;justify-content:space-around}.cell{-ms-flex:1;flex:1;box-sizing:border-box}@media screen and (min-width:768px){.cell.\-1of12{-ms-flex:0 0 8.33333%;flex:0 0 8.33333%}.cell.\-2of12{-ms-flex:0 0 16.66667%;flex:0 0 16.66667%}.cell.\-3of12{-ms-flex:0 0 25%;flex:0 0 25%}.cell.\-4of12{-ms-flex:0 0 33.33333%;flex:0 0 33.33333%}.cell.\-5of12{-ms-flex:0 0 41.66667%;flex:0 0 41.66667%}.cell.\-6of12{-ms-flex:0 0 50%;flex:0 0 50%}.cell.\-7of12{-ms-flex:0 0 58.33333%;flex:0 0 58.33333%}.cell.\-8of12{-ms-flex:0 0 66.66667%;flex:0 0 66.66667%}.cell.\-9of12{-ms-flex:0 0 75%;flex:0 0 75%}.cell.\-10of12{-ms-flex:0 0 83.33333%;flex:0 0 83.33333%}.cell.\-11of12{-ms-flex:0 0 91.66667%;flex:0 0 91.66667%}}@media screen and (max-width:768px){.grid{-ms-flex-direction:column;flex-direction:column}.cell{-ms-flex:0 0 auto;flex:0 0 auto}}.hack,.hack blockquote,.hack code,.hack em,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack strong{font-size:1rem;font-style:normal;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif}.hack blockquote,.hack code,.hack em,.hack strong{line-height:20px}.hack blockquote,.hack code,.hack footer,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack header,.hack li,.hack ol,.hack p,.hack section,.hack ul{float:none;margin:0;padding:0}.hack blockquote,.hack h1,.hack ol,.hack p,.hack ul{margin-top:20px;margin-bottom:20px}.hack h1{position:relative;display:inline-block;display:table-cell;padding:20px 0 30px;margin:0;overflow:hidden}.hack h1:after{content:"====================================================================================================";position:absolute;bottom:10px;left:0}.hack h1+*{margin-top:0}.hack h2,.hack h3,.hack h4,.hack h5,.hack h6{position:relative;margin-bottom:1.75rem}.hack h2:before,.hack h3:before,.hack h4:before,.hack h5:before,.hack h6:before{display:inline}.hack h2:before{content:"## "}.hack h3:before{content:"### "}.hack h4:before{content:"#### "}.hack h5:before{content:"##### "}.hack h6:before{content:"###### "}.hack li{position:relative;display:block;padding-left:20px}.hack li:after{position:absolute;top:0;left:0}.hack ul>li:after{content:"-"}.hack ol{counter-reset:a}.hack ol>li:after{content:counter(a) ".";counter-increment:a}.hack ol li:nth-child(n+10):after{left:-7px}.hack blockquote{position:relative;padding-left:17px;padding-left:2ch;overflow:hidden}.hack blockquote:after{content:">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>";white-space:pre;position:absolute;top:0;left:0;line-height:20px}.hack em:after,.hack em:before{content:"*";display:inline}.hack pre code:after,.hack pre code:before{content:""}.hack code{font-weight:700}.hack code:after,.hack code:before{content:"`";display:inline}.hack hr{position:relative;height:20px;overflow:hidden;border:0;margin:20px 0}.hack hr:after{content:"----------------------------------------------------------------------------------------------------";position:absolute;top:0;left:0;line-height:20px;width:100%;word-wrap:break-word}@-moz-document url-prefix(){.hack h1{display:block}}.hack-ones ol>li:after{content:"1."}p{margin:0 0 1.75rem}.container{max-width:70rem}.container,.container-fluid{margin:0 auto;padding:0 1rem}.inner{padding:1rem}.inner2x{padding:2rem}.pull-left{float:left}.pull-right{float:right}.progress-bar{height:8px;opacity:.8;background-color:#ccc;margin-top:12px}.progress-bar.progress-bar-show-percent{margin-top:38px}.progress-bar-filled{background-color:gray;height:100%;transition:width .3s ease;position:relative;width:0}.progress-bar-filled:before{content:"";border:6px solid transparent;border-top-color:gray;position:absolute;top:-12px;right:-6px}.progress-bar-filled:after{color:gray;content:attr(data-filled);display:block;font-size:12px;white-space:nowrap;position:absolute;border:6px solid transparent;top:-38px;right:0;-ms-transform:translateX(50%);transform:translateX(50%)}table{width:100%;border-collapse:collapse;margin:1.75rem 0;color:#778087}table td,table th{vertical-align:top;border:1px solid #ccc;line-height:15px;padding:10px}table thead th{font-size:10px}table tbody td:first-child{font-weight:700;color:#333}.form{width:30rem}.form-group{margin-bottom:1.75rem;overflow:auto}.form-group label{border-bottom:2px solid #ccc;color:#333;width:10rem;display:inline-block;height:38px;line-height:38px;padding:0;float:left;position:relative}.form-group.form-success label{color:#4caf50!important;border-color:#4caf50!important}.form-group.form-warning label{color:#ff9800!important;border-color:#ff9800!important}.form-group.form-error label{color:#f44336!important;border-color:#f44336!important}.form-control{outline:none;border:none;border-bottom:2px solid #ccc;padding:.5rem 0;width:20rem;height:38px;background-color:transparent}.form-control:focus{border-color:#555}.form-group.form-textarea label:after{position:absolute;content:"";width:2px;background-color:#fff;right:-2px;top:0;bottom:0}textarea.form-control{height:auto;resize:none;padding:1rem 0;border-bottom:2px solid #ccc;border-left:2px solid #ccc;padding:.5rem}select.form-control{border-radius:0;background-color:transparent;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}.help-block{color:#999;margin-top:.5rem}.form-actions{margin-bottom:1.75rem}.btn{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;outline:none;padding:.65rem 2rem;font-size:1rem;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:relative;z-index:1}.btn:active{box-shadow:inset 0 1px 3px rgba(0,0,0,.12)}.btn.btn-ghost{border-color:#757575;color:#757575;background-color:transparent}.btn.btn-ghost:focus,.btn.btn-ghost:hover{border-color:#424242;color:#424242;z-index:2}.btn.btn-ghost:hover{background-color:transparent}.btn-block{width:100%;display:-ms-flexbox;display:flex}.btn-default{color:#fff;background-color:#e0e0e0;border:1px solid #e0e0e0;color:#333}.btn-default:focus:not(.btn-ghost),.btn-default:hover{background-color:#dcdcdc;border-color:#dcdcdc}.btn-success{color:#fff;background-color:#4caf50;border:1px solid #4caf50}.btn-success:focus:not(.btn-ghost),.btn-success:hover{background-color:#43a047;border-color:#43a047}.btn-success.btn-ghost{border-color:#4caf50;color:#4caf50}.btn-success.btn-ghost:focus,.btn-success.btn-ghost:hover{border-color:#388e3c;color:#388e3c;z-index:2}.btn-error{color:#fff;background-color:#f44336;border:1px solid #f44336}.btn-error:focus:not(.btn-ghost),.btn-error:hover{background-color:#e53935;border-color:#e53935}.btn-error.btn-ghost{border-color:#f44336;color:#f44336}.btn-error.btn-ghost:focus,.btn-error.btn-ghost:hover{border-color:#d32f2f;color:#d32f2f;z-index:2}.btn-warning{color:#fff;background-color:#ff9800;border:1px solid #ff9800}.btn-warning:focus:not(.btn-ghost),.btn-warning:hover{background-color:#fb8c00;border-color:#fb8c00}.btn-warning.btn-ghost{border-color:#ff9800;color:#ff9800}.btn-warning.btn-ghost:focus,.btn-warning.btn-ghost:hover{border-color:#f57c00;color:#f57c00;z-index:2}.btn-info{color:#fff;background-color:#00bcd4;border:1px solid #00bcd4}.btn-info:focus:not(.btn-ghost),.btn-info:hover{background-color:#00acc1;border-color:#00acc1}.btn-info.btn-ghost{border-color:#00bcd4;color:#00bcd4}.btn-info.btn-ghost:focus,.btn-info.btn-ghost:hover{border-color:#0097a7;color:#0097a7;z-index:2}.btn-primary{color:#fff;background-color:#2196f3;border:1px solid #2196f3}.btn-primary:focus:not(.btn-ghost),.btn-primary:hover{background-color:#1e88e5;border-color:#1e88e5}.btn-primary.btn-ghost{border-color:#2196f3;color:#2196f3}.btn-primary.btn-ghost:focus,.btn-primary.btn-ghost:hover{border-color:#1976d2;color:#1976d2;z-index:2}.btn-group{overflow:auto}.btn-group .btn{float:left}.btn-group .btn-ghost:not(:first-child){margin-left:-1px}.card{border:1px solid #ccc}.card .card-header{color:#333;text-align:center;background-color:#ddd;padding:.5rem 0}.alert{color:#ccc;padding:1rem;border:1px solid #ccc;margin-bottom:1.75rem}.alert-success{color:#4caf50;border-color:#4caf50}.alert-error{color:#f44336;border-color:#f44336}.alert-info{color:#00bcd4;border-color:#00bcd4}.alert-warning{color:#ff9800;border-color:#ff9800}.media:not(:last-child){margin-bottom:1.25rem}.media-left{padding-right:1rem}.media-left,.media-right{display:table-cell;vertical-align:top}.media-right{padding-left:1rem}.media-body{display:table-cell;vertical-align:top}.media-heading{font-size:1.16667rem;font-weight:700}.media-content{margin-top:.3rem}.avatarholder,.placeholder{background-color:#f0f0f0;text-align:center;color:#b9b9b9;font-size:1rem;border:1px solid #f0f0f0}.avatarholder{width:48px;height:48px;line-height:46px;font-size:2rem;background-size:cover;background-position:50%;background-repeat:no-repeat}.avatarholder.rounded{border-radius:33px}.loading{display:inline-block;content:"&nbsp;";height:20px;width:20px;margin:0 .5rem;animation:a .6s infinite linear;border:2px solid #e91e63;border-right-color:transparent;border-radius:50%}.btn .loading{margin-bottom:0;width:14px;height:14px}.btn div.loading{float:left}.alert .loading{margin-bottom:-5px}@keyframes a{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}.menu{width:100%}.menu .menu-item{display:block;color:#616161;border-color:#616161}.menu .menu-item.active,.menu .menu-item:hover{color:#000;border-color:#000;background-color:transparent}@media screen and (max-width:768px){.form-group label{display:block;border-bottom:none;width:100%}.form-group.form-textarea label:after{display:none}.form-control{width:100%}textarea.form-control{border-left:none;padding:.5rem 0}pre::-webkit-scrollbar{height:3px}}@media screen and (max-width:480px){.form{width:100%}}.dark{color:#ccc}.dark,.dark pre{background-color:#000}.dark pre{padding:0;border:none}.dark pre code{color:#00bcd4}.dark h1 a,.dark h2 a,.dark h3 a,.dark h4 a,.dark h5 a{color:#ccc}.dark code,.dark strong{color:#fff}.dark code{font-weight:100}.dark table{color:#ccc}.dark table td,.dark table th{border-color:#444}.dark table tbody td:first-child{color:#fff}.dark .form-group label{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-group.form-textarea label:after{background-color:#000}.dark .form-control{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-control:focus{border-color:#ccc;color:#ccc}.dark textarea.form-control{color:#ccc}.dark .card{border-color:rgba(95,95,95,.78)}.dark .card .card-header{background-color:transparent;color:#ccc;border-bottom:1px solid rgba(95,95,95,.78)}.dark .btn.btn-ghost.btn-default{border-color:#ababab;color:#ababab}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#9c9c9c;color:#9c9c9c;z-index:1}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#e0e0e0;color:#e0e0e0}.dark .btn.btn-ghost.btn-primary:focus,.dark .btn.btn-ghost.btn-primary:hover{border-color:#64b5f6;color:#64b5f6}.dark .btn.btn-ghost.btn-success:focus,.dark .btn.btn-ghost.btn-success:hover{border-color:#81c784;color:#81c784}.dark .btn.btn-ghost.btn-info:focus,.dark .btn.btn-ghost.btn-info:hover{border-color:#4dd0e1;color:#4dd0e1}.dark .btn.btn-ghost.btn-error:focus,.dark .btn.btn-ghost.btn-error:hover{border-color:#e57373;color:#e57373}.dark .btn.btn-ghost.btn-warning:focus,.dark .btn.btn-ghost.btn-warning:hover{border-color:#ffb74d;color:#ffb74d}.dark .avatarholder,.dark .placeholder{background-color:transparent;border-color:#333}.dark .menu .menu-item{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .menu .menu-item.active,.dark .menu .menu-item:hover{color:#fff;border-color:#ccc}:root{--screen-size-small:30em}@keyframes intro{0%{opacity:0}; 100%{opacity:1}}.blur-up{-webkit-filter:blur(5px);filter:blur(5px);transition:filter 400ms,-webkit-filter 400ms}.blur-up.lazyloaded{-webkit-filter:blur(0);filter:blur(0)}.hack .readmore{margin-bottom:2.2em}.responsive-iframe{position:relative;padding-bottom:56.25%;padding-top:25px;height:0}.responsive-iframe iframe{position:absolute;top:0;left:0;width:100%;height:100%}iframe{border:0}main,footer{animation:intro .3s both;animation-delay:.15s}footer time[datetime$=M]:before{content:"\2013\0020"}@media only screen and (max-width:30em){footer time[datetime$=M]{display:none}}blockquote cite{display:block}blockquote cite::before{content:"\2014"}:target{color:#fff}.hack li ul{margin:0}.main{padding:20px 10px}input.form-control{border-radius:0;background-color:initial;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}input.form-control,textarea.form-control{font-size:initial}.hack .help-block{font-size:1rem}html{font-size:13px}.hack pre{font-size:17px}.hack .form input,.hack .form textarea,.hack .form button,.hack .form label{font-size:1rem}article [itemprop=description]{margin-bottom:20px;margin-top:20px}article header img{width:100%;border-radius:3px}table td,table th{line-height:inherit}img{max-width:100%}@media screen and (min-width:768px){html{font-size:1em}.container{max-width:50rem}}[v-cloak]{display:none}a[rel*="external"]::after {
+  content: " " url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20class='i-external'%20viewBox='0%200%2032%2032'%20width='14'%20height='14'%20fill='none'%20stroke='%23ff9800'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='9.38%'%3E%3Cpath%20d='M14%209%20L3%209%203%2029%2023%2029%2023%2018%20M18%204%20L28%204%2028%2014%20M28%204%20L14%2018'/%3E%3C/svg%3E");
+}
+nav a.active {
+  background-color: #ff2e88;
+  color: #fff;
+}
+a[itemprop="url"] {
+  color: #ff9800;
+}
+a[itemprop="url"]:hover {
+  color: #fff;
+}
+.muted, .help-block {
+  opacity: 0.70;
+}
+.hack .muted,
+.hack .help-block {
+  color: #e0e0e0;
+}
+</style>
+        
+
+
+  
+    <meta name="theme-color" content=#000>
+  
+
+
+      
+    
+  
+
+
+    <script>
+ 
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.fetchInject=t()}(this,function(){"use strict";const e=function(e,t,n,r,o,c,i){c=t.createElement(n),i=t.getElementsByTagName(n)[0],c.appendChild(t.createTextNode(r.text)),c.onload=o(r),i?i.parentNode.insertBefore(c,i):t.head.appendChild(c)};return function(t,n){if(!arguments.length)return Promise.reject(new ReferenceError("Failed to execute 'fetchInject': 1 argument required but only 0 present."));if(arguments[0]&&arguments[0].constructor!==Array)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 1 must be of type 'Array'."));if(arguments[1]&&arguments[1].constructor!==Promise)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 2 must be of type 'Promise'."));const r=[],o=n?[].concat(n):[],c=[];return t.forEach(e=>o.push(window.fetch(e).then(e=>[e.clone().text(),e.blob()]).then(e=>Promise.all(e).then(e=>{r.push({text:e[0],blob:e[1]})})))),Promise.all(o).then(()=>(r.forEach(t=>{c.push({then:n=>{t.blob.type.includes("text/css")?e(window,document,"style",t,n):e(window,document,"script",t,n)}})}),Promise.all(c)))}});
+fetchInject(["/js/lazysizes.min.js"]);
+</script>
+
+    <style>
+  img {
+    max-width: 100%;
+  }
+</style>
+
+    
+    
+      <script>fetchInject(["/css/syntax.css"])</script>
+
+      
+      <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+        });
+        MathJax.Hub.Queue(function() {
+          
+          
+          
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i = 0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+        });
+
+        MathJax.Hub.Config({
+        
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+      <noscript>
+        <link href=/css/syntax.css rel="stylesheet">
+      </noscript>
+    
+  </head>
+  
+  
+  
+  <body class="hack dark main container">
+<header>
+  
+  <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
+    
+    
+      
+        <a itemprop="url" class="" href="/"><span itemprop="name">home</span></a>
+      
+    
+      
+        <a itemprop="url" class="" href="/posts/"><span itemprop="name">anotações</span></a>
+      
+    
+      
+        <a itemprop="url" class="" href="/sobre/"><span itemprop="name">sobre</span></a>
+      
+    
+      
+        <a itemprop="url" class="" href="/busca/" title="Buscar" style="color:#ff9800; vertical-align:middle;">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-bottom:2px;"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        </a>
+      
+    
+  </nav>
+
+
+</header>
+    <main>
+  <header>
+    <h1>ToggleMaster — POSTECH Fase 4: Observabilidade Total em Kubernetes com OpenTelemetry</h1>
+  </header>
+  <p>Um serviço começou a falhar silenciosamente. A infraestrutura escalava tentando compensar, consumindo recursos sem parar. A equipe de engenharia demorou 6 horas para ser avisada pelos usuários — e mais 4 horas para achar a causa raiz nos logs espalhados pelos pods. Esse é o cenário real que o <strong>Tech Challenge Fase 4 da FIAP PosTech</strong> propõe resolver.</p>
+<p>Esta é a conclusão da jornada com o <strong>ToggleMaster</strong> — um sistema de feature flags construído ao longo de 4 fases do PosTech DevOps. As Fases 1, 2 e 3 entregaram os 5 microsserviços conteinerizados, infraestrutura via Terraform, pipelines CI/CD com DevSecOps e deploy no AKS via ArgoCD. A Fase 4 adiciona <strong>Observabilidade Total e Resposta Ativa</strong>: se um serviço ficar lento, vemos o Trace; se der erro, temos Logs centralizados; se um limite for atingido, o time é avisado pelo OpsGenie; e o próprio sistema tenta se curar automaticamente.</p>
+<hr>
+<h2 id="o-que-é-o-togglemaster">O que é o ToggleMaster</h2>
+<p>O ToggleMaster é uma plataforma de <strong>feature flags</strong> — um mecanismo que permite ativar ou desativar funcionalidades de um sistema em produção sem fazer um novo deploy. Em vez de subir código novo para habilitar uma feature para 10% dos usuários, você simplesmente liga uma flag. Isso é amplamente usado por times como Netflix, Facebook e Spotify para rollouts graduais, testes A/B e kill switches de emergência.</p>
+<p>O sistema é composto por <strong>5 microsserviços independentes</strong>, cada um com responsabilidade específica:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Serviço</th>
+          <th>Linguagem</th>
+          <th>Porta</th>
+          <th>Responsabilidade</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>auth-service</strong></td>
+          <td>Go</td>
+          <td>8001</td>
+          <td>Geração e validação de chaves de API. Toda requisição passa por ele antes de chegar nos demais.</td>
+      </tr>
+      <tr>
+          <td><strong>flag-service</strong></td>
+          <td>Python (Flask)</td>
+          <td>8002</td>
+          <td>CRUD de feature flags — criar, listar, ativar, desativar flags. Persiste no PostgreSQL.</td>
+      </tr>
+      <tr>
+          <td><strong>targeting-service</strong></td>
+          <td>Python (Flask)</td>
+          <td>8003</td>
+          <td>Define regras de targeting: qual usuário, região ou percentual de tráfego recebe cada flag.</td>
+      </tr>
+      <tr>
+          <td><strong>evaluation-service</strong></td>
+          <td>Go</td>
+          <td>8004</td>
+          <td>Hot path do sistema. Recebe uma requisição e avalia em tempo real se uma flag está ativa para aquele contexto. Usa Redis como cache. Enfileira eventos no Azure Queue.</td>
+      </tr>
+      <tr>
+          <td><strong>analytics-service</strong></td>
+          <td>Python (Flask)</td>
+          <td>8005</td>
+          <td>Consome a fila de eventos e persiste dados de uso das flags no Azure SQL para análises posteriores.</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="diagrama-da-arquitetura-completa">Diagrama da Arquitetura Completa</h2>
+<pre tabindex="0"><code>┌─────────────────────────── CI/CD PIPELINE ─────────────────────────────┐
+│ GitHub → Security (Trivy/SAST) → Docker → ACR → ArgoCD → GitOps Repo  │
+│                                                          ↑ Terraform    │
+└─────────────────────────────────────────────────────────────────────────┘
+                               ↓ sync
+┌────────────────────── AKS KUBERNETES ──────────────────────────────────┐
+│  auth  │  flag  │  targeting  │  eval  │  analytics                    │
+│  :8001 │  :8002 │    :8003    │  :8004 │    :8005                      │
+│   Go   │ Python │   Python    │   Go   │   Python                      │
+│        └────────┴─────────────┴────────┴────────────→ OTel Collector   │
+└──────────────────────────────────────────────────────────── ↓ ─────────┘
+                                                        Prometheus | Loki
+                                                              ↓
+                                                          Grafana Dashboard
+                                                              ↓ alerta
+                                                       Alertmanager → OpsGenie
+                                                              ↓
+                                                     Slack #alerts + Self-Healing
+┌──────────────────── DATA LAYER ────────────────────────────────────────┐
+│  PostgreSQL (auth/flags/targeting) │ Redis (eval cache) │ Azure SQL    │
+│  Azure Storage Queue (eval→analytics)                                  │
+└─────────────────────────────────────────────────────────────────────────┘
+</code></pre><p><img src="/togglemaster-postech-fase4.gif" alt="Diagrama animado — ToggleMaster POSTECH Fase 4"></p>
+<hr>
+<h2 id="stack-de-tecnologias">Stack de Tecnologias</h2>
+<h3 id="infraestrutura-como-código--terraform">Infraestrutura como Código — Terraform</h3>
+<p>O cluster AKS (Azure Kubernetes Service) e o ACR (Azure Container Registry) são provisionados inteiramente via Terraform. Nenhum recurso é criado manualmente no portal Azure. Isso garante que o ambiente é reproduzível: destruir e recriar leva minutos, e o estado é versionado.</p>
+<h3 id="cicd-com-devsecops--github-actions">CI/CD com DevSecOps — GitHub Actions</h3>
+<p>Cada microsserviço tem seu próprio pipeline no GitHub Actions. O pipeline compartilhado (<code>shared-ci.yml</code>) faz:</p>
+<ol>
+<li><strong>Detecção de linguagem</strong> — Go ou Python automaticamente</li>
+<li><strong>Build e testes</strong> — <code>go build</code>, <code>go test</code>, <code>pytest</code></li>
+<li><strong>Lint</strong> — <code>golangci-lint</code> para Go, <code>pylint</code> + <code>flake8</code> para Python</li>
+<li><strong>SAST</strong> — <code>gosec</code> para Go, <code>bandit</code> para Python</li>
+<li><strong>SCA</strong> — <code>trivy</code> varredura de dependências (CRITICAL)</li>
+<li><strong>Build da imagem Docker</strong> e push no ACR</li>
+<li><strong>Container Scan</strong> — trivy na imagem final</li>
+<li><strong>GitOps Update</strong> — atualiza o <code>deployment.yaml</code> no repositório GitOps com a nova tag</li>
+</ol>
+<h3 id="gitops-com-argocd">GitOps com ArgoCD</h3>
+<p>O ArgoCD monitora o repositório GitOps e aplica automaticamente qualquer mudança nos manifestos do cluster. Quando o CI faz push de uma nova tag de imagem, o ArgoCD detecta em segundos e sincroniza o cluster. O fluxo é completamente declarativo: o estado desejado está no Git, e o cluster converge para ele.</p>
+<hr>
+<h2 id="observabilidade--a-fase-4">Observabilidade — A Fase 4</h2>
+<h3 id="por-que-opentelemetry">Por que OpenTelemetry?</h3>
+<p>OpenTelemetry (OTel) é o padrão aberto da CNCF para instrumentação de aplicações. Em vez de cada ferramenta ter seu próprio SDK proprietário (Datadog agent, New Relic agent), o OTel define um protocolo único (OTLP) e cada linguagem tem bibliotecas que emitem Traces, Métricas e Logs nesse formato. O <strong>OTel Collector</strong> recebe tudo e roteia para os backends corretos.</p>
+<p>Isso significa que os microsserviços não precisam saber que existe Prometheus ou Loki — eles simplesmente enviam para o Collector via gRPC na porta 4317.</p>
+<h3 id="instrumentação-dos-serviços">Instrumentação dos Serviços</h3>
+<p><strong>Serviços Go</strong> (auth-service, evaluation-service):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// otelhttp envolve o mux HTTP e gera métricas e traces automaticamente</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nx">handler</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">otelhttp</span><span class="p">.</span><span class="nf">NewHandler</span><span class="p">(</span><span class="nx">mux</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;auth-service&#34;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>A biblioteca <code>otelhttp</code> intercepta cada requisição HTTP e registra automaticamente a duração, método, status code e cria spans de trace.</p>
+<p><strong>Serviços Python</strong> (flag, targeting, analytics):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># FlaskInstrumentor injeta middleware automaticamente</span>
+</span></span><span class="line"><span class="cl"><span class="n">FlaskInstrumentor</span><span class="p">()</span><span class="o">.</span><span class="n">instrument_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">RequestsInstrumentor</span><span class="p">()</span><span class="o">.</span><span class="n">instrument</span><span class="p">()</span>   <span class="c1"># rastreia chamadas HTTP externas</span>
+</span></span><span class="line"><span class="cl"><span class="n">Psycopg2Instrumentor</span><span class="p">()</span><span class="o">.</span><span class="n">instrument</span><span class="p">()</span>   <span class="c1"># rastreia queries no PostgreSQL</span>
+</span></span></code></pre></div><h3 id="otel-collector">OTel Collector</h3>
+<p>O Collector roda como deployment no namespace <code>observability</code> e opera três pipelines:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">pipelines</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">metrics</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">receivers</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">otlp, prometheus]       </span><span class="w"> </span><span class="c"># recebe OTLP dos serviços + scrape próprio</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">processors</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">memory_limiter, batch]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exporters</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">prometheusremotewrite]  </span><span class="w"> </span><span class="c"># → Prometheus Server</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">logs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">receivers</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">otlp]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exporters</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">otlphttp/loki]          </span><span class="w"> </span><span class="c"># → Loki</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">traces</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">receivers</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">otlp]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exporters: [debug]                   # futuro</span><span class="p">:</span><span class="w"> </span><span class="l">Tempo/Jaeger</span><span class="w">
+</span></span></span></code></pre></div><h3 id="prometheus">Prometheus</h3>
+<p>Armazena métricas de infraestrutura (CPU, memória, disco dos nodes via <code>node-exporter</code>) e de aplicação (requisições HTTP, latência p99/p50, restarts de pods via <code>kube-state-metrics</code>). O Prometheus recebe dados de duas fontes: scrape direto dos pods e remote write do OTel Collector.</p>
+<h3 id="loki--promtail">Loki + Promtail</h3>
+<p>O Promtail roda como DaemonSet em todos os nodes e coleta os logs de todos os containers automaticamente, etiquetando com <code>namespace</code>, <code>pod</code> e <code>container</code>. O Loki indexa esses logs e os expõe via LogQL para o Grafana. O OTel Collector também envia logs estruturados dos serviços via OTLP HTTP.</p>
+<h3 id="grafana-dashboard">Grafana Dashboard</h3>
+<p>Um único dashboard centralizado (<code>ToggleMaster — Saúde do Ecossistema</code>) cobre:</p>
+<ul>
+<li><strong>CI/CD Pipeline</strong> — pods em ImagePullBackOff, CrashLoopBackOff, replicas disponíveis vs desejadas</li>
+<li><strong>OTel Collector</strong> — throughput de spans/métricas/logs por segundo, uso de memória e CPU do collector</li>
+<li><strong>Microsserviços — HTTP</strong> — requisições por segundo, latência p99/p50, taxa de erros 4xx/5xx</li>
+<li><strong>Cluster AKS</strong> — CPU, memória e disco do cluster em gauges, pods reiniciando</li>
+<li><strong>Recursos por serviço</strong> — CPU e memória em millicores por namespace</li>
+<li><strong>Redis</strong> — uso de CPU e memória do cache</li>
+<li><strong>Logs em tempo real</strong> — todos os microsserviços, filtro de ERROR/WARN/FATAL, volume de erros por serviço por minuto</li>
+</ul>
+<hr>
+<h2 id="alertas-inteligentes-e-self-healing">Alertas Inteligentes e Self-Healing</h2>
+<h3 id="alerta-de-5xx">Alerta de 5xx</h3>
+<p>Configurado no Grafana Alertmanager: se a taxa de erros HTTP 5xx do auth-service ultrapassar 5% por mais de 2 minutos, o alerta dispara.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-promql" data-lang="promql"><span class="line"><span class="cl"><span class="k">sum</span><span class="o">(</span><span class="kr">rate</span><span class="o">(</span><span class="nv">http_server_duration_milliseconds_count</span><span class="p">{</span><span class="nl">http_status_code</span><span class="o">=~</span><span class="p">&#34;</span><span class="s">5..</span><span class="p">&#34;}[</span><span class="s">2m</span><span class="p">]</span><span class="o">))</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">(</span><span class="nv">job</span><span class="o">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">/</span><span class="w"> </span><span class="k">sum</span><span class="o">(</span><span class="kr">rate</span><span class="o">(</span><span class="nv">http_server_duration_milliseconds_count</span><span class="p">[</span><span class="s">2m</span><span class="p">]</span><span class="o">))</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">(</span><span class="nv">job</span><span class="o">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.05</span><span class="w">
+</span></span></span></code></pre></div><h3 id="opsgenie--gerenciamento-de-incidentes">OpsGenie — Gerenciamento de Incidentes</h3>
+<p>O Alertmanager notifica o OpsGenie, que abre automaticamente um incidente com prioridade P2, atribui ao time on-call e inicia o cronômetro de SLA. O incidente inclui a query que disparou, os labels do alerta e um link direto para o dashboard do Grafana.</p>
+<h3 id="slack--chatops">Slack — ChatOps</h3>
+<p>Simultaneamente, uma notificação detalhada chega no canal <code>#alerts</code> do Slack com:</p>
+<ul>
+<li>Qual serviço está com problema</li>
+<li>Qual métrica ultrapassou o threshold</li>
+<li>Link para o Grafana</li>
+<li>Runbook de resposta</li>
+</ul>
+<h3 id="self-healing-via-github-actions">Self-Healing via GitHub Actions</h3>
+<p>O Alertmanager envia um webhook para um GitHub Actions workflow. Quando o alerta dispara, o workflow executa automaticamente:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl rollout restart deployment/auth-service -n auth-service-prd
+</span></span></code></pre></div><p>O pod é reiniciado sem intervenção humana. Se o problema for transiente (memory leak, conexão travada), o serviço volta ao estado saudável em segundos. O mesmo mecanismo funciona para qualquer serviço — basta o alerta correspondente disparar.</p>
+<hr>
+<h2 id="estrutura-dos-repositórios">Estrutura dos Repositórios</h2>
+<pre tabindex="0"><code>ToggleMaster-AppRepo/
+├── auth-service/         # Go — auth + otelhttp
+├── flag-service/         # Python — Flask + FlaskInstrumentor
+├── targeting-service/    # Python — Flask + FlaskInstrumentor
+├── evaluation-service/   # Go — eval + Redis + Azure Queue
+├── analytics-service/    # Python — Azure SQL consumer
+└── .github/workflows/
+    ├── shared-ci.yml     # pipeline reutilizável
+    ├── auth-ci.yml       # trigger por path
+    ├── flag-ci.yml
+    └── ...
+
+ToggleMaster-gitops/
+└── environments/prd/
+    ├── observability/
+    │   ├── prometheus-app.yaml          # Helm chart via ArgoCD
+    │   ├── loki-app.yaml                # SingleBinary mode
+    │   ├── grafana-app.yaml             # com sidecar de dashboard
+    │   ├── otel-collector.yaml          # Deployment + ConfigMap
+    │   └── grafana-dashboard-configmap.yaml
+    ├── auth-service/
+    ├── flag-service/
+    ├── targeting-service/
+    ├── evaluation-service/
+    └── analytics-service/
+</code></pre><hr>
+<h2 id="para-que-serve-no-mercado">Para Que Serve no Mercado</h2>
+<p>O padrão implementado aqui — OTel + Prometheus + Loki + Grafana + AlertManager + PagerDuty/OpsGenie — é exatamente o que times de SRE usam em empresas como Nubank, iFood e Mercado Livre. A observabilidade não é opcional em sistemas distribuídos: sem ela, a depuração de problemas em produção é caçar agulha em palheiro.</p>
+<p>O Self-Healing automático reduz o MTTR (Mean Time to Recovery) de horas para minutos e permite que o time de on-call durma tranquilo — o sistema reage antes que o usuário perceba.</p>
+<hr>
+<h2 id="conclusão">Conclusão</h2>
+<p>O maior aprendizado desta fase não é técnico — é cultural. Observabilidade não é uma feature que você adiciona no final. É uma disciplina que precisa estar no DNA do sistema desde o primeiro commit. Instrumentar um microsserviço com OTel leva menos de 20 linhas de código e devolve visibilidade total de como ele se comporta em produção.</p>
+<p>O ToggleMaster termina a jornada de 4 fases com um sistema que não apenas funciona — mas que <strong>sabe que está funcionando</strong>, avisa quando não está, e tenta se consertar sozinho.</p>
+<hr>
+<h2 id="referências">Referências</h2>
+<ul>
+<li><a href="https://opentelemetry.io/docs/">OpenTelemetry — Documentação Oficial</a></li>
+<li><a href="https://prometheus.io/docs/introduction/overview/">Prometheus — Getting Started</a></li>
+<li><a href="https://grafana.com/docs/loki/latest/">Grafana Loki — Documentação</a></li>
+<li><a href="https://argo-cd.readthedocs.io/en/stable/core_concepts/">ArgoCD — Core Concepts</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/aks/">Azure Kubernetes Service</a></li>
+<li><a href="https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp">OTel Go Contrib — otelhttp</a></li>
+<li><a href="https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/flask/flask.html">OTel Python — FlaskInstrumentor</a></li>
+</ul>
+
+</main>
+    <footer>
+  
+
+</footer>
+  </body>
+</html>
