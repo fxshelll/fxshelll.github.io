@@ -195,15 +195,16 @@ fetchInject(["/js/lazysizes.min.js"]);
     <h1>Ansible SSL: Certificados Let&#39;s Encrypt Automáticos com AWX</h1>
   </header>
   <p>Você já acordou às 3 da manhã com o alerta de que um certificado SSL expirou em produção? Ou descobriu que um cliente tentou acessar o site e viu a tela vermelha do browser dizendo &ldquo;conexão não é segura&rdquo;? Esse é o custo de gerenciar SSL na mão.</p>
-<p>Neste lab eu automatizei o ciclo completo de criação e renovação de certificados SSL para três sites diferentes — <code>fxshell.com.br</code>, <code>devopslab.com.br</code> e <code>infrastack.com.br</code> — usando Ansible + Certbot + Let&rsquo;s Encrypt. O AWX agenda a renovação automática todos os dias às 03:00 e só renova quando o certificado tem menos de 30 dias de validade. Nenhum clique manual, nenhuma surpresa.</p>
+<p>Neste lab eu automatizei o ciclo completo de criação e renovação de certificados SSL para três sites diferentes — <code>fxshell.com.br</code>, <code>devopslab.com.br</code> e <code>infrastack.com.br</code> — usando Ansible + Certbot + Let&rsquo;s Encrypt. Cada certificado cobre o domínio raiz <strong>e</strong> o <code>www</code> no mesmo cert (SAN). O AWX agenda a renovação automática toda <strong>terça-feira às 03:00 UTC</strong>; quando disparado manualmente, um survey pergunta quais tenants renovar antes de executar. Nenhum clique desnecessário, nenhuma surpresa.</p>
 <hr>
 <h2 id="objetivo-do-lab">Objetivo do Lab</h2>
 <p>Construir uma automação completa que:</p>
 <ol>
 <li>Instala e configura o Certbot em múltiplos servidores</li>
+<li>Emite um único certificado cobrindo <code>dominio.com.br</code> <strong>e</strong> <code>www.dominio.com.br</code> (SAN — Subject Alternative Names)</li>
 <li>Configura o Nginx para servir o desafio ACME e depois ativa HTTPS com TLS 1.3 + HSTS</li>
-<li>Emite certificados gratuitos via Let&rsquo;s Encrypt para N sites em paralelo</li>
-<li>Agenda renovação automática no AWX com notificação de resultado</li>
+<li>Agenda renovação automática no AWX toda <strong>terça-feira às 03:00 UTC</strong></li>
+<li>Quando executado manualmente, pergunta via survey quais tenants renovar</li>
 </ol>
 <hr>
 <h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
@@ -321,7 +322,7 @@ fetchInject(["/js/lazysizes.min.js"]);
     └── gerar_gif.py                    # Script Pillow que gerou o GIF
 </code></pre><hr>
 <h2 id="inventário--os-3-sites">Inventário — Os 3 Sites</h2>
-<p>O inventário define os três servidores com as variáveis específicas de cada site. Cada host tem <code>site_domain</code>, <code>site_email</code> e <code>site_webroot</code> — variáveis que os templates Jinja2 das roles consomem.</p>
+<p>O inventário define os três servidores. Cada host tem <code>site_domain</code> (nome principal, usado como <code>--cert-name</code> pelo Certbot) e <code>site_domains</code> (lista com raiz <strong>e</strong> www, usada tanto no <code>certbot certonly</code> quanto nos <code>server_name</code> do Nginx).</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># inventory/hosts.yml</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">all</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">children</span><span class="p">:</span><span class="w">
@@ -330,7 +331,10 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">fxshell_server</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_host</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.1.10</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domain</span><span class="p">:</span><span class="w"> </span><span class="l">fxshell.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domain</span><span class="p">:</span><span class="w"> </span><span class="l">fxshell.com.br         </span><span class="w"> </span><span class="c"># cert-name no Certbot</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domains:                         # SAN</span><span class="p">:</span><span class="w"> </span><span class="l">raiz + www no mesmo cert</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">fxshell.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">www.fxshell.com.br</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_email</span><span class="p">:</span><span class="w"> </span><span class="l">admin@fxshell.com.br</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_webroot</span><span class="p">:</span><span class="w"> </span><span class="l">/var/www/fxshell</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">nginx_config_name</span><span class="p">:</span><span class="w"> </span><span class="l">fxshell.com.br</span><span class="w">
@@ -339,6 +343,9 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_host</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.1.11</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domain</span><span class="p">:</span><span class="w"> </span><span class="l">devopslab.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domains</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">devopslab.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">www.devopslab.com.br</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_email</span><span class="p">:</span><span class="w"> </span><span class="l">admin@devopslab.com.br</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_webroot</span><span class="p">:</span><span class="w"> </span><span class="l">/var/www/devopslab</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">nginx_config_name</span><span class="p">:</span><span class="w"> </span><span class="l">devopslab.com.br</span><span class="w">
@@ -347,12 +354,17 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_host</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.1.12</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domain</span><span class="p">:</span><span class="w"> </span><span class="l">infrastack.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_domains</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">infrastack.com.br</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">www.infrastack.com.br</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_email</span><span class="p">:</span><span class="w"> </span><span class="l">admin@infrastack.com.br</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">site_webroot</span><span class="p">:</span><span class="w"> </span><span class="l">/var/www/infrastack</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">nginx_config_name</span><span class="p">:</span><span class="w"> </span><span class="l">infrastack.com.br</span><span class="w">
-</span></span></span></code></pre></div><hr>
+</span></span></span></code></pre></div><p>O Certbot aceita múltiplos <code>--domain</code> num único comando. O primeiro domínio da lista vira o nome do certificado (<code>/etc/letsencrypt/live/fxshell.com.br/</code>), e os demais entram como SANs. O resultado é um único arquivo <code>.pem</code> válido para <code>fxshell.com.br</code> e <code>www.fxshell.com.br</code> — sem precisar de dois certificados separados.</p>
+<hr>
 <h2 id="role-ssl_certbot--o-coração-da-emissão">Role <code>ssl_certbot</code> — O Coração da Emissão</h2>
 <p>A task mais importante da role verifica se o certificado já existe antes de tentar emitir. Isso garante idempotência — você pode rodar o playbook quantas vezes quiser sem gerar requisições desnecessárias para a CA (o Let&rsquo;s Encrypt tem rate limits).</p>
+<p>O comando usa um loop Jinja2 para gerar múltiplos <code>--domain</code>, cobrindo <code>dominio.com.br</code> e <code>www.dominio.com.br</code> num único certificado SAN:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># roles/ssl_certbot/tasks/main.yml (trecho)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Verificar se certificado já existe</span><span class="w">
@@ -360,12 +372,12 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ certbot_certs_dir }}/{{ site_domain }}/fullchain.pem&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">cert_exists</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Obter certificado SSL via certbot (webroot)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Obter certificado SSL via certbot (webroot — raiz + www)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">    certbot certonly
 </span></span></span><span class="line"><span class="cl"><span class="sd">    --webroot
 </span></span></span><span class="line"><span class="cl"><span class="sd">    --webroot-path {{ site_webroot }}
-</span></span></span><span class="line"><span class="cl"><span class="sd">    --domain {{ site_domain }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">    {% for d in site_domains %}--domain {{ d }} {% endfor %}
 </span></span></span><span class="line"><span class="cl"><span class="sd">    --email {{ site_email }}
 </span></span></span><span class="line"><span class="cl"><span class="sd">    --agree-tos
 </span></span></span><span class="line"><span class="cl"><span class="sd">    --non-interactive
@@ -373,7 +385,12 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="sd">    --rsa-key-size {{ certbot_rsa_key_size }}
 </span></span></span><span class="line"><span class="cl"><span class="sd">    --keep-until-expiring</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l">not cert_exists.stat.exists</span><span class="w">
-</span></span></span></code></pre></div><p>O flag <code>--keep-until-expiring</code> garante que, mesmo se o certificado já existir, o Certbot não vai renovar antes de 30 dias. O flag <code>--staging</code> permite testar o fluxo completo sem consumir os rate limits de produção do Let&rsquo;s Encrypt.</p>
+</span></span></span></code></pre></div><p>Para <code>fxshell_server</code>, o comando expandido fica:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">certbot certonly --webroot --webroot-path /var/www/fxshell <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --domain fxshell.com.br --domain www.fxshell.com.br <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --email admin@fxshell.com.br --agree-tos --non-interactive <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --rsa-key-size <span class="m">4096</span> --keep-until-expiring
+</span></span></code></pre></div><p>O flag <code>--keep-until-expiring</code> garante que, mesmo se o certificado já existir, o Certbot não vai renovar antes de 30 dias. O flag <code>--staging</code> permite testar o fluxo completo sem consumir os rate limits de produção do Let&rsquo;s Encrypt.</p>
 <hr>
 <h2 id="template-nginx-https">Template Nginx HTTPS</h2>
 <p>O template <code>nginx-ssl.conf.j2</code> gera uma config com as melhores práticas de TLS:</p>
@@ -422,14 +439,31 @@ fetchInject(["/js/lazysizes.min.js"]);
 <h2 id="awx--job-templates-e-schedule">AWX — Job Templates e Schedule</h2>
 <p>A configuração do AWX está documentada no arquivo <code>awx-job-template.yml</code>. Os dois jobs principais são:</p>
 <p><strong>SSL - Criar Certificado</strong>: roda sob demanda com survey para o operador escolher domínio e ambiente (staging/produção).</p>
-<p><strong>SSL - Renovar Certificados (Auto)</strong>: roda no schedule <code>DTSTART:20240101T030000Z RRULE:FREQ=DAILY;INTERVAL=1</code> — todo dia às 03:00 UTC, verifica todos os hosts e renova os que precisam.</p>
-<p>O schedule usa a sintaxe RFC 5545 (iCalendar RRULE), que é o formato que o AWX aceita. Para configurar manualmente na interface:</p>
-<pre tabindex="0"><code>Projects → Criar projeto apontando para o repositório git
-Inventories → Importar hosts.yml
-Credentials → Adicionar chave SSH dos servidores
+<p><strong>SSL - Renovar Certificados</strong>: tem dois modos de uso:</p>
+<ul>
+<li><strong>Schedule automático</strong> — toda terça-feira às 03:00 UTC, renova todos os hosts do grupo <code>webservers</code></li>
+<li><strong>Execução manual com survey</strong> — antes de executar, o AWX exibe um formulário para o operador selecionar quais tenants renovar</li>
+</ul>
+<p>O survey de seleção de tenants funciona assim: o campo <code>tenants</code> aceita o nome de um ou mais hosts separados por vírgula (ex: <code>fxshell_server,devopslab_server</code>) ou o grupo <code>webservers</code> para renovar todos. Esse valor é passado para a diretiva <code>hosts:</code> do playbook, que funciona como um <code>--limit</code> dinâmico.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># O playbook usa o valor do survey como filtro de hosts</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Renovar certificados SSL Let&#39;s Encrypt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ tenants | default(&#39;webservers&#39;) }}&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>O schedule usa a sintaxe RFC 5545 (iCalendar RRULE), que é o formato que o AWX aceita:</p>
+<pre tabindex="0"><code>DTSTART:20240102T030000Z RRULE:FREQ=WEEKLY;BYDAY=TU
+# BYDAY=TU = Tuesday (terça-feira)
+# FREQ=WEEKLY = toda semana
+# Hora: 03:00 UTC
+</code></pre><p>Para configurar manualmente na interface do AWX:</p>
+<pre tabindex="0"><code>Projects     → Criar projeto apontando para o repositório git
+Inventories  → Importar hosts.yml com os 3 servidores
+Credentials  → Adicionar chave SSH dos servidores
 Job Templates → SSL - Criar Certificado (playbook-ssl-create.yml)
 Job Templates → SSL - Renovar (playbook-ssl-renewal.yml)
-Schedules → Adicionar no job de renovação: Recurrence: Daily, Time: 03:00
+              → Habilitar Survey com campo &#34;tenants&#34;
+              → Habilitar ask_limit_on_launch: true
+Schedules    → Adicionar no job de renovação:
+              → Recurrence: Weekly, Day: Tuesday, Time: 03:00 UTC
+              → Default tenants: webservers (todos)
 </code></pre><hr>
 <h2 id="executando">Executando</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. Testar conectividade com todos os servidores</span>
