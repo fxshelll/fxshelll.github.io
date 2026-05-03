@@ -12,7 +12,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 03 May 2026 17:24:43 UT</lastBuildDate>
+    <lastBuildDate>Sun, 03 May 2026 17:33:18 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible SSL: Certificados Let&#39;s Encrypt Automáticos com AWX</title>
