@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-      <meta charset="utf-8"><meta property="og:title" content="Monolito, Arquitetura em Camadas e Microsserviços" />
-      <meta property="og:description" content="Comparativo entre Monólito, Arquitetura em Camadas e Microsserviços — quando usar cada abordagem, estratégias de banco de dados, padrões de comunicação e quando migrar." />
-      <meta property="og:image" content="https://fxshelll.github.io/arq-monolito-vs-microservicos.gif" />
-      <meta property="og:url" content="https://fxshelll.github.io/posts/arquitetura-de-aplica%C3%A7%C3%B5es/" />
-      <meta property="og:type" content="article" />
-      <meta property="article:published_time" content="2025-09-24T09:00:00-03:00" />
-      <meta property="article:tag" content="devops" />
-      <meta property="article:tag" content="cloud" />
-      <meta property="article:tag" content="kubernetes" />
-      <meta property="article:tag" content="microservicos" />
-      <meta property="article:tag" content="arquitetura" />
+      <meta charset="utf-8"><meta property="og:title" content="Microservicos" />
+      <meta property="og:description" content="Site pessoal com writeups de hacking, segurança e DevOps" />
+      <meta property="og:image" content="https://fxshelll.github.io/fxshell.png" />
+      <meta property="og:url" content="https://fxshelll.github.io/tags/microservicos/" />
+      <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Monolito, Arquitetura em Camadas e Microsserviços" />
-      <meta name="twitter:description" content="Comparativo entre Monólito, Arquitetura em Camadas e Microsserviços — quando usar cada abordagem, estratégias de banco de dados, padrões de comunicação e quando migrar." />
-      <meta name="twitter:image" content="https://fxshelll.github.io/arq-monolito-vs-microservicos.gif" />
+      <meta name="twitter:title" content="Microservicos" />
+      <meta name="twitter:description" content="Site pessoal com writeups de hacking, segurança e DevOps" />
+      <meta name="twitter:image" content="https://fxshelll.github.io/fxshell.png" />
     
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monolito, Arquitetura em Camadas e Microsserviços | FXShell - DevOps &amp; Sec</title>
-    <meta name="description" content="Comparativo entre Monólito, Arquitetura em Camadas e Microsserviços — quando usar cada abordagem, estratégias de banco de dados, padrões de comunicação e quando migrar.">
-    <meta name="keywords" content="devops, cloud, kubernetes, microservicos, arquitetura">
+    <title>Microservicos | FXShell - DevOps &amp; Sec</title>
+    <meta name="description" content="Site pessoal com writeups de hacking, segurança e DevOps">
+    <meta name="keywords" content="">
     
     
     
@@ -43,7 +37,9 @@
 
     
     
-    <link rel="canonical" href="https://fxshelll.github.io/posts/arquitetura-de-aplica%C3%A7%C3%B5es/">
+      <link href="/tags/microservicos/index.xml" rel="alternate" type="application/rss+xml" title="FXShell - DevOps &amp; Sec">
+    
+    <link rel="canonical" href="https://fxshelll.github.io/tags/microservicos/">
     
     
     
@@ -153,285 +149,32 @@ fetchInject(["/js/lazysizes.min.js"]);
 </header>
     <main>
   <header>
-    <h1>Monolito, Arquitetura em Camadas e Microsserviços</h1>
+    <h1>Microservicos</h1>
   </header>
-  <p>A maioria dos sistemas começa como um monólito. E não tem problema algum nisso. O problema é quando o monólito cresce sem nenhuma organização interna, e o time começa a gastar mais tempo desvendando dependências ocultas do que entregando funcionalidades.</p>
-<p>Este post cobre a evolução natural das arquiteturas de software — do monólito para a arquitetura em camadas e, em determinados contextos, para microsserviços — com ênfase nos trade-offs reais de cada abordagem.</p>
-<hr>
-<h2 id="visão-geral">Visão Geral</h2>
-<ul>
-<li><strong>Monólito</strong>: uma aplicação única, um deploy para tudo.</li>
-<li><strong>Arquitetura em Camadas</strong>: organização interna em camadas (UI, aplicação, domínio, infra) — ainda um único deploy.</li>
-<li><strong>Microsserviços</strong>: várias aplicações pequenas e independentes, comunicando-se via APIs ou eventos.</li>
-</ul>
-<p><img src="/arq-monolito-vs-microservicos.gif" alt="Diagrama animado — Monólito, Camadas e Microsserviços"></p>
-<hr>
-<h2 id="1-monólito">1. Monólito</h2>
-<p>Uma aplicação <strong>única</strong>, com todas as funcionalidades, que roda e é implantada como um bloco só.</p>
-<h3 id="quando-usar">Quando usar</h3>
-<ul>
-<li>Produtos em fase inicial.</li>
-<li>Equipes pequenas.</li>
-<li>Domínio ainda pouco definido.</li>
-</ul>
-<h3 id="vantagens">Vantagens</h3>
-<ul>
-<li>Simples de desenvolver, testar e implantar.</li>
-<li>Transações ACID fáceis (um único banco).</li>
-<li>Performance interna (chamadas em memória, sem latência de rede).</li>
-<li>Custos operacionais menores no início.</li>
-</ul>
-<h3 id="desafios">Desafios</h3>
-<ul>
-<li>Acoplamento crescente — evolução fica difícil com o tempo.</li>
-<li>Deploy único significa risco alto: qualquer mudança afeta o sistema inteiro.</li>
-<li>Escalabilidade desigual — para escalar um módulo, escala tudo junto.</li>
-<li>Sem estrutura interna, vira o famoso <strong>Big Ball of Mud</strong>.</li>
-</ul>
-<h3 id="boas-práticas">Boas práticas</h3>
-<ul>
-<li>Organizar em <strong>módulos separados</strong> (Monólito Modular).</li>
-<li>Usar camadas bem definidas (UI, domínio, infra).</li>
-<li>Aplicar DDD leve (entidades, serviços de domínio).</li>
-<li>Adotar CI/CD e feature flags para reduzir risco nos deploys.</li>
-</ul>
-<hr>
-<h2 id="2-arquitetura-em-camadas-layered">2. Arquitetura em Camadas (Layered)</h2>
-<p>Estilo de <strong>organização interna</strong> que pode ser aplicado tanto em monólitos quanto em microsserviços. Não é um tipo de deploy — é uma forma de estruturar o código.</p>
-<h3 id="camadas-típicas">Camadas típicas</h3>
-<ol>
-<li><strong>Apresentação (UI/API)</strong>: controllers, validações, DTOs.</li>
-<li><strong>Aplicação/Serviços</strong>: orquestra casos de uso.</li>
-<li><strong>Domínio (Core)</strong>: entidades, regras de negócio, policies.</li>
-<li><strong>Infraestrutura</strong>: persistência, mensageria, APIs externas.</li>
-</ol>
-<h3 id="benefícios">Benefícios</h3>
-<ul>
-<li>Separação de responsabilidades clara.</li>
-<li>Testabilidade alta — cada camada pode ser testada de forma isolada.</li>
-<li>Evolução mais segura — mudanças ficam contidas na camada correta.</li>
-</ul>
-<h3 id="cuidados">Cuidados</h3>
-<ul>
-<li>Evitar <strong>modelo anêmico</strong> (entidades sem lógica, só getters/setters).</li>
-<li>Respeitar a direção de dependências: UI → App → Domínio → Infra.</li>
-<li>Não deixar detalhes de infraestrutura vazar para o domínio.</li>
-</ul>
-<hr>
-<h2 id="3-microsserviços">3. Microsserviços</h2>
-<p>Conjunto de serviços pequenos e <strong>autônomos</strong>, cada um dono do próprio banco e alinhado a um subdomínio de negócio específico.</p>
-<h3 id="quando-faz-sentido">Quando faz sentido</h3>
-<ul>
-<li>Domínio já estável e bem mapeado.</li>
-<li>Necessidade de escala granular (diferentes partes do sistema têm cargas diferentes).</li>
-<li>Múltiplas equipes (squads) precisam trabalhar de forma autônoma.</li>
-<li>Deploys independentes e resiliência a falhas são prioridade.</li>
-</ul>
-<h3 id="vantagens-1">Vantagens</h3>
-<ul>
-<li>Escala por serviço — paga pela infraestrutura do que precisa.</li>
-<li>Deploy independente — atualiza um serviço sem afetar os outros.</li>
-<li>Autonomia de tecnologia — cada serviço pode usar a stack mais adequada.</li>
-<li>Resiliência a falhas locais — um serviço caindo não derruba o sistema todo.</li>
-</ul>
-<h3 id="desafios-1">Desafios</h3>
-<ul>
-<li>Complexidade distribuída — rede, latência, retries, timeouts.</li>
-<li>Dados distribuídos — consistência eventual em vez de ACID.</li>
-<li>Observabilidade — logs, métricas e tracing distribuído são obrigatórios.</li>
-<li>Governança — versionamento de contratos e APIs.</li>
-<li>Custos operacionais maiores (mais infraestrutura, mais orquestração).</li>
-</ul>
-<h3 id="boas-práticas-1">Boas práticas</h3>
-<ul>
-<li>Definir <strong>Bounded Contexts</strong> (DDD) antes de cortar serviços.</li>
-<li>Um banco por serviço — nunca banco compartilhado.</li>
-<li>Preferir comunicação assíncrona (eventos, filas) para desacoplamento.</li>
-<li>Usar contratos versionados.</li>
-<li>Implementar padrões de resiliência: circuit breaker, timeout, retries.</li>
-<li>Adotar OpenTelemetry e tracing distribuído desde o início.</li>
-</ul>
-<hr>
-<h2 id="4-comparativo">4. Comparativo</h2>
-<table>
-  <thead>
-      <tr>
-          <th>Critério</th>
-          <th>Monólito</th>
-          <th>Microsserviços</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Time-to-market inicial</td>
-          <td>Excelente</td>
-          <td>Bom (overhead de setup)</td>
-      </tr>
-      <tr>
-          <td>Complexidade</td>
-          <td>Baixa</td>
-          <td>Alta</td>
-      </tr>
-      <tr>
-          <td>Escalabilidade</td>
-          <td>Fraca (escala tudo)</td>
-          <td>Forte (por serviço)</td>
-      </tr>
-      <tr>
-          <td>Deploy independente</td>
-          <td>Não</td>
-          <td>Sim</td>
-      </tr>
-      <tr>
-          <td>Consistência</td>
-          <td>Forte (ACID)</td>
-          <td>Eventual (Sagas)</td>
-      </tr>
-      <tr>
-          <td>Tamanho de equipe</td>
-          <td>Pequena</td>
-          <td>Média/Grande</td>
-      </tr>
-      <tr>
-          <td>Custos iniciais</td>
-          <td>Baixos</td>
-          <td>Altos</td>
-      </tr>
-      <tr>
-          <td>Evolução longo prazo</td>
-          <td>Pode degradar</td>
-          <td>Alta (se bem governada)</td>
-      </tr>
-  </tbody>
-</table>
-<hr>
-<h2 id="5-estratégias-de-migração">5. Estratégias de Migração</h2>
-<p>Migrar de monólito para microsserviços não é um projeto de fim de semana. As estratégias mais usadas:</p>
-<ul>
-<li><strong>Strangler Fig</strong>: cercar o monólito e extrair features aos poucos, sem interrupção.</li>
-<li>Modularizar internamente antes de separar em serviços.</li>
-<li>Usar <strong>Anticorruption Layer</strong> para integrar com sistemas legados sem contaminar o domínio novo.</li>
-<li>Definir estratégia de dados (sagas, eventos) antes de separar os bancos.</li>
-<li>Começar pelos hotspots — módulos com mais dor de escala ou frequência de mudança.</li>
-</ul>
-<hr>
-<h2 id="6-banco-de-dados-em-microsserviços">6. Banco de Dados em Microsserviços</h2>
-<h3 id="sql-relacional">SQL (Relacional)</h3>
-<p>Bancos como <strong>PostgreSQL</strong>, <strong>MySQL</strong> e <strong>SQL Server</strong> são ideais para sistemas que exigem integridade transacional.</p>
-<ul>
-<li>Transações ACID — Atomicidade, Consistência, Isolamento e Durabilidade.</li>
-<li>Consultas complexas com JOIN, agregações e filtros avançados.</li>
-<li>Integridade referencial assegurada por chaves e restrições.</li>
-</ul>
-<p>Quando usar: pagamentos, pedidos, autenticação — qualquer fluxo onde a consistência forte é inegociável.</p>
-<h3 id="nosql-não-relacional">NoSQL (Não Relacional)</h3>
-<p>Bancos como <strong>MongoDB</strong>, <strong>Cassandra</strong> e <strong>Redis</strong> oferecem flexibilidade e escalam bem em ambientes distribuídos.</p>
-<ul>
-<li>Flexibilidade de esquema — sem estrutura fixa de tabelas.</li>
-<li>Escalabilidade horizontal — adiciona nós conforme o volume cresce.</li>
-<li>Consistência eventual, priorizando disponibilidade e desempenho.</li>
-</ul>
-<p>Quando usar: catálogos de produtos, sessões, dados de IoT, histórico de eventos.</p>
-<h3 id="teorema-cap">Teorema CAP</h3>
-<p>Todo sistema distribuído precisa escolher entre duas das três propriedades:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Propriedade</th>
-          <th>Descrição</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Consistência (C)</strong></td>
-          <td>Todos os nós veem os mesmos dados ao mesmo tempo.</td>
-      </tr>
-      <tr>
-          <td><strong>Disponibilidade (A)</strong></td>
-          <td>O sistema sempre responde, mesmo com falhas.</td>
-      </tr>
-      <tr>
-          <td><strong>Tolerância a Partições (P)</strong></td>
-          <td>O sistema continua operando mesmo que partes da rede falhem.</td>
-      </tr>
-  </tbody>
-</table>
-<p>Bancos SQL priorizam <strong>Consistência + Disponibilidade</strong>. Bancos NoSQL priorizam <strong>Disponibilidade + Particionamento</strong>, aceitando consistência eventual.</p>
-<h3 id="padrões-para-dados-distribuídos">Padrões para dados distribuídos</h3>
-<p><strong>Database per Service</strong> — cada microsserviço tem seu próprio banco. Nunca banco compartilhado entre domínios. Isso garante autonomia de deploy e escala independente.</p>
-<p><strong>CQRS (Command Query Responsibility Segregation)</strong> — separa as operações de escrita (commands) das de leitura (queries). Permite otimizações específicas para cada tipo: banco relacional para escrita, Elasticsearch para leitura, por exemplo.</p>
-<p><strong>Event Sourcing</strong> — cada mudança de estado é registrada como um evento imutável. A aplicação reconstrói seu estado a partir desses eventos. Garante rastreabilidade total e histórico auditável.</p>
-<p><strong>Sagas</strong> — coordenam transações distribuídas usando eventos assíncronos. Cada etapa tem uma ação compensatória caso algo falhe, garantindo consistência eventual sem bloqueios distribuídos (2PC).</p>
-<hr>
-<h2 id="7-comunicação-entre-microsserviços">7. Comunicação entre Microsserviços</h2>
-<p>A forma como os serviços se comunicam define a qualidade do sistema inteiro. Existem três modelos principais.</p>
-<p><img src="/arq-comunicacao-microservicos.gif" alt="Diagrama animado — Comunicação entre Microsserviços"></p>
-<h3 id="comunicação-síncrona-rest--grpc">Comunicação Síncrona (REST / gRPC)</h3>
-<p>O cliente faz uma requisição e <strong>espera</strong> pela resposta. É o modelo clássico — simples, direto e previsível.</p>
-<p><strong>REST / HTTP</strong> é o mais comum. Simples de implementar, bem suportado em qualquer linguagem, mas cria acoplamento temporal: se o servidor cai, o cliente também quebra.</p>
-<p><strong>gRPC</strong> é mais moderno e performático. Usa serialização binária (Protocol Buffers), suporta streams bidirecionais e define contratos fortemente tipados. Mais rápido que JSON/REST e ideal para comunicação interna entre microsserviços. A desvantagem é a complexidade maior e dificuldade de expor diretamente para o frontend.</p>
-<p>Quando usar: operações críticas em tempo real onde a resposta importa imediatamente — consultas de saldo, validação de pagamento, autenticação.</p>
-<h3 id="comunicação-assíncrona-kafka--rabbitmq">Comunicação Assíncrona (Kafka / RabbitMQ)</h3>
-<p>O cliente <strong>envia uma mensagem</strong> e não espera resposta. O servidor processa quando puder, usando filas ou streams.</p>
-<p>Tecnologias: Kafka, RabbitMQ, AWS SQS, NATS, Pulsar.</p>
-<p>Vantagens: desacoplamento temporal, alta resiliência, absorve picos de tráfego. Se um consumidor cai, as mensagens ficam na fila até ele voltar.</p>
-<p>Desafios: exige infraestrutura de broker, tratamento de retries, deduplicação e Dead Letter Queue (DLQ). Debug mais complexo — tracing distribuído é obrigatório.</p>
-<p>Quando usar: propagação de eventos, notificações, processamento em background — qualquer fluxo onde o produtor não precisa esperar o resultado.</p>
-<h3 id="api-gateway">API Gateway</h3>
-<p>Um <strong>ponto único de entrada</strong> que recebe, roteia e controla as requisições para os microsserviços internos. Exemplos: Kong, Traefik, Apigee, Amazon API Gateway.</p>
-<p>O gateway centraliza: autenticação e autorização, rate limiting, transformação de payloads, métricas e observabilidade.</p>
-<p>O risco é virar um ponto único de falha — precisa de alta disponibilidade e bom monitoramento.</p>
-<h3 id="padrão-híbrido-rest--mensageria">Padrão híbrido (REST + Mensageria)</h3>
-<p>Na prática, os sistemas saudáveis usam os dois modelos:</p>
-<ul>
-<li>REST/gRPC para operações rápidas e críticas que precisam de resposta imediata.</li>
-<li>Kafka/RabbitMQ para propagação de eventos e processamento assíncrono.</li>
-</ul>
-<p>Exemplo: pedido criado via REST → evento <code>PedidoCriado</code> publicado no Kafka → estoque, faturamento e notificação consomem de forma independente.</p>
-<hr>
-<h2 id="8-anti-padrões">8. Anti-padrões</h2>
-<ul>
-<li>Banco de dados compartilhado entre serviços (o maior assassino de autonomia).</li>
-<li>Nanosserviços — fragmentação excessiva sem justificativa de negócio.</li>
-<li>Comunicação síncrona em cascata — A chama B que chama C que chama D. Um nó lento trava toda a cadeia.</li>
-<li>Migração &ldquo;big bang&rdquo; — tentar migrar tudo de uma vez.</li>
-<li>Serviços sem CI/CD e sem observabilidade.</li>
-</ul>
-<hr>
-<h2 id="9-quando-migrar-para-microsserviços">9. Quando Migrar para Microsserviços</h2>
-<h3 id="manter-o-monólito-se">Manter o Monólito se</h3>
-<ul>
-<li>O time é pequeno.</li>
-<li>O produto está no início.</li>
-<li>A escalabilidade é resolvível com cache/CDN.</li>
-<li>Deploys menos frequentes são aceitáveis.</li>
-</ul>
-<h3 id="migrar-para-microsserviços-se">Migrar para Microsserviços se</h3>
-<ul>
-<li>O contexto de negócio está bem delimitado e estável.</li>
-<li>Existe dor real de escala ou necessidade de releases independentes.</li>
-<li>O plano de observabilidade e dados está definido.</li>
-<li>A estratégia de contratos e versionamento está estabelecida.</li>
-</ul>
-<hr>
-<h2 id="conclusão">Conclusão</h2>
-<p>Comece com <strong>monólito modular em camadas</strong>. Organize o código internamente, defina bounded contexts, mantenha boa cobertura de testes. Evolua para microsserviços onde realmente existe dor — escala, autonomia de equipe, deploys independentes.</p>
-<p>A tendência do mercado não é escolher um modelo e ficar nele para sempre. É entender que cada parte do sistema pode ter uma arquitetura diferente, e que a decisão certa depende da maturidade do domínio, do tamanho do time e da carga real.</p>
-<p>Arquitetura é sobre <strong>trade-offs</strong>. Toda escolha tem custo. A pergunta não é &ldquo;qual é a melhor arquitetura?&rdquo;, mas &ldquo;qual é a melhor arquitetura para esse contexto, agora?&rdquo;.</p>
-<hr>
-<h2 id="referências">Referências</h2>
-<ul>
-<li><a href="https://martinfowler.com/articles/microservices.html">Martin Fowler — Microservices</a></li>
-<li><a href="https://martinfowler.com/bliki/StranglerFigApplication.html">Martin Fowler — Strangler Fig Application</a></li>
-<li><a href="https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/">CAP Theorem — Eric Brewer</a></li>
-<li><a href="https://martinfowler.com/bliki/CQRS.html">CQRS — Martin Fowler</a></li>
-<li><a href="https://microservices.io/patterns/data/saga.html">Saga Pattern — microservices.io</a></li>
-<li><a href="https://grpc.io/docs/">gRPC — Documentação Oficial</a></li>
-<li><a href="https://opentelemetry.io/docs/">OpenTelemetry — Documentação Oficial</a></li>
-</ul>
+  
+    <article itemscope itemtype="http://schema.org/CreativeWork">
+  <header>
+    <h2 itemprop="name">
+      <a href="/posts/arquitetura-de-aplica%C3%A7%C3%B5es/">Monolito, Arquitetura em Camadas e Microsserviços</a>
+    </h2>
+  </header>
+  <meta itemprop="inLanguage" content="pt-br">
+  
+    <meta itemprop="image" content="arq-monolito-vs-microservicos.gif">
+  
+</article>
 
+  
 </main>
     <footer>
+  <nav><p>
+  
+  
+    <span>Page 1 of 1</span>
+  
+  
+</p></nav>
+
   
 
 </footer>

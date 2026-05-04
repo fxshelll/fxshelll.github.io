@@ -177,7 +177,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://fxshelll.github.io/tags/arquitetura/</loc>
+    <lastmod>2025-09-24T09:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://fxshelll.github.io/tags/kubernetes/</loc>
+    <lastmod>2025-09-24T09:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/microservicos/</loc>
     <lastmod>2025-09-24T09:00:00-03:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
