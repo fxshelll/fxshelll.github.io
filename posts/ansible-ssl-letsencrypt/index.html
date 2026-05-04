@@ -283,6 +283,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 <hr>
 <h2 id="como-o-fluxo-funciona">Como o Fluxo Funciona</h2>
 <p>O AWX dispara o playbook <code>ssl-create.yml</code>. O Ansible conecta em cada servidor via SSH e executa a role <code>ssl_certbot</code> em sequência:</p>
+<p><img src="/ssl-acme-challenge.gif" alt="ACME HTTP Challenge — validação webroot passo a passo"></p>
 <ol>
 <li>Instala o Certbot via snap e cria o symlink em <code>/usr/bin/certbot</code></li>
 <li>Garante que o Nginx está instalado e rodando</li>
@@ -393,6 +394,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></code></pre></div><p>O flag <code>--keep-until-expiring</code> garante que, mesmo se o certificado já existir, o Certbot não vai renovar antes de 30 dias. O flag <code>--staging</code> permite testar o fluxo completo sem consumir os rate limits de produção do Let&rsquo;s Encrypt.</p>
 <hr>
 <h2 id="template-nginx-https">Template Nginx HTTPS</h2>
+<p><img src="/ssl-tls-handshake.gif" alt="TLS Handshake — Certificate, OCSP Stapling, HSTS e sessão segura"></p>
 <p>O template <code>nginx-ssl.conf.j2</code> gera uma config com as melhores práticas de TLS:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
@@ -417,6 +419,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></code></pre></div><p>O OCSP Stapling (<code>ssl_stapling on</code>) reduz a latência das conexões: em vez de o browser consultar a CA para verificar se o certificado foi revogado, o servidor já faz essa consulta periodicamente e inclui a resposta assinada no handshake TLS.</p>
 <hr>
 <h2 id="role-ssl_renewal--lógica-de-renovação">Role <code>ssl_renewal</code> — Lógica de Renovação</h2>
+<p><img src="/ssl-renewal-logic.gif" alt="Lógica de Renovação SSL — AWX Schedule → decisão por site"></p>
 <p>A task de renovação calcula os dias restantes com <code>openssl</code> e <code>date</code>, e só chama o <code>certbot renew</code> se a condição for verdadeira:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Calcular dias restantes</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
