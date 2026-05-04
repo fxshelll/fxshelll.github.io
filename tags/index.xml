@@ -12,7 +12,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 04 May 2026 02:07:33 UT</lastBuildDate>
+    <lastBuildDate>Mon, 04 May 2026 02:18:57 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible</title>
@@ -290,6 +290,15 @@
       <pubDate>Wed, 03 Feb 2021 14:49:14 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/tags/redes/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Containers</title>
+      <link>https://fxshelll.github.io/tags/containers/</link>
+      <pubDate>Thu, 08 Oct 2020 14:10:44 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/containers/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
