@@ -57,67 +57,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://fxshelll.github.io/tags/argocd/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/azure/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/fiap/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/gitops/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/grafana/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/kubernetes/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/loki/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/opentelemetry/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/postech/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/tags/prometheus/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshelll.github.io/posts/togglemaster-postech-fase4/</loc>
-    <lastmod>2026-05-02T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://fxshelll.github.io/tags/appgateway/</loc>
     <lastmod>2026-04-25T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://fxshelll.github.io/posts/terraform-azure-appgw/</loc>
+    <lastmod>2026-04-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/azure/</loc>
     <lastmod>2026-04-25T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -224,6 +174,11 @@
   </url><url>
     <loc>https://fxshelll.github.io/tags/shell/</loc>
     <lastmod>2026-03-30T00:00:00-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshelll.github.io/tags/kubernetes/</loc>
+    <lastmod>2025-09-24T09:00:00-03:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
