@@ -12,7 +12,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 04 May 2026 01:50:54 UT</lastBuildDate>
+    <lastBuildDate>Mon, 04 May 2026 02:07:34 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/tags/infraestrutura/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible Lab: Provisionando Infraestrutura Web Segura do Zero</title>
@@ -107,6 +107,67 @@ Para Que Serve no Mercado Times de cloud usam esse padrão (VPC + ALB + EC2 + RD
 Com Terraform, essa infraestrutura vira um módulo reutilizável. Um time pode criar um ambiente de staging idêntico ao de produção em minutos, com certeza de que as configurações são as mesmas — algo impossível de garantir clicando manualmente no console.
 Conclusão Infraestrutura como código não é só sobre automação — é sobre confiança. Quando a infra está em arquivos .tf versionados no Git, qualquer pessoa do time pode entender o que existe, revisar mudanças em pull requests e reverter para um estado anterior se algo der errado. O terraform plan funciona como um diff da infraestrutura: você vê exatamente o que vai mudar antes de mudar.
 Referências Terraform AWS Provider Docs AWS VPC User Guide Terraform Best Practices ]]></content:encoded>
+    </item>
+    <item>
+      <title>Ansible</title>
+      <link>https://fxshelll.github.io/posts/ansible/</link>
+      <pubDate>Tue, 30 Mar 2021 00:56:17 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/posts/ansible/</guid>
+      <description>O Ansible é uma ferramenta de automação de infraestrutura open source que permite gerenciar configurações, provisionar servidores e orquestrar tarefas complexas em dezenas ou centenas de máquinas ao mesmo tempo — tudo a partir de um único ponto de controle, sem instalar nenhum agente nos servidores alvo.
+O nome vem da ficção científica: um &ldquo;ansible&rdquo; é um dispositivo de comunicação superlumínica que transmite informação instantaneamente para múltiplos destinos. A metáfora é precisa.
+</description>
+      <content:encoded><![CDATA[O Ansible é uma ferramenta de automação de infraestrutura open source que permite gerenciar configurações, provisionar servidores e orquestrar tarefas complexas em dezenas ou centenas de máquinas ao mesmo tempo — tudo a partir de um único ponto de controle, sem instalar nenhum agente nos servidores alvo.
+O nome vem da ficção científica: um &ldquo;ansible&rdquo; é um dispositivo de comunicação superlumínica que transmite informação instantaneamente para múltiplos destinos. A metáfora é precisa.
+Os quatro pilares do Ansible Gerenciamento de Mudança — O Ansible é idempotente: executa uma tarefa somente se for necessário. Se o estado desejado já existe, ele não faz nada. Isso permite rodar o mesmo playbook várias vezes sem efeitos colaterais.
+Provisionamento — Instala pacotes, configura serviços, cria usuários, aplica permissões — prepara um servidor do zero para uma função específica.
+Automação — Executa tarefas de forma ordenada, permite tomar decisões condicionais e encadear operações complexas com YAML simples.
+Orquestração — Coordena múltiplos servidores e aplicações em sequência: atualiza o banco antes dos app servers, drena o load balancer antes de reiniciar um nó.
+Por que o Ansible? Sem agente. Não há software para instalar nos servidores gerenciados. O Ansible usa SSH (Linux) e WinRM (Windows) — protocolos que já existem em qualquer servidor.
+YAML simples. Os playbooks são legíveis por qualquer pessoa da equipe — dev, ops ou gerência. Não é uma DSL exótica, é YAML com lógica.
+Configuração rápida. Sem daemon, sem banco de dados, sem porta extra. Instale o Ansible no control node e comece a usar.
+Seguro. SSH é o canal de comunicação. Suporte nativo a chaves SSH, LDAP e Kerberos para autenticação.
+Arquitetura O Control Node é a única máquina com Ansible instalado. A partir dele, o Ansible se conecta via SSH aos hosts Linux e via WinRM aos hosts Windows, empurra os módulos Python temporariamente, executa as tarefas e remove tudo ao final. Nenhum rastro fica nos hosts gerenciados.
+Como funciona O Ansible é desenvolvido em Python e requer Python ≥ 2.7 ou ≥ 3.5. Ele sempre busca o interpretador em /usr/bin/python por padrão — isso pode ser ajustado com a variável ansible_python_interpreter.
+A comunicação acontece via:
+SSH para servidores Linux (usuário + senha ou chave SSH) WinRM para servidores Windows A autenticação é descentralizada — pode ser feita com LDAP ou Kerberos para ambientes corporativos.
+Fluxo de execução de um Playbook Ao executar ansible-playbook site.yml -i hosts, o Ansible:
+Lê o playbook YAML e interpreta as plays Consulta o inventário para descobrir quais hosts executam cada play Determina quais módulos precisam ser executados (apt, copy, service, template&hellip;) Conecta via SSH/WinRM nos hosts alvos Aplica cada task, reporta o estado (ok / changed / failed) e aciona handlers se necessário Instalação O Ansible não adiciona banco de dados, daemon ou software persistente nos hosts. A única dependência é Python.
+RHEL / CentOS / Fedora — habilite o EPEL antes:
+sudo yum install ansible Ubuntu / Debian:
+sudo apt-add-repository ppa:ansible/ansible sudo apt-get update sudo apt-get install ansible Via pip (qualquer distro):
+sudo apt-get install python3-pip # se não tiver pip sudo pip3 install ansible sudo pip3 install ansible --upgrade # para atualizar Após instalar, configure o acesso SSH:
+ssh-keygen -t rsa # gere sua chave ssh-copy-id user@host # copie para os hosts Configuração — ansible.cfg O arquivo principal de configuração é o ansible.cfg. A ordem de leitura (da menor para a maior precedência):
+/etc/ansible/ansible.cfg (global) ~/.ansible.cfg (usuário) ./ansible.cfg (diretório corrente) Variável de ambiente ANSIBLE_CONFIG Um ansible.cfg funcional e comentado:
+[defaults] # Execução paralela em até 5 hosts simultaneamente forks = 5 log_path = /var/log/ansible.log module_name = command executable = /bin/bash # Caminhos inventory = /etc/ansible/hosts roles_path = /etc/ansible/roles remote_tmp = ~/.ansible/tmp local_tmp = ~/.ansible/tmp # Autenticação remote_user = root ask_pass = no # SSH remote_port = 22 timeout = 10 host_key_checking = False private_key_file = ~/.ssh/id_rsa [privilege_escalation] become = True become_method = sudo become_user = root become_ask_pass = False [ssh_connection] scp_if_ssh = smart transfer_method = smart retries = 3 Inventário — Hosts, Grupos e Sub-grupos O inventário define quais servidores o Ansible conhece e como eles se organizam. Pode ser um arquivo estático (/etc/ansible/hosts) ou dinâmico (script que consulta cloud providers).
+Hosts individuais:
+192.168.1.151 192.168.1.234 Grupos:
+[servidores_bd] 192.168.1.151 [servidores_web] 192.168.1.234 Sub-grupos (children):
+[servidores:children] servidores_web servidores_bd Variáveis por grupo:
+[servidores_bd:vars] ansible_ssh_port=22 ansible_ssh_user=osboxes ansible_ssh_pass=osboxes.org ansible_become=yes ansible_become_method=sudo Alias por host:
+mysql ansible_ssh_host=192.168.1.234 Comandos Ad-hoc Ad-hoc são comandos pontuais executados sem playbook — ideais para operações rápidas.
+Sintaxe base:
+ansible &lt;hosts&gt; -u &lt;user&gt; -k [-b] -m &lt;módulo&gt; -a &#34;&lt;args&gt;&#34; Flags:
+Flag Função -u usuário remoto -k solicita senha SSH -K solicita senha para sudo -b executa com elevação (become) -m módulo a usar -a argumento do módulo -i inventário alternativo Ping em todos os hosts:
+ansible all -m ping -u osboxes -k 192.168.1.151 | SUCCESS =&gt; { &#34;changed&#34;: false, &#34;ping&#34;: &#34;pong&#34; } 192.168.1.234 | SUCCESS =&gt; { &#34;changed&#34;: false, &#34;ping&#34;: &#34;pong&#34; } Coletar facts do sistema:
+ansible 192.168.1.234 -u osboxes -k -m setup Reiniciar serviço SSH:
+ansible 192.168.1.151 -u osboxes -k -b -m systemd -a &#34;name=ssh state=restarted&#34; Executar comando shell:
+ansible 192.168.1.151 -u osboxes -k -b -m shell -a &#34;systemctl status ssh&#34; Comando direto (módulo command por padrão):
+ansible 192.168.1.151 -u osboxes -k -a &#34;pwd&#34; Filtrar por grupo:
+ansible -i hosts servidores_bd -m ping -u osboxes -k Para ignorar o aviso de Python legado, adicione ao ansible.cfg:
+interpreter_python = auto_legacy_silent Roles — Automação Modular e Reutilizável Roles são a forma correta de organizar automação complexa. Em vez de um playbook gigante, você cria unidades independentes e reutilizáveis — uma role para nginx, outra para mysql, outra para hardening — e as compõe no playbook principal.
+Estrutura de diretórios padrão:
+playbook.yml └── roles/ └── nginx/ ├── tasks/ │ └── main.yml # lista de tarefas (obrigatório) ├── handlers/ │ └── main.yml # acionados por notify nas tasks ├── templates/ │ └── nginx.conf.j2 # Jinja2 com variáveis dinâmicas ├── files/ # arquivos estáticos para cópia ├── vars/ │ └── main.yml # variáveis com prioridade alta ├── defaults/ │ └── main.yml # defaults facilmente sobrescritíveis └── meta/ └── main.yml # dependências entre roles (lido primeiro) Chamando roles no playbook:
+--- - hosts: webserver roles: - common # executada primeiro - nginx - php - mysql A execução de uma role é definida pelas tasks em tasks/main.yml. O diretório meta é analisado primeiro para resolver dependências.
+Variáveis e Facts As variáveis permitem que o mesmo playbook funcione de forma diferente em cada host ou ambiente.
+Ordem de prioridade (menor → maior):
+1. role/defaults/main.yml ← mais fácil de sobrescrever 2. inventory file vars 3. group_vars/all 4. group_vars/* 5. host_vars/* 6. host facts (módulo setup) 7. role/vars/main.yml 8. set_fact / registered vars 9. extra vars (-e) ← prioridade máxima Ansible Facts — o módulo setup descobre automaticamente informações de cada host:
+ansible hostname -m setup Retorna sistema operacional, IPs, memória, CPUs, discos, variáveis de ambiente e muito mais. Essas informações ficam disponíveis como variáveis nos playbooks: {{ ansible_os_family }}, {{ ansible_default_ipv4.address }}, etc.
+Exemplo de estrutura com group_vars:
+├── group_vars/ │ └── servidores ← variáveis aplicadas ao grupo ├── hosts ├── host_vars/ └── roles/ Usar variável extra na linha de comando (maior prioridade):
+ansible-playbook site.yml -e &#34;nginx_port=8080&#34; Próximos passos Com esse conhecimento base, você está pronto para:
+Criar playbooks completos que provisionam stacks inteiras Organizar infraestrutura com roles reutilizáveis (inclusive via Ansible Galaxy) Integrar Ansible em pipelines CI/CD (GitHub Actions, GitLab CI, Jenkins) Gerenciar secrets com Ansible Vault Escalar para centenas de servidores com inventários dinâmicos (AWS, Azure, GCP) Veja os posts relacionados para laboratórios práticos com Ansible em ação:
+]]></content:encoded>
     </item>
   </channel>
 </rss>
