@@ -487,7 +487,358 @@ fetchInject(["/js/lazysizes.min.js"]);
 <li><a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html">Ansible command module</a></li>
 <li><a href="https://docs.microsoft.com/pt-br/azure/storage/blobs/">Azure Blob Storage — documentação</a></li>
 </ul>
-
+<hr>
+<h2 id="playbook-completo">Playbook Completo</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># =============================================================================</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Migração S3 → Azure Blob Storage via Azure Data Factory</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Playbook: playbook.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Autor: fxshell</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Uso: ansible-playbook playbook.yml -e @vars.yml --ask-vault-pass</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># =============================================================================</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Migração S3 → Azure Blob Storage via ADF</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">localhost</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">connection</span><span class="p">:</span><span class="w"> </span><span class="l">local</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">gather_facts</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">vars_files</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">vars_vault.yml  </span><span class="w"> </span><span class="c"># arquivo criptografado com ansible-vault</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">vars</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resource_group</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;rg-migrate-s3-azure&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;eastus&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">storage_account_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;stdadosmigrados&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;dados-migrados&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">adf_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;adf-migrate-s3&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">adf_pipeline_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;pipeline-s3-to-blob&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">adf_linked_s3_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;LinkedService_S3&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">adf_linked_blob_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;LinkedService_BlobStorage&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">adf_dataset_s3_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Dataset_S3&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">adf_dataset_blob_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Dataset_Blob&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">s3_bucket_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;meu-bucket-s3&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">s3_region</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;us-east-1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># Prefixo de objetos a migrar (vazio = tudo)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">s3_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># Nível de log: verbose | normal</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">log_level</span><span class="p">:</span><span class="w"> </span><span class="l">normal</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># PRÉ-REQUISITOS: verificar dependências antes de qualquer task</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pre_tasks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Verificar az CLI instalado</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">az --version</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">az_check</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">failed_when</span><span class="p">:</span><span class="w"> </span><span class="l">az_check.rc != 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Verificar login na Azure (az account show)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">az account show</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">az_account</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">failed_when</span><span class="p">:</span><span class="w"> </span><span class="l">az_account.rc != 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Exibir subscription ativa</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">debug</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">msg</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Subscription ativa: {{ (az_account.stdout | from_json).name }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l">log_level == &#34;verbose&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># BLOCO 1 — Resource Group</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 1/9 ] Criar Resource Group {{ resource_group }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az group create
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --name {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --location {{ location }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --output none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">rg_result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#34;Succeeded&#34; in rg_result.stdout or rg_result.rc == 0&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 2 — Storage Account + Container</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 2/9 ] Criar Storage Account {{ storage_account_name }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az storage account create
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --name {{ storage_account_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --location {{ location }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --sku Standard_LRS
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --kind StorageV2
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --access-tier Hot
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --output none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">sa_result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">sa_result.rc == 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 2/9 ] Obter connection string do Storage Account&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az storage account show-connection-string
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --name {{ storage_account_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --query connectionString
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --output tsv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">sa_conn_string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">no_log</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 2/9 ] Criar container &#39;{{ container_name }}&#39; com acesso privado&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az storage container create
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --name {{ container_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --account-name {{ storage_account_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --public-access off
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --auth-mode login
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --output none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">container_result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">container_result.rc == 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 3 — Azure Data Factory</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 3/9 ] Criar Azure Data Factory {{ adf_name }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory factory create
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --location {{ location }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --output none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">adf_result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">adf_result.rc == 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 3/9 ] Obter ID do Storage Account para ADF&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az storage account show
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --name {{ storage_account_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --query id
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --output tsv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">sa_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 4 — Linked Service: AWS S3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ADF precisa de access key + secret key com permissões s3:GetObject</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># e s3:GetObjectVersion no bucket de origem</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 4/9 ] Criar Linked Service — AWS S3&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory linked-service create
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --linked-service-name {{ adf_linked_s3_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --properties &#39;{
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;type&#34;: &#34;AmazonS3&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;typeProperties&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;serviceUrl&#34;: &#34;https://s3.amazonaws.com&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;accessKeyId&#34;: &#34;{{ aws_access_key_id }}&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;secretAccessKey&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;type&#34;: &#34;SecureString&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;value&#34;: &#34;{{ aws_secret_access_key }}&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">              },
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;authenticationType&#34;: &#34;AccessKey&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">            }
+</span></span></span><span class="line"><span class="cl"><span class="sd">          }&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">ls_s3_result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">ls_s3_result.rc == 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">no_log</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 5 — Linked Service: Azure Blob Storage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 5/9 ] Criar Linked Service — Azure Blob Storage&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory linked-service create
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --linked-service-name {{ adf_linked_blob_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --properties &#39;{
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;type&#34;: &#34;AzureBlobStorage&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;typeProperties&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;connectionString&#34;: &#34;{{ sa_conn_string.stdout | trim }}&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">            }
+</span></span></span><span class="line"><span class="cl"><span class="sd">          }&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">ls_blob_result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">ls_blob_result.rc == 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">no_log</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 6 — Datasets (origem S3 + destino Blob)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 6/9 ] Criar Dataset origem — S3 Binary&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory dataset create
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --dataset-name {{ adf_dataset_s3_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --properties &#39;{
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;type&#34;: &#34;Binary&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;linkedServiceName&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;referenceName&#34;: &#34;{{ adf_linked_s3_name }}&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;type&#34;: &#34;LinkedServiceReference&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">            },
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;typeProperties&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;location&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;type&#34;: &#34;AmazonS3Location&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;bucketName&#34;: &#34;{{ s3_bucket_name }}&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;folderPath&#34;: &#34;{{ s3_prefix }}&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">              }
+</span></span></span><span class="line"><span class="cl"><span class="sd">            }
+</span></span></span><span class="line"><span class="cl"><span class="sd">          }&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">ds_s3_result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">ds_s3_result.rc == 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 6/9 ] Criar Dataset destino — Blob Binary&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory dataset create
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --dataset-name {{ adf_dataset_blob_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --properties &#39;{
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;type&#34;: &#34;Binary&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;linkedServiceName&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;referenceName&#34;: &#34;{{ adf_linked_blob_name }}&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;type&#34;: &#34;LinkedServiceReference&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">            },
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;typeProperties&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;location&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;type&#34;: &#34;AzureBlobStorageLocation&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;container&#34;: &#34;{{ container_name }}&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">              }
+</span></span></span><span class="line"><span class="cl"><span class="sd">            }
+</span></span></span><span class="line"><span class="cl"><span class="sd">          }&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">ds_blob_result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">ds_blob_result.rc == 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 7 — Pipeline de cópia S3 → Blob</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 7/9 ] Criar Pipeline de migração {{ adf_pipeline_name }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory pipeline create
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --name {{ adf_pipeline_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --pipeline &#39;{
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;activities&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="sd">              {
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;name&#34;: &#34;CopyS3ToBlob&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;type&#34;: &#34;Copy&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;inputs&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="sd">                  {
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    &#34;referenceName&#34;: &#34;{{ adf_dataset_s3_name }}&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    &#34;type&#34;: &#34;DatasetReference&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">                  }
+</span></span></span><span class="line"><span class="cl"><span class="sd">                ],
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;outputs&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="sd">                  {
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    &#34;referenceName&#34;: &#34;{{ adf_dataset_blob_name }}&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    &#34;type&#34;: &#34;DatasetReference&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">                  }
+</span></span></span><span class="line"><span class="cl"><span class="sd">                ],
+</span></span></span><span class="line"><span class="cl"><span class="sd">                &#34;typeProperties&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">                  &#34;source&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    &#34;type&#34;: &#34;BinarySource&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    &#34;storeSettings&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">                      &#34;type&#34;: &#34;AmazonS3ReadSettings&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                      &#34;recursive&#34;: true
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    }
+</span></span></span><span class="line"><span class="cl"><span class="sd">                  },
+</span></span></span><span class="line"><span class="cl"><span class="sd">                  &#34;sink&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    &#34;type&#34;: &#34;BinarySink&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    &#34;storeSettings&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">                      &#34;type&#34;: &#34;AzureBlobStorageWriteSettings&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    }
+</span></span></span><span class="line"><span class="cl"><span class="sd">                  },
+</span></span></span><span class="line"><span class="cl"><span class="sd">                  &#34;parallelCopies&#34;: 4,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                  &#34;dataIntegrationUnits&#34;: 4,
+</span></span></span><span class="line"><span class="cl"><span class="sd">                  &#34;enableStaging&#34;: false
+</span></span></span><span class="line"><span class="cl"><span class="sd">                }
+</span></span></span><span class="line"><span class="cl"><span class="sd">              }
+</span></span></span><span class="line"><span class="cl"><span class="sd">            ]
+</span></span></span><span class="line"><span class="cl"><span class="sd">          }&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">pipeline_result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">pipeline_result.rc == 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 8 — Disparar execução da pipeline</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 8/9 ] Executar pipeline de migração&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory pipeline create-run
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --name {{ adf_pipeline_name }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">pipeline_run</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">pipeline_run.rc == 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 8/9 ] Capturar Run ID&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">set_fact</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run_id</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ (pipeline_run.stdout | from_json).runId }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 8/9 ] Exibir Run ID&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">debug</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">msg</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Pipeline iniciada — Run ID: {{ run_id }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 9 — Aguardar conclusão e verificar status</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># Polling a cada 30s, timeout de 120 tentativas (≈ 1h)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 9/9 ] Aguardar conclusão da pipeline (polling 30s)&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory pipeline-run show
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --run-id {{ run_id }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --query status
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --output tsv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">pipeline_status</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">until</span><span class="p">:</span><span class="w"> </span><span class="l">pipeline_status.stdout.strip() in [&#39;Succeeded&#39;, &#39;Failed&#39;, &#39;Cancelled&#39;]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="m">120</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="m">30</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 9/9 ] Falhar se a pipeline não completou com sucesso&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fail</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">msg</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">          Pipeline terminou com status: {{ pipeline_status.stdout.strip() }}.
+</span></span></span><span class="line"><span class="cl"><span class="sd">          Acesse https://adf.azure.com para detalhes do erro.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l">pipeline_status.stdout.strip() != &#39;Succeeded&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 9/9 ] Exibir resultado final&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">debug</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">msg</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">          ============================================================
+</span></span></span><span class="line"><span class="cl"><span class="sd">          Migração concluída com sucesso!
+</span></span></span><span class="line"><span class="cl"><span class="sd">          Origem : s3://{{ s3_bucket_name }}/{{ s3_prefix }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          Destino : {{ storage_account_name }}/{{ container_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          Run ID  : {{ run_id }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          ADF URL : https://adf.azure.com/en-us/home?factory=%2FresourceGroups%2F{{ resource_group }}%2Fproviders%2FMicrosoft.DataFactory%2Ffactories%2F{{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          ============================================================</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># PÓS-TASKS: limpeza opcional de recursos temporários</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">post_tasks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ CLEANUP ] Listar blobs migrados para validação&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        az storage blob list
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --container-name {{ container_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --account-name {{ storage_account_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --auth-mode login
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --query &#34;[].name&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">          --output table</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">blob_list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l">log_level == &#34;verbose&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ CLEANUP ] Exibir blobs migrados&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">debug</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">msg</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ blob_list.stdout }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l">log_level == &#34;verbose&#34; and blob_list is defined</span><span class="w">
+</span></span></span></code></pre></div>
 </main>
     <footer>
   
