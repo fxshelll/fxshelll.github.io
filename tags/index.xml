@@ -12,12 +12,12 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 04 May 2026 02:18:57 UT</lastBuildDate>
+    <lastBuildDate>Sun, 10 May 2026 04:09:44 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible</title>
       <link>https://fxshelll.github.io/tags/ansible/</link>
-      <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
+      <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/tags/ansible/</guid>
       <description></description>
@@ -26,9 +26,54 @@
     <item>
       <title>Automação</title>
       <link>https://fxshelll.github.io/tags/automa%C3%A7%C3%A3o/</link>
-      <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
+      <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/tags/automa%C3%A7%C3%A3o/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Aws</title>
+      <link>https://fxshelll.github.io/tags/aws/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/aws/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Azure</title>
+      <link>https://fxshelll.github.io/tags/azure/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/azure/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Cloud</title>
+      <link>https://fxshelll.github.io/tags/cloud/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/cloud/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Data-Factory</title>
+      <link>https://fxshelll.github.io/tags/data-factory/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/data-factory/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Devops</title>
+      <link>https://fxshelll.github.io/tags/devops/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshelll.github.io/tags/devops/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
@@ -38,15 +83,6 @@
       <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/tags/awx/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
-      <title>Devops</title>
-      <link>https://fxshelll.github.io/tags/devops/</link>
-      <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/devops/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
@@ -92,24 +128,6 @@
       <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/tags/appgateway/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
-      <title>Azure</title>
-      <link>https://fxshelll.github.io/tags/azure/</link>
-      <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/azure/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
-      <title>Cloud</title>
-      <link>https://fxshelll.github.io/tags/cloud/</link>
-      <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/cloud/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
@@ -191,15 +209,6 @@
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshelll.github.io/tags/automation/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
-      <title>Aws</title>
-      <link>https://fxshelll.github.io/tags/aws/</link>
-      <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/aws/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+      <meta charset="utf-8"><meta property="og:title" content="Migração S3 → Azure Blob Storage com Ansible e Azure Data Factory" />
+      <meta property="og:description" content="Como migrar dados de buckets AWS S3 para Azure Blob Storage de forma automatizada usando Ansible e Azure Data Factory — baseado em uma migração real." />
+      <meta property="og:image" content="https://fxshelll.github.io/og-ansible-adf-migrate-s3-azure.png" />
+      <meta property="og:url" content="https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/" />
+      <meta property="og:type" content="article" />
+      <meta property="article:published_time" content="2026-05-08T00:00:00Z" />
+      <meta property="article:tag" content="ansible" />
+      <meta property="article:tag" content="azure" />
+      <meta property="article:tag" content="aws" />
+      <meta property="article:tag" content="data-factory" />
+      <meta property="article:tag" content="devops" />
+      <meta property="article:tag" content="automação" />
+      <meta property="article:tag" content="cloud" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Migração S3 → Azure Blob Storage com Ansible e Azure Data Factory" />
+      <meta name="twitter:description" content="Como migrar dados de buckets AWS S3 para Azure Blob Storage de forma automatizada usando Ansible e Azure Data Factory — baseado em uma migração real." />
+      <meta name="twitter:image" content="https://fxshelll.github.io/og-ansible-adf-migrate-s3-azure.png" />
+    
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migração S3 → Azure Blob Storage com Ansible e Azure Data Factory | FXShell - DevOps &amp; Sec</title>
+    <meta name="description" content="Como migrar dados de buckets AWS S3 para Azure Blob Storage de forma automatizada usando Ansible e Azure Data Factory — baseado em uma migração real.">
+    <meta name="keywords" content="ansible, azure, aws, data-factory, devops, automação, cloud">
+    
+    
+    
+    
+    
+
+  <meta name="author" content="Felipe da Matta">
+
+
+    
+    
+
+    
+    
+  <meta name="referrer" content="same-origin">
+
+
+    
+
+    
+    
+    <link rel="canonical" href="https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/">
+    
+    
+    
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+
+
+<link rel="manifest" href="/site.webmanifest">
+    
+
+  
+  
+  
+  
+  
+  
+  
+    
+      
+        <style>html{font-size:12px}*{box-sizing:border-box;text-rendering:geometricPrecision}body{font-size:1rem;line-height:1.5rem;margin:0;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;word-wrap:break-word}h1,h2,h3,h4,h5,h6{line-height:1.3em}fieldset{border:none;padding:0;margin:0}pre{padding:2rem;margin:1.75rem 0;background-color:#fff;border:1px solid #ccc;overflow:auto}code[class*=language-],pre[class*=language-],pre code{font-weight:100;text-shadow:none;margin:1.75rem 0}a{cursor:pointer;color:#ff2e88;text-decoration:none;border-bottom:1px solid #ff2e88}a:hover{background-color:#ff2e88;color:#fff}.grid{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.grid.\-top{-ms-flex-align:start;align-items:flex-start}.grid.\-middle{-ms-flex-align:center;align-items:center}.grid.\-bottom{-ms-flex-align:end;align-items:flex-end}.grid.\-stretch{-ms-flex-align:stretch;align-items:stretch}.grid.\-baseline{-ms-flex-align:baseline;align-items:baseline}.grid.\-left{-ms-flex-pack:start;justify-content:flex-start}.grid.\-center{-ms-flex-pack:center;justify-content:center}.grid.\-right{-ms-flex-pack:end;justify-content:flex-end}.grid.\-between{-ms-flex-pack:justify;justify-content:space-between}.grid.\-around{-ms-flex-pack:distribute;justify-content:space-around}.cell{-ms-flex:1;flex:1;box-sizing:border-box}@media screen and (min-width:768px){.cell.\-1of12{-ms-flex:0 0 8.33333%;flex:0 0 8.33333%}.cell.\-2of12{-ms-flex:0 0 16.66667%;flex:0 0 16.66667%}.cell.\-3of12{-ms-flex:0 0 25%;flex:0 0 25%}.cell.\-4of12{-ms-flex:0 0 33.33333%;flex:0 0 33.33333%}.cell.\-5of12{-ms-flex:0 0 41.66667%;flex:0 0 41.66667%}.cell.\-6of12{-ms-flex:0 0 50%;flex:0 0 50%}.cell.\-7of12{-ms-flex:0 0 58.33333%;flex:0 0 58.33333%}.cell.\-8of12{-ms-flex:0 0 66.66667%;flex:0 0 66.66667%}.cell.\-9of12{-ms-flex:0 0 75%;flex:0 0 75%}.cell.\-10of12{-ms-flex:0 0 83.33333%;flex:0 0 83.33333%}.cell.\-11of12{-ms-flex:0 0 91.66667%;flex:0 0 91.66667%}}@media screen and (max-width:768px){.grid{-ms-flex-direction:column;flex-direction:column}.cell{-ms-flex:0 0 auto;flex:0 0 auto}}.hack,.hack blockquote,.hack code,.hack em,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack strong{font-size:1rem;font-style:normal;font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif}.hack blockquote,.hack code,.hack em,.hack strong{line-height:20px}.hack blockquote,.hack code,.hack footer,.hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack header,.hack li,.hack ol,.hack p,.hack section,.hack ul{float:none;margin:0;padding:0}.hack blockquote,.hack h1,.hack ol,.hack p,.hack ul{margin-top:20px;margin-bottom:20px}.hack h1{position:relative;display:inline-block;display:table-cell;padding:20px 0 30px;margin:0;overflow:hidden}.hack h1:after{content:"====================================================================================================";position:absolute;bottom:10px;left:0}.hack h1+*{margin-top:0}.hack h2,.hack h3,.hack h4,.hack h5,.hack h6{position:relative;margin-bottom:1.75rem}.hack h2:before,.hack h3:before,.hack h4:before,.hack h5:before,.hack h6:before{display:inline}.hack h2:before{content:"## "}.hack h3:before{content:"### "}.hack h4:before{content:"#### "}.hack h5:before{content:"##### "}.hack h6:before{content:"###### "}.hack li{position:relative;display:block;padding-left:20px}.hack li:after{position:absolute;top:0;left:0}.hack ul>li:after{content:"-"}.hack ol{counter-reset:a}.hack ol>li:after{content:counter(a) ".";counter-increment:a}.hack ol li:nth-child(n+10):after{left:-7px}.hack blockquote{position:relative;padding-left:17px;padding-left:2ch;overflow:hidden}.hack blockquote:after{content:">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>";white-space:pre;position:absolute;top:0;left:0;line-height:20px}.hack em:after,.hack em:before{content:"*";display:inline}.hack pre code:after,.hack pre code:before{content:""}.hack code{font-weight:700}.hack code:after,.hack code:before{content:"`";display:inline}.hack hr{position:relative;height:20px;overflow:hidden;border:0;margin:20px 0}.hack hr:after{content:"----------------------------------------------------------------------------------------------------";position:absolute;top:0;left:0;line-height:20px;width:100%;word-wrap:break-word}@-moz-document url-prefix(){.hack h1{display:block}}.hack-ones ol>li:after{content:"1."}p{margin:0 0 1.75rem}.container{max-width:70rem}.container,.container-fluid{margin:0 auto;padding:0 1rem}.inner{padding:1rem}.inner2x{padding:2rem}.pull-left{float:left}.pull-right{float:right}.progress-bar{height:8px;opacity:.8;background-color:#ccc;margin-top:12px}.progress-bar.progress-bar-show-percent{margin-top:38px}.progress-bar-filled{background-color:gray;height:100%;transition:width .3s ease;position:relative;width:0}.progress-bar-filled:before{content:"";border:6px solid transparent;border-top-color:gray;position:absolute;top:-12px;right:-6px}.progress-bar-filled:after{color:gray;content:attr(data-filled);display:block;font-size:12px;white-space:nowrap;position:absolute;border:6px solid transparent;top:-38px;right:0;-ms-transform:translateX(50%);transform:translateX(50%)}table{width:100%;border-collapse:collapse;margin:1.75rem 0;color:#778087}table td,table th{vertical-align:top;border:1px solid #ccc;line-height:15px;padding:10px}table thead th{font-size:10px}table tbody td:first-child{font-weight:700;color:#333}.form{width:30rem}.form-group{margin-bottom:1.75rem;overflow:auto}.form-group label{border-bottom:2px solid #ccc;color:#333;width:10rem;display:inline-block;height:38px;line-height:38px;padding:0;float:left;position:relative}.form-group.form-success label{color:#4caf50!important;border-color:#4caf50!important}.form-group.form-warning label{color:#ff9800!important;border-color:#ff9800!important}.form-group.form-error label{color:#f44336!important;border-color:#f44336!important}.form-control{outline:none;border:none;border-bottom:2px solid #ccc;padding:.5rem 0;width:20rem;height:38px;background-color:transparent}.form-control:focus{border-color:#555}.form-group.form-textarea label:after{position:absolute;content:"";width:2px;background-color:#fff;right:-2px;top:0;bottom:0}textarea.form-control{height:auto;resize:none;padding:1rem 0;border-bottom:2px solid #ccc;border-left:2px solid #ccc;padding:.5rem}select.form-control{border-radius:0;background-color:transparent;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}.help-block{color:#999;margin-top:.5rem}.form-actions{margin-bottom:1.75rem}.btn{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;outline:none;padding:.65rem 2rem;font-size:1rem;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:relative;z-index:1}.btn:active{box-shadow:inset 0 1px 3px rgba(0,0,0,.12)}.btn.btn-ghost{border-color:#757575;color:#757575;background-color:transparent}.btn.btn-ghost:focus,.btn.btn-ghost:hover{border-color:#424242;color:#424242;z-index:2}.btn.btn-ghost:hover{background-color:transparent}.btn-block{width:100%;display:-ms-flexbox;display:flex}.btn-default{color:#fff;background-color:#e0e0e0;border:1px solid #e0e0e0;color:#333}.btn-default:focus:not(.btn-ghost),.btn-default:hover{background-color:#dcdcdc;border-color:#dcdcdc}.btn-success{color:#fff;background-color:#4caf50;border:1px solid #4caf50}.btn-success:focus:not(.btn-ghost),.btn-success:hover{background-color:#43a047;border-color:#43a047}.btn-success.btn-ghost{border-color:#4caf50;color:#4caf50}.btn-success.btn-ghost:focus,.btn-success.btn-ghost:hover{border-color:#388e3c;color:#388e3c;z-index:2}.btn-error{color:#fff;background-color:#f44336;border:1px solid #f44336}.btn-error:focus:not(.btn-ghost),.btn-error:hover{background-color:#e53935;border-color:#e53935}.btn-error.btn-ghost{border-color:#f44336;color:#f44336}.btn-error.btn-ghost:focus,.btn-error.btn-ghost:hover{border-color:#d32f2f;color:#d32f2f;z-index:2}.btn-warning{color:#fff;background-color:#ff9800;border:1px solid #ff9800}.btn-warning:focus:not(.btn-ghost),.btn-warning:hover{background-color:#fb8c00;border-color:#fb8c00}.btn-warning.btn-ghost{border-color:#ff9800;color:#ff9800}.btn-warning.btn-ghost:focus,.btn-warning.btn-ghost:hover{border-color:#f57c00;color:#f57c00;z-index:2}.btn-info{color:#fff;background-color:#00bcd4;border:1px solid #00bcd4}.btn-info:focus:not(.btn-ghost),.btn-info:hover{background-color:#00acc1;border-color:#00acc1}.btn-info.btn-ghost{border-color:#00bcd4;color:#00bcd4}.btn-info.btn-ghost:focus,.btn-info.btn-ghost:hover{border-color:#0097a7;color:#0097a7;z-index:2}.btn-primary{color:#fff;background-color:#2196f3;border:1px solid #2196f3}.btn-primary:focus:not(.btn-ghost),.btn-primary:hover{background-color:#1e88e5;border-color:#1e88e5}.btn-primary.btn-ghost{border-color:#2196f3;color:#2196f3}.btn-primary.btn-ghost:focus,.btn-primary.btn-ghost:hover{border-color:#1976d2;color:#1976d2;z-index:2}.btn-group{overflow:auto}.btn-group .btn{float:left}.btn-group .btn-ghost:not(:first-child){margin-left:-1px}.card{border:1px solid #ccc}.card .card-header{color:#333;text-align:center;background-color:#ddd;padding:.5rem 0}.alert{color:#ccc;padding:1rem;border:1px solid #ccc;margin-bottom:1.75rem}.alert-success{color:#4caf50;border-color:#4caf50}.alert-error{color:#f44336;border-color:#f44336}.alert-info{color:#00bcd4;border-color:#00bcd4}.alert-warning{color:#ff9800;border-color:#ff9800}.media:not(:last-child){margin-bottom:1.25rem}.media-left{padding-right:1rem}.media-left,.media-right{display:table-cell;vertical-align:top}.media-right{padding-left:1rem}.media-body{display:table-cell;vertical-align:top}.media-heading{font-size:1.16667rem;font-weight:700}.media-content{margin-top:.3rem}.avatarholder,.placeholder{background-color:#f0f0f0;text-align:center;color:#b9b9b9;font-size:1rem;border:1px solid #f0f0f0}.avatarholder{width:48px;height:48px;line-height:46px;font-size:2rem;background-size:cover;background-position:50%;background-repeat:no-repeat}.avatarholder.rounded{border-radius:33px}.loading{display:inline-block;content:"&nbsp;";height:20px;width:20px;margin:0 .5rem;animation:a .6s infinite linear;border:2px solid #e91e63;border-right-color:transparent;border-radius:50%}.btn .loading{margin-bottom:0;width:14px;height:14px}.btn div.loading{float:left}.alert .loading{margin-bottom:-5px}@keyframes a{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}.menu{width:100%}.menu .menu-item{display:block;color:#616161;border-color:#616161}.menu .menu-item.active,.menu .menu-item:hover{color:#000;border-color:#000;background-color:transparent}@media screen and (max-width:768px){.form-group label{display:block;border-bottom:none;width:100%}.form-group.form-textarea label:after{display:none}.form-control{width:100%}textarea.form-control{border-left:none;padding:.5rem 0}pre::-webkit-scrollbar{height:3px}}@media screen and (max-width:480px){.form{width:100%}}.dark{color:#ccc}.dark,.dark pre{background-color:#000}.dark pre{padding:0;border:none}.dark pre code{color:#00bcd4}.dark h1 a,.dark h2 a,.dark h3 a,.dark h4 a,.dark h5 a{color:#ccc}.dark code,.dark strong{color:#fff}.dark code{font-weight:100}.dark table{color:#ccc}.dark table td,.dark table th{border-color:#444}.dark table tbody td:first-child{color:#fff}.dark .form-group label{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-group.form-textarea label:after{background-color:#000}.dark .form-control{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .form-control:focus{border-color:#ccc;color:#ccc}.dark textarea.form-control{color:#ccc}.dark .card{border-color:rgba(95,95,95,.78)}.dark .card .card-header{background-color:transparent;color:#ccc;border-bottom:1px solid rgba(95,95,95,.78)}.dark .btn.btn-ghost.btn-default{border-color:#ababab;color:#ababab}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#9c9c9c;color:#9c9c9c;z-index:1}.dark .btn.btn-ghost.btn-default:focus,.dark .btn.btn-ghost.btn-default:hover{border-color:#e0e0e0;color:#e0e0e0}.dark .btn.btn-ghost.btn-primary:focus,.dark .btn.btn-ghost.btn-primary:hover{border-color:#64b5f6;color:#64b5f6}.dark .btn.btn-ghost.btn-success:focus,.dark .btn.btn-ghost.btn-success:hover{border-color:#81c784;color:#81c784}.dark .btn.btn-ghost.btn-info:focus,.dark .btn.btn-ghost.btn-info:hover{border-color:#4dd0e1;color:#4dd0e1}.dark .btn.btn-ghost.btn-error:focus,.dark .btn.btn-ghost.btn-error:hover{border-color:#e57373;color:#e57373}.dark .btn.btn-ghost.btn-warning:focus,.dark .btn.btn-ghost.btn-warning:hover{border-color:#ffb74d;color:#ffb74d}.dark .avatarholder,.dark .placeholder{background-color:transparent;border-color:#333}.dark .menu .menu-item{color:#ccc;border-color:rgba(95,95,95,.78)}.dark .menu .menu-item.active,.dark .menu .menu-item:hover{color:#fff;border-color:#ccc}:root{--screen-size-small:30em}@keyframes intro{0%{opacity:0}; 100%{opacity:1}}.blur-up{-webkit-filter:blur(5px);filter:blur(5px);transition:filter 400ms,-webkit-filter 400ms}.blur-up.lazyloaded{-webkit-filter:blur(0);filter:blur(0)}.hack .readmore{margin-bottom:2.2em}.responsive-iframe{position:relative;padding-bottom:56.25%;padding-top:25px;height:0}.responsive-iframe iframe{position:absolute;top:0;left:0;width:100%;height:100%}iframe{border:0}main,footer{animation:intro .3s both;animation-delay:.15s}footer time[datetime$=M]:before{content:"\2013\0020"}@media only screen and (max-width:30em){footer time[datetime$=M]{display:none}}blockquote cite{display:block}blockquote cite::before{content:"\2014"}:target{color:#fff}.hack li ul{margin:0}.main{padding:20px 10px}input.form-control{border-radius:0;background-color:initial;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none}input.form-control,textarea.form-control{font-size:initial}.hack .help-block{font-size:1rem}html{font-size:13px}.hack pre{font-size:17px}.hack .form input,.hack .form textarea,.hack .form button,.hack .form label{font-size:1rem}article [itemprop=description]{margin-bottom:20px;margin-top:20px}article header img{width:100%;border-radius:3px}table td,table th{line-height:inherit}img{max-width:100%}@media screen and (min-width:768px){html{font-size:1em}.container{max-width:50rem}}[v-cloak]{display:none}a[rel*="external"]::after {
+  content: " " url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20class='i-external'%20viewBox='0%200%2032%2032'%20width='14'%20height='14'%20fill='none'%20stroke='%23ff9800'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='9.38%'%3E%3Cpath%20d='M14%209%20L3%209%203%2029%2023%2029%2023%2018%20M18%204%20L28%204%2028%2014%20M28%204%20L14%2018'/%3E%3C/svg%3E");
+}
+nav a.active {
+  background-color: #ff2e88;
+  color: #fff;
+}
+a[itemprop="url"] {
+  color: #ff9800;
+}
+a[itemprop="url"]:hover {
+  color: #fff;
+}
+.muted, .help-block {
+  opacity: 0.70;
+}
+.hack .muted,
+.hack .help-block {
+  color: #e0e0e0;
+}
+</style>
+        
+
+
+  
+    <meta name="theme-color" content=#000>
+  
+
+
+      
+    
+  
+
+
+    <script>
+ 
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.fetchInject=t()}(this,function(){"use strict";const e=function(e,t,n,r,o,c,i){c=t.createElement(n),i=t.getElementsByTagName(n)[0],c.appendChild(t.createTextNode(r.text)),c.onload=o(r),i?i.parentNode.insertBefore(c,i):t.head.appendChild(c)};return function(t,n){if(!arguments.length)return Promise.reject(new ReferenceError("Failed to execute 'fetchInject': 1 argument required but only 0 present."));if(arguments[0]&&arguments[0].constructor!==Array)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 1 must be of type 'Array'."));if(arguments[1]&&arguments[1].constructor!==Promise)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 2 must be of type 'Promise'."));const r=[],o=n?[].concat(n):[],c=[];return t.forEach(e=>o.push(window.fetch(e).then(e=>[e.clone().text(),e.blob()]).then(e=>Promise.all(e).then(e=>{r.push({text:e[0],blob:e[1]})})))),Promise.all(o).then(()=>(r.forEach(t=>{c.push({then:n=>{t.blob.type.includes("text/css")?e(window,document,"style",t,n):e(window,document,"script",t,n)}})}),Promise.all(c)))}});
+fetchInject(["/js/lazysizes.min.js"]);
+</script>
+
+    <style>
+  img {
+    max-width: 100%;
+  }
+</style>
+
+    
+    
+      <script>fetchInject(["/css/syntax.css"])</script>
+
+      
+      <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          displayMath: [['$$','$$']],
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+              extensions: ["AMSmath.js", "AMSsymbols.js"] }
+        }
+        });
+        MathJax.Hub.Queue(function() {
+          
+          
+          
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i = 0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+        });
+
+        MathJax.Hub.Config({
+        
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+      <noscript>
+        <link href=/css/syntax.css rel="stylesheet">
+      </noscript>
+    
+  </head>
+  
+  
+  
+  <body class="hack dark main container">
+<header>
+  
+  <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
+    
+    
+      
+        <a itemprop="url" class="" href="/"><span itemprop="name">home</span></a>
+      
+    
+      
+        <a itemprop="url" class="" href="/posts/"><span itemprop="name">anotações</span></a>
+      
+    
+      
+        <a itemprop="url" class="" href="/sobre/"><span itemprop="name">sobre</span></a>
+      
+    
+      
+        <a itemprop="url" class="" href="/busca/" title="Buscar" style="color:#ff9800; vertical-align:middle;">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-bottom:2px;"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        </a>
+      
+    
+  </nav>
+
+
+</header>
+    <main>
+  <header>
+    <h1>Migração S3 → Azure Blob Storage com Ansible e Azure Data Factory</h1>
+  </header>
+  <p>Em um projeto de migração real, precisamos mover os dados de dezenas de buckets S3 de clientes para o Azure Blob Storage. O processo manual — criar o ADF no portal, configurar cada linked service, montar a pipeline, disparar e monitorar — era repetitivo e propenso a erro. A solução foi um único playbook Ansible que provisiona toda a infraestrutura e executa a cópia de ponta a ponta.</p>
+<h2 id="objetivo-do-lab">Objetivo do Lab</h2>
+<p>Construir um playbook Ansible que automatiza completamente a migração de dados de um bucket AWS S3 para um container no Azure Blob Storage, usando o Azure Data Factory como motor de cópia. O playbook cria todos os recursos necessários, dispara a pipeline e faz polling do status até confirmar o sucesso (ou falha explícita).</p>
+<h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
+<p><strong>Ansible</strong> é uma ferramenta de automação de infraestrutura sem agente. Ela executa tarefas em sequência, em formato YAML, sem precisar instalar nada nos servidores de destino. É amplamente usada para provisionar recursos em nuvem via CLI, configurar servidores e orquestrar fluxos de deploy.</p>
+<p><strong>Azure Data Factory (ADF)</strong> é o serviço de integração de dados da Microsoft. Ele permite criar pipelines visuais (ou via API/CLI) que copiam, transformam e movem dados entre fontes heterogêneas — como AWS S3 e Azure Blob Storage. O ADF escala automaticamente, tem retry nativo e gera logs detalhados para cada execução.</p>
+<p><strong>AWS S3</strong> (Simple Storage Service) é o serviço de armazenamento de objetos da Amazon. Os dados ficam organizados em buckets, e o acesso externo é controlado por IAM com <code>AccessKey</code> e <code>SecretKey</code>.</p>
+<p><strong>Azure Blob Storage</strong> é o equivalente ao S3 na Azure. Dados são armazenados em containers dentro de uma Storage Account. Suporta acesso via connection string, Managed Identity ou SAS token.</p>
+<p><strong>az CLI</strong> é a interface de linha de comando da Azure. Permite criar e gerenciar recursos diretamente do terminal, sem usar o portal. O Ansible chama o az CLI via módulo <code>command</code>, que é a forma mais direta e sem dependências extras.</p>
+<h2 id="arquitetura">Arquitetura</h2>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────────┐
+│                        AWS Account                              │
+│  ┌─────────────┐                                                │
+│  │  S3 Bucket  │  ← s3:GetObject + s3:GetObjectVersion         │
+│  └──────┬──────┘                                                │
+└─────────┼───────────────────────────────────────────────────────┘
+          │
+          │  HTTPS (LinkedService_S3 — AccessKey)
+          ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                     Azure (Resource Group)                      │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │              Azure Data Factory (ADF)                   │   │
+│  │                                                         │   │
+│  │  Dataset_S3 ──[CopyActivity]──► Dataset_Blob            │   │
+│  │  (BinarySource)                (BinarySink)             │   │
+│  │  parallelCopies=4 / DIU=4                               │   │
+│  └──────────────────────────┬──────────────────────────────┘   │
+│                             │                                   │
+│                             │  LinkedService_BlobStorage        │
+│                             ▼                                   │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  Storage Account: stdadosmigrados                        │  │
+│  │  └── Container: dados-migrados                           │  │
+│  └──────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+          ▲
+          │  ansible-playbook playbook.yml -e @vars.yml
+          │
+┌─────────┴──────────┐
+│  Control Node      │
+│  Ansible + az CLI  │
+└────────────────────┘
+</code></pre><table>
+  <thead>
+      <tr>
+          <th>Componente</th>
+          <th>Função</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>S3 Bucket</td>
+          <td>Origem dos dados. IAM com <code>s3:GetObject</code> e <code>s3:GetObjectVersion</code></td>
+      </tr>
+      <tr>
+          <td>Azure Data Factory</td>
+          <td>Orquestra a cópia. Gerencia linked services, datasets e pipeline</td>
+      </tr>
+      <tr>
+          <td>LinkedService_S3</td>
+          <td>Credencial do ADF para autenticar no S3 (AccessKey)</td>
+      </tr>
+      <tr>
+          <td>LinkedService_Blob</td>
+          <td>Credencial do ADF para gravar no Blob (connection string)</td>
+      </tr>
+      <tr>
+          <td>Dataset_S3</td>
+          <td>Define o caminho de origem: bucket + prefixo</td>
+      </tr>
+      <tr>
+          <td>Dataset_Blob</td>
+          <td>Define o destino: storage account + container</td>
+      </tr>
+      <tr>
+          <td>Pipeline CopyActivity</td>
+          <td>Executa a cópia com <code>parallelCopies=4</code> e <code>DIU=4</code></td>
+      </tr>
+      <tr>
+          <td>Storage Account</td>
+          <td>Conta de armazenamento Azure que recebe os dados</td>
+      </tr>
+      <tr>
+          <td>Container</td>
+          <td>Namespace dentro da Storage Account (equivale a um bucket)</td>
+      </tr>
+  </tbody>
+</table>
+<p><img src="/ansible-adf-migrate-s3-azure.gif" alt="Diagrama animado — Migração S3 → Azure Blob via ADF"></p>
+<h2 id="como-as-partes-se-conectam">Como as Partes se Conectam</h2>
+<p>O ADF age como intermediário inteligente: ele autentica no S3 usando as credenciais do IAM, lê os objetos (recursivamente, se configurado), e grava em paralelo no Blob Storage usando a connection string da Storage Account. A pipeline usa formato <code>Binary</code> em ambos os lados — isso preserva os arquivos como estão, sem transformação, o que é exatamente o que queremos em uma migração de dados brutos.</p>
+<p>O Ansible não move nenhum dado diretamente. Ele é responsável por orquestrar o provisionamento de todos os recursos no az CLI e, ao final, fazer polling do <code>runId</code> da pipeline até receber <code>Succeeded</code> ou <code>Failed</code>.</p>
+<h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
+<pre tabindex="0"><code>ansible-adf-migrate-s3-azure/
+├── playbook.yml        # playbook principal — tudo em um só arquivo
+├── vars.yml            # variáveis não-sensíveis (pode commitar)
+├── vars_vault.yml      # credenciais AWS — criptografar com ansible-vault
+└── diagrama/
+    ├── gerar_gif.py
+    ├── ansible-adf-migrate-s3-azure.gif
+    └── ansible-adf-migrate-s3-azure.html
+</code></pre><h2 id="pré-requisitos">Pré-requisitos</h2>
+<p>Antes de executar, você precisa:</p>
+<ol>
+<li><strong>az CLI</strong> instalado e autenticado (<code>az login</code>)</li>
+<li><strong>Ansible</strong> instalado (<code>pip install ansible</code>)</li>
+<li><strong>IAM user na AWS</strong> com permissões:
+<ul>
+<li><code>s3:GetObject</code></li>
+<li><code>s3:GetObjectVersion</code></li>
+</ul>
+</li>
+<li><strong>ansible-vault</strong> para criptografar as credenciais AWS</li>
+</ol>
+<h2 id="preparando-as-variáveis">Preparando as Variáveis</h2>
+<p><code>vars.yml</code> — configure com os valores do seu ambiente:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">resource_group</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;rg-migrate-s3-azure&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;eastus&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">storage_account_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;stdadosmigrados&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;dados-migrados&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">adf_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;adf-migrate-s3&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">adf_pipeline_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;pipeline-s3-to-blob&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">s3_bucket_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;meu-bucket-s3&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">s3_region</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;us-east-1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">s3_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">         </span><span class="c"># vazio = copia tudo; ou &#34;pasta/&#34; para subdiretório</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">log_level</span><span class="p">:</span><span class="w"> </span><span class="l">verbose</span><span class="w">
+</span></span></span></code></pre></div><p><code>vars_vault.yml</code> — <strong>nunca commitar sem criptografia</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">aws_access_key_id</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;AKIAIOSFODNN7EXAMPLE&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">aws_secret_access_key</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>Criptografar antes de qualquer commit:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ansible-vault encrypt vars_vault.yml
+</span></span></code></pre></div><h2 id="playbook--explicação-por-bloco">Playbook — Explicação por Bloco</h2>
+<p>O playbook está dividido em 9 tasks principais mais <code>pre_tasks</code> e <code>post_tasks</code>.</p>
+<h3 id="pre_tasks--verificação-de-ambiente">pre_tasks — Verificação de Ambiente</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">pre_tasks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Verificar az CLI instalado</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">az --version</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">failed_when</span><span class="p">:</span><span class="w"> </span><span class="l">az_check.rc != 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Verificar login na Azure</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">az account show</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">failed_when</span><span class="p">:</span><span class="w"> </span><span class="l">az_account.rc != 0</span><span class="w">
+</span></span></span></code></pre></div><p>Falha imediatamente se o az CLI não estiver instalado ou se não houver sessão ativa. Economiza tempo debugando tasks que viriam depois.</p>
+<h3 id="tasks-1-2--resource-group-e-storage-account">Tasks 1-2 — Resource Group e Storage Account</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 1/9 ] Criar Resource Group&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">    az group create
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --name {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --location {{ location }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --output none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 2/9 ] Criar Storage Account&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">    az storage account create
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --name {{ storage_account_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --sku Standard_LRS
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --kind StorageV2
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --access-tier Hot
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --output none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 2/9 ] Criar container com acesso privado&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">    az storage container create
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --name {{ container_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --account-name {{ storage_account_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --public-access off
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --auth-mode login
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --output none</span><span class="w">
+</span></span></span></code></pre></div><p>O container é criado com <code>public-access off</code> — o acesso é controlado pelo ADF via connection string, não por URL pública. Isso é diferente de quando você quer servir arquivos via CDN (nesse caso, <code>--public-access blob</code>).</p>
+<h3 id="tasks-3-5--adf-e-linked-services">Tasks 3-5 — ADF e Linked Services</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 3/9 ] Criar Azure Data Factory&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">    az datafactory factory create
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --factory-name {{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --resource-group {{ resource_group }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --location {{ location }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 4/9 ] Criar Linked Service — AWS S3&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">    az datafactory linked-service create
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --factory-name {{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --linked-service-name {{ adf_linked_s3_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --properties &#39;{
+</span></span></span><span class="line"><span class="cl"><span class="sd">        &#34;type&#34;: &#34;AmazonS3&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">        &#34;typeProperties&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">          &#34;accessKeyId&#34;: &#34;{{ aws_access_key_id }}&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">          &#34;secretAccessKey&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;type&#34;: &#34;SecureString&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">            &#34;value&#34;: &#34;{{ aws_secret_access_key }}&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">          },
+</span></span></span><span class="line"><span class="cl"><span class="sd">          &#34;authenticationType&#34;: &#34;AccessKey&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">        }
+</span></span></span><span class="line"><span class="cl"><span class="sd">      }&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">no_log</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">   </span><span class="c"># nunca logar credenciais</span><span class="w">
+</span></span></span></code></pre></div><p>O <code>no_log: true</code> garante que a task não apareça em logs de auditoria com as credenciais expostas. Sempre usar em tasks que passam segredos como argumento de CLI.</p>
+<h3 id="tasks-6-7--datasets-e-pipeline">Tasks 6-7 — Datasets e Pipeline</h3>
+<p>Os datasets definem o &ldquo;onde&rdquo; da cópia: o S3 como <code>AmazonS3Location</code> com <code>bucketName</code> e <code>folderPath</code>, e o Blob como <code>AzureBlobStorageLocation</code> com <code>container</code>. Ambos usam tipo <code>Binary</code> — sem transformação de dados.</p>
+<p>A pipeline usa <code>parallelCopies: 4</code> e <code>dataIntegrationUnits: 4</code>, que é o mínimo para extrair performance razoável em objetos médios. Para migrações de terabytes, aumentar para 32 DIUs.</p>
+<h3 id="tasks-8-9--execução-e-polling">Tasks 8-9 — Execução e Polling</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 8/9 ] Executar pipeline&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">    az datafactory pipeline create-run
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --factory-name {{ adf_name }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --name {{ adf_pipeline_name }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">pipeline_run</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 9/9 ] Aguardar conclusão (polling 30s)&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">    az datafactory pipeline-run show
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --run-id {{ run_id }}
+</span></span></span><span class="line"><span class="cl"><span class="sd">      --query status --output tsv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">until</span><span class="p">:</span><span class="w"> </span><span class="l">pipeline_status.stdout.strip() in [&#39;Succeeded&#39;, &#39;Failed&#39;, &#39;Cancelled&#39;]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="m">120</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="m">30</span><span class="w">
+</span></span></span></code></pre></div><p>O <code>until</code> com <code>retries: 120</code> e <code>delay: 30</code> cobre até 1 hora de execução. Para buckets muito grandes, aumentar <code>retries</code>.</p>
+<h2 id="executando">Executando</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. criptografar credenciais AWS</span>
+</span></span><span class="line"><span class="cl">ansible-vault encrypt vars_vault.yml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. executar o playbook</span>
+</span></span><span class="line"><span class="cl">ansible-playbook playbook.yml -e @vars.yml --ask-vault-pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. verificar o resultado no portal</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://adf.azure.com</span>
+</span></span></code></pre></div><p>Para testar sem criar recursos (dry-run não funciona com az CLI, mas você pode checar a sintaxe YAML):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ansible-playbook playbook.yml --syntax-check
+</span></span></code></pre></div><p>Após a migração, verificar os blobs via CLI:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">az storage blob list <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --container-name dados-migrados <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --account-name stdadosmigrados <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --auth-mode login <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --query <span class="s2">&#34;[].name&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --output table
+</span></span></code></pre></div><h2 id="monitoramento-e-troubleshooting">Monitoramento e Troubleshooting</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Sintoma</th>
+          <th>Causa provável</th>
+          <th>Solução</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>AuthorizationFailure</code> no linked service S3</td>
+          <td>IAM sem <code>s3:GetObject</code></td>
+          <td>Adicionar a policy no IAM user da AWS</td>
+      </tr>
+      <tr>
+          <td><code>StorageErrorCode: AuthorizationFailure</code> no Blob</td>
+          <td>az CLI sem role no storage</td>
+          <td>Atribuir <code>Storage Blob Data Contributor</code> ao usuário</td>
+      </tr>
+      <tr>
+          <td>Pipeline travada em <code>InProgress</code></td>
+          <td>DIU insuficiente para o volume</td>
+          <td>Aumentar <code>dataIntegrationUnits</code> na pipeline</td>
+      </tr>
+      <tr>
+          <td><code>Pipeline terminated with status: Failed</code></td>
+          <td>Erro na cópia de objeto específico</td>
+          <td>Verificar logs no ADF Monitor: <code>https://adf.azure.com</code></td>
+      </tr>
+      <tr>
+          <td><code>az: command not found</code></td>
+          <td>az CLI não instalado</td>
+          <td><code>curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash</code></td>
+      </tr>
+      <tr>
+          <td><code>retries exceeded</code> no polling</td>
+          <td>Pipeline demorou mais de 1h</td>
+          <td>Aumentar <code>retries</code> no playbook</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="para-que-serve-no-mercado">Para Que Serve no Mercado</h2>
+<p>Migrações de cloud são comuns em contextos de aquisição de empresa, mudança de provedor, ou consolidação de infraestrutura. Ter um playbook parametrizado para esse fluxo permite que o time de DevOps ou SRE replique a operação para N buckets com mínima intervenção — só ajusta <code>s3_bucket_name</code>, <code>container_name</code> e roda.</p>
+<p>O ADF também é usado para sincronização contínua com triggers agendados, não só migração one-shot. O mesmo playbook pode ser adaptado para provisionar um trigger no ADF que executa a pipeline periodicamente.</p>
+<h2 id="conclusão">Conclusão</h2>
+<p>A combinação Ansible + ADF é mais robusta do que scripts de shell com <code>aws s3 sync</code> + <code>azcopy</code> porque o ADF gerencia o estado da cópia, faz retry automático em falhas transitórias e dá visibilidade detalhada no portal. O Ansible garante que toda a infraestrutura é declarativa, versionada e reproduzível — rodar duas vezes não cria recursos duplicados.</p>
+<p>A migração real que deu origem a este lab copiou 10GB em aproximadamente 9 minutos com configuração padrão de 4 DIUs.</p>
+<h2 id="referências">Referências</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/pt-br/azure/data-factory/">Azure Data Factory — documentação oficial</a></li>
+<li><a href="https://docs.microsoft.com/pt-br/azure/data-factory/connector-amazon-simple-storage-service">Copiar dados do Amazon S3 para o Azure Blob Storage</a></li>
+<li><a href="https://docs.microsoft.com/pt-br/cli/azure/datafactory">az datafactory — referência CLI</a></li>
+<li><a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html">Ansible command module</a></li>
+<li><a href="https://docs.microsoft.com/pt-br/azure/storage/blobs/">Azure Blob Storage — documentação</a></li>
+</ul>
+
+</main>
+    <footer>
+  
+
+</footer>
+  </body>
+</html>
