@@ -326,7 +326,8 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">aws_secret_access_key</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&#34;</span><span class="w">
 </span></span></span></code></pre></div><p>Criptografar antes de qualquer commit:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ansible-vault encrypt vars_vault.yml
-</span></span></code></pre></div><h2 id="playbook--explicação-por-bloco">Playbook — Explicação por Bloco</h2>
+</span></span></code></pre></div><p><img src="/adf-ansible-vault.gif" alt="Ansible Vault — separação de variáveis e criptografia de segredos"></p>
+<h2 id="playbook--explicação-por-bloco">Playbook — Explicação por Bloco</h2>
 <p>O playbook está dividido em 9 tasks principais mais <code>pre_tasks</code> e <code>post_tasks</code>.</p>
 <h3 id="pre_tasks--verificação-de-ambiente">pre_tasks — Verificação de Ambiente</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">pre_tasks</span><span class="p">:</span><span class="w">
@@ -393,6 +394,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="sd">      }&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">no_log</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">   </span><span class="c"># nunca logar credenciais</span><span class="w">
 </span></span></span></code></pre></div><p>O <code>no_log: true</code> garante que a task não apareça em logs de auditoria com as credenciais expostas. Sempre usar em tasks que passam segredos como argumento de CLI.</p>
+<p><img src="/adf-linked-services.gif" alt="ADF Linked Services — autenticação S3 e Blob Storage"></p>
 <h3 id="tasks-6-7--datasets-e-pipeline">Tasks 6-7 — Datasets e Pipeline</h3>
 <p>Os datasets definem o &ldquo;onde&rdquo; da cópia: o S3 como <code>AmazonS3Location</code> com <code>bucketName</code> e <code>folderPath</code>, e o Blob como <code>AzureBlobStorageLocation</code> com <code>container</code>. Ambos usam tipo <code>Binary</code> — sem transformação de dados.</p>
 <p>A pipeline usa <code>parallelCopies: 4</code> e <code>dataIntegrationUnits: 4</code>, que é o mínimo para extrair performance razoável em objetos médios. Para migrações de terabytes, aumentar para 32 DIUs.</p>
@@ -413,6 +415,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="m">120</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="m">30</span><span class="w">
 </span></span></span></code></pre></div><p>O <code>until</code> com <code>retries: 120</code> e <code>delay: 30</code> cobre até 1 hora de execução. Para buckets muito grandes, aumentar <code>retries</code>.</p>
+<p><img src="/adf-pipeline-polling.gif" alt="ADF Pipeline Run e Polling — disparo, progresso e Succeeded"></p>
 <h2 id="executando">Executando</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. criptografar credenciais AWS</span>
 </span></span><span class="line"><span class="cl">ansible-vault encrypt vars_vault.yml
