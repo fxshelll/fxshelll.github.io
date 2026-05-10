@@ -12,10 +12,10 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:09:59 UT</lastBuildDate>
+    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
     <atom:link href="https://fxshelll.github.io/tags/azure/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Migração S3 → Azure Blob Storage com Ansible e Azure Data Factory</title>
+      <title>Migração S3 - Azure Blob Storage com Ansible e Azure Data Factory</title>
       <link>https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
