@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
       <meta charset="utf-8"><meta property="og:title" content="Migração S3 → Azure Blob Storage com Ansible e Azure Data Factory" />
-      <meta property="og:description" content="Como migrar dados de buckets AWS S3 para Azure Blob Storage de forma automatizada usando Ansible e Azure Data Factory — baseado em uma migração real." />
+      <meta property="og:description" content="Como migrar dados de buckets AWS S3 para Azure Blob Storage de forma automatizada usando Ansible e Azure Data Factory - baseado em uma migração real." />
       <meta property="og:image" content="https://fxshelll.github.io/og-ansible-adf-migrate-s3-azure.png" />
       <meta property="og:url" content="https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/" />
       <meta property="og:type" content="article" />
@@ -16,13 +16,13 @@
       <meta property="article:tag" content="cloud" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="Migração S3 → Azure Blob Storage com Ansible e Azure Data Factory" />
-      <meta name="twitter:description" content="Como migrar dados de buckets AWS S3 para Azure Blob Storage de forma automatizada usando Ansible e Azure Data Factory — baseado em uma migração real." />
+      <meta name="twitter:description" content="Como migrar dados de buckets AWS S3 para Azure Blob Storage de forma automatizada usando Ansible e Azure Data Factory - baseado em uma migração real." />
       <meta name="twitter:image" content="https://fxshelll.github.io/og-ansible-adf-migrate-s3-azure.png" />
     
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Migração S3 → Azure Blob Storage com Ansible e Azure Data Factory | FXShell - DevOps &amp; Sec</title>
-    <meta name="description" content="Como migrar dados de buckets AWS S3 para Azure Blob Storage de forma automatizada usando Ansible e Azure Data Factory — baseado em uma migração real.">
+    <meta name="description" content="Como migrar dados de buckets AWS S3 para Azure Blob Storage de forma automatizada usando Ansible e Azure Data Factory - baseado em uma migração real.">
     <meta name="keywords" content="ansible, azure, aws, data-factory, devops, automação, cloud">
     
     
@@ -193,12 +193,12 @@ fetchInject(["/js/lazysizes.min.js"]);
   <header>
     <h1>Migração S3 → Azure Blob Storage com Ansible e Azure Data Factory</h1>
   </header>
-  <p>Em um projeto de migração real, precisamos mover os dados de dezenas de buckets S3 de clientes para o Azure Blob Storage. O processo manual — criar o ADF no portal, configurar cada linked service, montar a pipeline, disparar e monitorar — era repetitivo e propenso a erro. A solução foi um único playbook Ansible que provisiona toda a infraestrutura e executa a cópia de ponta a ponta.</p>
+  <p>Em um projeto de migração real, precisamos mover os dados de dezenas de buckets S3 de clientes para o Azure Blob Storage. O processo manual - criar o ADF no portal, configurar cada linked service, montar a pipeline, disparar e monitorar - era repetitivo e propenso a erro. A solução foi um único playbook Ansible que provisiona toda a infraestrutura e executa a cópia de ponta a ponta.</p>
 <h2 id="objetivo-do-lab">Objetivo do Lab</h2>
 <p>Construir um playbook Ansible que automatiza completamente a migração de dados de um bucket AWS S3 para um container no Azure Blob Storage, usando o Azure Data Factory como motor de cópia. O playbook cria todos os recursos necessários, dispara a pipeline e faz polling do status até confirmar o sucesso (ou falha explícita).</p>
 <h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
 <p><strong>Ansible</strong> é uma ferramenta de automação de infraestrutura sem agente. Ela executa tarefas em sequência, em formato YAML, sem precisar instalar nada nos servidores de destino. É amplamente usada para provisionar recursos em nuvem via CLI, configurar servidores e orquestrar fluxos de deploy.</p>
-<p><strong>Azure Data Factory (ADF)</strong> é o serviço de integração de dados da Microsoft. Ele permite criar pipelines visuais (ou via API/CLI) que copiam, transformam e movem dados entre fontes heterogêneas — como AWS S3 e Azure Blob Storage. O ADF escala automaticamente, tem retry nativo e gera logs detalhados para cada execução.</p>
+<p><strong>Azure Data Factory (ADF)</strong> é o serviço de integração de dados da Microsoft. Ele permite criar pipelines visuais (ou via API/CLI) que copiam, transformam e movem dados entre fontes heterogêneas - como AWS S3 e Azure Blob Storage. O ADF escala automaticamente, tem retry nativo e gera logs detalhados para cada execução.</p>
 <p><strong>AWS S3</strong> (Simple Storage Service) é o serviço de armazenamento de objetos da Amazon. Os dados ficam organizados em buckets, e o acesso externo é controlado por IAM com <code>AccessKey</code> e <code>SecretKey</code>.</p>
 <p><strong>Azure Blob Storage</strong> é o equivalente ao S3 na Azure. Dados são armazenados em containers dentro de uma Storage Account. Suporta acesso via connection string, Managed Identity ou SAS token.</p>
 <p><strong>az CLI</strong> é a interface de linha de comando da Azure. Permite criar e gerenciar recursos diretamente do terminal, sem usar o portal. O Ansible chama o az CLI via módulo <code>command</code>, que é a forma mais direta e sem dependências extras.</p>
@@ -210,7 +210,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 │  └──────┬──────┘                                                │
 └─────────┼───────────────────────────────────────────────────────┘
           │
-          │  HTTPS (LinkedService_S3 — AccessKey)
+          │  HTTPS (LinkedService_S3 - AccessKey)
           ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                     Azure (Resource Group)                      │
@@ -283,15 +283,15 @@ fetchInject(["/js/lazysizes.min.js"]);
       </tr>
   </tbody>
 </table>
-<p><img src="/ansible-adf-migrate-s3-azure.gif" alt="Diagrama animado — Migração S3 → Azure Blob via ADF"></p>
+<p><img src="/ansible-adf-migrate-s3-azure.gif" alt="Diagrama animado - Migração S3 → Azure Blob via ADF"></p>
 <h2 id="como-as-partes-se-conectam">Como as Partes se Conectam</h2>
-<p>O ADF age como intermediário inteligente: ele autentica no S3 usando as credenciais do IAM, lê os objetos (recursivamente, se configurado), e grava em paralelo no Blob Storage usando a connection string da Storage Account. A pipeline usa formato <code>Binary</code> em ambos os lados — isso preserva os arquivos como estão, sem transformação, o que é exatamente o que queremos em uma migração de dados brutos.</p>
+<p>O ADF age como intermediário inteligente: ele autentica no S3 usando as credenciais do IAM, lê os objetos (recursivamente, se configurado), e grava em paralelo no Blob Storage usando a connection string da Storage Account. A pipeline usa formato <code>Binary</code> em ambos os lados - isso preserva os arquivos como estão, sem transformação, o que é exatamente o que queremos em uma migração de dados brutos.</p>
 <p>O Ansible não move nenhum dado diretamente. Ele é responsável por orquestrar o provisionamento de todos os recursos no az CLI e, ao final, fazer polling do <code>runId</code> da pipeline até receber <code>Succeeded</code> ou <code>Failed</code>.</p>
 <h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
 <pre tabindex="0"><code>ansible-adf-migrate-s3-azure/
-├── playbook.yml        # playbook principal — tudo em um só arquivo
+├── playbook.yml        # playbook principal - tudo em um só arquivo
 ├── vars.yml            # variáveis não-sensíveis (pode commitar)
-├── vars_vault.yml      # credenciais AWS — criptografar com ansible-vault
+├── vars_vault.yml      # credenciais AWS - criptografar com ansible-vault
 └── diagrama/
     ├── gerar_gif.py
     ├── ansible-adf-migrate-s3-azure.gif
@@ -310,7 +310,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 <li><strong>ansible-vault</strong> para criptografar as credenciais AWS</li>
 </ol>
 <h2 id="preparando-as-variáveis">Preparando as Variáveis</h2>
-<p><code>vars.yml</code> — configure com os valores do seu ambiente:</p>
+<p><code>vars.yml</code> - configure com os valores do seu ambiente:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">resource_group</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;rg-migrate-s3-azure&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;eastus&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">storage_account_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;stdadosmigrados&#34;</span><span class="w">
@@ -321,15 +321,15 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">s3_region</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;us-east-1&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">s3_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">         </span><span class="c"># vazio = copia tudo; ou &#34;pasta/&#34; para subdiretório</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">log_level</span><span class="p">:</span><span class="w"> </span><span class="l">verbose</span><span class="w">
-</span></span></span></code></pre></div><p><code>vars_vault.yml</code> — <strong>nunca commitar sem criptografia</strong>:</p>
+</span></span></span></code></pre></div><p><code>vars_vault.yml</code> - <strong>nunca commitar sem criptografia</strong>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">aws_access_key_id</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;AKIAIOSFODNN7EXAMPLE&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">aws_secret_access_key</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&#34;</span><span class="w">
 </span></span></span></code></pre></div><p>Criptografar antes de qualquer commit:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ansible-vault encrypt vars_vault.yml
-</span></span></code></pre></div><p><img src="/adf-ansible-vault.gif" alt="Ansible Vault — separação de variáveis e criptografia de segredos"></p>
-<h2 id="playbook--explicação-por-bloco">Playbook — Explicação por Bloco</h2>
+</span></span></code></pre></div><p><img src="/adf-ansible-vault.gif" alt="Ansible Vault - separação de variáveis e criptografia de segredos"></p>
+<h2 id="playbook---explicação-por-bloco">Playbook - Explicação por Bloco</h2>
 <p>O playbook está dividido em 9 tasks principais mais <code>pre_tasks</code> e <code>post_tasks</code>.</p>
-<h3 id="pre_tasks--verificação-de-ambiente">pre_tasks — Verificação de Ambiente</h3>
+<h3 id="pre_tasks---verificação-de-ambiente">pre_tasks - Verificação de Ambiente</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">pre_tasks</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Verificar az CLI instalado</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">az --version</span><span class="w">
@@ -341,7 +341,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">failed_when</span><span class="p">:</span><span class="w"> </span><span class="l">az_account.rc != 0</span><span class="w">
 </span></span></span></code></pre></div><p>Falha imediatamente se o az CLI não estiver instalado ou se não houver sessão ativa. Economiza tempo debugando tasks que viriam depois.</p>
-<h3 id="tasks-1-2--resource-group-e-storage-account">Tasks 1-2 — Resource Group e Storage Account</h3>
+<h3 id="tasks-1-2---resource-group-e-storage-account">Tasks 1-2 - Resource Group e Storage Account</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 1/9 ] Criar Resource Group&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">    az group create
@@ -367,8 +367,8 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="sd">      --public-access off
 </span></span></span><span class="line"><span class="cl"><span class="sd">      --auth-mode login
 </span></span></span><span class="line"><span class="cl"><span class="sd">      --output none</span><span class="w">
-</span></span></span></code></pre></div><p>O container é criado com <code>public-access off</code> — o acesso é controlado pelo ADF via connection string, não por URL pública. Isso é diferente de quando você quer servir arquivos via CDN (nesse caso, <code>--public-access blob</code>).</p>
-<h3 id="tasks-3-5--adf-e-linked-services">Tasks 3-5 — ADF e Linked Services</h3>
+</span></span></span></code></pre></div><p>O container é criado com <code>public-access off</code> - o acesso é controlado pelo ADF via connection string, não por URL pública. Isso é diferente de quando você quer servir arquivos via CDN (nesse caso, <code>--public-access blob</code>).</p>
+<h3 id="tasks-3-5---adf-e-linked-services">Tasks 3-5 - ADF e Linked Services</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 3/9 ] Criar Azure Data Factory&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">    az datafactory factory create
@@ -376,7 +376,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="sd">      --resource-group {{ resource_group }}
 </span></span></span><span class="line"><span class="cl"><span class="sd">      --location {{ location }}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 4/9 ] Criar Linked Service — AWS S3&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 4/9 ] Criar Linked Service - AWS S3&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">    az datafactory linked-service create
 </span></span></span><span class="line"><span class="cl"><span class="sd">      --factory-name {{ adf_name }}
@@ -394,11 +394,11 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="sd">      }&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">no_log</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">   </span><span class="c"># nunca logar credenciais</span><span class="w">
 </span></span></span></code></pre></div><p>O <code>no_log: true</code> garante que a task não apareça em logs de auditoria com as credenciais expostas. Sempre usar em tasks que passam segredos como argumento de CLI.</p>
-<p><img src="/adf-linked-services.gif" alt="ADF Linked Services — autenticação S3 e Blob Storage"></p>
-<h3 id="tasks-6-7--datasets-e-pipeline">Tasks 6-7 — Datasets e Pipeline</h3>
-<p>Os datasets definem o &ldquo;onde&rdquo; da cópia: o S3 como <code>AmazonS3Location</code> com <code>bucketName</code> e <code>folderPath</code>, e o Blob como <code>AzureBlobStorageLocation</code> com <code>container</code>. Ambos usam tipo <code>Binary</code> — sem transformação de dados.</p>
+<p><img src="/adf-linked-services.gif" alt="ADF Linked Services - autenticação S3 e Blob Storage"></p>
+<h3 id="tasks-6-7---datasets-e-pipeline">Tasks 6-7 - Datasets e Pipeline</h3>
+<p>Os datasets definem o &ldquo;onde&rdquo; da cópia: o S3 como <code>AmazonS3Location</code> com <code>bucketName</code> e <code>folderPath</code>, e o Blob como <code>AzureBlobStorageLocation</code> com <code>container</code>. Ambos usam tipo <code>Binary</code> - sem transformação de dados.</p>
 <p>A pipeline usa <code>parallelCopies: 4</code> e <code>dataIntegrationUnits: 4</code>, que é o mínimo para extrair performance razoável em objetos médios. Para migrações de terabytes, aumentar para 32 DIUs.</p>
-<h3 id="tasks-8-9--execução-e-polling">Tasks 8-9 — Execução e Polling</h3>
+<h3 id="tasks-8-9---execução-e-polling">Tasks 8-9 - Execução e Polling</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 8/9 ] Executar pipeline&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">    az datafactory pipeline create-run
@@ -415,7 +415,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="m">120</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="m">30</span><span class="w">
 </span></span></span></code></pre></div><p>O <code>until</code> com <code>retries: 120</code> e <code>delay: 30</code> cobre até 1 hora de execução. Para buckets muito grandes, aumentar <code>retries</code>.</p>
-<p><img src="/adf-pipeline-polling.gif" alt="ADF Pipeline Run e Polling — disparo, progresso e Succeeded"></p>
+<p><img src="/adf-pipeline-polling.gif" alt="ADF Pipeline Run e Polling - disparo, progresso e Succeeded"></p>
 <h2 id="executando">Executando</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. criptografar credenciais AWS</span>
 </span></span><span class="line"><span class="cl">ansible-vault encrypt vars_vault.yml
@@ -477,18 +477,18 @@ fetchInject(["/js/lazysizes.min.js"]);
   </tbody>
 </table>
 <h2 id="para-que-serve-no-mercado">Para Que Serve no Mercado</h2>
-<p>Migrações de cloud são comuns em contextos de aquisição de empresa, mudança de provedor, ou consolidação de infraestrutura. Ter um playbook parametrizado para esse fluxo permite que o time de DevOps ou SRE replique a operação para N buckets com mínima intervenção — só ajusta <code>s3_bucket_name</code>, <code>container_name</code> e roda.</p>
+<p>Migrações de cloud são comuns em contextos de aquisição de empresa, mudança de provedor, ou consolidação de infraestrutura. Ter um playbook parametrizado para esse fluxo permite que o time de DevOps ou SRE replique a operação para N buckets com mínima intervenção - só ajusta <code>s3_bucket_name</code>, <code>container_name</code> e roda.</p>
 <p>O ADF também é usado para sincronização contínua com triggers agendados, não só migração one-shot. O mesmo playbook pode ser adaptado para provisionar um trigger no ADF que executa a pipeline periodicamente.</p>
 <h2 id="conclusão">Conclusão</h2>
-<p>A combinação Ansible + ADF é mais robusta do que scripts de shell com <code>aws s3 sync</code> + <code>azcopy</code> porque o ADF gerencia o estado da cópia, faz retry automático em falhas transitórias e dá visibilidade detalhada no portal. O Ansible garante que toda a infraestrutura é declarativa, versionada e reproduzível — rodar duas vezes não cria recursos duplicados.</p>
+<p>A combinação Ansible + ADF é mais robusta do que scripts de shell com <code>aws s3 sync</code> + <code>azcopy</code> porque o ADF gerencia o estado da cópia, faz retry automático em falhas transitórias e dá visibilidade detalhada no portal. O Ansible garante que toda a infraestrutura é declarativa, versionada e reproduzível - rodar duas vezes não cria recursos duplicados.</p>
 <p>A migração real que deu origem a este lab copiou 10GB em aproximadamente 9 minutos com configuração padrão de 4 DIUs.</p>
 <h2 id="referências">Referências</h2>
 <ul>
-<li><a href="https://docs.microsoft.com/pt-br/azure/data-factory/">Azure Data Factory — documentação oficial</a></li>
+<li><a href="https://docs.microsoft.com/pt-br/azure/data-factory/">Azure Data Factory - documentação oficial</a></li>
 <li><a href="https://docs.microsoft.com/pt-br/azure/data-factory/connector-amazon-simple-storage-service">Copiar dados do Amazon S3 para o Azure Blob Storage</a></li>
-<li><a href="https://docs.microsoft.com/pt-br/cli/azure/datafactory">az datafactory — referência CLI</a></li>
+<li><a href="https://docs.microsoft.com/pt-br/cli/azure/datafactory">az datafactory - referência CLI</a></li>
 <li><a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html">Ansible command module</a></li>
-<li><a href="https://docs.microsoft.com/pt-br/azure/storage/blobs/">Azure Blob Storage — documentação</a></li>
+<li><a href="https://docs.microsoft.com/pt-br/azure/storage/blobs/">Azure Blob Storage - documentação</a></li>
 </ul>
 <hr>
 <h2 id="playbook-completo">Playbook Completo</h2>
@@ -548,7 +548,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l">log_level == &#34;verbose&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># BLOCO 1 — Resource Group</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># BLOCO 1 - Resource Group</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 1/9 ] Criar Resource Group {{ resource_group }}&#34;</span><span class="w">
@@ -561,7 +561,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#34;Succeeded&#34; in rg_result.stdout or rg_result.rc == 0&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 2 — Storage Account + Container</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 2 - Storage Account + Container</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 2/9 ] Criar Storage Account {{ storage_account_name }}&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
@@ -599,7 +599,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">container_result.rc == 0</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 3 — Azure Data Factory</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 3 - Azure Data Factory</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 3/9 ] Criar Azure Data Factory {{ adf_name }}&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
@@ -622,11 +622,11 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 4 — Linked Service: AWS S3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 4 - Linked Service: AWS S3</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ADF precisa de access key + secret key com permissões s3:GetObject</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># e s3:GetObjectVersion no bucket de origem</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 4/9 ] Criar Linked Service — AWS S3&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 4/9 ] Criar Linked Service - AWS S3&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory linked-service create
 </span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
@@ -649,9 +649,9 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">no_log</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 5 — Linked Service: Azure Blob Storage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 5 - Linked Service: Azure Blob Storage</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 5/9 ] Criar Linked Service — Azure Blob Storage&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 5/9 ] Criar Linked Service - Azure Blob Storage&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory linked-service create
 </span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
@@ -668,9 +668,9 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">no_log</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 6 — Datasets (origem S3 + destino Blob)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 6 - Datasets (origem S3 + destino Blob)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 6/9 ] Criar Dataset origem — S3 Binary&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 6/9 ] Criar Dataset origem - S3 Binary&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory dataset create
 </span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
@@ -693,7 +693,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l">ds_s3_result</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">ds_s3_result.rc == 0</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 6/9 ] Criar Dataset destino — Blob Binary&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 6/9 ] Criar Dataset destino - Blob Binary&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">        az datafactory dataset create
 </span></span></span><span class="line"><span class="cl"><span class="sd">          --factory-name {{ adf_name }}
@@ -716,7 +716,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">ds_blob_result.rc == 0</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 7 — Pipeline de cópia S3 → Blob</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 7 - Pipeline de cópia S3 → Blob</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 7/9 ] Criar Pipeline de migração {{ adf_pipeline_name }}&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
@@ -766,7 +766,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l">pipeline_result.rc == 0</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 8 — Disparar execução da pipeline</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 8 - Disparar execução da pipeline</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 8/9 ] Executar pipeline de migração&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
@@ -783,10 +783,10 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 8/9 ] Exibir Run ID&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">debug</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">msg</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Pipeline iniciada — Run ID: {{ run_id }}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">msg</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Pipeline iniciada - Run ID: {{ run_id }}&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 9 — Aguardar conclusão e verificar status</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># BLOCO 9 - Aguardar conclusão e verificar status</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># Polling a cada 30s, timeout de 120 tentativas (≈ 1h)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ---------------------------------------------------------------------------</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;[ 9/9 ] Aguardar conclusão da pipeline (polling 30s)&#34;</span><span class="w">
