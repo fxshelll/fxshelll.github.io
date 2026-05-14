@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Microservicos on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/microservicos/</link>
+    <link>https://fxshell.com.br/tags/microservicos/</link>
     <description>Recent content in Microservicos on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Microservicos on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/microservicos/</link>
+      <link>https://fxshell.com.br/tags/microservicos/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/microservicos/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/microservicos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Monolito, Arquitetura em Camadas e Microsserviços</title>
-      <link>https://fxshelll.github.io/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</link>
+      <link>https://fxshell.com.br/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</link>
       <pubDate>Wed, 24 Sep 2025 12:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</guid>
+      <guid>https://fxshell.com.br/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</guid>
       <description>A maioria dos sistemas começa como um monólito. E não tem problema algum nisso. O problema é quando o monólito cresce sem nenhuma organização interna, e o time começa a gastar mais tempo desvendando dependências ocultas do que entregando funcionalidades.
 Este post cobre a evolução natural das arquiteturas de software — do monólito para a arquitetura em camadas e, em determinados contextos, para microsserviços — com ênfase nos trade-offs reais de cada abordagem.
 </description>

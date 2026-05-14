@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Nginx on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/nginx/</link>
+    <link>https://fxshell.com.br/tags/nginx/</link>
     <description>Recent content in Nginx on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Nginx on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/nginx/</link>
+      <link>https://fxshell.com.br/tags/nginx/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible SSL: Certificados Let&#39;s Encrypt Automáticos com AWX</title>
-      <link>https://fxshelll.github.io/posts/ansible-ssl-letsencrypt/</link>
+      <link>https://fxshell.com.br/posts/ansible-ssl-letsencrypt/</link>
       <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-ssl-letsencrypt/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-ssl-letsencrypt/</guid>
       <description>Você já acordou às 3 da manhã com o alerta de que um certificado SSL expirou em produção? Ou descobriu que um cliente tentou acessar o site e viu a tela vermelha do browser dizendo &ldquo;conexão não é segura&rdquo;? Esse é o custo de gerenciar SSL na mão.
 Neste lab eu automatizei o ciclo completo de criação e renovação de certificados SSL para três sites diferentes — fxshell1.com.br, fxshell2.com.br e fxshell3.com.br — usando Ansible + Certbot + Let&rsquo;s Encrypt. Cada certificado cobre o domínio raiz e o www no mesmo cert (SAN). O AWX agenda a renovação automática toda terça-feira às 03:00 UTC; quando disparado manualmente, um survey pergunta quais tenants renovar antes de executar. Nenhum clique desnecessário, nenhuma surpresa.
 </description>
@@ -58,10 +58,10 @@ Referências Certbot Documentation Let&rsquo;s Encrypt — Rate Limits ACME Prot
     </item>
     <item>
       <title>Ansible Lab: Provisionando Infraestrutura Web Segura do Zero</title>
-      <link>https://fxshelll.github.io/posts/ansible-lab-infra-segura/</link>
+      <link>https://fxshell.com.br/posts/ansible-lab-infra-segura/</link>
       <pubDate>Tue, 21 Apr 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-lab-infra-segura/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-lab-infra-segura/</guid>
       <description>Cenário: você tem 4 VMs vazias e precisa subir uma stack web completa — load balancer, dois servidores de aplicação, banco de dados, tudo com segurança configurada desde o início — em menos de 5 minutos. Só com Ansible.
 Este post documenta um lab que montei para praticar exatamente isso: infraestrutura como código, do zero até uma stack funcional e segura, reproduzível com um único comando.
 Objetivo do Lab O objetivo é simular, localmente, um ambiente que existe de verdade em qualquer empresa que tenha um sistema web em produção. Em vez de provisionar um servidor por vez — conectando via SSH, instalando pacotes na mão e torcendo para não esquecer nada — o lab demonstra como automatizar todo esse processo com Ansible.

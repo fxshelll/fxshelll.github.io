@@ -2,17 +2,17 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Categories on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/categories/</link>
+    <link>https://fxshell.com.br/categories/</link>
     <description>Recent content in Categories on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Categories on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/categories/</link>
+      <link>https://fxshell.com.br/categories/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

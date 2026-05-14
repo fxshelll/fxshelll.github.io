@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Aws on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/aws/</link>
+    <link>https://fxshell.com.br/tags/aws/</link>
     <description>Recent content in Aws on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Aws on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/aws/</link>
+      <link>https://fxshell.com.br/tags/aws/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Migração S3 - Azure Blob Storage com Ansible e Azure Data Factory</title>
-      <link>https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/</link>
+      <link>https://fxshell.com.br/posts/ansible-adf-migrate-s3-azure/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-adf-migrate-s3-azure/</guid>
       <description>Em um projeto de migração real, precisamos mover os dados de dezenas de buckets S3 de clientes para o Azure Blob Storage. O processo manual - criar o ADF no portal, configurar cada linked service, montar a pipeline, disparar e monitorar - era repetitivo e propenso a erro. A solução foi um único playbook Ansible que provisiona toda a infraestrutura e executa a cópia de ponta a ponta.
 Objetivo do Lab Construir um playbook Ansible que automatiza completamente a migração de dados de um bucket AWS S3 para um container no Azure Blob Storage, usando o Azure Data Factory como motor de cópia. O playbook cria todos os recursos necessários, dispara a pipeline e faz polling do status até confirmar o sucesso (ou falha explícita).
 </description>
@@ -53,10 +53,10 @@ Referências Azure Data Factory - documentação oficial Copiar dados do Amazon 
     </item>
     <item>
       <title>Terraform AWS — Provisionando uma VPC Segura com ALB, EC2 e RDS</title>
-      <link>https://fxshelll.github.io/posts/terraform-aws-vpc/</link>
+      <link>https://fxshell.com.br/posts/terraform-aws-vpc/</link>
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/terraform-aws-vpc/</guid>
+      <guid>https://fxshell.com.br/posts/terraform-aws-vpc/</guid>
       <description>Toda vez que um time precisa criar um novo ambiente — seja para testes, staging ou produção — o processo manual de clicar no console da AWS abre espaço para erros, inconsistências e ambientes que ninguém sabe exatamente como foram configurados. Infraestrutura como Código resolve isso: você escreve a infraestrutura em arquivos de texto, versiona no Git e aplica com um comando.
 Neste lab, construo uma VPC completa na AWS usando Terraform, com balanceador de carga, servidores web em subnets privadas, banco de dados MySQL e state remoto no S3.
 </description>

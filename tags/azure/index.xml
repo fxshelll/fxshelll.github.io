@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Azure on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/azure/</link>
+    <link>https://fxshell.com.br/tags/azure/</link>
     <description>Recent content in Azure on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Azure on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/azure/</link>
+      <link>https://fxshell.com.br/tags/azure/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/azure/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Migração S3 - Azure Blob Storage com Ansible e Azure Data Factory</title>
-      <link>https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/</link>
+      <link>https://fxshell.com.br/posts/ansible-adf-migrate-s3-azure/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-adf-migrate-s3-azure/</guid>
       <description>Em um projeto de migração real, precisamos mover os dados de dezenas de buckets S3 de clientes para o Azure Blob Storage. O processo manual - criar o ADF no portal, configurar cada linked service, montar a pipeline, disparar e monitorar - era repetitivo e propenso a erro. A solução foi um único playbook Ansible que provisiona toda a infraestrutura e executa a cópia de ponta a ponta.
 Objetivo do Lab Construir um playbook Ansible que automatiza completamente a migração de dados de um bucket AWS S3 para um container no Azure Blob Storage, usando o Azure Data Factory como motor de cópia. O playbook cria todos os recursos necessários, dispara a pipeline e faz polling do status até confirmar o sucesso (ou falha explícita).
 </description>
@@ -53,10 +53,10 @@ Referências Azure Data Factory - documentação oficial Copiar dados do Amazon 
     </item>
     <item>
       <title>Application Gateway no Azure com Terraform — Lab de Backend API com Path Routing</title>
-      <link>https://fxshelll.github.io/posts/terraform-azure-appgw/</link>
+      <link>https://fxshell.com.br/posts/terraform-azure-appgw/</link>
       <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/terraform-azure-appgw/</guid>
+      <guid>https://fxshell.com.br/posts/terraform-azure-appgw/</guid>
       <description>Se a sua aplicação expõe múltiplas APIs numa mesma infraestrutura e você precisa rotear o tráfego por URL — /api/orders para um pool, /api/inventory para outro — um Load Balancer tradicional não resolve. Ele opera na camada 4 (TCP/UDP), enxerga apenas IP e porta, e distribui conexões sem entender o conteúdo HTTP. O Azure Application Gateway opera na camada 7 e faz exatamente esse roteamento baseado em path, header e host — além de oferecer SSL termination, health probes HTTP e integração com WAF.
 </description>
       <content:encoded><![CDATA[Se a sua aplicação expõe múltiplas APIs numa mesma infraestrutura e você precisa rotear o tráfego por URL — /api/orders para um pool, /api/inventory para outro — um Load Balancer tradicional não resolve. Ele opera na camada 4 (TCP/UDP), enxerga apenas IP e porta, e distribui conexões sem entender o conteúdo HTTP. O Azure Application Gateway opera na camada 7 e faz exatamente esse roteamento baseado em path, header e host — além de oferecer SSL termination, health probes HTTP e integração com WAF.
@@ -95,10 +95,10 @@ Referências Azure Application Gateway — Documentação oficial URL path-based
     </item>
     <item>
       <title>Automatizando Backups de SQL Server no Azure com Ansible</title>
-      <link>https://fxshelll.github.io/posts/ansible-mssql-backup-azure/</link>
+      <link>https://fxshell.com.br/posts/ansible-mssql-backup-azure/</link>
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-mssql-backup-azure/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-mssql-backup-azure/</guid>
       <description>Manter backups consistentes de múltiplos SQL Servers e armazená-los em nuvem é uma tarefa crítica que, quando feita manualmente, vira fonte de erros, esquecimentos e surpresas na hora de um restore. Este lab mostra como resolver isso com Ansible rodando em uma máquina Linux, acionando servidores Windows via WinRM e fazendo o backup ir direto do SQL Server para o Azure Blob Storage — sem que nenhum arquivo passe pela máquina de controle.
 </description>
       <content:encoded><![CDATA[Manter backups consistentes de múltiplos SQL Servers e armazená-los em nuvem é uma tarefa crítica que, quando feita manualmente, vira fonte de erros, esquecimentos e surpresas na hora de um restore. Este lab mostra como resolver isso com Ansible rodando em uma máquina Linux, acionando servidores Windows via WinRM e fazendo o backup ir direto do SQL Server para o Azure Blob Storage — sem que nenhum arquivo passe pela máquina de controle.

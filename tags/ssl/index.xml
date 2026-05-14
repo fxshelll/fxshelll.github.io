@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Ssl on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/ssl/</link>
+    <link>https://fxshell.com.br/tags/ssl/</link>
     <description>Recent content in Ssl on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Ssl on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/ssl/</link>
+      <link>https://fxshell.com.br/tags/ssl/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/ssl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/ssl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible SSL: Certificados Let&#39;s Encrypt Automáticos com AWX</title>
-      <link>https://fxshelll.github.io/posts/ansible-ssl-letsencrypt/</link>
+      <link>https://fxshell.com.br/posts/ansible-ssl-letsencrypt/</link>
       <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-ssl-letsencrypt/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-ssl-letsencrypt/</guid>
       <description>Você já acordou às 3 da manhã com o alerta de que um certificado SSL expirou em produção? Ou descobriu que um cliente tentou acessar o site e viu a tela vermelha do browser dizendo &ldquo;conexão não é segura&rdquo;? Esse é o custo de gerenciar SSL na mão.
 Neste lab eu automatizei o ciclo completo de criação e renovação de certificados SSL para três sites diferentes — fxshell1.com.br, fxshell2.com.br e fxshell3.com.br — usando Ansible + Certbot + Let&rsquo;s Encrypt. Cada certificado cobre o domínio raiz e o www no mesmo cert (SAN). O AWX agenda a renovação automática toda terça-feira às 03:00 UTC; quando disparado manualmente, um survey pergunta quais tenants renovar antes de executar. Nenhum clique desnecessário, nenhuma surpresa.
 </description>

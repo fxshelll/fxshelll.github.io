@@ -2,339 +2,339 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Tags on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/</link>
+    <link>https://fxshell.com.br/tags/</link>
     <description>Recent content in Tags on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Tags on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/</link>
+      <link>https://fxshell.com.br/tags/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible</title>
-      <link>https://fxshelll.github.io/tags/ansible/</link>
+      <link>https://fxshell.com.br/tags/ansible/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/ansible/</guid>
+      <guid>https://fxshell.com.br/tags/ansible/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Automação</title>
-      <link>https://fxshelll.github.io/tags/automa%C3%A7%C3%A3o/</link>
+      <link>https://fxshell.com.br/tags/automa%C3%A7%C3%A3o/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/automa%C3%A7%C3%A3o/</guid>
+      <guid>https://fxshell.com.br/tags/automa%C3%A7%C3%A3o/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Aws</title>
-      <link>https://fxshelll.github.io/tags/aws/</link>
+      <link>https://fxshell.com.br/tags/aws/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/aws/</guid>
+      <guid>https://fxshell.com.br/tags/aws/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Azure</title>
-      <link>https://fxshelll.github.io/tags/azure/</link>
+      <link>https://fxshell.com.br/tags/azure/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/azure/</guid>
+      <guid>https://fxshell.com.br/tags/azure/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Cloud</title>
-      <link>https://fxshelll.github.io/tags/cloud/</link>
+      <link>https://fxshell.com.br/tags/cloud/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/cloud/</guid>
+      <guid>https://fxshell.com.br/tags/cloud/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Data-Factory</title>
-      <link>https://fxshelll.github.io/tags/data-factory/</link>
+      <link>https://fxshell.com.br/tags/data-factory/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/data-factory/</guid>
+      <guid>https://fxshell.com.br/tags/data-factory/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Devops</title>
-      <link>https://fxshelll.github.io/tags/devops/</link>
+      <link>https://fxshell.com.br/tags/devops/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/devops/</guid>
+      <guid>https://fxshell.com.br/tags/devops/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Awx</title>
-      <link>https://fxshelll.github.io/tags/awx/</link>
+      <link>https://fxshell.com.br/tags/awx/</link>
       <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/awx/</guid>
+      <guid>https://fxshell.com.br/tags/awx/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Letsencrypt</title>
-      <link>https://fxshelll.github.io/tags/letsencrypt/</link>
+      <link>https://fxshell.com.br/tags/letsencrypt/</link>
       <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/letsencrypt/</guid>
+      <guid>https://fxshell.com.br/tags/letsencrypt/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Nginx</title>
-      <link>https://fxshelll.github.io/tags/nginx/</link>
+      <link>https://fxshell.com.br/tags/nginx/</link>
       <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/nginx/</guid>
+      <guid>https://fxshell.com.br/tags/nginx/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Segurança</title>
-      <link>https://fxshelll.github.io/tags/seguran%C3%A7a/</link>
+      <link>https://fxshell.com.br/tags/seguran%C3%A7a/</link>
       <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/seguran%C3%A7a/</guid>
+      <guid>https://fxshell.com.br/tags/seguran%C3%A7a/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Ssl</title>
-      <link>https://fxshelll.github.io/tags/ssl/</link>
+      <link>https://fxshell.com.br/tags/ssl/</link>
       <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/ssl/</guid>
+      <guid>https://fxshell.com.br/tags/ssl/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Appgateway</title>
-      <link>https://fxshelll.github.io/tags/appgateway/</link>
+      <link>https://fxshell.com.br/tags/appgateway/</link>
       <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/appgateway/</guid>
+      <guid>https://fxshell.com.br/tags/appgateway/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Iac</title>
-      <link>https://fxshelll.github.io/tags/iac/</link>
+      <link>https://fxshell.com.br/tags/iac/</link>
       <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/iac/</guid>
+      <guid>https://fxshell.com.br/tags/iac/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Loadbalancer</title>
-      <link>https://fxshelll.github.io/tags/loadbalancer/</link>
+      <link>https://fxshell.com.br/tags/loadbalancer/</link>
       <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/loadbalancer/</guid>
+      <guid>https://fxshell.com.br/tags/loadbalancer/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Networking</title>
-      <link>https://fxshelll.github.io/tags/networking/</link>
+      <link>https://fxshell.com.br/tags/networking/</link>
       <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/networking/</guid>
+      <guid>https://fxshell.com.br/tags/networking/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Terraform</title>
-      <link>https://fxshelll.github.io/tags/terraform/</link>
+      <link>https://fxshell.com.br/tags/terraform/</link>
       <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/terraform/</guid>
+      <guid>https://fxshell.com.br/tags/terraform/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Haproxy</title>
-      <link>https://fxshelll.github.io/tags/haproxy/</link>
+      <link>https://fxshell.com.br/tags/haproxy/</link>
       <pubDate>Tue, 21 Apr 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/haproxy/</guid>
+      <guid>https://fxshell.com.br/tags/haproxy/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Infraestrutura</title>
-      <link>https://fxshelll.github.io/tags/infraestrutura/</link>
+      <link>https://fxshell.com.br/tags/infraestrutura/</link>
       <pubDate>Tue, 21 Apr 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/infraestrutura/</guid>
+      <guid>https://fxshell.com.br/tags/infraestrutura/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Linux</title>
-      <link>https://fxshelll.github.io/tags/linux/</link>
+      <link>https://fxshell.com.br/tags/linux/</link>
       <pubDate>Tue, 21 Apr 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/linux/</guid>
+      <guid>https://fxshell.com.br/tags/linux/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Mysql</title>
-      <link>https://fxshelll.github.io/tags/mysql/</link>
+      <link>https://fxshell.com.br/tags/mysql/</link>
       <pubDate>Tue, 21 Apr 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/mysql/</guid>
+      <guid>https://fxshell.com.br/tags/mysql/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Automation</title>
-      <link>https://fxshelll.github.io/tags/automation/</link>
+      <link>https://fxshell.com.br/tags/automation/</link>
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/automation/</guid>
+      <guid>https://fxshell.com.br/tags/automation/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Backup</title>
-      <link>https://fxshelll.github.io/tags/backup/</link>
+      <link>https://fxshell.com.br/tags/backup/</link>
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/backup/</guid>
+      <guid>https://fxshell.com.br/tags/backup/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Sqlserver</title>
-      <link>https://fxshelll.github.io/tags/sqlserver/</link>
+      <link>https://fxshell.com.br/tags/sqlserver/</link>
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/sqlserver/</guid>
+      <guid>https://fxshell.com.br/tags/sqlserver/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Sre</title>
-      <link>https://fxshelll.github.io/tags/sre/</link>
+      <link>https://fxshell.com.br/tags/sre/</link>
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/sre/</guid>
+      <guid>https://fxshell.com.br/tags/sre/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Windows</title>
-      <link>https://fxshelll.github.io/tags/windows/</link>
+      <link>https://fxshell.com.br/tags/windows/</link>
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/windows/</guid>
+      <guid>https://fxshell.com.br/tags/windows/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Ferramentas</title>
-      <link>https://fxshelll.github.io/tags/ferramentas/</link>
+      <link>https://fxshell.com.br/tags/ferramentas/</link>
       <pubDate>Mon, 30 Mar 2026 03:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/ferramentas/</guid>
+      <guid>https://fxshell.com.br/tags/ferramentas/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Shell</title>
-      <link>https://fxshelll.github.io/tags/shell/</link>
+      <link>https://fxshell.com.br/tags/shell/</link>
       <pubDate>Mon, 30 Mar 2026 03:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/shell/</guid>
+      <guid>https://fxshell.com.br/tags/shell/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Arquitetura</title>
-      <link>https://fxshelll.github.io/tags/arquitetura/</link>
+      <link>https://fxshell.com.br/tags/arquitetura/</link>
       <pubDate>Wed, 24 Sep 2025 12:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/arquitetura/</guid>
+      <guid>https://fxshell.com.br/tags/arquitetura/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Kubernetes</title>
-      <link>https://fxshelll.github.io/tags/kubernetes/</link>
+      <link>https://fxshell.com.br/tags/kubernetes/</link>
       <pubDate>Wed, 24 Sep 2025 12:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/kubernetes/</guid>
+      <guid>https://fxshell.com.br/tags/kubernetes/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Microservicos</title>
-      <link>https://fxshelll.github.io/tags/microservicos/</link>
+      <link>https://fxshell.com.br/tags/microservicos/</link>
       <pubDate>Wed, 24 Sep 2025 12:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/microservicos/</guid>
+      <guid>https://fxshell.com.br/tags/microservicos/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Redes</title>
-      <link>https://fxshelll.github.io/tags/redes/</link>
+      <link>https://fxshell.com.br/tags/redes/</link>
       <pubDate>Wed, 03 Feb 2021 14:49:14 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/redes/</guid>
+      <guid>https://fxshell.com.br/tags/redes/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Containers</title>
-      <link>https://fxshelll.github.io/tags/containers/</link>
+      <link>https://fxshell.com.br/tags/containers/</link>
       <pubDate>Thu, 08 Oct 2020 14:10:44 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/containers/</guid>
+      <guid>https://fxshell.com.br/tags/containers/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Docker</title>
-      <link>https://fxshelll.github.io/tags/docker/</link>
+      <link>https://fxshell.com.br/tags/docker/</link>
       <pubDate>Thu, 08 Oct 2020 14:10:44 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/docker/</guid>
+      <guid>https://fxshell.com.br/tags/docker/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Ctf</title>
-      <link>https://fxshelll.github.io/tags/ctf/</link>
+      <link>https://fxshell.com.br/tags/ctf/</link>
       <pubDate>Wed, 30 Sep 2020 23:58:15 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/ctf/</guid>
+      <guid>https://fxshell.com.br/tags/ctf/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Monitoramento</title>
-      <link>https://fxshelll.github.io/tags/monitoramento/</link>
+      <link>https://fxshell.com.br/tags/monitoramento/</link>
       <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/tags/monitoramento/</guid>
+      <guid>https://fxshell.com.br/tags/monitoramento/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>

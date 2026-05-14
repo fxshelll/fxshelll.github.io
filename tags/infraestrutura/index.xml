@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Infraestrutura on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/infraestrutura/</link>
+    <link>https://fxshell.com.br/tags/infraestrutura/</link>
     <description>Recent content in Infraestrutura on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Infraestrutura on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/infraestrutura/</link>
+      <link>https://fxshell.com.br/tags/infraestrutura/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/infraestrutura/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/infraestrutura/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible Lab: Provisionando Infraestrutura Web Segura do Zero</title>
-      <link>https://fxshelll.github.io/posts/ansible-lab-infra-segura/</link>
+      <link>https://fxshell.com.br/posts/ansible-lab-infra-segura/</link>
       <pubDate>Tue, 21 Apr 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-lab-infra-segura/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-lab-infra-segura/</guid>
       <description>Cenário: você tem 4 VMs vazias e precisa subir uma stack web completa — load balancer, dois servidores de aplicação, banco de dados, tudo com segurança configurada desde o início — em menos de 5 minutos. Só com Ansible.
 Este post documenta um lab que montei para praticar exatamente isso: infraestrutura como código, do zero até uma stack funcional e segura, reproduzível com um único comando.
 Objetivo do Lab O objetivo é simular, localmente, um ambiente que existe de verdade em qualquer empresa que tenha um sistema web em produção. Em vez de provisionar um servidor por vez — conectando via SSH, instalando pacotes na mão e torcendo para não esquecer nada — o lab demonstra como automatizar todo esse processo com Ansible.
@@ -73,10 +73,10 @@ Documentação oficial do Ansible Ansible Galaxy CIS Benchmarks para Linux ]]></
     </item>
     <item>
       <title>Terraform AWS — Provisionando uma VPC Segura com ALB, EC2 e RDS</title>
-      <link>https://fxshelll.github.io/posts/terraform-aws-vpc/</link>
+      <link>https://fxshell.com.br/posts/terraform-aws-vpc/</link>
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/terraform-aws-vpc/</guid>
+      <guid>https://fxshell.com.br/posts/terraform-aws-vpc/</guid>
       <description>Toda vez que um time precisa criar um novo ambiente — seja para testes, staging ou produção — o processo manual de clicar no console da AWS abre espaço para erros, inconsistências e ambientes que ninguém sabe exatamente como foram configurados. Infraestrutura como Código resolve isso: você escreve a infraestrutura em arquivos de texto, versiona no Git e aplica com um comando.
 Neste lab, construo uma VPC completa na AWS usando Terraform, com balanceador de carga, servidores web em subnets privadas, banco de dados MySQL e state remoto no S3.
 </description>
@@ -110,10 +110,10 @@ Referências Terraform AWS Provider Docs AWS VPC User Guide Terraform Best Pract
     </item>
     <item>
       <title>Ansible</title>
-      <link>https://fxshelll.github.io/posts/ansible/</link>
+      <link>https://fxshell.com.br/posts/ansible/</link>
       <pubDate>Tue, 30 Mar 2021 00:56:17 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible/</guid>
+      <guid>https://fxshell.com.br/posts/ansible/</guid>
       <description>O Ansible é uma ferramenta de automação de infraestrutura open source que permite gerenciar configurações, provisionar servidores e orquestrar tarefas complexas em dezenas ou centenas de máquinas ao mesmo tempo — tudo a partir de um único ponto de controle, sem instalar nenhum agente nos servidores alvo.
 O nome vem da ficção científica: um &ldquo;ansible&rdquo; é um dispositivo de comunicação superlumínica que transmite informação instantaneamente para múltiplos destinos. A metáfora é precisa.
 </description>
@@ -171,10 +171,10 @@ Criar playbooks completos que provisionam stacks inteiras Organizar infraestrutu
     </item>
     <item>
       <title>Docker</title>
-      <link>https://fxshelll.github.io/posts/docker/</link>
+      <link>https://fxshell.com.br/posts/docker/</link>
       <pubDate>Thu, 08 Oct 2020 14:10:44 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/docker/</guid>
+      <guid>https://fxshell.com.br/posts/docker/</guid>
       <description>Docker é a plataforma de containers mais usada no mercado. Com ela você empacota uma aplicação e todas as suas dependências em uma unidade portátil que roda de forma idêntica em qualquer ambiente — do laptop do dev até a produção em cloud.
 O conceito central é isolamento: cada container roda de forma completamente isolada dos demais e do host, usando recursos do próprio kernel Linux.
 Dois tipos de isolamento Lógico — Namespaces: isolam processos, redes, usuários e sistemas de arquivos. Cada container enxerga apenas o que é seu.
@@ -193,9 +193,9 @@ docker container exec -ti &lt;id&gt; bash docker container exec -ti &lt;id&gt; l
 docker container run -d -m 128M --cpus 0.5 nginx Atualizar em container já em execução:
 docker container update --cpus 0.8 --memory 64M &lt;id&gt; Testar pressão com stress (instalar dentro do container):
 apt-get install -y stress stress --cpu 1 --vm-bytes 128M --vm 1 Volumes — Persistindo Dados O filesystem do container é volátil — quando o container é removido, tudo dentro dele some. Volumes existem fora do container e persistem independentemente.
-Bind Mount — você define o caminho # Montar diretório do host no container docker container run -ti \ --mount type=bind,src=https://fxshelll.github.io/opt/meuapp,dst=/app \ debian # Somente leitura docker container run -ti \ --mount type=bind,src=https://fxshelll.github.io/opt/meuapp,dst=/app,ro \ debian Docker Volume — gerenciado pelo Docker # Criar volume docker volume create dbdados # Usar volume no container docker container run -d \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 # Listar volumes docker volume ls # Inspecionar docker volume inspect dbdados # Remover (só se não estiver em uso) docker volume rm dbdados # Remover todos os volumes não utilizados docker volume prune Todos os volumes ficam em /var/lib/docker/volumes/.
+Bind Mount — você define o caminho # Montar diretório do host no container docker container run -ti \ --mount type=bind,src=https://fxshell.com.br/opt/meuapp,dst=/app \ debian # Somente leitura docker container run -ti \ --mount type=bind,src=https://fxshell.com.br/opt/meuapp,dst=/app,ro \ debian Docker Volume — gerenciado pelo Docker # Criar volume docker volume create dbdados # Usar volume no container docker container run -d \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 # Listar volumes docker volume ls # Inspecionar docker volume inspect dbdados # Remover (só se não estiver em uso) docker volume rm dbdados # Remover todos os volumes não utilizados docker volume prune Todos os volumes ficam em /var/lib/docker/volumes/.
 Compartilhando volume entre containers docker container run -d -p 5432:5432 --name pgsql1 \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 docker container run -d -p 5433:5432 --name pgsql2 \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 Ambos os containers leem e escrevem no mesmo volume.
-Backup de volume mkdir /opt/backup docker container run --rm \ --mount type=volume,src=dbdados,dst=/data \ --mount type=bind,src=https://fxshelll.github.io/opt/backup,dst=/backup \ debian tar -cvf /backup/bkp-banco.tar /data Dockerfile — Criando Suas Imagens O Dockerfile descreve como construir uma imagem. Cada instrução cria uma nova camada.
+Backup de volume mkdir /opt/backup docker container run --rm \ --mount type=volume,src=dbdados,dst=/data \ --mount type=bind,src=https://fxshell.com.br/opt/backup,dst=/backup \ debian tar -cvf /backup/bkp-banco.tar /data Dockerfile — Criando Suas Imagens O Dockerfile descreve como construir uma imagem. Cada instrução cria uma nova camada.
 Instruções principais Instrução Descrição FROM Imagem base — sempre a primeira linha RUN Executa comando no build, cria camada CMD Comando padrão ao iniciar o container ENTRYPOINT Executável principal do container COPY Copia arquivos para o filesystem ADD Como COPY, mas aceita TAR e URLs ENV Define variáveis de ambiente EXPOSE Documenta a porta que o container escuta VOLUME Declara ponto de montagem de volume WORKDIR Define diretório de trabalho USER Define usuário (padrão: root) LABEL Adiciona metadados à imagem ARG Variável de build-time (não fica na imagem) Exemplo: container com stress FROM debian LABEL app=&#34;stress-test&#34; ENV AMBIENTE=&#34;dev&#34; RUN apt-get update &amp;&amp; apt-get install -y stress &amp;&amp; apt-get clean CMD stress --cpu 1 --vm-bytes 64M --vm 1 docker image build -t meu-stress:1.0 . docker container run -d meu-stress:1.0 Exemplo: Apache com ENTRYPOINT FROM debian RUN apt-get update &amp;&amp; apt-get install -y apache2 &amp;&amp; apt-get clean ENV APACHE_LOCK_DIR=&#34;/var/lock&#34; ENV APACHE_PID_FILE=&#34;/var/run/apache2/apache2.pid&#34; ENV APACHE_RUN_USER=&#34;www-data&#34; ENV APACHE_RUN_GROUP=&#34;www-data&#34; ENV APACHE_LOG_DIR=&#34;/var/log/apache2&#34; LABEL description=&#34;Webserver&#34; version=&#34;1.0.0&#34; VOLUME /var/www/html/ EXPOSE 80 ENTRYPOINT [&#34;/usr/sbin/apachectl&#34;] CMD [&#34;-D&#34;, &#34;FOREGROUND&#34;] Multi-stage build — imagem final mínima Compila em uma imagem pesada, copia apenas o binário para uma imagem leve:
 # Stage 1: build FROM golang AS build WORKDIR /src ADD . /src RUN go build -o goapp # Stage 2: imagem final FROM alpine:3.19 WORKDIR /app COPY --from=build /src/goapp /app ENTRYPOINT [&#34;./goapp&#34;] A imagem final tem apenas o binário + Alpine (~5 MB), sem o toolchain Go.
 Buildar e publicar # Build local docker image build -t minha-imagem:1.0 . # Ver camadas e histórico docker history minha-imagem:1.0 # Login no Docker Hub docker login # Push docker image tag minha-imagem:1.0 usuario/minha-imagem:1.0 docker push usuario/minha-imagem:1.0 Registry Local Para manter suas imagens em ambiente privado sem depender do Docker Hub:

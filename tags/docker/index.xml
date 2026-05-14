@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Docker on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/docker/</link>
+    <link>https://fxshell.com.br/tags/docker/</link>
     <description>Recent content in Docker on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Docker on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/docker/</link>
+      <link>https://fxshell.com.br/tags/docker/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker</title>
-      <link>https://fxshelll.github.io/posts/docker/</link>
+      <link>https://fxshell.com.br/posts/docker/</link>
       <pubDate>Thu, 08 Oct 2020 14:10:44 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/docker/</guid>
+      <guid>https://fxshell.com.br/posts/docker/</guid>
       <description>Docker é a plataforma de containers mais usada no mercado. Com ela você empacota uma aplicação e todas as suas dependências em uma unidade portátil que roda de forma idêntica em qualquer ambiente — do laptop do dev até a produção em cloud.
 O conceito central é isolamento: cada container roda de forma completamente isolada dos demais e do host, usando recursos do próprio kernel Linux.
 Dois tipos de isolamento Lógico — Namespaces: isolam processos, redes, usuários e sistemas de arquivos. Cada container enxerga apenas o que é seu.
@@ -38,9 +38,9 @@ docker container exec -ti &lt;id&gt; bash docker container exec -ti &lt;id&gt; l
 docker container run -d -m 128M --cpus 0.5 nginx Atualizar em container já em execução:
 docker container update --cpus 0.8 --memory 64M &lt;id&gt; Testar pressão com stress (instalar dentro do container):
 apt-get install -y stress stress --cpu 1 --vm-bytes 128M --vm 1 Volumes — Persistindo Dados O filesystem do container é volátil — quando o container é removido, tudo dentro dele some. Volumes existem fora do container e persistem independentemente.
-Bind Mount — você define o caminho # Montar diretório do host no container docker container run -ti \ --mount type=bind,src=https://fxshelll.github.io/opt/meuapp,dst=/app \ debian # Somente leitura docker container run -ti \ --mount type=bind,src=https://fxshelll.github.io/opt/meuapp,dst=/app,ro \ debian Docker Volume — gerenciado pelo Docker # Criar volume docker volume create dbdados # Usar volume no container docker container run -d \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 # Listar volumes docker volume ls # Inspecionar docker volume inspect dbdados # Remover (só se não estiver em uso) docker volume rm dbdados # Remover todos os volumes não utilizados docker volume prune Todos os volumes ficam em /var/lib/docker/volumes/.
+Bind Mount — você define o caminho # Montar diretório do host no container docker container run -ti \ --mount type=bind,src=https://fxshell.com.br/opt/meuapp,dst=/app \ debian # Somente leitura docker container run -ti \ --mount type=bind,src=https://fxshell.com.br/opt/meuapp,dst=/app,ro \ debian Docker Volume — gerenciado pelo Docker # Criar volume docker volume create dbdados # Usar volume no container docker container run -d \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 # Listar volumes docker volume ls # Inspecionar docker volume inspect dbdados # Remover (só se não estiver em uso) docker volume rm dbdados # Remover todos os volumes não utilizados docker volume prune Todos os volumes ficam em /var/lib/docker/volumes/.
 Compartilhando volume entre containers docker container run -d -p 5432:5432 --name pgsql1 \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 docker container run -d -p 5433:5432 --name pgsql2 \ --mount type=volume,src=dbdados,dst=/data \ postgres:16 Ambos os containers leem e escrevem no mesmo volume.
-Backup de volume mkdir /opt/backup docker container run --rm \ --mount type=volume,src=dbdados,dst=/data \ --mount type=bind,src=https://fxshelll.github.io/opt/backup,dst=/backup \ debian tar -cvf /backup/bkp-banco.tar /data Dockerfile — Criando Suas Imagens O Dockerfile descreve como construir uma imagem. Cada instrução cria uma nova camada.
+Backup de volume mkdir /opt/backup docker container run --rm \ --mount type=volume,src=dbdados,dst=/data \ --mount type=bind,src=https://fxshell.com.br/opt/backup,dst=/backup \ debian tar -cvf /backup/bkp-banco.tar /data Dockerfile — Criando Suas Imagens O Dockerfile descreve como construir uma imagem. Cada instrução cria uma nova camada.
 Instruções principais Instrução Descrição FROM Imagem base — sempre a primeira linha RUN Executa comando no build, cria camada CMD Comando padrão ao iniciar o container ENTRYPOINT Executável principal do container COPY Copia arquivos para o filesystem ADD Como COPY, mas aceita TAR e URLs ENV Define variáveis de ambiente EXPOSE Documenta a porta que o container escuta VOLUME Declara ponto de montagem de volume WORKDIR Define diretório de trabalho USER Define usuário (padrão: root) LABEL Adiciona metadados à imagem ARG Variável de build-time (não fica na imagem) Exemplo: container com stress FROM debian LABEL app=&#34;stress-test&#34; ENV AMBIENTE=&#34;dev&#34; RUN apt-get update &amp;&amp; apt-get install -y stress &amp;&amp; apt-get clean CMD stress --cpu 1 --vm-bytes 64M --vm 1 docker image build -t meu-stress:1.0 . docker container run -d meu-stress:1.0 Exemplo: Apache com ENTRYPOINT FROM debian RUN apt-get update &amp;&amp; apt-get install -y apache2 &amp;&amp; apt-get clean ENV APACHE_LOCK_DIR=&#34;/var/lock&#34; ENV APACHE_PID_FILE=&#34;/var/run/apache2/apache2.pid&#34; ENV APACHE_RUN_USER=&#34;www-data&#34; ENV APACHE_RUN_GROUP=&#34;www-data&#34; ENV APACHE_LOG_DIR=&#34;/var/log/apache2&#34; LABEL description=&#34;Webserver&#34; version=&#34;1.0.0&#34; VOLUME /var/www/html/ EXPOSE 80 ENTRYPOINT [&#34;/usr/sbin/apachectl&#34;] CMD [&#34;-D&#34;, &#34;FOREGROUND&#34;] Multi-stage build — imagem final mínima Compila em uma imagem pesada, copia apenas o binário para uma imagem leve:
 # Stage 1: build FROM golang AS build WORKDIR /src ADD . /src RUN go build -o goapp # Stage 2: imagem final FROM alpine:3.19 WORKDIR /app COPY --from=build /src/goapp /app ENTRYPOINT [&#34;./goapp&#34;] A imagem final tem apenas o binário + Alpine (~5 MB), sem o toolchain Go.
 Buildar e publicar # Build local docker image build -t minha-imagem:1.0 . # Ver camadas e histórico docker history minha-imagem:1.0 # Login no Docker Hub docker login # Push docker image tag minha-imagem:1.0 usuario/minha-imagem:1.0 docker push usuario/minha-imagem:1.0 Registry Local Para manter suas imagens em ambiente privado sem depender do Docker Hub:
@@ -54,10 +54,10 @@ Limpeza # Remover containers parados docker container prune # Remover volumes n�
     </item>
     <item>
       <title>Escalabilidade e Conteinerização</title>
-      <link>https://fxshelll.github.io/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</link>
+      <link>https://fxshell.com.br/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</link>
       <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</guid>
+      <guid>https://fxshell.com.br/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</guid>
       <description>Pense em um container como uma espécie de caixinha isolada onde você coloca uma aplicação e tudo que ela precisa para rodar: bibliotecas, dependências, arquivos de configuração e recursos específicos. Essa&quot;caixinha&quot; fica fechada, isolada do ambiente externo, garantindo que a aplicação dentro dela sempre rode da mesma forma, não importa onde ela esteja
 Tecnicamente falando, um container é um ambiente isolado no nível do sistema operacional. Diferente das máquinas virtuais (que simulam um computador completo, com sistema operacional e tudo), os containers compartilham o kernel (núcleo) do sistema operacional do host. Isso significa que containers não precisam carregar um sistema inteiro para funcionar — eles reutilizam o que já existe no host, reduzindo drasticamente o uso de recursos.
 </description>
@@ -209,10 +209,10 @@ LIVRO: “Como se faz DevOps: Organizando pessoas, dos silos aos times de plataf
     </item>
     <item>
       <title>Microservices Async Demo</title>
-      <link>https://fxshelll.github.io/posts/microservices-async-demo/</link>
+      <link>https://fxshell.com.br/posts/microservices-async-demo/</link>
       <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/microservices-async-demo/</guid>
+      <guid>https://fxshell.com.br/posts/microservices-async-demo/</guid>
       <description>Este projeto demonstra uma arquitetura de microsserviços com comunicação assíncrona utilizando RabbitMQ. O objetivo é aplicar os conceitos de desacoplamento, escalabilidade e mensageria aprendidos na disciplina.
 Tecnologias utilizadas Node.js com Express RabbitMQ (mensageria) Docker e Docker Compose cURL para testes de API Estrutura do Projeto microservices-async-demo/ │ ├── docker-compose.yml ├── README.md │ ├── service-order/ │ ├── Dockerfile │ ├── package.json │ ├── wait-for-rabbit.sh │ └── src/ │ └── index.js │ ├── service-payment/ │ ├── Dockerfile │ ├── package.json │ ├── wait-for-rabbit.sh │ └── src/ │ └── index.js Microsserviços ServiceOrder: responsável por criar e listar pedidos (POST /orders, GET /orders). ServicePayment: responsável por processar pagamentos dos pedidos. Fluxo Assíncrono O cliente cria um pedido via ServiceOrder. O ServiceOrder publica uma mensagem no RabbitMQ. O ServicePayment consome a mensagem e processa o pagamento. sequenceDiagram participant Cliente participant ServiceOrder participant RabbitMQ participant ServicePayment Cliente-&gt;&gt;ServiceOrder: POST /orders ServiceOrder-&gt;&gt;RabbitMQ: Publica pedido na fila RabbitMQ-&gt;&gt;ServicePayment: Entrega mensagem ServicePayment-&gt;&gt;ServicePayment: Processa pagamento Como Executar Clonar o repositório: git clone https://github.com/fxshelll/microservices-async-demo.git Subir os serviços: docker compose up --build Acessar o RabbitMQ
 </description>

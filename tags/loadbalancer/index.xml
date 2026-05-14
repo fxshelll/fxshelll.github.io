@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Loadbalancer on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/loadbalancer/</link>
+    <link>https://fxshell.com.br/tags/loadbalancer/</link>
     <description>Recent content in Loadbalancer on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Loadbalancer on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/loadbalancer/</link>
+      <link>https://fxshell.com.br/tags/loadbalancer/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/loadbalancer/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/loadbalancer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Application Gateway no Azure com Terraform — Lab de Backend API com Path Routing</title>
-      <link>https://fxshelll.github.io/posts/terraform-azure-appgw/</link>
+      <link>https://fxshell.com.br/posts/terraform-azure-appgw/</link>
       <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/terraform-azure-appgw/</guid>
+      <guid>https://fxshell.com.br/posts/terraform-azure-appgw/</guid>
       <description>Se a sua aplicação expõe múltiplas APIs numa mesma infraestrutura e você precisa rotear o tráfego por URL — /api/orders para um pool, /api/inventory para outro — um Load Balancer tradicional não resolve. Ele opera na camada 4 (TCP/UDP), enxerga apenas IP e porta, e distribui conexões sem entender o conteúdo HTTP. O Azure Application Gateway opera na camada 7 e faz exatamente esse roteamento baseado em path, header e host — além de oferecer SSL termination, health probes HTTP e integração com WAF.
 </description>
       <content:encoded><![CDATA[Se a sua aplicação expõe múltiplas APIs numa mesma infraestrutura e você precisa rotear o tráfego por URL — /api/orders para um pool, /api/inventory para outro — um Load Balancer tradicional não resolve. Ele opera na camada 4 (TCP/UDP), enxerga apenas IP e porta, e distribui conexões sem entender o conteúdo HTTP. O Azure Application Gateway opera na camada 7 e faz exatamente esse roteamento baseado em path, header e host — além de oferecer SSL termination, health probes HTTP e integração com WAF.

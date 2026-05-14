@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Ansible on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/ansible/</link>
+    <link>https://fxshell.com.br/tags/ansible/</link>
     <description>Recent content in Ansible on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Ansible on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/ansible/</link>
+      <link>https://fxshell.com.br/tags/ansible/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Migração S3 - Azure Blob Storage com Ansible e Azure Data Factory</title>
-      <link>https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/</link>
+      <link>https://fxshell.com.br/posts/ansible-adf-migrate-s3-azure/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-adf-migrate-s3-azure/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-adf-migrate-s3-azure/</guid>
       <description>Em um projeto de migração real, precisamos mover os dados de dezenas de buckets S3 de clientes para o Azure Blob Storage. O processo manual - criar o ADF no portal, configurar cada linked service, montar a pipeline, disparar e monitorar - era repetitivo e propenso a erro. A solução foi um único playbook Ansible que provisiona toda a infraestrutura e executa a cópia de ponta a ponta.
 Objetivo do Lab Construir um playbook Ansible que automatiza completamente a migração de dados de um bucket AWS S3 para um container no Azure Blob Storage, usando o Azure Data Factory como motor de cópia. O playbook cria todos os recursos necessários, dispara a pipeline e faz polling do status até confirmar o sucesso (ou falha explícita).
 </description>
@@ -53,10 +53,10 @@ Referências Azure Data Factory - documentação oficial Copiar dados do Amazon 
     </item>
     <item>
       <title>Ansible SSL: Certificados Let&#39;s Encrypt Automáticos com AWX</title>
-      <link>https://fxshelll.github.io/posts/ansible-ssl-letsencrypt/</link>
+      <link>https://fxshell.com.br/posts/ansible-ssl-letsencrypt/</link>
       <pubDate>Sun, 03 May 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-ssl-letsencrypt/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-ssl-letsencrypt/</guid>
       <description>Você já acordou às 3 da manhã com o alerta de que um certificado SSL expirou em produção? Ou descobriu que um cliente tentou acessar o site e viu a tela vermelha do browser dizendo &ldquo;conexão não é segura&rdquo;? Esse é o custo de gerenciar SSL na mão.
 Neste lab eu automatizei o ciclo completo de criação e renovação de certificados SSL para três sites diferentes — fxshell1.com.br, fxshell2.com.br e fxshell3.com.br — usando Ansible + Certbot + Let&rsquo;s Encrypt. Cada certificado cobre o domínio raiz e o www no mesmo cert (SAN). O AWX agenda a renovação automática toda terça-feira às 03:00 UTC; quando disparado manualmente, um survey pergunta quais tenants renovar antes de executar. Nenhum clique desnecessário, nenhuma surpresa.
 </description>
@@ -95,10 +95,10 @@ Referências Certbot Documentation Let&rsquo;s Encrypt — Rate Limits ACME Prot
     </item>
     <item>
       <title>Ansible Lab: Provisionando Infraestrutura Web Segura do Zero</title>
-      <link>https://fxshelll.github.io/posts/ansible-lab-infra-segura/</link>
+      <link>https://fxshell.com.br/posts/ansible-lab-infra-segura/</link>
       <pubDate>Tue, 21 Apr 2026 13:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-lab-infra-segura/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-lab-infra-segura/</guid>
       <description>Cenário: você tem 4 VMs vazias e precisa subir uma stack web completa — load balancer, dois servidores de aplicação, banco de dados, tudo com segurança configurada desde o início — em menos de 5 minutos. Só com Ansible.
 Este post documenta um lab que montei para praticar exatamente isso: infraestrutura como código, do zero até uma stack funcional e segura, reproduzível com um único comando.
 Objetivo do Lab O objetivo é simular, localmente, um ambiente que existe de verdade em qualquer empresa que tenha um sistema web em produção. Em vez de provisionar um servidor por vez — conectando via SSH, instalando pacotes na mão e torcendo para não esquecer nada — o lab demonstra como automatizar todo esse processo com Ansible.
@@ -152,10 +152,10 @@ Documentação oficial do Ansible Ansible Galaxy CIS Benchmarks para Linux ]]></
     </item>
     <item>
       <title>Automatizando Backups de SQL Server no Azure com Ansible</title>
-      <link>https://fxshelll.github.io/posts/ansible-mssql-backup-azure/</link>
+      <link>https://fxshell.com.br/posts/ansible-mssql-backup-azure/</link>
       <pubDate>Tue, 21 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible-mssql-backup-azure/</guid>
+      <guid>https://fxshell.com.br/posts/ansible-mssql-backup-azure/</guid>
       <description>Manter backups consistentes de múltiplos SQL Servers e armazená-los em nuvem é uma tarefa crítica que, quando feita manualmente, vira fonte de erros, esquecimentos e surpresas na hora de um restore. Este lab mostra como resolver isso com Ansible rodando em uma máquina Linux, acionando servidores Windows via WinRM e fazendo o backup ir direto do SQL Server para o Azure Blob Storage — sem que nenhum arquivo passe pela máquina de controle.
 </description>
       <content:encoded><![CDATA[Manter backups consistentes de múltiplos SQL Servers e armazená-los em nuvem é uma tarefa crítica que, quando feita manualmente, vira fonte de erros, esquecimentos e surpresas na hora de um restore. Este lab mostra como resolver isso com Ansible rodando em uma máquina Linux, acionando servidores Windows via WinRM e fazendo o backup ir direto do SQL Server para o Azure Blob Storage — sem que nenhum arquivo passe pela máquina de controle.
@@ -207,10 +207,10 @@ Referências Documentação do Ansible para Windows BACKUP TO URL — SQL Server
     </item>
     <item>
       <title>Ansible</title>
-      <link>https://fxshelll.github.io/posts/ansible/</link>
+      <link>https://fxshell.com.br/posts/ansible/</link>
       <pubDate>Tue, 30 Mar 2021 00:56:17 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/ansible/</guid>
+      <guid>https://fxshell.com.br/posts/ansible/</guid>
       <description>O Ansible é uma ferramenta de automação de infraestrutura open source que permite gerenciar configurações, provisionar servidores e orquestrar tarefas complexas em dezenas ou centenas de máquinas ao mesmo tempo — tudo a partir de um único ponto de controle, sem instalar nenhum agente nos servidores alvo.
 O nome vem da ficção científica: um &ldquo;ansible&rdquo; é um dispositivo de comunicação superlumínica que transmite informação instantaneamente para múltiplos destinos. A metáfora é precisa.
 </description>

@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Kubernetes on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/kubernetes/</link>
+    <link>https://fxshell.com.br/tags/kubernetes/</link>
     <description>Recent content in Kubernetes on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Kubernetes on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/kubernetes/</link>
+      <link>https://fxshell.com.br/tags/kubernetes/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Monolito, Arquitetura em Camadas e Microsserviços</title>
-      <link>https://fxshelll.github.io/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</link>
+      <link>https://fxshell.com.br/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</link>
       <pubDate>Wed, 24 Sep 2025 12:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</guid>
+      <guid>https://fxshell.com.br/posts/arquitetura-de-aplica%C3%A7%C3%B5es/</guid>
       <description>A maioria dos sistemas começa como um monólito. E não tem problema algum nisso. O problema é quando o monólito cresce sem nenhuma organização interna, e o time começa a gastar mais tempo desvendando dependências ocultas do que entregando funcionalidades.
 Este post cobre a evolução natural das arquiteturas de software — do monólito para a arquitetura em camadas e, em determinados contextos, para microsserviços — com ênfase nos trade-offs reais de cada abordagem.
 </description>
@@ -61,10 +61,10 @@ Referências Martin Fowler — Microservices Martin Fowler — Strangler Fig App
     </item>
     <item>
       <title>Kubernetes</title>
-      <link>https://fxshelll.github.io/posts/kubernetes/</link>
+      <link>https://fxshell.com.br/posts/kubernetes/</link>
       <pubDate>Wed, 30 Sep 2020 23:59:51 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/kubernetes/</guid>
+      <guid>https://fxshell.com.br/posts/kubernetes/</guid>
       <description>Introdução e Arquitetura do Kubernetes Começaremos explorando os fundamentos do Kubernetes — conceitos essenciais para construir uma base sólida que facilitará o entendimento da arquitetura e do funcionamento dessa plataforma de orquestração de contêineres.
 O que é Kubernetes? O Kubernetes é uma plataforma open source para orquestração de contêineres, criada para automatizar grande parte das tarefas manuais relacionadas a implantação, administração e escalonamento de aplicações em contêineres.
 Por que usar Kubernetes? Inicialmente criado pelo Google e atualmente mantido pela Cloud Native Computing Foundation (CNCF), o Kubernetes se consolidou como o padrão de mercado para orquestração de contêineres, sendo amplamente adotado em arquiteturas de microsserviços e computação em nuvem.
@@ -136,10 +136,10 @@ Aumentar limites de file descriptors; Otimizar configurações de timeout; Verif
     </item>
     <item>
       <title>FIAP - DevOps e Arquitetura Cloud</title>
-      <link>https://fxshelll.github.io/posts/devops-e-arquitetura-cloud/</link>
+      <link>https://fxshell.com.br/posts/devops-e-arquitetura-cloud/</link>
       <pubDate>Thu, 23 Jul 2020 02:58:13 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/devops-e-arquitetura-cloud/</guid>
+      <guid>https://fxshell.com.br/posts/devops-e-arquitetura-cloud/</guid>
       <description>Fundamentos da Cultura DevOps O DevOps surgiu para acabar com o conflito entre desenvolvimento, focado em inovação rápida, e operações, voltadas para estabilidade e segurança. Em vez de atuarem separadamente, as duas áreas passaram a se integrar em um único fluxo colaborativo. Mais do que um conjunto de ferramentas, o DevOps representa uma mudança cultural que promove colaboração constante entre pessoas e times, automação de tarefas repetitivas — como testes, deploys e integrações —, monitoramento contínuo das aplicações e feedback rápido para melhorias constantes.
 </description>
       <content:encoded><![CDATA[Fundamentos da Cultura DevOps O DevOps surgiu para acabar com o conflito entre desenvolvimento, focado em inovação rápida, e operações, voltadas para estabilidade e segurança. Em vez de atuarem separadamente, as duas áreas passaram a se integrar em um único fluxo colaborativo. Mais do que um conjunto de ferramentas, o DevOps representa uma mudança cultural que promove colaboração constante entre pessoas e times, automação de tarefas repetitivas — como testes, deploys e integrações —, monitoramento contínuo das aplicações e feedback rápido para melhorias constantes.
@@ -252,10 +252,10 @@ O resultado é um ambiente seguro, eficiente e resiliente, que entrega valor rá
     </item>
     <item>
       <title>Escalabilidade e Conteinerização</title>
-      <link>https://fxshelll.github.io/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</link>
+      <link>https://fxshell.com.br/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</link>
       <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</guid>
+      <guid>https://fxshell.com.br/posts/escalabilidade-e-conteineriza%C3%A7%C3%A3o-/</guid>
       <description>Pense em um container como uma espécie de caixinha isolada onde você coloca uma aplicação e tudo que ela precisa para rodar: bibliotecas, dependências, arquivos de configuração e recursos específicos. Essa&quot;caixinha&quot; fica fechada, isolada do ambiente externo, garantindo que a aplicação dentro dela sempre rode da mesma forma, não importa onde ela esteja
 Tecnicamente falando, um container é um ambiente isolado no nível do sistema operacional. Diferente das máquinas virtuais (que simulam um computador completo, com sistema operacional e tudo), os containers compartilham o kernel (núcleo) do sistema operacional do host. Isso significa que containers não precisam carregar um sistema inteiro para funcionar — eles reutilizam o que já existe no host, reduzindo drasticamente o uso de recursos.
 </description>

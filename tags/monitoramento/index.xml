@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Monitoramento on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/monitoramento/</link>
+    <link>https://fxshell.com.br/tags/monitoramento/</link>
     <description>Recent content in Monitoramento on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Monitoramento on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/monitoramento/</link>
+      <link>https://fxshell.com.br/tags/monitoramento/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/monitoramento/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/monitoramento/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>bpytop</title>
-      <link>https://fxshelll.github.io/posts/bpytop/</link>
+      <link>https://fxshell.com.br/posts/bpytop/</link>
       <pubDate>Sat, 09 Mar 2019 16:00:36 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/bpytop/</guid>
+      <guid>https://fxshell.com.br/posts/bpytop/</guid>
       <description>
 Monitor de recursos que mostra uso e estatísticas de processador, memória, discos, rede e processos. https://github.com/aristocratos/bpytop
 sudo apt install bpytop </description>

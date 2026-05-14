@@ -2,24 +2,24 @@
   <channel>
     <docs>https://blogs.law.harvard.edu/tech/rss</docs>
     <title>Redes on FXShell - DevOps &amp; Sec</title>
-    <link>https://fxshelll.github.io/tags/redes/</link>
+    <link>https://fxshell.com.br/tags/redes/</link>
     <description>Recent content in Redes on FXShell - DevOps &amp; Sec</description>
     <image>
       <title>Redes on FXShell - DevOps &amp; Sec</title>
-      <link>https://fxshelll.github.io/tags/redes/</link>
+      <link>https://fxshell.com.br/tags/redes/</link>
       <url>fxshell.png</url>
     </image>
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 10 May 2026 05:14:34 UT</lastBuildDate>
-    <atom:link href="https://fxshelll.github.io/tags/redes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2026 18:24:20 UT</lastBuildDate>
+    <atom:link href="https://fxshell.com.br/tags/redes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Proxychain</title>
-      <link>https://fxshelll.github.io/posts/proxychain/</link>
+      <link>https://fxshell.com.br/posts/proxychain/</link>
       <pubDate>Wed, 03 Feb 2021 14:49:14 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/proxychain/</guid>
+      <guid>https://fxshell.com.br/posts/proxychain/</guid>
       <description>O ProxyChains é um programa que trabalha em base UNIX, que conecta funções relacionadas à rede em programas vinculados dinamicamente por meio de uma DLL pré-carregada e redireciona as conexões por meio de proxies SOCKS4 e SOCKS5 ou HTTP.
 Ao invés de realizar o roteamento para uma lista específica de proxies, podemos usar o Tor e redirecionar as requisições diretamente para a porta do Tor. Ou seja, realizamos varreduras diretamente pela rede Tor.
 </description>
@@ -44,10 +44,10 @@ Realizando uma varredura via Proxychains root@kali:~#: proxychains nmap -sC -sS 
     </item>
     <item>
       <title>DSniff</title>
-      <link>https://fxshelll.github.io/posts/dsniff/</link>
+      <link>https://fxshell.com.br/posts/dsniff/</link>
       <pubDate>Wed, 30 Sep 2020 23:59:51 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/dsniff/</guid>
+      <guid>https://fxshell.com.br/posts/dsniff/</guid>
       <description>O DSniff é um conjunto de ferramentas para auditoria de redes, que também poderá ser útil para aplicações forenses. Algumas das principais ferramentas dessa suíte são:
 DSniff: sniffer de senhas que suporta os protocolos FTP, Telnet, SMTP, HTTP e POP, dentre muitos outros. Filesnarf: ferramenta para extração de arquivos trafegados pelo protocolo NFS. Mailsnarf: ferramenta para extração de e-mails trafegados pelos protocolos SMTP e POP. DNSspoof: ferramenta para envio de respostas falsas a requisições DNS, auxiliando em ataques MITM. SSHmitm: ferramenta para execução de ataques MITM em conexões SSH (versão 1, exclusivamente), permitindo a captura de senhas e sequestro da sessão. </description>
       <content:encoded><![CDATA[O DSniff é um conjunto de ferramentas para auditoria de redes, que também poderá ser útil para aplicações forenses. Algumas das principais ferramentas dessa suíte são:
@@ -55,10 +55,10 @@ DSniff: sniffer de senhas que suporta os protocolos FTP, Telnet, SMTP, HTTP e PO
     </item>
     <item>
       <title>Tcpdump</title>
-      <link>https://fxshelll.github.io/posts/tcpdump/</link>
+      <link>https://fxshell.com.br/posts/tcpdump/</link>
       <pubDate>Wed, 30 Sep 2020 23:58:47 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/tcpdump/</guid>
+      <guid>https://fxshell.com.br/posts/tcpdump/</guid>
       <description>O TCPDump funciona em linha de comando, para captura e análise de pacotes. Já vem instalado por padrão em diversas distribuições Linux, foi também portado para o Windows com o nome de Windump. O TCPDump provê uma interface de usuário para a interação com a LibPcap, biblioteca amplamente utilizada por sniffers open source, que atua diretamente no driver da placa de rede para possibilitar a captura de pacotes.
 # tcpdump
 </description>
@@ -71,10 +71,10 @@ Para fazer uma busca especifica por uma interface, wireless por exemplo, basta s
     </item>
     <item>
       <title>Netcat</title>
-      <link>https://fxshelll.github.io/posts/netcat/</link>
+      <link>https://fxshell.com.br/posts/netcat/</link>
       <pubDate>Thu, 23 Jul 2020 02:02:18 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshelll.github.io/posts/netcat/</guid>
+      <guid>https://fxshell.com.br/posts/netcat/</guid>
       <description>Netcat O Netcat é um utilitário que lê e grava dados nas conexões de rede, usando o protocolo TCP ou UDP. Foi projetado para ser uma ferramenta confiável de &ldquo;back-end&rdquo; que pode ser usada diretamente ou acionada por outros programas e scripts. É também uma ferramenta rica em recursos para depuração e exploração de rede, pois pode criar quase qualquer tipo de conexão. Usos comuns incluem:
 Proxies TCP simples Clientes e servidores HTTP baseados em shell-script Teste de daemon de rede SOCKS ou HTTP ProxyCommand para SSH Sintaxe: $ nc -nlvp 1234
 </description>
