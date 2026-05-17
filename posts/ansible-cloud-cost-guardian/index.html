@@ -301,6 +301,56 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">owner</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">centro_custo</span><span class="w">
 </span></span></span></code></pre></div><hr>
+<h2 id="relatório-executivo--exemplo-de-saída">Relatório Executivo — Exemplo de Saída</h2>
+<p>Esse é o checklist que o playbook gera e envia para o Teams ao final de cada execução. Grande o suficiente para ser lido num canal sem abrir nada.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">╔══════════════════════════════════════════════════════════════════╗
+</span></span><span class="line"><span class="cl">║         FINOPS CLOUD GUARDIAN — RELATORIO MENSAL                ║
+</span></span><span class="line"><span class="cl">║   Subscription: Azure subscription 1  |  17/05/2026  08:00     ║
+</span></span><span class="line"><span class="cl">╚══════════════════════════════════════════════════════════════════╝
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">STATUS GERAL:   ⚠  ATENCAO  (+28.6% vs mes anterior)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">┌─────────────────────┬──────────────────────┬────────────────────┐
+</span></span><span class="line"><span class="cl">│   CUSTO ATUAL       │  PREVISAO FECHAMENTO  │  MES ANTERIOR      │
+</span></span><span class="line"><span class="cl">│   R$ 38.420         │  R$ 52.000            │  R$ 29.870         │
+</span></span><span class="line"><span class="cl">└─────────────────────┴──────────────────────┴────────────────────┘
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">─── TOP 5 SERVICOS ─────────────────────────────────────────────────
+</span></span><span class="line"><span class="cl"> 1. AKS Producao        (aks-togglemaster)    R$ 12.300  ████████░░
+</span></span><span class="line"><span class="cl"> 2. PostgreSQL Flexible  (3 instancias)        R$  8.900  ██████░░░░
+</span></span><span class="line"><span class="cl"> 3. Storage Backup      (satogglemasterf4)     R$  5.100  ███░░░░░░░
+</span></span><span class="line"><span class="cl"> 4. Redis Cache         (redis-togglemaster)   R$  3.400  ██░░░░░░░░
+</span></span><span class="line"><span class="cl"> 5. CosmosDB            (cosmosdb-toggle)      R$  2.800  █░░░░░░░░░
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">─── ALERTAS ────────────────────────────────────────────────────────
+</span></span><span class="line"><span class="cl"> [CRITICO]  16 recursos sem tags obrigatorias
+</span></span><span class="line"><span class="cl">            owner, squad, centro_custo ausentes
+</span></span><span class="line"><span class="cl">            Recursos: redis, cosmosdb, acr, storage, vnet...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> [ATENCAO]  AKS nodepool cresceu 24% vs mes anterior
+</span></span><span class="line"><span class="cl">            aks-togglemaster | Standard_D2_v4 | 2 nodes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> [ATENCAO]  CosmosDB sem tag de ambiente
+</span></span><span class="line"><span class="cl">            Sem chargeback definido para este recurso
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">─── INVENTARIO ─────────────────────────────────────────────────────
+</span></span><span class="line"><span class="cl"> Total de recursos:        34
+</span></span><span class="line"><span class="cl"> Recursos sem tags:        16  (47%)
+</span></span><span class="line"><span class="cl"> Novos recursos (24h):      0
+</span></span><span class="line"><span class="cl"> Discos orfaos:             0
+</span></span><span class="line"><span class="cl"> IPs publicos nao usados:   0
+</span></span><span class="line"><span class="cl"> Clusters AKS:              1  (aks-togglemaster | centralus)
+</span></span><span class="line"><span class="cl"> PostgreSQL Flexible:       3  (flag, targeting, auth)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">─── RECOMENDACOES ──────────────────────────────────────────────────
+</span></span><span class="line"><span class="cl"> → Adicionar tags obrigatorias nos 16 recursos sem governanca
+</span></span><span class="line"><span class="cl"> → Revisar crescimento do AKS — avaliar nodepool de hml
+</span></span><span class="line"><span class="cl"> → Validar necessidade do CosmosDB 24x7 em ambiente de testes
+</span></span><span class="line"><span class="cl"> → Exportar CSV gerado para dashboard Grafana de tendencias
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Gerado por ansible-cloud-cost-guardian
+</span></span><span class="line"><span class="cl">https://fxshelll.github.io/posts/ansible-cloud-cost-guardian/
+</span></span></code></pre></div><hr>
 <h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">ansible-cloud-cost-guardian/
 </span></span><span class="line"><span class="cl">├── inventories/
