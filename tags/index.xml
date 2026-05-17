@@ -12,14 +12,68 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Thu, 14 May 2026 21:17:58 UT</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2026 21:09:43 UT</lastBuildDate>
     <atom:link href="https://fxshell.com.br/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible</title>
       <link>https://fxshell.com.br/tags/ansible/</link>
-      <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
+      <pubDate>Sun, 17 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshell.com.br/tags/ansible/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Automacao</title>
+      <link>https://fxshell.com.br/tags/automacao/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshell.com.br/tags/automacao/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Azure</title>
+      <link>https://fxshell.com.br/tags/azure/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshell.com.br/tags/azure/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Cloud</title>
+      <link>https://fxshell.com.br/tags/cloud/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshell.com.br/tags/cloud/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Devops</title>
+      <link>https://fxshell.com.br/tags/devops/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshell.com.br/tags/devops/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Finops</title>
+      <link>https://fxshell.com.br/tags/finops/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshell.com.br/tags/finops/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Iac</title>
+      <link>https://fxshell.com.br/tags/iac/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 UT</pubDate>
+      <dc:creator>Felipe da Matta</dc:creator>
+      <guid>https://fxshell.com.br/tags/iac/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
@@ -42,38 +96,11 @@
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
-      <title>Azure</title>
-      <link>https://fxshell.com.br/tags/azure/</link>
-      <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshell.com.br/tags/azure/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
-      <title>Cloud</title>
-      <link>https://fxshell.com.br/tags/cloud/</link>
-      <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshell.com.br/tags/cloud/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
       <title>Data-Factory</title>
       <link>https://fxshell.com.br/tags/data-factory/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshell.com.br/tags/data-factory/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
-      <title>Devops</title>
-      <link>https://fxshell.com.br/tags/devops/</link>
-      <pubDate>Fri, 08 May 2026 00:00:00 UT</pubDate>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshell.com.br/tags/devops/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
@@ -128,15 +155,6 @@
       <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
       <dc:creator>Felipe da Matta</dc:creator>
       <guid>https://fxshell.com.br/tags/appgateway/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
-      <title>Iac</title>
-      <link>https://fxshell.com.br/tags/iac/</link>
-      <pubDate>Sat, 25 Apr 2026 00:00:00 UT</pubDate>
-      <dc:creator>Felipe da Matta</dc:creator>
-      <guid>https://fxshell.com.br/tags/iac/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
