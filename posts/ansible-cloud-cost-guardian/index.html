@@ -308,30 +308,31 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span><span class="line"><span class="cl">║   Subscription: Azure subscription 1  |  17/05/2026  08:00     ║
 </span></span><span class="line"><span class="cl">╚══════════════════════════════════════════════════════════════════╝
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">STATUS GERAL:   ⚠  ATENCAO  (+28.6% vs mes anterior)
+</span></span><span class="line"><span class="cl">STATUS GERAL:   ✓  OK  (dentro do budget mensal)
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">┌─────────────────────┬──────────────────────┬────────────────────┐
 </span></span><span class="line"><span class="cl">│   CUSTO ATUAL       │  PREVISAO FECHAMENTO  │  MES ANTERIOR      │
-</span></span><span class="line"><span class="cl">│   R$ 38.420         │  R$ 52.000            │  R$ 29.870         │
+</span></span><span class="line"><span class="cl">│   $ 788,20          │  $ 1.437,00           │  $ 1.390,00        │
 </span></span><span class="line"><span class="cl">└─────────────────────┴──────────────────────┴────────────────────┘
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">─── TOP 5 SERVICOS ─────────────────────────────────────────────────
-</span></span><span class="line"><span class="cl"> 1. AKS Producao        (aks-togglemaster)    R$ 12.300  ████████░░
-</span></span><span class="line"><span class="cl"> 2. PostgreSQL Flexible  (3 instancias)        R$  8.900  ██████░░░░
-</span></span><span class="line"><span class="cl"> 3. Storage Backup      (satogglemasterf4)     R$  5.100  ███░░░░░░░
-</span></span><span class="line"><span class="cl"> 4. Redis Cache         (redis-togglemaster)   R$  3.400  ██░░░░░░░░
-</span></span><span class="line"><span class="cl"> 5. CosmosDB            (cosmosdb-toggle)      R$  2.800  █░░░░░░░░░
+</span></span><span class="line"><span class="cl"> 1. Virtual Machines  (aks-default-vmss)     $ 451,38  ████████░░
+</span></span><span class="line"><span class="cl"> 2. Storage           (sa + backup disks)    $ 110,61  ████░░░░░░
+</span></span><span class="line"><span class="cl"> 3. Virtual Network   (vnet + private ep.)   $  86,95  ███░░░░░░░
+</span></span><span class="line"><span class="cl"> 4. PostgreSQL Flex   (flag/targeting/auth)  $  60,59  ██░░░░░░░░
+</span></span><span class="line"><span class="cl"> 5. Redis Cache       (redis-togglemaster)   $  47,63  █░░░░░░░░░
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">─── ALERTAS ────────────────────────────────────────────────────────
-</span></span><span class="line"><span class="cl"> [CRITICO]  16 recursos sem tags obrigatorias
+</span></span><span class="line"><span class="cl"> [ATENCAO]  16 recursos sem tags obrigatorias
 </span></span><span class="line"><span class="cl">            owner, squad, centro_custo ausentes
 </span></span><span class="line"><span class="cl">            Recursos: redis, cosmosdb, acr, storage, vnet...
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> [ATENCAO]  AKS nodepool cresceu 24% vs mes anterior
-</span></span><span class="line"><span class="cl">            aks-togglemaster | Standard_D2_v4 | 2 nodes
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"> [ATENCAO]  CosmosDB sem tag de ambiente
 </span></span><span class="line"><span class="cl">            Sem chargeback definido para este recurso
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> [OK]       0 discos orfaos | 0 IPs publicos nao associados
+</span></span><span class="line"><span class="cl"> [OK]       34 recursos inventariados | snapshot salvo
+</span></span><span class="line"><span class="cl"> [OK]       CSV exportado: data/exports/finops-2026-05-17.csv
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">─── INVENTARIO ─────────────────────────────────────────────────────
 </span></span><span class="line"><span class="cl"> Total de recursos:        34
@@ -344,8 +345,8 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">─── RECOMENDACOES ──────────────────────────────────────────────────
 </span></span><span class="line"><span class="cl"> → Adicionar tags obrigatorias nos 16 recursos sem governanca
-</span></span><span class="line"><span class="cl"> → Revisar crescimento do AKS — avaliar nodepool de hml
-</span></span><span class="line"><span class="cl"> → Validar necessidade do CosmosDB 24x7 em ambiente de testes
+</span></span><span class="line"><span class="cl"> → Monitorar tendencia de crescimento do AKS no proximo ciclo
+</span></span><span class="line"><span class="cl"> → Validar CosmosDB — definir chargeback e tag de ambiente
 </span></span><span class="line"><span class="cl"> → Exportar CSV gerado para dashboard Grafana de tendencias
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Gerado por ansible-cloud-cost-guardian
