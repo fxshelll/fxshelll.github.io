@@ -423,11 +423,13 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></code></pre></div><h3 id="ver-recursos-sem-tags-na-mão">Ver recursos sem tags na mão</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">az resource list -o json <span class="p">|</span> python3 scripts/check_tags.py
 </span></span><span class="line"><span class="cl"><span class="c1"># REQUIRED_TAGS=ambiente,aplicacao,squad,owner,centro_custo</span>
-</span></span></code></pre></div><h3 id="normalizar-custos-e-exportar-csv">Normalizar custos e exportar CSV</h3>
+</span></span></code></pre></div><h3 id="exportar-csv-para-histórico">Exportar CSV para histórico</h3>
+<p>O JSON de custo captura o estado de um dia. O CSV serve para acumular vários dias num formato tabular — uma linha por serviço, uma coluna de custo. A utilidade prática é jogar esses arquivos num dashboard Grafana ou numa planilha para visualizar tendência: qual serviço cresceu semana a semana, qual estabilizou, qual surgiu do nada. Sem isso, comparar dois JSONs manualmente é inviável depois de 15 dias de coleta.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 scripts/normalize_costs.py <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --input data/snapshots/costs-<span class="k">$(</span>date +%Y-%m-%d<span class="k">)</span>.json <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --output data/exports/finops-<span class="k">$(</span>date +%Y-%m-%d<span class="k">)</span>.csv
-</span></span></code></pre></div><h3 id="comparar-inventários-manualmente">Comparar inventários manualmente</h3>
+</span></span></code></pre></div><p>O arquivo gerado tem duas colunas: <code>service</code> e <code>cost_usd</code>, ordenado do mais caro para o mais barato. Rodando todo dia via cron você acumula o histórico automaticamente.</p>
+<h3 id="comparar-inventários-manualmente">Comparar inventários manualmente</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 scripts/compare_snapshots.py <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --today data/snapshots/resources-<span class="k">$(</span>date +%Y-%m-%d<span class="k">)</span>.json <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --yesterday data/snapshots/resources-<span class="k">$(</span>date -d yesterday +%Y-%m-%d<span class="k">)</span>.json
