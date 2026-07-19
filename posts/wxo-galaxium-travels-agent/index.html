@@ -264,6 +264,44 @@ fetchInject(["/js/lazysizes.min.js"]);
 </table>
 <p>O diagrama abaixo percorre o processo inteiro, etapa por etapa: o Bob escrevendo os documentos, a ingestão no RAG (chunking, embeddings, índice), a API virando ferramentas via OpenAPI, a montagem do agente e — no final — a conversa real em que ele registra o passageiro e efetiva a reserva.</p>
 <p><img src="/wxo-galaxium-travels-agent.gif" alt="Diagrama animado — do Bob escrevendo os documentos até a reserva efetivada pelo agente"></p>
+<p>As cinco etapas que o diagrama percorre são exatamente as deste post:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Etapa</th>
+          <th>O que acontece</th>
+          <th>Comando</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1. Documentos</td>
+          <td>Catálogo, FAQ e guia viram a matéria-prima do RAG</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td>2. RAG</td>
+          <td>Chunking, embeddings e índice vetorial</td>
+          <td><code>orchestrate knowledge-bases import</code></td>
+      </tr>
+      <tr>
+          <td>3. API</td>
+          <td>A spec OpenAPI vira 6 ferramentas do agente</td>
+          <td><code>orchestrate tools import</code></td>
+      </tr>
+      <tr>
+          <td>4. Agente</td>
+          <td>ReAct ligando ferramentas + base de conhecimento</td>
+          <td><code>orchestrate agents import</code></td>
+      </tr>
+      <tr>
+          <td>5. Reserva</td>
+          <td>O agente encadeia <code>register</code> → <code>book</code> sozinho</td>
+          <td><code>orchestrate chat start</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>Há também uma <a href="/wxo-galaxium-travels-agent.html">versão interativa do diagrama</a>, com as mesmas cinco etapas em HTML.</p>
 <h2 id="como-as-partes-se-conectam">Como as Partes se Conectam</h2>
 <p>O fluxo começa no chat. O agente recebe a mensagem e o modelo Granite decide o caminho com base nas instruções do YAML:</p>
 <p>Se a pergunta depende do <strong>estado atual do sistema</strong> — quais voos existem, quantos assentos sobraram, quais reservas o cliente tem — ele chama uma <strong>ferramenta</strong>. Os dados vêm do SQLite via FastAPI, sempre atuais.</p>
@@ -279,12 +317,16 @@ fetchInject(["/js/lazysizes.min.js"]);
 │   ├── travel_packages_catalog.md  # pacotes e preços
 │   ├── passenger_faq.md            # perguntas frequentes
 │   └── passenger_preparation_guide.md
-└── booking_system_backend/         # a API REST
-    ├── server.py                   # endpoints FastAPI
-    ├── models.py                   # tabelas (User, Flight, Booking)
-    ├── schemas.py                  # contratos de entrada/saída
-    ├── seed.py                     # dados de demonstração
-    └── services/                   # regras de negócio
+├── booking_system_backend/         # a API REST
+│   ├── server.py                   # endpoints FastAPI
+│   ├── models.py                   # tabelas (User, Flight, Booking)
+│   ├── schemas.py                  # contratos de entrada/saída
+│   ├── seed.py                     # dados de demonstração
+│   └── services/                   # regras de negócio
+└── diagrama/                       # diagrama animado do fluxo
+    ├── gerar_gif.py                # gera o GIF das 5 etapas (Pillow)
+    ├── wxo-galaxium-travels-agent.gif
+    └── wxo-galaxium-travels-agent.html
 </code></pre><h2 id="a-api-de-reservas">A API de Reservas</h2>
 <p>O agente só é interessante se tiver um sistema real para controlar. O backend define três tabelas — usuários, voos e reservas — com o detalhe que gera a dependência interessante: <code>Booking</code> tem uma foreign key para <code>User</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Booking</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
@@ -303,10 +345,10 @@ fetchInject(["/js/lazysizes.min.js"]);
 <h3 id="testando-a-dependência-à-mão">Testando a dependência à mão</h3>
 <p>Vale reproduzir no Swagger o problema que o agente vai ter que resolver. Tente reservar sem cadastro:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">POST</span> <span class="err">/book</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="nt">&#34;user_id&#34;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Max&#34;</span><span class="p">,</span> <span class="nt">&#34;flight_id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nt">&#34;seat_class&#34;</span><span class="p">:</span> <span class="s2">&#34;economy&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="nt">&#34;user_id&#34;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Felipe&#34;</span><span class="p">,</span> <span class="nt">&#34;flight_id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nt">&#34;seat_class&#34;</span><span class="p">:</span> <span class="s2">&#34;economy&#34;</span> <span class="p">}</span>
 </span></span></code></pre></div><p>Retorna erro — o usuário 99 não existe. Agora cadastre:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">POST</span> <span class="err">/register</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Max&#34;</span><span class="p">,</span> <span class="nt">&#34;email&#34;</span><span class="p">:</span> <span class="s2">&#34;max@mail.com&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Felipe&#34;</span><span class="p">,</span> <span class="nt">&#34;email&#34;</span><span class="p">:</span> <span class="s2">&#34;felipe@email.com&#34;</span> <span class="p">}</span>
 </span></span></code></pre></div><p>Guarde o <code>user_id</code> retornado e refaça o <code>POST /book</code> com ele: funciona. Essa sequência manual é exatamente o que o agente vai fazer sozinho.</p>
 <h2 id="o-openapi-spec">O OpenAPI Spec</h2>
 <p>O FastAPI gera a spec automaticamente, mas ela precisa de dois ajustes para o Orchestrate:</p>
@@ -481,7 +523,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 <p>O agente não executa nada. Ele vê que a ferramenta de reserva exige <code>user_id</code>, não tem esse dado e <strong>pede o que falta</strong>. Isso é planejamento — ele inspecionou o schema da ferramenta antes de tentar usá-la.</p>
 <p><strong>Prompt:</strong> <code>Não tenho user ID.</code></p>
 <p>Ele entende que precisa registrar primeiro e pede nome e e-mail.</p>
-<p><strong>Prompt:</strong> <code>Meu nome é Max, email max@mail.com</code></p>
+<p><strong>Prompt:</strong> <code>Meu nome é Felipe, email felipe@email.com</code></p>
 <p>Agora ele executa duas ferramentas em sequência, sozinho:</p>
 <ol>
 <li><code>POST /register</code> → recebe o <code>user_id</code> na resposta</li>
