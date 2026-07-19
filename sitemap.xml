@@ -3,7 +3,62 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://fxshell.com.br/posts/</loc>
-    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshell.com.br/posts/wxo-galaxium-travels-agent/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshell.com.br/tags/agentes/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshell.com.br/tags/devops/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshell.com.br/tags/fastapi/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshell.com.br/tags/ia/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshell.com.br/tags/ibm/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshell.com.br/tags/openapi/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshell.com.br/tags/orchestrate/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshell.com.br/tags/rag/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshell.com.br/tags/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://fxshell.com.br/tags/watsonx/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -27,11 +82,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://fxshell.com.br/tags/devops/</loc>
-    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://fxshell.com.br/tags/finops/</loc>
     <lastmod>2026-05-17T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -43,11 +93,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://fxshell.com.br/tags/iac/</loc>
-    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://fxshell.com.br/tags/</loc>
     <lastmod>2026-05-17T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
