@@ -262,7 +262,8 @@ fetchInject(["/js/lazysizes.min.js"]);
       </tr>
   </tbody>
 </table>
-<p><img src="/wxo-galaxium-travels-agent.gif" alt="Diagrama animado — Agente ReAct no watsonx Orchestrate"></p>
+<p>O diagrama abaixo percorre o processo inteiro, etapa por etapa: o Bob escrevendo os documentos, a ingestão no RAG (chunking, embeddings, índice), a API virando ferramentas via OpenAPI, a montagem do agente e — no final — a conversa real em que ele registra o passageiro e efetiva a reserva.</p>
+<p><img src="/wxo-galaxium-travels-agent.gif" alt="Diagrama animado — do Bob escrevendo os documentos até a reserva efetivada pelo agente"></p>
 <h2 id="como-as-partes-se-conectam">Como as Partes se Conectam</h2>
 <p>O fluxo começa no chat. O agente recebe a mensagem e o modelo Granite decide o caminho com base nas instruções do YAML:</p>
 <p>Se a pergunta depende do <strong>estado atual do sistema</strong> — quais voos existem, quantos assentos sobraram, quais reservas o cliente tem — ele chama uma <strong>ferramenta</strong>. Os dados vêm do SQLite via FastAPI, sempre atuais.</p>
