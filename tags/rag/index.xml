@@ -12,7 +12,7 @@
     <ttl>1440</ttl>
     <generator>Hugo 0.152.2</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 19 Jul 2026 19:29:29 UT</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jul 2026 20:21:25 UT</lastBuildDate>
     <atom:link href="https://fxshell.com.br/tags/rag/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Agente ReAct no watsonx Orchestrate — API REST real &#43; RAG, construído com IBM Bob</title>

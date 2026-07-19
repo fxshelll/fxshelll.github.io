@@ -247,6 +247,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 <h3 id="agente-react">Agente ReAct</h3>
 <p><strong>ReAct</strong> significa <em>Reasoning + Acting</em> — raciocinar e agir. É um padrão em que o modelo alterna entre pensar e executar: analisa o pedido, decide qual ferramenta chamar, observa o resultado, pensa de novo com essa informação nova e decide o próximo passo.</p>
 <p>A diferença prática em relação a um modelo que só responde texto: o agente ReAct pode <strong>encadear</strong> chamadas, usando a saída de uma como entrada da próxima. É o que permite resolver &ldquo;registrar → reservar&rdquo; sem que ninguém tenha programado essa sequência.</p>
+<p><img src="/wxo-react-loop.gif" alt="O laço ReAct — pensa, age, observa e repete até conseguir responder"></p>
 <h3 id="openapi-specification">OpenAPI Specification</h3>
 <p>Formato padrão (JSON ou YAML) que descreve uma API REST: quais endpoints existem, que parâmetros aceitam, o que retornam. É a forma como o Orchestrate transforma uma API em <strong>ferramentas</strong> do agente — sem escrever uma linha de código de integração.</p>
 <p>Cada endpoint da spec vira uma ferramenta, e a descrição de cada campo é o que o modelo lê para decidir quando e como usá-la. Descrição ruim na spec significa ferramenta usada errado pelo agente.</p>
@@ -473,6 +474,7 @@ fetchInject(["/js/lazysizes.min.js"]);
   </tbody>
 </table>
 <p>O <code>operationId</code> é o nome pelo qual o agente referencia a ferramenta no YAML — por isso ele aparece nessa forma verbosa gerada pelo FastAPI.</p>
+<p><img src="/wxo-openapi-tool.gif" alt="De endpoint a ferramenta — a spec vira uma tool com parâmetros tipados"></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">orchestrate tools import -k openapi -f galaxium-openapi.json
 </span></span><span class="line"><span class="cl">orchestrate tools list
 </span></span></code></pre></div><p>Se o seu Orchestrate roda em <strong>SaaS</strong>, ele não enxerga <code>localhost</code>. Nesse caso é preciso expor a API com um túnel HTTPS público (<code>ngrok http 8001</code>) e trocar o <code>servers.url</code> da spec pela URL pública — incluindo o <code>/api</code> no final — antes de reimportar.</p>
@@ -496,6 +498,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">chunk_overlap</span><span class="p">:</span><span class="w"> </span><span class="m">50</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">embeddings_model_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;default&#34;</span><span class="w">
 </span></span></span></code></pre></div><p><code>chunk_size: 500</code> define o tamanho de cada pedaço indexado, e <code>chunk_overlap: 50</code> faz pedaços vizinhos compartilharem 50 caracteres. Esse overlap existe para evitar que uma informação seja cortada bem na fronteira entre dois chunks e acabe recuperada pela metade.</p>
+<p><img src="/wxo-rag-pipeline.gif" alt="Como o RAG responde — busca semântica, contexto e resposta ancorada no documento"></p>
 <p>Os caminhos em <code>documents</code> são <strong>relativos ao diretório de onde você roda o comando</strong>, não ao arquivo YAML. Rodando de outra pasta, o import falha dizendo que não encontrou os documentos — é o erro mais bobo e mais comum aqui.</p>
 <p>Dois pontos onde este YAML difere do exemplo da documentação, e que valem atenção se algo não funcionar no seu ambiente:</p>
 <p><strong><code>embeddings_model_name: &quot;default&quot;</code></strong> — a <a href="https://developer.watson-orchestrate.ibm.com/knowledge_base/build_kb.md">documentação oficial</a> usa o nome explícito do modelo, <code>ibm/slate-125m-english-rtrvr-v2</code>. Se o <code>&quot;default&quot;</code> for rejeitado na sua versão do ADK, troque pelo nome completo.</p>
@@ -612,6 +615,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 <li><code>POST /book</code> → usa esse <code>user_id</code> como parâmetro</li>
 </ol>
 <p>Uma etapa alimentando a outra, sem ninguém ter programado a sequência. A dependência estava no banco de dados; o agente a descobriu pelo schema e pelas instruções.</p>
+<p><img src="/wxo-multi-step.gif" alt="Fluxo de múltiplas etapas — o agente pergunta o que falta e encadeia register → book"></p>
 <h3 id="recuperação-de-erro">Recuperação de erro</h3>
 <p>Tente reservar com um nome que não bate com o cadastro. A API retorna erro, e o comportamento interessante é o que o agente <strong>não</strong> faz: repetir a mesma chamada esperando resultado diferente. Ele busca o usuário, confere os dados e sugere o recadastro.</p>
 <h3 id="rag-de-preparação">RAG de preparação</h3>
