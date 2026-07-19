@@ -197,6 +197,48 @@ fetchInject(["/js/lazysizes.min.js"]);
 <h2 id="objetivo-do-lab">Objetivo do Lab</h2>
 <p>Construir um agente único que <strong>age</strong> sobre um sistema real (sistema de reservas de viagens espaciais, via FastAPI + SQLite) e <strong>consulta</strong> documentos internos (catálogo de pacotes, FAQ, guia de preparação) para responder dúvidas de política — decidindo sozinho qual dos dois caminhos usar em cada pergunta.</p>
 <p>O ponto central é a orquestração de <strong>fluxos de múltiplas etapas</strong>: a API exige que o passageiro exista antes de reservar, e é o agente que descobre e resolve essa dependência.</p>
+<h2 id="antes-de-começar--o-que-você-precisa">Antes de Começar — O Que Você Precisa</h2>
+<p>Este lab é reproduzível em casa, e tudo que ele usa tem versão gratuita. São quatro coisas para preparar antes de escrever qualquer YAML.</p>
+<h3 id="1-conta-no-watsonx-orchestrate-trial-de-30-dias">1. Conta no watsonx Orchestrate (trial de 30 dias)</h3>
+<p>O Orchestrate é um produto pago, mas oferece <strong>trial gratuito de 30 dias</strong> — suficiente com folga para este lab. Cadastre-se pela <a href="https://www.ibm.com/products/watsonx-orchestrate">página do produto</a> usando um <strong>IBMid</strong> (que também é grátis e serve para o Bob depois).</p>
+<p>Com o ambiente provisionado, pegue as duas credenciais que o ADK vai pedir:</p>
+<ol>
+<li>Faça login na sua instância do watsonx Orchestrate</li>
+<li>Clique no <strong>ícone de usuário</strong> no canto superior direito e vá em <strong>Settings</strong></li>
+<li>Abra a aba <strong>API details</strong></li>
+<li>Copie a <strong>service instance URL</strong></li>
+<li>Clique em <strong>Generate API key</strong> e guarde a chave</li>
+</ol>
+<p>Guarde a API key com cuidado: dependendo do provedor ela <strong>não é recuperável</strong> depois — se perder, é preciso gerar outra.</p>
+<h3 id="2-python-311-e-o-adk">2. Python 3.11+ e o ADK</h3>
+<p>O ADK (<em>Agent Development Kit</em>) é o <code>orchestrate</code> CLI, e exige <strong>Python 3.11 ou superior</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 --version                              <span class="c1"># precisa ser &gt;= 3.11</span>
+</span></span><span class="line"><span class="cl">pip install --upgrade ibm-watsonx-orchestrate
+</span></span><span class="line"><span class="cl">orchestrate --help                             <span class="c1"># confirma a instalação</span>
+</span></span></code></pre></div><p>Agora conecte o CLI ao seu ambiente, usando as credenciais do passo anterior:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># registra o ambiente (a URL da aba API details)</span>
+</span></span><span class="line"><span class="cl">orchestrate env add -n meu-wxo -u &lt;service-instance-url&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ativa (vai pedir a API key; ou passe com --api-key)</span>
+</span></span><span class="line"><span class="cl">orchestrate env activate meu-wxo
+</span></span></code></pre></div><p>Confira se está tudo certo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">orchestrate env list
+</span></span><span class="line"><span class="cl">orchestrate agents list
+</span></span></code></pre></div><p>A autenticação remota <strong>expira a cada ~2 horas</strong>. Quando os comandos começarem a falhar com erro de token, rode o <code>orchestrate env activate</code> de novo — é o motivo mais comum de &ldquo;parou de funcionar do nada&rdquo; no meio do lab.</p>
+<h3 id="3-o-ibm-bob-opcional-mas-foi-como-fiz">3. O IBM Bob (opcional, mas foi como fiz)</h3>
+<p>O Bob é o assistente de código da IBM — um fork do VS Code com um agente integrado. Tem <strong>trial de 30 dias com 40 Bobcoins</strong>; depois é assinatura paga. Baixe em <a href="https://bob.ibm.com/download">bob.ibm.com/download</a>:</p>
+<ul>
+<li><strong>macOS</strong> — <code>.pkg</code> (escolha ARM para M1/M2/M3, Intel para os mais antigos)</li>
+<li><strong>Windows</strong> — <code>.exe</code>, instalação por wizard</li>
+<li><strong>Linux</strong> — instaladores para Debian e Red Hat/Fedora</li>
+</ul>
+<p>Requer 4 GB de RAM (8 GB recomendado), 500 MB de disco e login com <strong>IBMid</strong> no primeiro início.</p>
+<p>O lab funciona sem o Bob — os YAMLs estão todos neste post. Ele entra como acelerador para escrever spec, YAMLs e instruções.</p>
+<h3 id="4-o-repositório-da-galaxium-travels">4. O repositório da Galaxium Travels</h3>
+<p>O cenário e a API vêm do projeto da IBM:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/IBM/galaxium-travels.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> galaxium-travels
+</span></span></code></pre></div><p>O repositório completo traz um frontend React e um serviço Java de <em>holds</em>, mas <strong>para este lab só o backend Python importa</strong> — é ele que vira as ferramentas do agente. Você pode ignorar o resto.</p>
 <h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
 <p>Antes do código, vale entender cada peça — inclusive porque algumas são específicas do ecossistema IBM.</p>
 <h3 id="ibm-watsonx-orchestrate">IBM watsonx Orchestrate</h3>
@@ -308,16 +350,17 @@ fetchInject(["/js/lazysizes.min.js"]);
 <p>Se a pergunta é sobre <strong>política ou catálogo</strong> — quanto custa o pacote lunar, qual a regra de cancelamento, o que pode levar na bagagem — ele consulta o <strong>RAG</strong>. A resposta sai dos documentos indexados.</p>
 <p>E quando o pedido exige as duas coisas, ou várias etapas encadeadas, o laço ReAct entra em ação: age, observa o retorno, raciocina de novo e decide o próximo passo.</p>
 <h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
+<p>Organizei o lab assim — os itens marcados com <code>[IBM]</code> vêm do repositório original, os demais são a camada de agente que construí:</p>
 <pre tabindex="0"><code>wxo-galaxium-travels-agent/
-├── start_api.sh                    # sobe a API (venv + seed + uvicorn)
+├── start_api.sh                    # atalho meu: venv + seed + uvicorn
 ├── galaxium-openapi.json           # OpenAPI spec ajustado p/ o Orchestrate
 ├── galaxium-knowledge-base.yaml    # definição da base RAG
 ├── galaxium-travel-agent.yaml      # definição do agente ReAct
-├── knowledge-bases/                # documentos indexados no RAG
+├── knowledge-bases/                # [IBM] documentos indexados no RAG
 │   ├── travel_packages_catalog.md  # pacotes e preços
 │   ├── passenger_faq.md            # perguntas frequentes
 │   └── passenger_preparation_guide.md
-├── booking_system_backend/         # a API REST
+├── booking_system_backend/         # [IBM] a API REST
 │   ├── server.py                   # endpoints FastAPI
 │   ├── models.py                   # tabelas (User, Flight, Booking)
 │   ├── schemas.py                  # contratos de entrada/saída
@@ -338,10 +381,17 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span><span class="line"><span class="cl">    <span class="n">seat_class</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;economy&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">price_paid</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </span></span></code></pre></div><p><code>user_id</code> é obrigatório e referencia um usuário existente. Reservar sem cadastro é impossível — e o sistema <strong>não inventa passageiro</strong>. Essa restrição de banco é o que força o agente a planejar.</p>
-<p>Para subir:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./start_api.sh
-</span></span></code></pre></div><p>O script cria um venv dedicado, instala dependências, popula o banco com dados de demonstração (10 voos, 10 usuários) e sobe o FastAPI. O Swagger fica em <strong>http://localhost:8001/api/docs</strong>.</p>
-<p>A API roda com <code>root_path=&quot;/api&quot;</code>, então a base é <code>http://localhost:8001/api</code> — por isso o Swagger não está em <code>/docs</code>.</p>
+<p>Para subir a API, direto do repositório clonado:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> galaxium-travels/booking_system_backend
+</span></span><span class="line"><span class="cl">python3 -m venv .venv <span class="o">&amp;&amp;</span> <span class="nb">source</span> .venv/bin/activate
+</span></span><span class="line"><span class="cl">pip install -r requirements.txt
+</span></span><span class="line"><span class="cl">python server.py                 <span class="c1"># sobe na porta 8001</span>
+</span></span></code></pre></div><p>Na primeira execução o banco é populado com dados de demonstração — 10 voos (Terra → Marte, Terra → Lua, Júpiter → Europa…) e 10 usuários. A semeadura é idempotente: só roda se o banco estiver vazio, então reiniciar não apaga o que você cadastrou.</p>
+<p>Deixe <strong>este terminal aberto</strong> — a API precisa continuar no ar durante todo o lab.</p>
+<p>Confirme que subiu abrindo o Swagger no navegador:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -s http://localhost:8001/flights <span class="p">|</span> head -c <span class="m">200</span>
+</span></span></code></pre></div><p>Sobre o endereço do Swagger, atenção a uma pegadinha: <strong>depende de como o backend foi configurado</strong>. No repositório oficial ele responde em <code>http://localhost:8001/docs</code>. Nesta cópia do lab o <code>server.py</code> define <code>root_path=&quot;/api&quot;</code> (um ajuste para roteamento por load balancer), o que empurra tudo para baixo de <code>/api</code> — e aí o Swagger fica em <code>http://localhost:8001/api/docs</code>.</p>
+<p>Se <code>/docs</code> der 404, tente <code>/api/docs</code>, e vice-versa. Isso importa além do Swagger: <strong>é o mesmo prefixo que precisa entrar no <code>servers.url</code> da spec OpenAPI</strong> — se errar aqui, o agente importa as ferramentas mas toda chamada volta 404.</p>
 <h3 id="testando-a-dependência-à-mão">Testando a dependência à mão</h3>
 <p>Vale reproduzir no Swagger o problema que o agente vai ter que resolver. Tente reservar sem cadastro:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">POST</span> <span class="err">/book</span>
@@ -446,8 +496,15 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">chunk_overlap</span><span class="p">:</span><span class="w"> </span><span class="m">50</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">embeddings_model_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;default&#34;</span><span class="w">
 </span></span></span></code></pre></div><p><code>chunk_size: 500</code> define o tamanho de cada pedaço indexado, e <code>chunk_overlap: 50</code> faz pedaços vizinhos compartilharem 50 caracteres. Esse overlap existe para evitar que uma informação seja cortada bem na fronteira entre dois chunks e acabe recuperada pela metade.</p>
+<p>Os caminhos em <code>documents</code> são <strong>relativos ao diretório de onde você roda o comando</strong>, não ao arquivo YAML. Rodando de outra pasta, o import falha dizendo que não encontrou os documentos — é o erro mais bobo e mais comum aqui.</p>
+<p>Dois pontos onde este YAML difere do exemplo da documentação, e que valem atenção se algo não funcionar no seu ambiente:</p>
+<p><strong><code>embeddings_model_name: &quot;default&quot;</code></strong> — a <a href="https://developer.watson-orchestrate.ibm.com/knowledge_base/build_kb.md">documentação oficial</a> usa o nome explícito do modelo, <code>ibm/slate-125m-english-rtrvr-v2</code>. Se o <code>&quot;default&quot;</code> for rejeitado na sua versão do ADK, troque pelo nome completo.</p>
+<p><strong>Documentos em Markdown</strong> — a documentação lista PDF, DOCX, PPTX, XLSX, CSV, HTML e TXT, sem citar <code>.md</code> explicitamente. Funcionou aqui, mas se o seu import reclamar do formato, renomear para <code>.txt</code> resolve sem alterar o conteúdo — os documentos são texto puro de qualquer forma.</p>
+<p>Feito isso, importe:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">orchestrate knowledge-bases import -f galaxium-knowledge-base.yaml
-</span></span></code></pre></div><h2 id="o-agente">O Agente</h2>
+</span></span><span class="line"><span class="cl">orchestrate knowledge-bases list          <span class="c1"># confirma que apareceu</span>
+</span></span></code></pre></div><p>A indexação não é instantânea: o Orchestrate precisa quebrar os documentos, gerar os embeddings e subir tudo para o índice vetorial. Se testar o agente imediatamente e ele responder que não sabe, espere um pouco e pergunte de novo antes de sair mexendo nas instruções.</p>
+<h2 id="o-agente">O Agente</h2>
 <p>Aqui está o núcleo do lab. O YAML declara modelo, estilo, ferramentas, base de conhecimento e — o mais importante — as instruções que ensinam o agente a <strong>escolher</strong> entre agir e consultar:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spec_version</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">native</span><span class="w">
@@ -492,9 +549,28 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">galaxium-travels-kb</span><span class="w">
 </span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">orchestrate agents import -f galaxium-travel-agent.yaml
 </span></span></code></pre></div><p>A ordem importa: o YAML do agente referencia ferramentas e KB pelo nome, então <strong>importe os dois antes do agente</strong> — caso contrário a importação falha.</p>
-<h2 id="executando">Executando</h2>
-<p>A sequência completa, com a API já rodando em outro terminal:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. ferramentas a partir da spec OpenAPI</span>
+<h2 id="executando--o-roteiro-completo">Executando — O Roteiro Completo</h2>
+<p>Juntando tudo, do zero até o agente respondendo. Você vai precisar de <strong>dois terminais</strong>: um para a API, outro para o <code>orchestrate</code>.</p>
+<h3 id="terminal-1--a-api-no-ar">Terminal 1 — a API no ar</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/IBM/galaxium-travels.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> galaxium-travels/booking_system_backend
+</span></span><span class="line"><span class="cl">python3 -m venv .venv <span class="o">&amp;&amp;</span> <span class="nb">source</span> .venv/bin/activate
+</span></span><span class="line"><span class="cl">pip install -r requirements.txt
+</span></span><span class="line"><span class="cl">python server.py                 <span class="c1"># deixe rodando</span>
+</span></span></code></pre></div><h3 id="terminal-2--expor-a-api-só-se-o-orchestrate-for-saas">Terminal 2 — expor a API (só se o Orchestrate for SaaS)</h3>
+<p>Se o seu Orchestrate é o da nuvem — o caso de quem usa o trial — ele <strong>não enxerga o seu <code>localhost</code></strong>. É preciso um túnel público antes de importar as ferramentas:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ngrok http <span class="m">8001</span>
+</span></span></code></pre></div><p>Copie a URL <code>https://</code> que o ngrok mostrar e use no <code>servers.url</code> da spec (com o mesmo sufixo de path do seu Swagger — <code>/api</code> ou nada):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;servers&#34;</span><span class="err">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://xxxx-xxxx.ngrok-free.dev/api&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></div><p>Pulei esse passo na primeira tentativa e as ferramentas importaram normalmente — só para dar timeout em toda chamada depois. O erro não aparece na importação, só no uso.</p>
+<h3 id="terminal-2--importar-e-testar">Terminal 2 — importar e testar</h3>
+<p>A ordem aqui não é opcional: o YAML do agente referencia ferramentas e base de conhecimento <strong>pelo nome</strong>. Se elas ainda não existirem, a importação do agente falha.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 0. ambiente ativo? (o token expira a cada ~2h)</span>
+</span></span><span class="line"><span class="cl">orchestrate env activate meu-wxo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. ferramentas a partir da spec OpenAPI</span>
 </span></span><span class="line"><span class="cl">orchestrate tools import -k openapi -f galaxium-openapi.json
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 2. base de conhecimento (chunking + embeddings + índice)</span>
@@ -503,14 +579,20 @@ fetchInject(["/js/lazysizes.min.js"]);
 </span></span><span class="line"><span class="cl"><span class="c1"># 3. o agente, que referencia os dois acima</span>
 </span></span><span class="line"><span class="cl">orchestrate agents import -f galaxium-travel-agent.yaml
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 4. conferir</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. conferir que os três existem</span>
 </span></span><span class="line"><span class="cl">orchestrate tools list
 </span></span><span class="line"><span class="cl">orchestrate knowledge-bases list
 </span></span><span class="line"><span class="cl">orchestrate agents list
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 5. chat local</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. abrir o chat</span>
 </span></span><span class="line"><span class="cl">orchestrate chat start
-</span></span></code></pre></div><h2 id="testando-o-agente">Testando o Agente</h2>
+</span></span></code></pre></div><p>No chat, selecione <strong>galaxium_travel_agent</strong> e siga para os testes abaixo.</p>
+<h3 id="refazendo-do-zero">Refazendo do zero</h3>
+<p>Se quiser recomeçar limpo — útil ao ajustar instruções e comparar comportamento:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">orchestrate agents remove          -n galaxium_travel_agent
+</span></span><span class="line"><span class="cl">orchestrate knowledge-bases remove -n galaxium-travels-kb
+</span></span></code></pre></div><p>Para zerar também os dados de reserva, apague o arquivo SQLite do backend e suba a API de novo; a semeadura roda outra vez por encontrar o banco vazio.</p>
+<h2 id="testando-o-agente">Testando o Agente</h2>
 <h3 id="pergunta-de-política-rag">Pergunta de política (RAG)</h3>
 <p><strong>Prompt:</strong> <code>Quais pacotes vocês oferecem para ir à Lua?</code></p>
 <p>O agente consulta a base de conhecimento e responde com os pacotes lunares do catálogo — Lunar Escape (250.000 GXC), Lunar Royale (490.000 GXC) e Honeymoon on the Moon — com os preços que estão nos documentos. Abrindo o raciocínio dá para confirmar que ele usou o RAG, e não a API.</p>
@@ -552,8 +634,18 @@ fetchInject(["/js/lazysizes.min.js"]);
       </tr>
       <tr>
           <td>Swagger não abre em <code>/docs</code></td>
-          <td>A base é <code>/api</code></td>
-          <td>Use <code>http://localhost:8001/api/docs</code></td>
+          <td>O backend usa <code>root_path=&quot;/api&quot;</code></td>
+          <td>Tente <code>http://localhost:8001/api/docs</code> (ou o inverso)</td>
+      </tr>
+      <tr>
+          <td><code>orchestrate: command not found</code></td>
+          <td>ADK não instalado ou fora do PATH</td>
+          <td><code>pip install --upgrade ibm-watsonx-orchestrate</code> no venv ativo</td>
+      </tr>
+      <tr>
+          <td>ADK falha ao instalar</td>
+          <td>Python abaixo de 3.11</td>
+          <td><code>python3 --version</code> — o ADK exige 3.11+</td>
       </tr>
       <tr>
           <td>Import do agente falha</td>
@@ -561,19 +653,39 @@ fetchInject(["/js/lazysizes.min.js"]);
           <td>Importe tools e KB <strong>antes</strong> do agente</td>
       </tr>
       <tr>
+          <td>Import da KB não acha os arquivos</td>
+          <td>Caminhos são relativos ao diretório atual</td>
+          <td>Rode o comando da raiz do lab, onde está <code>knowledge-bases/</code></td>
+      </tr>
+      <tr>
+          <td>Ferramentas importam mas dão timeout</td>
+          <td>Orchestrate SaaS não alcança <code>localhost</code></td>
+          <td>Exponha via ngrok e atualize <code>servers.url</code> na spec</td>
+      </tr>
+      <tr>
+          <td>Toda chamada de ferramenta volta 404</td>
+          <td><code>servers.url</code> sem o prefixo certo</td>
+          <td>Inclua (ou remova) o <code>/api</code> conforme o seu Swagger</td>
+      </tr>
+      <tr>
+          <td>Erro de token / 401 no meio do lab</td>
+          <td>Autenticação remota expira (~2h)</td>
+          <td><code>orchestrate env activate &lt;ambiente&gt;</code> de novo</td>
+      </tr>
+      <tr>
+          <td>Agente diz não saber sobre pacotes</td>
+          <td>Índice ainda processando</td>
+          <td>Aguarde a indexação terminar e pergunte de novo</td>
+      </tr>
+      <tr>
           <td>Agente responde política pela API</td>
           <td>Instrução de roteamento fraca</td>
           <td>Reforce no YAML: ferramenta = dado vivo, RAG = política</td>
       </tr>
       <tr>
-          <td>Ferramentas dão timeout no SaaS</td>
-          <td>Orchestrate não alcança <code>localhost</code></td>
-          <td>Exponha via ngrok e atualize <code>servers.url</code></td>
-      </tr>
-      <tr>
-          <td>Autenticação expira (~2h)</td>
-          <td>Token remoto do wxO</td>
-          <td>Rode novamente o script de ativação do ambiente</td>
+          <td>Agente inventa um <code>user_id</code></td>
+          <td>Falta a instrução explícita</td>
+          <td>Adicione &ldquo;nunca invente um <code>user_id</code>&rdquo; nas instruções</td>
       </tr>
   </tbody>
 </table>
@@ -594,8 +706,14 @@ fetchInject(["/js/lazysizes.min.js"]);
 <p>Essa parte foi construída com o <strong>IBM Bob</strong>, que escreveu os YAMLs do agente e da knowledge base, ajustou o OpenAPI spec para o formato aceito pelo Orchestrate e redigiu as instruções de roteamento — coube a mim revisar e executar.</p>
 <h2 id="referências">Referências</h2>
 <ul>
-<li><a href="https://www.ibm.com/products/watsonx-orchestrate">IBM watsonx Orchestrate</a> — documentação oficial</li>
+<li><a href="https://www.ibm.com/products/watsonx-orchestrate">IBM watsonx Orchestrate</a> — página do produto e trial de 30 dias</li>
 <li><a href="https://developer.watson-orchestrate.ibm.com/">watsonx Orchestrate ADK</a> — o <code>orchestrate</code> CLI</li>
+<li><a href="https://developer.watson-orchestrate.ibm.com/getting_started/installing.md">Instalando o ADK</a> — pré-requisitos e <code>pip install</code></li>
+<li><a href="https://developer.watson-orchestrate.ibm.com/environment/initiate_environment.md">Configurando o ambiente</a> — <code>env add</code> e <code>env activate</code></li>
+<li><a href="https://developer.watson-orchestrate.ibm.com/environment/production_import.md">Obtendo as credenciais</a> — onde achar API key e service instance URL</li>
+<li><a href="https://developer.watson-orchestrate.ibm.com/knowledge_base/build_kb.md">Criando knowledge bases</a> — schema do YAML e opções do índice</li>
+<li><a href="https://developer.watson-orchestrate.ibm.com/tools/create_openapi_tool.md">Autoria de ferramentas OpenAPI</a> — requisitos da spec</li>
+<li><a href="https://bob.ibm.com/download">IBM Bob</a> — download e trial de 30 dias</li>
 <li><a href="https://www.ibm.com/granite">IBM Granite</a> — família de modelos usada pelo agente</li>
 <li><a href="https://swagger.io/specification/">OpenAPI Specification</a> — formato das ferramentas</li>
 <li><a href="https://fastapi.tiangolo.com/">FastAPI</a> — framework da API de reservas</li>
