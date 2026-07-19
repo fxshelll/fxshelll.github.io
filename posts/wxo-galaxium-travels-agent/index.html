@@ -192,8 +192,8 @@ fetchInject(["/js/lazysizes.min.js"]);
     <h1>Agente ReAct no watsonx Orchestrate — API REST real &#43; RAG, construído com IBM Bob</h1>
   </header>
   <p>Pedi para o agente &ldquo;me reserva nesse voo&rdquo; e ele não reservou. Em vez de preencher a chamada com um <code>user_id</code> qualquer para satisfazer o schema, ele percebeu que faltava cadastro e me perguntou nome e e-mail. Quando respondi, executou duas ferramentas em sequência sozinho: registrou o passageiro, pegou o ID que voltou na resposta e só então fez a reserva.</p>
-<p>Esse é o comportamento que separa um agente de verdade de um chatbot com acesso a API. O modelo não tinha o <code>user_id</code>, e a alternativa fácil — inventar um número — é exatamente o que quebra sistemas em produção. Este lab monta esse cenário do zero: um agente <strong>ReAct</strong> no IBM watsonx Orchestrate ligado a uma <strong>API REST real</strong> e a uma <strong>base de conhecimento (RAG)</strong> com documentos corporativos.</p>
-<p>Montei o lab inteiro com o <strong>IBM Bob</strong>, o assistente de código da IBM — das specs OpenAPI aos YAMLs de agente e knowledge base.</p>
+<p>Esse é o comportamento que separa um agente de verdade de um chatbot com acesso a API. O modelo não tinha o <code>user_id</code>, e a alternativa fácil — inventar um número — é exatamente o que quebra sistemas em produção. Este lab monta esse cenário: um agente <strong>ReAct</strong> no IBM watsonx Orchestrate ligado a uma <strong>API REST real</strong> e a uma <strong>base de conhecimento (RAG)</strong> com documentos corporativos.</p>
+<p>O cenário e a API de reservas vêm do projeto <a href="https://github.com/IBM/galaxium-travels">IBM/galaxium-travels</a>, uma aplicação de demonstração publicada pela IBM sob Apache-2.0 — o backend em FastAPI já vinha pronto. O que construí em cima disso foi a camada de agente: ferramentas, base de conhecimento e o YAML do agente, usando o ADK do watsonx Orchestrate. Essa parte foi feita com o <strong>IBM Bob</strong>, o assistente de código da IBM — das specs OpenAPI aos YAMLs de agente e knowledge base.</p>
 <h2 id="objetivo-do-lab">Objetivo do Lab</h2>
 <p>Construir um agente único que <strong>age</strong> sobre um sistema real (sistema de reservas de viagens espaciais, via FastAPI + SQLite) e <strong>consulta</strong> documentos internos (catálogo de pacotes, FAQ, guia de preparação) para responder dúvidas de política — decidindo sozinho qual dos dois caminhos usar em cada pergunta.</p>
 <p>O ponto central é a orquestração de <strong>fluxos de múltiplas etapas</strong>: a API exige que o passageiro exista antes de reservar, e é o agente que descobre e resolve essa dependência.</p>
@@ -214,7 +214,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 <h3 id="fastapi--sqlite">FastAPI + SQLite</h3>
 <p><strong>FastAPI</strong> é o framework Python que expõe o sistema de reservas como API REST. Ele gera a spec OpenAPI automaticamente a partir do código — o que economiza justamente o passo mais chato deste lab. <strong>SQLite</strong> é o banco em arquivo único que guarda voos, usuários e reservas, sem exigir servidor de banco.</p>
 <h3 id="ibm-bob">IBM Bob</h3>
-<p>Assistente de código da IBM, usado aqui para construir o lab inteiro: ajustar a spec OpenAPI para o formato que o Orchestrate aceita, escrever os YAMLs do agente e da base de conhecimento, e montar o script de subida da API.</p>
+<p>Assistente de código da IBM, usado aqui para construir a camada de agente sobre a aplicação existente: ajustar a spec OpenAPI para o formato que o Orchestrate aceita, escrever os YAMLs do agente e da base de conhecimento, redigir as instruções de roteamento e montar o script de subida da API.</p>
 <h2 id="arquitetura">Arquitetura</h2>
 <pre tabindex="0"><code>                    [ Usuário via chat ]
                             │
@@ -262,8 +262,8 @@ fetchInject(["/js/lazysizes.min.js"]);
       </tr>
   </tbody>
 </table>
-<p>O diagrama abaixo percorre o processo inteiro, etapa por etapa: o Bob escrevendo os documentos, a ingestão no RAG (chunking, embeddings, índice), a API virando ferramentas via OpenAPI, a montagem do agente e — no final — a conversa real em que ele registra o passageiro e efetiva a reserva.</p>
-<p><img src="/wxo-galaxium-travels-agent.gif" alt="Diagrama animado — do Bob escrevendo os documentos até a reserva efetivada pelo agente"></p>
+<p>O diagrama abaixo percorre o processo inteiro, etapa por etapa: o Bob preparando os documentos da base de conhecimento, a ingestão no RAG (chunking, embeddings, índice), a API virando ferramentas via OpenAPI, a montagem do agente e — no final — a conversa real em que ele registra o passageiro e efetiva a reserva.</p>
+<p><img src="/wxo-galaxium-travels-agent.gif" alt="Diagrama animado — do preparo da base de conhecimento até a reserva efetivada pelo agente"></p>
 <p>As cinco etapas que o diagrama percorre são exatamente as deste post:</p>
 <table>
   <thead>
@@ -276,7 +276,7 @@ fetchInject(["/js/lazysizes.min.js"]);
   <tbody>
       <tr>
           <td>1. Documentos</td>
-          <td>Catálogo, FAQ e guia viram a matéria-prima do RAG</td>
+          <td>Catálogo, FAQ e guia (do repositório da IBM) viram a matéria-prima do RAG</td>
           <td>—</td>
       </tr>
       <tr>
@@ -588,6 +588,10 @@ fetchInject(["/js/lazysizes.min.js"]);
 <p>O que ficou mais claro rodando este lab não foi o poder do modelo, mas o peso das <strong>instruções</strong> e do <strong>schema</strong>. O mesmo Granite, com as mesmas seis ferramentas, se comporta de forma completamente diferente conforme o YAML diz &ldquo;nunca invente um <code>user_id</code>&rdquo; ou fica calado sobre isso.</p>
 <p>A restrição de foreign key no SQLite, a descrição de cada campo na spec OpenAPI e três parágrafos de instrução em português foram o que produziu o comportamento correto — pedir o dado que falta em vez de chutar um valor. Isso é engenharia de contrato, não mágica de IA. Vale lembrar disso antes de culpar o modelo quando um agente age errado: normalmente o que faltou foi descrição na ferramenta ou instrução no agente.</p>
 <p>E a parte que mais me surpreendeu foi o quanto o IBM Bob acelerou o caminho até aqui — ajustar a spec, escrever os YAMLs e montar o script de subida foi tudo conversa com ele.</p>
+<h2 id="créditos">Créditos</h2>
+<p>O cenário da Galaxium Travels e o sistema de reservas <strong>não são meus</strong>: vêm do projeto <a href="https://github.com/IBM/galaxium-travels">IBM/galaxium-travels</a>, publicado pela IBM sob licença Apache-2.0. A API em FastAPI, o modelo de dados e os documentos da agência já vinham prontos no repositório — é uma aplicação de demonstração criada justamente para exercitar agentes de IA sobre uma base de código realista.</p>
+<p>O que fiz aqui foi a camada de agente em cima disso: importar a API como ferramentas via OpenAPI spec, montar a base de conhecimento (RAG) a partir dos documentos, escrever o YAML do agente ReAct com as instruções de roteamento e testar o fluxo de múltiplas etapas usando o ADK do watsonx Orchestrate.</p>
+<p>Essa parte foi construída com o <strong>IBM Bob</strong>, que escreveu os YAMLs do agente e da knowledge base, ajustou o OpenAPI spec para o formato aceito pelo Orchestrate e redigiu as instruções de roteamento — coube a mim revisar e executar.</p>
 <h2 id="referências">Referências</h2>
 <ul>
 <li><a href="https://www.ibm.com/products/watsonx-orchestrate">IBM watsonx Orchestrate</a> — documentação oficial</li>
@@ -596,7 +600,7 @@ fetchInject(["/js/lazysizes.min.js"]);
 <li><a href="https://swagger.io/specification/">OpenAPI Specification</a> — formato das ferramentas</li>
 <li><a href="https://fastapi.tiangolo.com/">FastAPI</a> — framework da API de reservas</li>
 <li><a href="https://arxiv.org/abs/2210.03629">ReAct: Synergizing Reasoning and Acting in Language Models</a> — artigo original do padrão</li>
-<li><a href="https://github.com/Max-Jesch/galaxium-travels">Galaxium Travels</a> — projeto original de Max Jesch que serviu de base para o cenário</li>
+<li><a href="https://github.com/IBM/galaxium-travels">Galaxium Travels</a> — projeto da IBM (Apache-2.0) que fornece o cenário e a API de reservas</li>
 </ul>
 
 </main>
